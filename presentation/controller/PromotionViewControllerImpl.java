@@ -34,7 +34,7 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 	 * @return 获取销售策略列表
 	 */
 	public List<PromotionVo> observeList(Date date){
-		return promotionService.observeList(date);
+		return promotionService.find(date);
 	}
 	
 	/**

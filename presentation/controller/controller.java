@@ -2,6 +2,8 @@ package presentation.controller;
 
 import presentation.login.login;
 import presentation.login.logincontroller;
+import presentation.manageui.ManageView;
+import presentation.manageui.ManageViewControllerService;
 import presentation.signup.signup;
 import presentation.signup.signupcontroller;
 import presentation.userui.user;
@@ -18,6 +20,8 @@ public class controller {
     private signupcontroller signupcon;
     private usercontroller usercon;
     private JFrame frame;
+    private ManageViewControllerService managecon;
+
 
 
     public controller(JFrame frame){
@@ -42,7 +46,7 @@ public class controller {
 
 // decision
     public void loggedin(String name){
-        if (name.substring(0,2).equals("01")){
+        if (name.substring(0).equals("0")){
 
             usercon=new usercontrollerimpl();
             frame.getContentPane().removeAll();
@@ -53,6 +57,23 @@ public class controller {
             frame.setVisible(true);
             return;
         }
+
+        if (name.substring(0).equals("1")){
+
+            managecon=new ManageViewControllerImpl();
+            frame.getContentPane().removeAll();
+            frame.repaint();
+            this.view=new ManageView(managecon);
+            usercon.setcon(this);
+            frame.getContentPane().add(this.view);
+            frame.setVisible(true);
+            return;
+        }
+
+
+
+
+
     }
 
     public void signup(){

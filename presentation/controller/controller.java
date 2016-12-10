@@ -1,7 +1,5 @@
 package presentation.controller;
 
-import main.Main;
-import oracle.jvm.hotspot.jfr.JFR;
 import presentation.login.login;
 import presentation.login.logincontroller;
 import presentation.signup.signup;

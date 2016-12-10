@@ -26,11 +26,11 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-import promotion.controller.PromotionViewControllerImpl;
-import promotion.view.PromotionViewControllerService;
-import service.PromotionService;
-import service.impl.PromotionServiceImpl;
+
+import businesslogic.PromotionServiceImpl;
+import businesslogicservice.PromotionService;
 import po.PromotionPo;
+import presentation.controller.PromotionViewControllerImpl;
 import vo.PromotionVo;
 
 public class PromotionView extends JPanel{
@@ -226,11 +226,7 @@ public class PromotionView extends JPanel{
 		
 		String promotionName = (String)promotionTable.getValueAt(index,1);
 		promotionService = new PromotionServiceImpl(date);
-		if(promotionService.deleteStrategy(promotionName)){
-			promotionListModel.removeRow(index);
-		}else{
-			JOptionPane.showMessageDialog(null,"删除销售策略失败","",JOptionPane.ERROR_MESSAGE);
-		}
+
 	}
 	
 	/**
@@ -406,7 +402,7 @@ public class PromotionView extends JPanel{
 		String place = (String)newStrategyCombobox1.getSelectedItem()+(String)newStrategyCombobox2.getSelectedItem()+(String)newStrategyCombobox3.getSelectedItem();
 		promotionService = new PromotionServiceImpl(date);
 		promotionPo = new PromotionPo(promotionNo,promotionName,beginTime,endTime,discount,place);	
-		if(promotionService.addStrategy(promotionPo)){
+		if(promotionService.insert(promotionPo)){
 			newStrategyFrame.dispose();
 			return true;
 		}

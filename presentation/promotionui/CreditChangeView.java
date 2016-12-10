@@ -1,5 +1,7 @@
 package presentation.promotionui;
 
+import businesslogic.CreditServiceImpl;
+import businesslogicservice.CreditService;
 import presentation.controller.CreditChangeViewControllerImpl;
 
 import java.awt.Font;

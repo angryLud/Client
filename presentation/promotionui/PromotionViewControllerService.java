@@ -3,7 +3,6 @@ package presentation.promotionui;
 import java.util.List;
 import java.util.Date;
 
-import promotion.view.PromotionView;
 import vo.PromotionVo;
 
 

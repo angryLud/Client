@@ -1,6 +1,5 @@
 package presentation.promotionui;
 
-import promotion.view.CreditChangeView;
 
 public interface CreditChangeViewControllerService {
 	

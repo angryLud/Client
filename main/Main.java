@@ -3,13 +3,10 @@ package main;
 
 
 import presentation.controller.controller;
-import presentation.controller.logincontrollerimpl;
-import presentation.login.login;
-import presentation.login.logincontroller;
+
 
 import javax.swing.*;
-import java.awt.*;
-import java.util.concurrent.TimeUnit;
+
 
 /**
  * Created by huihantao on 2016/11/16.

@@ -78,9 +78,9 @@ public class ManageView extends JPanel{
 	
 	private JFrame newHotelFrame;
 	
-	private JLabel newHotelLabel1,newHotelLabel2,newHotelLabel3;
+	private JLabel newHotelLabel1,newHotelLabel2,newHotelLabel3,newHotelLabel4,newHotelLabel5,newHotelLabel6,newHotelLabel7,newHotelLabel8,newHotelLabel9;
 	
-	private JTextField newHotelTextField1,newHotelTextField2,newHotelTextField3;
+	private JTextField newHotelTextField1,newHotelTextField2,newHotelTextField3,newHotelTextField4,newHotelTextField5,newHotelTextField6,newHotelTextField7,newHotelTextField8,newHotelTextField9;
 	
 	private ManageService manageService;
 	
@@ -383,16 +383,28 @@ public class ManageView extends JPanel{
 	 */
 	public void newHotelButtonClicked(){
 		newHotelFrame = new JFrame();
-		newHotelFrame.setSize(600, 200);
+		newHotelFrame.setSize(600, 350);
 		newHotelFrame.setLocation(400, 200);
 		newHotelFrame.setTitle("添加酒店");
 		
-		newHotelLabel1 = new JLabel("酒店ID");
+//		newHotelLabel1 = new JLabel("酒店ID");
 		newHotelLabel2 = new JLabel("酒店名称");
 		newHotelLabel3 = new JLabel("酒店地址");
-		newHotelTextField1 = new JTextField(20);
+		newHotelLabel4 = new JLabel("酒店星级");
+		newHotelLabel5 = new JLabel("酒店描述");
+		newHotelLabel6 = new JLabel("验证码");
+		newHotelLabel7 = new JLabel("大床房数量");
+		newHotelLabel8 = new JLabel("双人间数量");
+		newHotelLabel9 = new JLabel("三人间数量");
+//		newHotelTextField1 = new JTextField(20);
 		newHotelTextField2 = new JTextField(20);
 		newHotelTextField3 = new JTextField(20);
+		newHotelTextField4 = new JTextField(20);
+		newHotelTextField5 = new JTextField(20);
+		newHotelTextField6 = new JTextField(20);
+		newHotelTextField7 = new JTextField(20);
+		newHotelTextField8 = new JTextField(20);
+		newHotelTextField9 = new JTextField(20);
 		saveButton = new JButton("保存");
 		saveButton.addActionListener(new ActionListener(){
 			
@@ -414,13 +426,25 @@ public class ManageView extends JPanel{
 		JPanel panel1 = new JPanel();
 		panel1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		JPanel panel2 = new JPanel();
-		panel2.setLayout(new GridLayout(4,2));
-		panel2.add(newHotelLabel1);
-		panel2.add(newHotelTextField1);
+		panel2.setLayout(new GridLayout(9,2));
+//		panel2.add(newHotelLabel1);
+//		panel2.add(newHotelTextField1);
 		panel2.add(newHotelLabel2);
 		panel2.add(newHotelTextField2);
 		panel2.add(newHotelLabel3);
 		panel2.add(newHotelTextField3);
+		panel2.add(newHotelLabel4);
+		panel2.add(newHotelTextField4);
+		panel2.add(newHotelLabel5);
+		panel2.add(newHotelTextField5);
+		panel2.add(newHotelLabel6);
+		panel2.add(newHotelTextField6);
+		panel2.add(newHotelLabel7);
+		panel2.add(newHotelTextField7);
+		panel2.add(newHotelLabel8);
+		panel2.add(newHotelTextField8);
+		panel2.add(newHotelLabel9);
+		panel2.add(newHotelTextField9);
 		panel2.add(saveButton);
 		panel2.add(cancleButton);
 		panel1.add(panel2);

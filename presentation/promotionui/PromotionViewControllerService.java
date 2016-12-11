@@ -17,7 +17,7 @@ public interface PromotionViewControllerService {
 	
 	public void newStrategyButtonClicked();
 	
-	public void deleteStrategyButtonClicked();
+//	public void deleteStrategyButtonClicked();
 	
 	public void inputDateButtonClicked();
 

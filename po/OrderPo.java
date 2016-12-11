@@ -1,112 +1,107 @@
 package po;
 
-public class OrderPo {
+import java.io.Serializable;
 
-	private int id;
-	
-	private int hotelId;
-	
-	private int userId;
-	
-	private int status;
-	
-	private String entryTime;
-	
-	private String liveTime;
-	
-	private String orderInfo;
-	
-	private int price;
+/**
+ * Created by huihantao on 2016/11/30.
+ */
+public class OrderPo implements Serializable {
+    private static final long serialVersionUID=3L;
+    private int orderid;
+    private int userid;
+    private int hotelid;
+    private long createtime;
+    private long executetime;
+    private long delaytime;
+    private long endtime;
+    private int value;
+    private int status;
+    
+    private int roomNum;
+    private double discount;
+    private String assess;
 
-	private String hotelname;
-
-	
-	public OrderPo(){
-		super();
-	}
-
-	public OrderPo(int id, int hotelId, int userId, int status,
-			String entryTime, String lastTime,String orderInfo,int price, String liveTime, String hotelname) {
-		super();
-		this.id = id;
-		this.hotelId = hotelId;
-		this.userId = userId;
-		this.status = status;
-		this.entryTime = entryTime;
-		this.liveTime = liveTime;
-		this.orderInfo = orderInfo;
-		this.price = price;
-		this.hotelname = hotelname;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getHotelId() {
-		return hotelId;
-	}
-
-	public void setHotelId(int hotelId) {
-		this.hotelId = hotelId;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-
-	public String getEntryTime() {
-		return entryTime;
-	}
-
-	public void setEntryTime(String entryTime) {
-		this.entryTime = entryTime;
-	}
-
-	public String getLiveTime() {
-		return liveTime;
-	}
-
-	public void setLiveTime(String liveTime) {
-		this.liveTime = liveTime;
-	}
-	
-	public String getOrderInfo() {
-		return orderInfo;
-	}
-
-	public void setOrderInfo(String orderInfo) {
-		this.orderInfo = orderInfo;
-	}
-
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
-    public String gethotelname(){
-	return hotelname;
+    public OrderPo(int orderid,int userid, int hotelid, long createtime, long executetime, long delaytime ,long endtime, int value, int status) {
+        this.createtime = createtime;
+        this.executetime = executetime;
+        this.delaytime = delaytime;
+        this.endtime = endtime;
+        this.userid = userid;
+        this.hotelid = hotelid;
+        this.orderid = orderid;
+       
+        this.value = value;
+        this.status = status;
     }
-	public void sethotelname(String hotelname) {
-		// TODO Auto-generated method stub
-		this.hotelname = hotelname;
-	}
+
+
+    public long getCreatetime() {
+        return createtime;
+    }
+    public void setCreatetime(long createtime){
+    	this.createtime = createtime;
+    }
+    public long getExecutetime() {
+        return executetime;
+    }
+    public void setExecutetime(long executetime){
+    	this.executetime = executetime;
+    }
+    public long getDelaytime() {
+        return delaytime;
+    }
+    public void setDelaytime(long delaytime){
+    	this.delaytime = delaytime;
+    }
+    public int getUserid() {
+        return userid;
+    }
+
+    public int getHotelid() {
+        return hotelid;
+    }
+
+    public int getOrderid() {
+        return orderid;
+    }
+    public int getRoomnum(){
+    	return roomNum;
+    }
+    public int getValue() {
+        return value;
+    }
+    public void setValue(int value){
+    	this.value = value;
+    }
+    public long getEndtime() {
+        return endtime;
+    }
+    public void setEndtime(long endtime){
+    	this.endtime = endtime;
+    }
+//    public int getStrategyNum(){
+//    	return strategyNum;
+//    }
+//    public void setStrategyNum(int strategyNum){
+//    	this.strategyNum = strategyNum;
+//    }
+    public int getStatus(){
+    	return status;
+    }
+    public void setStatus(int status){
+    	this.status = status;
+    }
+    public double getDiscount(){
+    	return discount;
+    }
+    public void setDiscount(double discount){
+    	this.discount = discount;
+    }
+    public String getAssess(){
+    	return assess;
+    }
+    public void setAssess(String assess){
+    	this.assess=assess;
+    	}
+
 }

@@ -47,9 +47,9 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 	/**
 	 * 删除销售策略按钮点击事件
 	 */
-	public void deleteStrategyButtonClicked(){
-		view.deleteStrategyButtonClicked();
-	}
+//	public void deleteStrategyButtonClicked(){
+//		view.deleteStrategyButtonClicked();
+//	}
 	
 	/**
 	 * 输入日期按钮点击事件

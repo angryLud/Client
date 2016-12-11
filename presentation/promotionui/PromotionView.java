@@ -128,16 +128,16 @@ public class PromotionView extends JPanel{
 			}
 		});
 		
-		deleteStrategyButton = new JButton("删除原策略");
-		//添加按钮监听事件
-		deleteStrategyButton.addActionListener(new ActionListener(){
-			
-			public void actionPerformed(ActionEvent arg0){
-				
-				//删除销售策略按钮点击事件
-				controller.deleteStrategyButtonClicked();
-			}
-		});
+//		deleteStrategyButton = new JButton("删除原策略");
+//		//添加按钮监听事件
+//		deleteStrategyButton.addActionListener(new ActionListener(){
+//			
+//			public void actionPerformed(ActionEvent arg0){
+//				
+//				//删除销售策略按钮点击事件
+//				controller.deleteStrategyButtonClicked();
+//			}
+//		});
 		
 		inputDateButton = new JButton("输入日期");
 		//添加按钮监听事件
@@ -165,7 +165,7 @@ public class PromotionView extends JPanel{
 		JPanel processPanel1 = new JPanel();	
 		processPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		processPanel.add(newStrategyButton);
-		processPanel.add(deleteStrategyButton);
+//		processPanel.add(deleteStrategyButton);
 		processPanel.add(inputDateButton);
 		processPanel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		processPanel1.add(returnButton);
@@ -175,7 +175,7 @@ public class PromotionView extends JPanel{
 		processPanel2.add(processPanel1);
 		
 		newStrategyButton.setEnabled(true);
-		deleteStrategyButton.setEnabled(true);
+//		deleteStrategyButton.setEnabled(true);
 		inputDateButton.setEnabled(true);
 		returnButton.setEnabled(true);
 		
@@ -214,20 +214,20 @@ public class PromotionView extends JPanel{
 		promotionTable.setFillsViewportHeight(true);
 		this.add(scrollPane);		
 	}
-	
-	/**
-	 * 删除销售策略按钮点击事件
-	 */
-	public void deleteStrategyButtonClicked(){
-		int index = promotionTable.getSelectedRow();
-		if(index==-1){
-			JOptionPane.showMessageDialog(null,"请选择销售策略","",JOptionPane.ERROR_MESSAGE);
-		}
-		
-		String promotionName = (String)promotionTable.getValueAt(index,1);
-		promotionService = new PromotionServiceImpl(date);
-
-	}
+//	
+//	/**
+//	 * 删除销售策略按钮点击事件
+//	 */
+//	public void deleteStrategyButtonClicked(){
+//		int index = promotionTable.getSelectedRow();
+//		if(index==-1){
+//			JOptionPane.showMessageDialog(null,"请选择销售策略","",JOptionPane.ERROR_MESSAGE);
+//		}
+//		
+//		String promotionName = (String)promotionTable.getValueAt(index,1);
+//		promotionService = new PromotionServiceImpl(date);
+//
+//	}
 	
 	/**
 	 * 输入日期按钮点击事件

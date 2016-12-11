@@ -1,17 +1,21 @@
 package presentation.promotionui;
 
 import presentation.controller.ChangeOrderViewControllerImpl;
+import vo.OrderVo;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -42,40 +46,12 @@ public class ChangeOrderView extends JPanel{
 	public ChangeOrderView(ChangeOrderViewControllerService controller){
 		this.controller = controller;
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+	
+		initButtons();
 		
 		initChangeOrderScene();
 		
-		initButtons();
-		
 		this.validate();
-	}
-	
-	public void initChangeOrderScene(){
-//		JScrollPane scrollPane = new JScrollPane();
-//		
-//		//表头
-//		Vector<String> vColumns = new Vector<String>();
-//		vColumns.add("订单编号");
-//		vColumns.add("订单名称");
-//		
-//		//数据
-//		Vector<PromotionVo> vData = new Vector<OrderVo>();
-//		vData.addAll();
-//		//模型
-//		orderListModel = new DefaultTableModel(vData,vColumns);
-//		//表格
-//		orderTable = new JTable(orderListModel){
-//			private static final long serialVersionUID = 1L;
-//					
-//			public boolean isCellEditable(int row,int column){
-//				return false;
-//			}
-//		};
-//		orderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//				
-//		scrollPane.getViewport().add(orderTable);
-//		orderTable.setFillsViewportHeight(true);
-//		this.add(scrollPane);	
 	}
 	
 	public void initButtons(){
@@ -110,5 +86,39 @@ public class ChangeOrderView extends JPanel{
 		
 		this.add(panel3);
 	}
+	
+	public void initChangeOrderScene(){
+		JScrollPane scrollPane = new JScrollPane();
+		
+		//表头
+		Vector<String> vColumns = new Vector<String>();
+		vColumns.add("订单编号");
+		vColumns.add("订单详情");
+		vColumns.add("用户入住时间");
+		vColumns.add("用户退房时间");
+		vColumns.add("订单价值");
+		vColumns.add("酒店名称");
+		
+		//数据
+		Vector<OrderVo> vData = new Vector<OrderVo>();
+//		vData.addAll(controller.getAbnormalOrder());
+		//模型
+		orderListModel = new DefaultTableModel(vData,vColumns);
+		//表格
+		orderTable = new JTable(orderListModel){
+			private static final long serialVersionUID = 1L;
+					
+			public boolean isCellEditable(int row,int column){
+				return false;
+			}
+		};
+		orderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				
+		scrollPane.getViewport().add(orderTable);
+		orderTable.setFillsViewportHeight(true);
+		this.add(scrollPane);	
+	}
+	
+	
 
 }

@@ -24,6 +24,7 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	public PromotionServiceImpl(Date date){
 		this.date = date;
+//		promotionDao = promotiondataservice.getInstance();
 		promotionList = promotionDao.find(date);
 	}
 	

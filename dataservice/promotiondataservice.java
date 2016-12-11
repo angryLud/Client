@@ -11,4 +11,5 @@ import java.util.List;
 public interface promotiondataservice {
     List<PromotionPo> find(Date date);
     boolean insert(PromotionPo pormotionPo);
+    promotiondataservice getInstance();
 }

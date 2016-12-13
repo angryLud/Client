@@ -1,6 +1,7 @@
 package presentation.controller;
 
 import businesslogic.userserviceimpl;
+import businesslogicservice.loginservice;
 import businesslogicservice.userservice;
 import presentation.login.login;
 import presentation.login.logincontroller;
@@ -11,17 +12,17 @@ import presentation.login.logincontroller;
 public class logincontrollerimpl implements logincontroller {
     private login view;
     private controller con;
-    private userservice userbl;
+    private loginservice logcon;
 
 
 //useid
     public logincontrollerimpl(){
-        userbl=new userserviceimpl(1);
+        logcon=new businesslogic.login();
     }
 
     @Override
     public boolean login(String id, char[] password) {
-        return userbl.login(id,password);
+        return logcon.login(id,password);
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.List;
 
 import businesslogicservice.userservice;
 import dataservice.userdataservice;
-
+import vo.HotelVo;
 import vo.OrderVo;
 
 public class userserviceimpl implements userservice {
@@ -82,9 +82,23 @@ public class userserviceimpl implements userservice {
 	}
 
 	@Override
-	public boolean login(String userid, char[] password) {
-
-		return false;
+	public List<HotelVo> getAllHotels(int userId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public int getStars(int userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMark(int userId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 }

@@ -1,8 +1,9 @@
 package presentation.controller;
 
+import presentation.hotelui.hotelmainframe;
+import presentation.hotelui.mainframecontroller;
 import presentation.login.login;
 import presentation.login.logincontroller;
-import presentation.manageui.ManageView;
 import presentation.manageui.ManageViewControllerService;
 import presentation.signup.signup;
 import presentation.signup.signupcontroller;
@@ -21,6 +22,7 @@ public class controller {
     private usercontroller usercon;
     private JFrame frame;
     private ManageViewControllerService managecon;
+    private mainframecontroller hotelcon;
 
 
 
@@ -45,8 +47,8 @@ public class controller {
 
 
 // decision
-    public void loggedin(String name){
-        if (name.substring(0).equals("0")){
+    public void loggedin(String id){
+        if (id.substring(0).equals("0")){
 
             usercon=new usercontrollerimpl();
             frame.getContentPane().removeAll();
@@ -58,17 +60,19 @@ public class controller {
             return;
         }
 
-        if (name.substring(0).equals("1")){
+        if (id.substring(0).equals("1")){
 
-            managecon=new ManageViewControllerImpl();
+            hotelcon =new hotelcontroller();
             frame.getContentPane().removeAll();
             frame.repaint();
-            this.view=new ManageView(managecon);
-            usercon.setcon(this);
+            this.view=new hotelmainframe(hotelcon);
+            hotelcon.setcon(this);
             frame.getContentPane().add(this.view);
             frame.setVisible(true);
             return;
         }
+
+
 
 
 

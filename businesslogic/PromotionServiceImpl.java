@@ -1,5 +1,6 @@
 package businesslogic;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 
@@ -25,13 +26,21 @@ public class PromotionServiceImpl implements PromotionService {
 	public PromotionServiceImpl(Date date){
 		this.date = date;
 //		promotionDao = promotiondataservice.getInstance();
-		promotionList = promotionDao.find(date);
+		try {
+			promotionList = promotionDao.find(date);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
 	public boolean insert(PromotionPo promotionPo){
-		return promotionDao.insert(promotionPo);
-		
+		try {
+			return promotionDao.insert(promotionPo);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 

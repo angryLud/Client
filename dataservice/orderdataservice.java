@@ -1,9 +1,16 @@
 package dataservice;
 
-import po.UserPo;
+
 import po.OrderPo;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
 public interface orderdataservice {
-	boolean insert(OrderPo opo);
-	boolean update(OrderPo opo);
-	OrderPo find(int id);
+	boolean insert(OrderPo opo) throws RemoteException;
+	boolean update(OrderPo opo) throws RemoteException ;
+	OrderPo find(int orderid) throws RemoteException;
+	ArrayList<OrderPo> findbyuserid(int userid) throws RemoteException;
+	ArrayList<OrderPo> findbyhotelid(int hotelid) throws RemoteException;
+
 }

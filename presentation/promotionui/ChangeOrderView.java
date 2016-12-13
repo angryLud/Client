@@ -26,7 +26,8 @@ public class ChangeOrderView extends JPanel{
 		changeOrderFrame.setSize(800,600);
 		changeOrderFrame.setLocation(300, 100);
 		changeOrderFrame.setTitle("更改异常订单状态");
-		ChangeOrderViewControllerService controller = new ChangeOrderViewControllerImpl();
+		int hotelId = 1; 
+		ChangeOrderViewControllerService controller = new ChangeOrderViewControllerImpl(hotelId);
 		ChangeOrderView view = new ChangeOrderView(controller);
 		controller.setView(view);
 		changeOrderFrame.getContentPane().add(view);
@@ -37,6 +38,8 @@ public class ChangeOrderView extends JPanel{
 	
 	private JTable orderTable;
 	
+	private int hotelId;
+	
 	private DefaultTableModel orderListModel;
 	
 	private JButton changeButton;
@@ -45,6 +48,7 @@ public class ChangeOrderView extends JPanel{
 	
 	public ChangeOrderView(ChangeOrderViewControllerService controller){
 		this.controller = controller;
+		this.hotelId = controller.getHotelId();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 	
 		initButtons();
@@ -59,7 +63,7 @@ public class ChangeOrderView extends JPanel{
 		changeButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent arg0){
-				
+				controller.changeButtonClicked();
 			}
 		});
 		
@@ -101,7 +105,7 @@ public class ChangeOrderView extends JPanel{
 		
 		//数据
 		Vector<OrderVo> vData = new Vector<OrderVo>();
-//		vData.addAll(controller.getAbnormalOrder());
+//		vData.addAll(controller.getAbnormalOrder(hotelId));
 		//模型
 		orderListModel = new DefaultTableModel(vData,vColumns);
 		//表格
@@ -117,6 +121,10 @@ public class ChangeOrderView extends JPanel{
 		scrollPane.getViewport().add(orderTable);
 		orderTable.setFillsViewportHeight(true);
 		this.add(scrollPane);	
+	}
+	
+	public void changeButtonClicked(){
+		
 	}
 	
 	

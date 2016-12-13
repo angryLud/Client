@@ -12,5 +12,5 @@ import java.util.List;
 public interface promotiondataservice {
     List<PromotionPo> find(Date date) throws RemoteException;
     boolean insert(PromotionPo pormotionPo) throws RemoteException;
-    promotiondataservice getInstance() throws RemoteException;
+   
 }

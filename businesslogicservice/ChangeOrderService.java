@@ -6,6 +6,6 @@ import vo.OrderVo;
 
 public interface ChangeOrderService {
 	
-	List<OrderVo> getAbnormalOrder();
+	List<OrderVo> getAbnormalOrder(int hotelId);
 
 }

@@ -13,8 +13,10 @@ public OrderVo(OrderPo orderPo){
 	this.add(String.valueOf(orderPo.getValue()));
 	this.add(String.valueOf(orderPo.getStatus()));
 }
-public OrderVo(int orderid,int userid, int hotelid,  long createtime, long executetime, long delaytime, long endtime,int value,int status){
-	this.add(String.valueOf(orderid));
+
+
+public OrderVo(int userid, int hotelid,  long createtime, long executetime, long delaytime, long endtime,int value,int status,String roomstyle,int roomnum){
+
 	this.add(String.valueOf(userid));
 	this.add(String.valueOf(hotelid));
 	this.add(String.valueOf(createtime));
@@ -23,34 +25,53 @@ public OrderVo(int orderid,int userid, int hotelid,  long createtime, long execu
 	this.add(String.valueOf(endtime));
 	this.add(String.valueOf(value));
 	this.add(String.valueOf(status));
+	this.add(roomstyle);
+	this.add(String.valueOf(roomnum));
 }
+public OrderVo(int userid, int hotelid,  long createtime, long executetime, long delaytime, long endtime,int status,String roomstyle,int roomnum){
 
+	this.add(String.valueOf(userid));
+	this.add(String.valueOf(hotelid));
+	this.add(String.valueOf(createtime));
+	this.add(String.valueOf(executetime));
+	this.add(String.valueOf(delaytime));
+	this.add(String.valueOf(endtime));
+	this.add(String.valueOf(status));
+	this.add(roomstyle);
+	this.add(String.valueOf(roomnum));
+}
 public String getOrderid(){
 	return this.get(0);
 }
-public String getUserid(){
-	return this.get(1);
+public int getUserid(){
+	return 11;
 }
-public String getHotelid(){
-	return this.get(2);
+public int getHotelid(){
+	return 22;
 }
-public String getCreatetime(){
-	return this.get(3);
+public long getCreatetime(){
+	return 1;
 }
-public String getExecutetime(){
-	return this.get(4);
+public long getExecutetime(){
+	return 1;
 }
-public String getDelaytime(){
-	return this.get(5);
+public long getDelaytime(){
+	return 1;
 }
-public String getEndtime(){
-	return this.get(6);
+public long getEndtime(){
+	return 1;
 }
 
 public String getValue(){
 	return this.get(8);
 }
-public String getStatus(){
-	return this.get(9);
+public int getStatus(){
+	return 1;
+}
+public String getRoomstyle(){
+	return this.get(10);
+}
+public int getRoomnum(){
+	return 0;
 }
 }

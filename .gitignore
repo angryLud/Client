@@ -1,4 +1,6 @@
 *.class
 .DS_Store
 .classpath
-.project
+.gitignore
+/bin
+/.settings

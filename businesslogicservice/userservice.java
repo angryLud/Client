@@ -1,6 +1,8 @@
 package businesslogicservice;
 
 import java.util.List;
+
+import vo.HotelVo;
 import vo.OrderVo;
 
 public interface userservice {
@@ -46,8 +48,13 @@ public int getOrderUser(int orderId);
  */
 public int getOrderPrice(int orderId);
 
+public List<HotelVo> getAllHotels(int userId);
 
+public int getStars(int userId);
 
+public int getMark(int userId);
 
+public int createorder(OrderVo ovo);
 
+public int getuserid();
 }

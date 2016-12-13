@@ -20,18 +20,20 @@ public class OrderPo implements Serializable {
     private int roomNum;
     private double discount;
     private String assess;
+	private String roomstyle;
+	private int roomnum;
 
-    public OrderPo(int orderid,int userid, int hotelid, long createtime, long executetime, long delaytime ,long endtime, int value, int status) {
+    public OrderPo(int userid, int hotelid, long createtime, long executetime, long delaytime ,long endtime, int value, int status,String roomstyle,int roomnum) {
         this.createtime = createtime;
         this.executetime = executetime;
         this.delaytime = delaytime;
         this.endtime = endtime;
         this.userid = userid;
         this.hotelid = hotelid;
-        this.orderid = orderid;
-       
         this.value = value;
         this.status = status;
+        this.roomstyle = roomstyle;
+        this.roomnum = roomnum;
     }
 
 
@@ -63,9 +65,6 @@ public class OrderPo implements Serializable {
 
     public int getOrderid() {
         return orderid;
-    }
-    public int getRoomnum(){
-    	return roomNum;
     }
     public int getValue() {
         return value;
@@ -102,6 +101,18 @@ public class OrderPo implements Serializable {
     }
     public void setAssess(String assess){
     	this.assess=assess;
+    	}
+    public String getRoomstyle(){
+    	return roomstyle;
+    }
+    public void setRoomstyle(String roomstyle){
+    	this.roomstyle=roomstyle;
+    	}
+    public int getRoomnum(){
+    	return roomnum;
+    }
+    public void setRoomnum(int roomnum){
+    	this.roomnum=roomnum;
     	}
 
 }

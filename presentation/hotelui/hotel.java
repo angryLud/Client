@@ -935,9 +935,11 @@ public void ExecutingButtonClicked(){
 //    creditChangeFrame.getContentPane().add(creditChangePanel);
 //    
 //}
+
 public void ExitButtonClicked(){
 	
 }
+
 public static void main(String[] args){
 //	HotelFrameControllerService controller = new HotelFrameControllerServiceImpl(1);
 //	HotelFrame gui=new HotelFrame(controller);

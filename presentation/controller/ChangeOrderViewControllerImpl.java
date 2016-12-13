@@ -11,17 +11,27 @@ public class ChangeOrderViewControllerImpl implements ChangeOrderViewControllerS
 	
 	private ChangeOrderView view;
 	
-	public ChangeOrderViewControllerImpl(){
-		
+	private int hotelId;
+	
+	public ChangeOrderViewControllerImpl(int hotelId){
+		this.hotelId = hotelId;
 	}
 	
 	public void setView(ChangeOrderView view){
 		this.view = view;
 	}
 	
+	public int getHotelId(){
+		return hotelId;
+	}
+	
 	public List<OrderVo> getAbnormalOrder(){
 		return null;
 //		return changeOrderService.getAbnormalOrder();
+	}
+	
+	public void changeButtonClicked(){
+		view.changeButtonClicked();
 	}
 
 }

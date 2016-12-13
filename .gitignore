@@ -2,3 +2,10 @@
 .DS_Store
 .classpath
 .project
+<<<<<<< HEAD
+/bin
+=======
+.gitignore
+/bin
+/.settings
+>>>>>>> bc5a7ef53b1f97653eb3f159a2a0a2f0f535bf64

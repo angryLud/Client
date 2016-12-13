@@ -5,6 +5,7 @@ public class HotelPo {
 	String position;
 	String hotelName;
 	
+	
 	public HotelPo(){
 		super();
 	}

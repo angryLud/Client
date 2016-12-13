@@ -35,7 +35,6 @@ public void OrderSearchButtonClicked();
 public void OrderBrowseButtonClicked();
 
 
-
 public void ExecutingButtonClicked();
 public void CreditChangeButtonClicked();
 

@@ -3,10 +3,14 @@ package presentation.userui;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -35,15 +39,16 @@ public class ReserveHotel extends JPanel{
 	private JTextField textfield2;
 	private JTextField textfield3;
 	private ReserveHotelController ReserveHotelCon;
-	public ReserveHotel(ReserveHotelController ReserveHotelCon) {
+	private int hotelid;
+	private int userid;
+	public ReserveHotel(ReserveHotelController ReserveHotelCon,int hotelid,int userid) {
 		// TODO Auto-generated constructor stub
 		this.ReserveHotelCon = ReserveHotelCon;
 		this.setLayout(null);
+		this.hotelid=hotelid;
+		this.userid = userid;
 		this.go();
 	}
-
-
-
 
 	public void go(){
 		
@@ -102,7 +107,7 @@ public class ReserveHotel extends JPanel{
         label7.setFont(new Font("宋体", Font.PLAIN, 15));
         label8 = new JLabel("联系方式：110");
         label8.setFont(new Font("宋体", Font.PLAIN, 15));
-        label9 = new JLabel("ID：151250023");
+        label9 = new JLabel("ID："+userid);
         label9.setFont(new Font("宋体", Font.PLAIN, 15));
         label10 = new JLabel("信用值："+ReserveHotelCon.getcredit()+"");
         label10.setFont(new Font("宋体", Font.PLAIN, 15));
@@ -119,25 +124,35 @@ public class ReserveHotel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-//			if(ReserveHotelCon.getcredit()>=0){
-//				JFrame frame1 = new JFrame();
-//				frame1.setSize(200,200);
-//				frame1.setVisible(true);
-//				JLabel label1 = new JLabel("预定成功");
-//				frame1.add(label1);
-//			}else if(ReserveHotelCon.getcredit()<0){
-//				JFrame frame1 = new JFrame();
-//				frame1.setSize(100,100);
-//				frame1.setVisible(true);
-//				JLabel label1 = new JLabel("预定失败，信用值不够");
-//				frame1.add(label1);
-			
-			
-			
-//			}
-			
-
-		}
-		
+			if(ReserveHotelCon.getcredit()>=0){
+				JFrame frame1 = new JFrame();
+				frame1.setSize(200,200);
+				frame1.setVisible(true);
+				
+				String s1 = combo1.getToolTipText();
+				int s2 = combo2.getSelectedIndex();
+				int s3 = combo3.getSelectedIndex();
+				String s4 = combo4.getToolTipText();
+				String s5 = textfield1.getText();
+				long executetime = Integer.parseInt(s5);
+				String s6 = textfield2.getText();
+				long endtime = Integer.parseInt(s6);
+				String s7 = textfield3.getText();
+				long delaytime = Integer.parseInt(s7);
+				SimpleDateFormat df = new SimpleDateFormat("MM-dd HH:mm");
+				String nowtime = df.format(new Date());
+				int intnowtime = Integer.parseInt(nowtime);
+				int status = 1;//1表示未执行订单
+				int value=ReserveHotelCon.createorder(userid,hotelid,intnowtime,executetime,delaytime,endtime,status,s1,s2);
+				JLabel label1 = new JLabel("预定成功,价格为 "+value);
+				frame1.add(label1);
+			}else if(ReserveHotelCon.getcredit()<0){
+				JFrame frame1 = new JFrame();
+				frame1.setSize(100,100);
+				frame1.setVisible(true);
+				JLabel label1 = new JLabel("预定失败，信用值不够");
+				frame1.add(label1);
+			}		
+		}		
 	}
 }

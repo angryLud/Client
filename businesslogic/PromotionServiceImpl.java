@@ -1,9 +1,7 @@
 package businesslogic;
 
 import java.util.List;
-
-
-
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,12 +23,23 @@ public class PromotionServiceImpl implements PromotionService {
 	public PromotionServiceImpl(Date date){
 		this.date = date;
 //		promotionDao = promotiondataservice.getInstance();
-		promotionList = promotionDao.find(date);
+		try {
+			promotionList = promotionDao.find(date);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
 	public boolean insert(PromotionPo promotionPo){
-		return promotionDao.insert(promotionPo);
+		try {
+			return promotionDao.insert(promotionPo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 		
 	}
 	

@@ -53,4 +53,8 @@ public List<HotelVo> getAllHotels(int userId);
 public int getStars(int userId);
 
 public int getMark(int userId);
+
+public int createorder(OrderVo ovo);
+
+public int getuserid();
 }

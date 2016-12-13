@@ -3,20 +3,33 @@ package businesslogic;
 import businesslogicservice.ChangeOrderService;
 import vo.OrderVo;
 import po.OrderPo;
+import rmi.RemoteHelper;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChangeOrderServiceImpl implements ChangeOrderService{
 	
-	List<OrderPo> orderList;
+	private List<OrderPo> orderList;
 	
-	public List<OrderVo> getAbnormalOrder(){
+	private int hotelId;
+	
+	public ChangeOrderServiceImpl(int hotelId){
+		this.hotelId = hotelId;
+		try {
+			orderList = RemoteHelper.getInstance().getOrderdataservice().findbyhotelid(hotelId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public List<OrderVo> getAbnormalOrder(int hotelId){
 		List<OrderVo> list = new ArrayList<OrderVo>();
 		for (OrderPo orderPo : orderList) {
 //			if(orderPo.getStatus() == 2){
-//				UserPo userPo = userDao.getUser(orderPo.getUserId());
-//				OrderVo orderVo = new OrderVo(orderPo, userPo);
+//				OrderVo orderVo = new OrderVo(orderPo);
 //				list.add(orderVo);
 //			}
 		}

@@ -8,5 +8,9 @@ public interface ChangeOrderViewControllerService {
 	 void setView(ChangeOrderView view);
 	 
 	 List<OrderVo> getAbnormalOrder();
+	 
+	 void changeButtonClicked();
+	 
+	 int getHotelId();
 
 }

@@ -22,16 +22,10 @@ public class PromotionServiceImpl implements PromotionService {
 	public PromotionServiceImpl(Date date){
 		this.date = date;
 //		promotionDao = promotiondataservice.getInstance();
-<<<<<<< HEAD
-		try {
-			promotionList = promotionDao.find(date);
-=======
 
 //		promotionList = promotionDao.find(date);
 		try {
 			RemoteHelper.getInstance().getPromotiondataservice().find(date);
-
->>>>>>> 10804504500365b51d2bf687df86cab595ef2fdd
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,15 +35,12 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	public boolean insert(PromotionPo promotionPo){
 		try {
-<<<<<<< HEAD
-			return promotionDao.insert(promotionPo);
-=======
+
 
 			if(RemoteHelper.getInstance().getPromotiondataservice().insert(promotionPo)){
 				return true;
 			}
 
->>>>>>> 10804504500365b51d2bf687df86cab595ef2fdd
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

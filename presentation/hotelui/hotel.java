@@ -599,13 +599,7 @@ public void ManageRoomButtonClicked(){
 }
 
 public void SearchButtonClicked(){
-	//��ͷ
-	
-	
-	
-    //���
-	
-	//ģ��
+
 	searchOrderModel = new DefaultTableModel(searchData, searchColumns);
 	//���
 	searchOrderTable = new JTable(searchOrderModel){
@@ -660,9 +654,6 @@ public void SearchButtonClicked(){
 }
 
 public void ExecuteButtonClicked(){
-	    
-	    
-	//ģ��
 		executeOrderModel = new DefaultTableModel(executeData, executeColumns);
 		//���
 		executeOrderTable = new JTable(executeOrderModel){
@@ -831,7 +822,7 @@ public void StrategyAddButtonClicked(){
 	strategyAddPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 	
 	strategyAddFrame = new JFrame("添加促销策略");
-	strategyAddFrame.setBounds(400,600,300,150);
+	strategyAddFrame.setBounds(600,400,300,150);
 	strategyAddFrame.setVisible(true);
 	strategyAddFrame.getContentPane().add(strategyAddPanel);
 }

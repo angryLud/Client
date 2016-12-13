@@ -81,10 +81,6 @@ public class userserviceimpl implements userservice {
 		return 0;
 	}
 
-	@Override
-	public boolean login(String userid, char[] password) {
 
-		return false;
-	}
 
 }

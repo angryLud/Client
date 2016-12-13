@@ -47,8 +47,6 @@ public int getOrderUser(int orderId);
 public int getOrderPrice(int orderId);
 
 
-boolean login(String userid,char[] password);
-
 
 
 

@@ -6,11 +6,13 @@ import presentation.manageui.ManageViewControllerService;
 
 public class ManageViewControllerImpl implements ManageViewControllerService {
 	
+	private int HotelID;
+	
 	private ManageView view;
 	private controller con;
 	
-	public ManageViewControllerImpl (){
-		
+	public ManageViewControllerImpl (int HotelID){
+		this.HotelID = HotelID;
 	}
 	
 	public void setView(ManageView view){

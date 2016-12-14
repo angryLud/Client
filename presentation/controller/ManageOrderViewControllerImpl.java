@@ -42,6 +42,13 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 		view.ExecuteButtonClicked();
 		
 	}
+	
+
+	@Override
+	public void ExitButtonClicked() {
+		view.ExitButtonClicked();
+		
+	}
 
 	@Override
 	public List<OrderVo> getAllOrders(int holelID) {
@@ -60,6 +67,7 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 	
 	
 

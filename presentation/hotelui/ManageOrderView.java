@@ -1,6 +1,7 @@
 package presentation.hotelui;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import po.OrderPo;
 import vo.OrderVo;
 
 public class ManageOrderView {
@@ -27,8 +29,10 @@ public class ManageOrderView {
 	private JButton orderBrowseButton;
 	private JButton orderSearchButton;
 	private JButton executingButton;
-	private JButton executeCreditButton;
 	private JButton executeButton;
+	private JButton exitButton;
+	
+	private JLabel tempLabel;
 	
 	private JTextField executeField1;
 	
@@ -58,9 +62,55 @@ public class ManageOrderView {
 	}
 	
 	public void init(){
-
+		//组件
+		scrollPane = new JScrollPane();
+		tempLabel = new JLabel("                                                        ");
+		
+		orderBrowseButton = new JButton("浏览");
+		orderSearchButton = new JButton("搜索");
+		executeButton = new JButton("执行订单");
+		executingButton = new JButton("执行");
+		exitButton = new JButton("返回");
+		
+		serviceTypeJpanel = new JPanel();
+		searchButtonJpanel = new JPanel();
+		executeJpanel = new JPanel();
+		
+		searchColumns = new Vector<String>();
+		searchColumns.add("订单号");
+		searchColumns.add("房间号");
+		searchColumns.add("酒店id");
+		searchColumns.add("创建时间");
+		searchColumns.add("执行时间");
+		searchColumns.add("延迟时间");
+		searchColumns.add("入住时间");
+		searchColumns.add("价格");
+		searchColumns.add("执行情况");
+		
+		searchData = new Vector<OrderVo>();
+		OrderPo orderPo = new OrderPo(1,2,20161203,20161205,20161205,20161208,198,1,"大床房",316);
+		OrderVo orderVo = new OrderVo(orderPo);
+		searchData.add(orderVo);
+		
+		executeColumns = new Vector<String>();
+		executeColumns.add("订单号");
+		executeColumns.add("房间号");
+		executeColumns.add("酒店id");
+		executeColumns.add("创建时间");
+		executeColumns.add("执行时间");
+		executeColumns.add("延迟时间");
+		executeColumns.add("入住时间");
+		executeColumns.add("价格");
+		executeColumns.add("执行情况");
+		
+		executeData = new Vector<OrderVo>();
+		OrderPo orderPo2 = new OrderPo(1,2,20161203,20161205,20161205,20161208,198,1,"大床房",316);
+		OrderVo orderVo2 = new OrderVo(orderPo2);
+		executeData.add(orderVo2);
+		
+		
+	    //界面内容
 		searchOrderModel = new DefaultTableModel(searchData, searchColumns);
-		//���
 		searchOrderTable = new JTable(searchOrderModel){
 			private static final long serialVersionUID = 1L;
 
@@ -74,32 +124,35 @@ public class ManageOrderView {
 		
 		searchButtonJpanel.add(orderBrowseButton);
 		orderBrowseButton.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				OrderBrowseButtonClicked();
-				
+				controller.OrderBrowseButtonClicked();
 			}
-			
 		});
 		searchButtonJpanel.add(orderSearchButton);
 		orderSearchButton.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
-				OrderSearchButtonClicked();
-				
+				controller.OrderSearchButtonClicked();
 			}
-			
 		});
 		searchButtonJpanel.add(executeButton);
-		
+		executeButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				  controller.ExecuteButtonClicked();
+			}
+		});
+		exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				controller.ExitButtonClicked();
+			}
+		});
+		    serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		    serviceTypeJpanel.add(tempLabel);
+		    serviceTypeJpanel.add(exitButton);
 			serviceTypeJpanel.add(scrollPane);
 			serviceTypeJpanel.add(searchButtonJpanel);
 		   
 	}
 	public void OrderBrowseButtonClicked(){
-//		controller.OrderBrowseButtonClicked();
 		List<OrderVo> list = controller.getAllOrders(HotelID);
 		for(OrderVo orderVo:list){
 			searchOrderModel.addRow(orderVo);
@@ -133,7 +186,6 @@ public class ManageOrderView {
 	}
 	public void ExecuteButtonClicked(){
 		executeOrderModel = new DefaultTableModel(executeData, executeColumns);
-		//���
 		executeOrderTable = new JTable(executeOrderModel){
 			private static final long serialVersionUID = 1L;
 
@@ -159,9 +211,13 @@ public class ManageOrderView {
 			}
 	    	
 	    });
+	    serviceTypeJpanel.remove(searchButtonJpanel);
 		serviceTypeJpanel.add(executeJpanel);
 		serviceTypeJpanel.add(scrollPane);
 }
+	public void ExitButtonClicked(){
+		
+	}
 	public void ExecutingButtonClicked(){
 		
 		int orderID = Integer.parseInt(executeField1.getText());

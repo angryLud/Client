@@ -258,10 +258,11 @@ public void initComponents(){
 	searchColumns.add("执行情况");
 	
 	searchData = new Vector<OrderVo>();
-//	OrderPo orderPo = new OrderPo(1,2,3,20161203,20161205,20161205,2,198,1);
-//	OrderVo orderVo = new OrderVo(orderPo);
-//	searchData.add(orderVo);
-	
+
+	OrderPo orderPo = new OrderPo(1,2,20161203,20161205,20161205,20161208,198,1,"大床房",316);
+	OrderVo orderVo = new OrderVo(orderPo);
+	searchData.add(orderVo);
+
 	executeColumns = new Vector<String>();
 	executeColumns.add("订单号");
 	executeColumns.add("房间号");
@@ -274,10 +275,11 @@ public void initComponents(){
 	executeColumns.add("执行情况");
 	
 	executeData = new Vector<OrderVo>();
-//	OrderPo orderPo2 = new OrderPo(1,2,3,20161203,20161205,20161205,2,198,1);
-//	OrderVo orderVo2 = new OrderVo(orderPo2);
-//	executeData.add(orderVo2);
-	
+
+	OrderPo orderPo2 = new OrderPo(1,2,20161203,20161205,20161205,20161208,198,1,"大床房",316);
+	OrderVo orderVo2 = new OrderVo(orderPo2);
+	executeData.add(orderVo2);
+
 	scrollPane = new JScrollPane();
 }
 

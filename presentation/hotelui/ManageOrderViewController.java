@@ -13,6 +13,8 @@ public interface ManageOrderViewController {
 	
 	public void ExecuteButtonClicked();
 	
+	public void ExitButtonClicked();
+	
 	public List<OrderVo> getAllOrders(int holelID);
 	
 	public OrderVo searchOrder(int orderID);

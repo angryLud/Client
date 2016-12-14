@@ -6,5 +6,7 @@ public interface StrategyViewController {
 	public void StrategyConfirmButtonClicked();
 	
 	public void StrategyAddButtonClicked();
+	
+	public void ExitButtonClicked();
 
 }

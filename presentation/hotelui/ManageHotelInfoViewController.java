@@ -5,5 +5,7 @@ public interface ManageHotelInfoViewController {
 	
 	public void ConfirmButtonClicked();
 	
+	public void ExitButtonClicked();
+	
 	public void setView(ManageHotelInfoView view);
 }

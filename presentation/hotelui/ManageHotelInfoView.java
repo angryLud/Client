@@ -1,5 +1,6 @@
 package presentation.hotelui;
 
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -68,9 +69,19 @@ public class ManageHotelInfoView {
 			}
 			
 		});
+		exitButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.ExitButtonClicked();
+				
+			}
+			
+		});
 		textJpanel.add(modifyButton);
 		textJpanel.add(confirmButton);
-
+        
+		serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		serviceTypeJpanel.add(templabel);
 		serviceTypeJpanel.add(exitButton);
 		serviceTypeJpanel.add(textJpanel);
@@ -80,6 +91,9 @@ public class ManageHotelInfoView {
 	
 		
 	}
+		public void ExitButtonClicked(){
+			
+		}
 		public void ModifyButtonClicked(){
 			area.setEditable(true);
 		}

@@ -20,7 +20,7 @@ public class ManageRoomViewControllerImpl implements ManageRoomViewController{
 	}
 
 	@Override
-	public void inputButtonClicked() {
+	public void InputButtonClicked() {
 		view.InputButtonClicked();
 		
 	}
@@ -36,6 +36,11 @@ public class ManageRoomViewControllerImpl implements ManageRoomViewController{
 	public void manageConfirmButtonClicked() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void ExitButtonClicked() {
+		view.ExitButtonClicked();
 	}
 	
 }

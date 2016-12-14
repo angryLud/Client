@@ -12,15 +12,16 @@ public class StrategyView extends JPanel{
 	
 	private StrategyViewController controller;
 	
-	
+	private JLabel tempLabel;
 	private JFrame strategyAddFrame;
 	private JPanel serviceTypeJpanel;
 	private JPanel strategyJpanel;
 	private JLabel strategyLabel1,strategyLabel2;
-	private JTextField strategyField1,strategyField2,strategyAddField;
+	private JTextField strategyField1,strategyAddField;
 	private JComboBox strategyBox;
 	private JButton strategyConfirmButton;
 	private JButton strategyAddButton;
+	private JButton exitButton;
 	
 	private Vector<String> options;
 	
@@ -30,7 +31,9 @@ public class StrategyView extends JPanel{
 	}
 	
 	public void init(){
+	   tempLabel = new JLabel("                                                                       ");
 	   strategyJpanel = new JPanel();
+	   serviceTypeJpanel = new JPanel();
 	   
 	   strategyLabel1 = new JLabel();
 	   strategyLabel1.setText("输入订单号");
@@ -39,6 +42,7 @@ public class StrategyView extends JPanel{
 	   
 	   strategyConfirmButton = new JButton("确定");
 	   strategyAddButton = new JButton("添加促销策略");
+	   exitButton = new JButton("返回");
 	   
 	   strategyField1 = new JTextField(20);
 		
@@ -67,25 +71,16 @@ public class StrategyView extends JPanel{
 		}
 		   
 	   });
-	//���沼��
-//	    frame.repaint();
-//	    mainlabel.setVisible(false);
-//		label.setVisible(false);
-//		label1.setVisible(false);
-//		label2.setVisible(true);
-//		label3.setVisible(false);
-//		label4.setVisible(false);
-//		label5.setVisible(false);
-//		frame.getContentPane().add(BorderLayout.NORTH,label2);
-//		serviceTypeJpanel.add(strategyJpanel);
-//		serviceTypeJpanel.remove(scrollPane);
-//	    serviceTypeJpanel.remove(inputButtonJpanel);
-//	    serviceTypeJpanel.remove(executeJpanel);
-//	    serviceTypeJpanel.remove(manageButtonJpanel);
-//	    serviceTypeJpanel.remove(searchButtonJpanel);
-//	    serviceTypeJpanel.remove(textJpanel);
-	    strategyJpanel.setVisible(false);
-	    strategyJpanel.setVisible(true);
+	   exitButton.addActionListener(new ActionListener(){
+		public void actionPerformed(ActionEvent e) {
+			controller.ExitButtonClicked();
+			
+		}
+	   });
+	    serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		serviceTypeJpanel.add(tempLabel);
+		serviceTypeJpanel.add(exitButton);
+		serviceTypeJpanel.add(strategyJpanel);
 	}
 	
 	public void StrategyConfirmButtonClicked(){
@@ -134,5 +129,9 @@ public class StrategyView extends JPanel{
 		strategyAddFrame.setBounds(600,400,300,150);
 		strategyAddFrame.setVisible(true);
 		strategyAddFrame.getContentPane().add(strategyAddPanel);
+	}
+	
+	public void ExitButtonClicked(){
+		
 	}
 }

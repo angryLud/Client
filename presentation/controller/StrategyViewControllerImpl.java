@@ -4,7 +4,9 @@ import presentation.hotelui.StrategyView;
 import presentation.hotelui.StrategyViewController;
 
 public class StrategyViewControllerImpl implements StrategyViewController{
+	
 	private int HotelID;
+	
 	private StrategyView view;
 	
 	public StrategyViewControllerImpl(int HotelID){
@@ -26,6 +28,12 @@ public class StrategyViewControllerImpl implements StrategyViewController{
 	@Override
 	public void setView(StrategyView view) {
 		this.view = view;
+		
+	}
+
+	@Override
+	public void ExitButtonClicked() {
+		view.ExitButtonClicked();
 		
 	}
 

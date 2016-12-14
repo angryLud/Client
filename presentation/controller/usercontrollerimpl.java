@@ -1,5 +1,6 @@
 package presentation.controller;
 
+import presentation.userui.user;
 import presentation.userui.usercontroller;
 
 /**
@@ -7,6 +8,7 @@ import presentation.userui.usercontroller;
  */
 public class usercontrollerimpl implements usercontroller {
     private controller con;
+    private user view;
 
     @Override
     public void back() {
@@ -16,6 +18,11 @@ public class usercontrollerimpl implements usercontroller {
     @Override
     public void setcon(controller con) {
         this.con=con;
+    }
+
+    @Override
+    public void setView(user view) {
+        this.view=view;
     }
 
 }

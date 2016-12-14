@@ -1,6 +1,7 @@
 package presentation.manageui;
 
 
+import presentation.controller.controller;
 
 public interface ManageViewControllerService {
 	
@@ -13,5 +14,7 @@ public interface ManageViewControllerService {
 	public void newMemberButtonClicked();
 	
 	public void newHotelButtonClicked();
+
+	public void setcon(controller con);
 
 }

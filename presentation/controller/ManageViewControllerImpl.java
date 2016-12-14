@@ -7,6 +7,7 @@ import presentation.manageui.ManageViewControllerService;
 public class ManageViewControllerImpl implements ManageViewControllerService {
 	
 	private ManageView view;
+	private controller con;
 	
 	public ManageViewControllerImpl (){
 		
@@ -31,5 +32,11 @@ public class ManageViewControllerImpl implements ManageViewControllerService {
 	public void newHotelButtonClicked(){
 		view.newHotelButtonClicked();
 	}
-	
+
+	@Override
+	public void setcon(controller con) {
+		this.con=con;
+	}
+
+
 }

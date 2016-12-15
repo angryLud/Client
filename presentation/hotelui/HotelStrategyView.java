@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-public class StrategyView extends JPanel{
+public class HotelStrategyView extends JPanel{
 	
-	private StrategyViewController controller;
+	private HotelStrategyViewController controller;
 	
 	private JLabel tempLabel;
 	private JFrame strategyAddFrame;
@@ -25,7 +25,7 @@ public class StrategyView extends JPanel{
 	
 	private Vector<String> options;
 	
-	public StrategyView(StrategyViewController controller){
+	public HotelStrategyView(HotelStrategyViewController controller){
 		this.controller = controller;
 		this.init();
 	}

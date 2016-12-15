@@ -1,7 +1,7 @@
 package presentation.hotelui;
 
-public interface StrategyViewController {
-	public void setView(StrategyView view);
+public interface HotelStrategyViewController {
+	public void setView(HotelStrategyView view);
 	
 	public void StrategyConfirmButtonClicked();
 	

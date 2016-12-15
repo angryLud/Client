@@ -1,15 +1,16 @@
 package presentation.controller;
 
-import presentation.hotelui.StrategyView;
-import presentation.hotelui.StrategyViewController;
+import presentation.hotelui.HotelStrategyView;
+import presentation.hotelui.HotelStrategyViewController;
 
-public class StrategyViewControllerImpl implements StrategyViewController{
+
+public class HotelStrategyViewControllerImpl implements HotelStrategyViewController{
 	
 	private int HotelID;
 	
-	private StrategyView view;
+	private HotelStrategyView view;
 	
-	public StrategyViewControllerImpl(int HotelID){
+	public HotelStrategyViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
 	}
 
@@ -26,7 +27,7 @@ public class StrategyViewControllerImpl implements StrategyViewController{
 	}
 
 	@Override
-	public void setView(StrategyView view) {
+	public void setView(HotelStrategyView view) {
 		this.view = view;
 		
 	}

@@ -35,6 +35,10 @@ public class SearchHotel extends JPanel{
 	private JTable hotelTable;
 	private DefaultTableModel hotelListModel;
 	private JScrollPane scrollPane;
+	private JComboBox comboBox;
+	private JComboBox comboBox_1;
+	private JComboBox comboBox_2;
+	private JComboBox comboBox_3;
 
 
 	public SearchHotel(SearchHotelController searchHotelCon) {
@@ -60,28 +64,30 @@ public class SearchHotel extends JPanel{
 		this.add(label1);
 		label1.setBounds(0,0,200,27);
 		//商圈
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setBounds(56, 40, 70, 21);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"商圈"}));
-		comboBox.setToolTipText("");
+		comboBox.addItem("新街口");
 		this.add(comboBox);
 		//地址ַ
-		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"地址"}));
 		comboBox_1.setBounds(136, 40, 70, 21);
-		comboBox.setToolTipText("");
+		comboBox_1.addItem("南京");
 		this.add(comboBox_1);
 		//排序
-		JComboBox comboBox_2 = new JComboBox();
+		comboBox_2 = new JComboBox();
 		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"排序"}));
 		comboBox_2.setBounds(216, 40, 70, 21);
-		comboBox.setToolTipText("");
+		comboBox_2.addItem("评分");
+		comboBox_2.addItem("星级");
 		this.add(comboBox_2);
 		//限定
-		JComboBox comboBox_3 = new JComboBox();
+		comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"限定"}));
 		comboBox_3.setBounds(296, 40, 70, 21);
-		comboBox.setToolTipText("");
+		comboBox_3.addItem("住过");
+		comboBox_3.addItem("未住过");
 		this.add(comboBox_3);
 		
 		JLabel label_7 = new JLabel("搜索:");
@@ -109,7 +115,6 @@ public class SearchHotel extends JPanel{
 				//数据
 				vData = new Vector<HotelVo>();
 				searchHotelCon = new SearchHotelControllerimpl();
-				vData.addAll(searchHotelCon.getAllHotels(userId));
 				//模型
                 hotelListModel = new DefaultTableModel(vData, vColumns);
 				//表格
@@ -142,7 +147,29 @@ public class SearchHotel extends JPanel{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		String s1 = (String)comboBox.getSelectedItem();
+		String s2 = (String)comboBox_1.getSelectedItem();
+		String s3 = (String)comboBox_2.getSelectedItem();
+		String s4 = (String)comboBox_3.getSelectedItem();
+		for(HotelVo x:searchHotelCon.usersearchhotel(s1,s2,s3,s4)){
+			vData.add(x);
+		}
 		
+//		hotelListModel = new DefaultTableModel(vData, vColumns);
+//		//表格
+//		hotelTable = new JTable(hotelListModel){
+//
+//			public boolean isCellEditable(int row, int column){
+//				return false;
+//			}
+//		};
+//		hotelTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//		scrollPane.getViewport().add(hotelTable);
+//		this.add(scrollPane);
+//		hotelTable.setFillsViewportHeight(true);
+//		hotelTable.setBounds(56, 74, 400, 200);
+//		hotelTable.setBackground(Color.LIGHT_GRAY);
+//		this.add(hotelTable);
 	}
 	
 	}

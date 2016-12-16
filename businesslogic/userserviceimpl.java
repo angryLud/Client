@@ -133,6 +133,12 @@ public class userserviceimpl implements userservice {
 		return upo.getId();
 	}
 
+	@Override
+	public List<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

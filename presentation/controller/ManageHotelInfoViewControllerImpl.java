@@ -7,6 +7,8 @@ import presentation.hotelui.ManageRoomView;
 public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewController{
 	
     private ManageHotelInfoView view;
+    
+    private controller con;
 	
 	private int HotelID;
 	
@@ -38,6 +40,13 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
 	@Override
 	public void ExitButtonClicked() {
 		view.ExitButtonClicked();
+		
+	}
+
+
+	@Override
+	public void setcon(controller con) {
+		this.con = con;
 		
 	}
 

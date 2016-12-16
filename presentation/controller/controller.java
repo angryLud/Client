@@ -1,5 +1,7 @@
 package presentation.controller;
 
+import presentation.hotelui.ManageHotelInfoView;
+import presentation.hotelui.ManageHotelInfoViewController;
 import presentation.hotelui.hotelmainframe;
 import presentation.hotelui.mainframecontroller;
 import presentation.login.login;
@@ -62,7 +64,7 @@ public class controller {
 
         if (id.substring(0).equals("1")){
 
-            hotelcon =new hotelcontroller();
+            hotelcon =new hotelcontroller("1");
             frame.getContentPane().removeAll();
             frame.repaint();
             this.view=new hotelmainframe(hotelcon);
@@ -95,6 +97,21 @@ public class controller {
 
         signupcon.setcon(this);
 
+    }
+    
+    public void ManageHotel(){
+    	frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        ManageHotelInfoViewController hotelController=new ManageHotelInfoViewControllerImpl(1);
+
+        this.view=new ManageHotelInfoView(hotelController);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        hotelController.setView((ManageHotelInfoView) this.view);
+
+        hotelController.setcon(this);
     }
 
 

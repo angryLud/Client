@@ -1,5 +1,6 @@
 package presentation.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import businesslogic.userserviceimpl;
@@ -35,5 +36,10 @@ public SearchHotelControllerimpl(){
 	public List<HotelVo> getAllHotels(int userId){
 		// TODO Auto-generated method stub
 		return userso.getAllHotels(userId);
+	}
+	@Override
+	public List<HotelVo> usersearchhotel(String s1,String s2,String s3,String s4) {
+		// TODO Auto-generated method stub
+		return userso.usersearchhotel(s1,s2,s3,s4);
 	}
 }

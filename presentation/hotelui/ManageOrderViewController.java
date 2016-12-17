@@ -2,9 +2,12 @@ package presentation.hotelui;
 
 import java.util.List;
 
+import presentation.controller.controller;
 import vo.OrderVo;
 
 public interface ManageOrderViewController {
+	public void setcon(controller con);
+	
 	public void setView(ManageOrderView view);
 	
 	public void OrderBrowseButtonClicked();

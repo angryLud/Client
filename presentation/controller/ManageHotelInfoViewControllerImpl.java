@@ -39,7 +39,7 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
 
 	@Override
 	public void ExitButtonClicked() {
-		view.ExitButtonClicked();
+		con.loggedin(HotelID+"");
 		
 	}
 

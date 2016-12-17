@@ -26,25 +26,28 @@ public class hotelcontroller implements mainframecontroller {
 
 	@Override
 	public void HotelInfoButtonClicked() {
-		con.ManageHotel();
+		con.ManageHotelInfo();
 		
 	}
 
 	@Override
 	public void ManageRoomButtonClicked() {
-		frame.ManageRoomButtonClicked();
+		con.ManageRoom();
 		
 	}
 
 	@Override
 	public void ManageOrderButtonClicked() {
-		frame.ManageOrderButtonClicked();
+		con.ManageOrder();
 		
 	}
 
 	@Override
 	public void HotelStrategyButtonClicked() {
-		frame.HotelStrategyButtonClicked();
+		con.HotelStrategy();
 		
+	}
+	public void ExitButtonClicked(){
+		con.loggedin("1");
 	}
 }

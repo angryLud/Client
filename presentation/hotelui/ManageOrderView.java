@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import po.OrderPo;
 import vo.OrderVo;
 
-public class ManageOrderView {
+public class ManageOrderView extends JPanel{
 	
 	private int HotelID;
 	private ManageOrderViewController controller;
@@ -59,6 +59,7 @@ public class ManageOrderView {
 	public ManageOrderView(ManageOrderViewController controller){
 		this.controller = controller;
 		this.init();
+		this.setLayout(null);
 	}
 	
 	public void init(){
@@ -150,6 +151,9 @@ public class ManageOrderView {
 		    serviceTypeJpanel.add(exitButton);
 			serviceTypeJpanel.add(scrollPane);
 			serviceTypeJpanel.add(searchButtonJpanel);
+			
+			this.add(serviceTypeJpanel);
+			serviceTypeJpanel.setBounds(0, 0, 800, 600);
 		   
 	}
 	public void OrderBrowseButtonClicked(){
@@ -215,9 +219,7 @@ public class ManageOrderView {
 		serviceTypeJpanel.add(executeJpanel);
 		serviceTypeJpanel.add(scrollPane);
 }
-	public void ExitButtonClicked(){
-		
-	}
+	
 	public void ExecutingButtonClicked(){
 		
 		int orderID = Integer.parseInt(executeField1.getText());

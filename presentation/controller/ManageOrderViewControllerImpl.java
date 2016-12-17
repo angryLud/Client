@@ -10,6 +10,8 @@ import vo.OrderVo;
 public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	private ManageOrderView view;
 	
+	private controller con;
+	
 	private int HotelID;
 	
 	private orderdataservice orderservice;
@@ -46,7 +48,7 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 
 	@Override
 	public void ExitButtonClicked() {
-		view.ExitButtonClicked();
+		con.loggedin(HotelID+"");
 		
 	}
 
@@ -66,6 +68,12 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	public boolean executeOrder(int orderID) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public void setcon(controller con) {
+		this.con = con;
+		
 	}
 
 	

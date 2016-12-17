@@ -126,25 +126,25 @@ public class hotelmainframe extends JPanel{
         this.add(HotelStrategy);
         
     }
-    public void HotelInfoButtonClicked(){
-    	ManageHotelInfoViewController controller = new ManageHotelInfoViewControllerImpl(HotelID);
-    	ManageHotelInfoView view = new ManageHotelInfoView(controller);
-    	controller.setView(view);
-    }
-    public void ManageOrderButtonClicked(){
-    	ManageOrderViewController controller = new ManageOrderViewControllerImpl(HotelID);
-    	ManageOrderView view = new ManageOrderView(controller);
-    	controller.setView(view);
-    }
-    public void ManageRoomButtonClicked(){
-    	ManageRoomViewController controller = new ManageRoomViewControllerImpl(HotelID);
-    	ManageRoomView view = new ManageRoomView(controller);
-    	controller.setView(view);
-    }
-    public void HotelStrategyButtonClicked(){
-    	HotelStrategyViewController controller = new HotelStrategyViewControllerImpl(HotelID);
-    	HotelStrategyView view = new HotelStrategyView(controller);
-    	controller.setView(view);
-    }
+//    public void HotelInfoButtonClicked(){
+//    	ManageHotelInfoViewController controller = new ManageHotelInfoViewControllerImpl(HotelID);
+//    	ManageHotelInfoView view = new ManageHotelInfoView(controller);
+//    	controller.setView(view);
+//    }
+//    public void ManageOrderButtonClicked(){
+//    	ManageOrderViewController controller = new ManageOrderViewControllerImpl(HotelID);
+//    	ManageOrderView view = new ManageOrderView(controller);
+//    	controller.setView(view);
+//    }
+//    public void ManageRoomButtonClicked(){
+//    	ManageRoomViewController controller = new ManageRoomViewControllerImpl(HotelID);
+//    	ManageRoomView view = new ManageRoomView(controller);
+//    	controller.setView(view);
+//    }
+//    public void HotelStrategyButtonClicked(){
+//    	HotelStrategyViewController controller = new HotelStrategyViewControllerImpl(HotelID);
+//    	HotelStrategyView view = new HotelStrategyView(controller);
+//    	controller.setView(view);
+//    }
 }
 

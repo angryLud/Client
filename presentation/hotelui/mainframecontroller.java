@@ -12,4 +12,5 @@ public interface mainframecontroller {
     void ManageRoomButtonClicked();
     void ManageOrderButtonClicked();
     void HotelStrategyButtonClicked();
+    void ExitButtonClicked();
 }

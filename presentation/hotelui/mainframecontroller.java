@@ -7,5 +7,9 @@ import presentation.controller.controller;
  */
 public interface mainframecontroller {
     void signout();
-    public void setcon(controller con);
+    public void setcon(controller con); 
+    void HotelInfoButtonClicked();
+    void ManageRoomButtonClicked();
+    void ManageOrderButtonClicked();
+    void HotelStrategyButtonClicked();
 }

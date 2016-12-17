@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class ManageHotelInfoView {
+public class ManageHotelInfoView extends JPanel{
 	private ManageHotelInfoViewController controller;
 	private JTextArea area;
 	private JPanel textJpanel;
@@ -23,9 +23,11 @@ public class ManageHotelInfoView {
 	public ManageHotelInfoView(ManageHotelInfoViewController controller){
 		this.controller = controller;
 		this.init();
+		this.setLayout(null);
+		
 	}
 	
-		public void init(){
+		private void init(){
 		//初始化组件
 		area = new JTextArea(8,30);
 		area.setEditable(false);
@@ -38,7 +40,7 @@ public class ManageHotelInfoView {
 		confirmButton = new JButton("确定");
 		exitButton = new JButton("返回");
 		
-		templabel = new JLabel("                                                  ");
+		templabel = new JLabel("                                                                                                             ");
 		
 		//界面内容
 		
@@ -87,6 +89,9 @@ public class ManageHotelInfoView {
 		serviceTypeJpanel.add(textJpanel);
 		textJpanel.setVisible(true);
 		
+		
+		this.add(serviceTypeJpanel);
+		serviceTypeJpanel.setBounds(0, 0, 800, 600);
 		
 	
 		

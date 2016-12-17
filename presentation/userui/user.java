@@ -20,9 +20,11 @@ public class user extends JPanel{
     private JButton chaxundingdan;
     private ImageIcon img;
     private JLabel imgLabel;
+    private int userid;
 
-    public user(usercontroller usercon){
+    public user(usercontroller usercon,int userid){
         this.usercon=usercon;
+        this.userid=userid;
         this.init();
 
     }
@@ -55,7 +57,7 @@ public class user extends JPanel{
         profile.setEditable(false);
         profile.setBounds(40,350,150,150);
         profile.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
-        profile.setText("姓名："+"\r\n"+"天气好");
+        profile.setText("姓名："+"\r\n"+usercon.getname(userid));
         this.add(profile);
 
         guanli=new JLabel("管理页面",JLabel.CENTER);

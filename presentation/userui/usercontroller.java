@@ -9,4 +9,5 @@ public interface usercontroller {
     void back();
     void setcon(controller con);
     void setView(user view);
+    String getname(int userid);
 }

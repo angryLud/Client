@@ -13,6 +13,6 @@ public interface SearchHotelController {
 
 	List<HotelVo> getAllHotels(int userId);
 
-	List<HotelVo> usersearchhotel(String s1,String s2,String s3,String s4);
+	void usersearchhotel(String s1,String s2,String s3,String s4);
 
 }

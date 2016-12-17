@@ -1,6 +1,7 @@
 package businesslogicservice;
 
 import java.util.List;
+import java.util.Vector;
 
 import vo.HotelVo;
 import vo.OrderVo;
@@ -57,5 +58,5 @@ public int getMark(int userId);
 public int createorder(OrderVo ovo);
 
 public int getuserid();
-public List<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4);
+public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4);
 }

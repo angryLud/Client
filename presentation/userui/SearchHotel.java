@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.DefaultComboBoxModel;
@@ -151,25 +152,9 @@ public class SearchHotel extends JPanel{
 		String s2 = (String)comboBox_1.getSelectedItem();
 		String s3 = (String)comboBox_2.getSelectedItem();
 		String s4 = (String)comboBox_3.getSelectedItem();
-		for(HotelVo x:searchHotelCon.usersearchhotel(s1,s2,s3,s4)){
-			vData.add(x);
-		}
+		searchHotelCon.usersearchhotel(s1,s2,s3,s4);
 		
-//		hotelListModel = new DefaultTableModel(vData, vColumns);
-//		//表格
-//		hotelTable = new JTable(hotelListModel){
-//
-//			public boolean isCellEditable(int row, int column){
-//				return false;
-//			}
-//		};
-//		hotelTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		scrollPane.getViewport().add(hotelTable);
-//		this.add(scrollPane);
-//		hotelTable.setFillsViewportHeight(true);
-//		hotelTable.setBounds(56, 74, 400, 200);
-//		hotelTable.setBackground(Color.LIGHT_GRAY);
-//		this.add(hotelTable);
+
 	}
 	
 	}
@@ -182,6 +167,25 @@ public class SearchHotel extends JPanel{
 			
 		}
 		
+		}
+
+
+		public void createtable(Vector<HotelVo> vData){
+		hotelListModel = new DefaultTableModel(vData, vColumns);
+		//表格
+		hotelTable = new JTable(hotelListModel){
+
+			public boolean isCellEditable(int row, int column){
+				return false;
+			}
+		};
+		hotelTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		scrollPane.getViewport().add(hotelTable);
+		this.add(scrollPane);
+		hotelTable.setFillsViewportHeight(true);
+		hotelTable.setBounds(56, 74, 400, 200);
+		hotelTable.setBackground(Color.LIGHT_GRAY);
+		this.add(hotelTable);
 		}
 	}
 

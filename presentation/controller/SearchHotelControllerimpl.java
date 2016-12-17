@@ -38,8 +38,8 @@ public SearchHotelControllerimpl(){
 		return userso.getAllHotels(userId);
 	}
 	@Override
-	public List<HotelVo> usersearchhotel(String s1,String s2,String s3,String s4) {
+	public void usersearchhotel(String s1,String s2,String s3,String s4) {
 		// TODO Auto-generated method stub
-		return userso.usersearchhotel(s1,s2,s3,s4);
+		view.createtable(userso.usersearchhotel(s1,s2,s3,s4));
 	}
 }

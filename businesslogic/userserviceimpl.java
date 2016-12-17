@@ -3,6 +3,7 @@ package businesslogic;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import businesslogicservice.userservice;
 import dataservice.userdataservice;
@@ -134,7 +135,7 @@ public class userserviceimpl implements userservice {
 	}
 
 	@Override
-	public List<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4) {
+	public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4) {
 		// TODO Auto-generated method stub
 		return null;
 	}

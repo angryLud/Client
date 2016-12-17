@@ -9,6 +9,8 @@ public class ManageRoomViewControllerImpl implements ManageRoomViewController{
 	
 	private ManageRoomView view;
 	
+	private controller con;
+	
 	public ManageRoomViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
 	}
@@ -41,6 +43,12 @@ public class ManageRoomViewControllerImpl implements ManageRoomViewController{
 	@Override
 	public void ExitButtonClicked() {
 		view.ExitButtonClicked();
+	}
+
+	@Override
+	public void setcon(controller con) {
+		this.con = con;
+		
 	}
 	
 }

@@ -46,6 +46,7 @@ public class ManageRoomView extends JPanel{
 	public ManageRoomView(ManageRoomViewController controller){
 		this.controller = controller;
 		this.init();
+		this.setLayout(null);
 	}
 	
 	
@@ -125,6 +126,9 @@ public class ManageRoomView extends JPanel{
 	    serviceTypeJpanel.add(exitButton);
 	    serviceTypeJpanel.add(scrollPane);
 	    serviceTypeJpanel.add(manageButtonJpanel);
+	    
+	    this.add(serviceTypeJpanel);
+		serviceTypeJpanel.setBounds(0, 0, 800, 600);
 	}
 	
 	public void InputButtonClicked(){
@@ -160,6 +164,9 @@ public class ManageRoomView extends JPanel{
         });
         serviceTypeJpanel.remove(manageButtonJpanel);
         serviceTypeJpanel.add(inputButtonJpanel);
+        
+        this.add(serviceTypeJpanel);
+		serviceTypeJpanel.setBounds(0, 0, 800, 600);
 }
 	public void InputRoomButtonClicked(){
 		final JFrame inputFrame = new JFrame("录入可用客房");

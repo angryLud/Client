@@ -10,6 +10,8 @@ public class HotelStrategyViewControllerImpl implements HotelStrategyViewControl
 	
 	private HotelStrategyView view;
 	
+	private controller con;
+	
 	public HotelStrategyViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
 	}
@@ -35,6 +37,12 @@ public class HotelStrategyViewControllerImpl implements HotelStrategyViewControl
 	@Override
 	public void ExitButtonClicked() {
 		view.ExitButtonClicked();
+		
+	}
+
+	@Override
+	public void setcon(controller con) {
+		this.con = con;
 		
 	}
 

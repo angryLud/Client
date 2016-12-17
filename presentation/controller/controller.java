@@ -1,7 +1,13 @@
 package presentation.controller;
 
+import presentation.hotelui.HotelStrategyView;
+import presentation.hotelui.HotelStrategyViewController;
 import presentation.hotelui.ManageHotelInfoView;
 import presentation.hotelui.ManageHotelInfoViewController;
+import presentation.hotelui.ManageOrderView;
+import presentation.hotelui.ManageOrderViewController;
+import presentation.hotelui.ManageRoomView;
+import presentation.hotelui.ManageRoomViewController;
 import presentation.hotelui.hotelmainframe;
 import presentation.hotelui.mainframecontroller;
 import presentation.login.login;
@@ -99,7 +105,7 @@ public class controller {
 
     }
     
-    public void ManageHotel(){
+    public void ManageHotelInfo(){
     	frame.getContentPane().removeAll();
         frame.repaint();
 
@@ -110,6 +116,48 @@ public class controller {
         frame.getContentPane().add(this.view);
         frame.setVisible(true);
         hotelController.setView((ManageHotelInfoView) this.view);
+
+        hotelController.setcon(this);
+    }
+    public void ManageOrder(){
+      	frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        ManageOrderViewController hotelController=new ManageOrderViewControllerImpl(1);
+
+        this.view=new ManageOrderView(hotelController);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        hotelController.setView((ManageOrderView) this.view);
+
+        hotelController.setcon(this);
+    }
+    public void ManageRoom(){
+    	frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        ManageRoomViewController hotelController=new ManageRoomViewControllerImpl(1);
+
+        this.view=new ManageRoomView(hotelController);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        hotelController.setView((ManageRoomView) this.view);
+
+        hotelController.setcon(this);
+    }
+    public void HotelStrategy(){
+    	frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        HotelStrategyViewController hotelController=new HotelStrategyViewControllerImpl(1);
+
+        this.view=new HotelStrategyView(hotelController);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        hotelController.setView((HotelStrategyView) this.view);
 
         hotelController.setcon(this);
     }

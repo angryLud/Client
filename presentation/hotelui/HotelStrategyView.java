@@ -28,6 +28,7 @@ public class HotelStrategyView extends JPanel{
 	public HotelStrategyView(HotelStrategyViewController controller){
 		this.controller = controller;
 		this.init();
+		this.setLayout(null);
 	}
 	
 	public void init(){
@@ -45,6 +46,8 @@ public class HotelStrategyView extends JPanel{
 	   exitButton = new JButton("返回");
 	   
 	   strategyField1 = new JTextField(20);
+	   
+	   strategyBox = new JComboBox();
 		
 		
 	   strategyJpanel.add(strategyLabel1);
@@ -81,6 +84,9 @@ public class HotelStrategyView extends JPanel{
 		serviceTypeJpanel.add(tempLabel);
 		serviceTypeJpanel.add(exitButton);
 		serviceTypeJpanel.add(strategyJpanel);
+		
+		this.add(serviceTypeJpanel);
+		serviceTypeJpanel.setBounds(0, 0, 800, 600);
 	}
 	
 	public void StrategyConfirmButtonClicked(){

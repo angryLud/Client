@@ -219,9 +219,7 @@ public class ManageOrderView extends JPanel{
 		serviceTypeJpanel.add(executeJpanel);
 		serviceTypeJpanel.add(scrollPane);
 }
-	public void ExitButtonClicked(){
-		
-	}
+	
 	public void ExecutingButtonClicked(){
 		
 		int orderID = Integer.parseInt(executeField1.getText());

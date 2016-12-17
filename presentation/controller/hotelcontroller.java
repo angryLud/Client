@@ -47,7 +47,7 @@ public class hotelcontroller implements mainframecontroller {
 		con.HotelStrategy();
 		
 	}
-	public void BackToHotelMain(){
+	public void ExitButtonClicked(){
 		con.loggedin("1");
 	}
 }

@@ -42,7 +42,7 @@ public class ManageRoomViewControllerImpl implements ManageRoomViewController{
 
 	@Override
 	public void ExitButtonClicked() {
-		view.ExitButtonClicked();
+		con.loggedin(HotelID+"");
 	}
 
 	@Override

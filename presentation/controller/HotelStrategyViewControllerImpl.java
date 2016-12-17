@@ -36,7 +36,7 @@ public class HotelStrategyViewControllerImpl implements HotelStrategyViewControl
 
 	@Override
 	public void ExitButtonClicked() {
-		view.ExitButtonClicked();
+		con.loggedin(HotelID+"");
 		
 	}
 

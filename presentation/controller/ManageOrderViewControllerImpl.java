@@ -48,7 +48,7 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 
 	@Override
 	public void ExitButtonClicked() {
-		view.ExitButtonClicked();
+		con.loggedin(HotelID+"");
 		
 	}
 

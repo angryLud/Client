@@ -96,9 +96,7 @@ public class ManageHotelInfoView extends JPanel{
 	
 		
 	}
-		public void ExitButtonClicked(){
-			
-		}
+		
 		public void ModifyButtonClicked(){
 			area.setEditable(true);
 		}

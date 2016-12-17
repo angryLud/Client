@@ -45,9 +45,14 @@ public class HotelStrategyView extends JPanel{
 	   strategyAddButton = new JButton("添加促销策略");
 	   exitButton = new JButton("返回");
 	   
+	   options = new Vector<String>();
+	   options.add("0.95");
+	   options.add("0.85");
+	   options.add("0.75");
+	  
 	   strategyField1 = new JTextField(20);
 	   
-	   strategyBox = new JComboBox();
+	   strategyBox = new JComboBox(options);
 		
 		
 	   strategyJpanel.add(strategyLabel1);
@@ -137,7 +142,4 @@ public class HotelStrategyView extends JPanel{
 		strategyAddFrame.getContentPane().add(strategyAddPanel);
 	}
 	
-	public void ExitButtonClicked(){
-		
-	}
 }

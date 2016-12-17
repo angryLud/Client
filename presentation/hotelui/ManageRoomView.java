@@ -124,6 +124,15 @@ public class ManageRoomView extends JPanel{
         serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 	    serviceTypeJpanel.add(tempLabel);
 	    serviceTypeJpanel.add(exitButton);
+	    exitButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.ExitButtonClicked();
+				
+			}
+	    	
+	    });
 	    serviceTypeJpanel.add(scrollPane);
 	    serviceTypeJpanel.add(manageButtonJpanel);
 	    

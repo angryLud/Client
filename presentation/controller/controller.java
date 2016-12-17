@@ -16,6 +16,8 @@ import presentation.manageui.ManageView;
 import presentation.manageui.ManageViewControllerService;
 import presentation.signup.signup;
 import presentation.signup.signupcontroller;
+import presentation.userui.UserInformation;
+import presentation.userui.UserInformationCotroller;
 import presentation.userui.user;
 import presentation.userui.usercontroller;
 
@@ -60,10 +62,10 @@ public class controller {
     public void loggedin(String id){
         if (id.substring(0).equals("0")){
 
-            usercon=new usercontrollerimpl();
+            usercon=new usercontrollerimpl(Integer.parseInt(id));
             frame.getContentPane().removeAll();
             frame.repaint();
-            this.view=new user(usercon,Integer.parseInt(id));
+            this.view=new user(usercon);
             usercon.setcon(this);
             frame.getContentPane().add(this.view);
             frame.setVisible(true);
@@ -175,6 +177,21 @@ public class controller {
         hotelController.setView((HotelStrategyView) this.view);
 
         hotelController.setcon(this);
+    }
+
+    public void gerenxinxi(int userid){
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        UserInformationCotroller userinfocon=new UserInformationCotrollerimpl();
+
+        this.view=new UserInformation(userinfocon);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        userinfocon.setview((UserInformation) this.view);
+
+        userinfocon.setcon(this);
     }
 
 

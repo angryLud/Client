@@ -20,11 +20,10 @@ public class user extends JPanel{
     private JButton chaxundingdan;
     private ImageIcon img;
     private JLabel imgLabel;
-    private int userid;
 
-    public user(usercontroller usercon,int userid){
+    public user(usercontroller usercon){
         this.usercon=usercon;
-        this.userid=userid;
+
         this.init();
 
     }
@@ -43,7 +42,7 @@ public class user extends JPanel{
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                usercon.back();
+                usercon.back( );
             }
         });
         this.add(back);
@@ -57,7 +56,7 @@ public class user extends JPanel{
         profile.setEditable(false);
         profile.setBounds(40,350,150,150);
         profile.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
-        profile.setText("姓名："+"\r\n"+usercon.getname(userid));
+        profile.setText("姓名："+"\r\n"+usercon.getname());
         this.add(profile);
 
         guanli=new JLabel("管理页面",JLabel.CENTER);
@@ -69,6 +68,13 @@ public class user extends JPanel{
         gerenxinxi=new JButton("个人信息");
         gerenxinxi.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
         gerenxinxi.setBounds(280,270,100,100);
+        gerenxinxi.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usercon.gerenxinxi();
+            }
+        });
         this.add(gerenxinxi);
 
         chaxundingdan=new JButton("查询酒店");

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import businesslogicservice.loginservice;
 import businesslogicservice.userservice;
 import dataservice.userdataservice;
 import po.OrderPo;
@@ -16,13 +17,15 @@ import vo.OrderVo;
 public class userserviceimpl implements userservice {
 	private userdataservice userdaser;
 	private UserPo upo;
+	private loginservice logs;
 	public userserviceimpl(int userId){
-		try {
-			upo=RemoteHelper.getInstance().getUserdataservice().find(userId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			upo=RemoteHelper.getInstance().getUserdataservice().find(userId);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		logs=new login();
 	}
 
 	@Override
@@ -142,7 +145,13 @@ public class userserviceimpl implements userservice {
 
 	@Override
 	public String getname() {
-		return upo.getUserName();
+		return  "a";
+		//return upo.getUserName();
+	}
+
+	@Override
+	public void logout(int userid) {
+		logs.logout(userid);
 	}
 
 

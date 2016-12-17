@@ -8,6 +8,7 @@ import presentation.userui.UserInformationCotroller;
 public class UserInformationCotrollerimpl  implements UserInformationCotroller {
 	private UserInformation view;
 	private userservice userser;
+	private controller con;
 
 public UserInformationCotrollerimpl(){
 	userser = new userserviceimpl(1);
@@ -29,6 +30,12 @@ public UserInformationCotrollerimpl(){
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void setcon(controller con) {
+		this.con=con;
+	}
+
 	public int getcredit(){
 		return 0;
 	}

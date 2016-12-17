@@ -1,5 +1,7 @@
 package rmi;
 
+import businesslogicservice.loginservice;
+import dataservice.logindataservice;
 import dataservice.orderdataservice;
 import dataservice.promotiondataservice;
 import dataservice.userdataservice;
@@ -32,6 +34,6 @@ public class RemoteHelper {
     public promotiondataservice getPromotiondataservice(){
         return (promotiondataservice) remote;
     }
-
+    public logindataservice getloginservice(){return (logindataservice) remote;}
 }
 

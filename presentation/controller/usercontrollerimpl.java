@@ -1,5 +1,6 @@
 package presentation.controller;
 
+import businesslogic.userserviceimpl;
 import businesslogicservice.userservice;
 import presentation.userui.user;
 import presentation.userui.usercontroller;
@@ -11,10 +12,17 @@ public class usercontrollerimpl implements usercontroller {
     private controller con;
     private user view;
     private userservice usv;
+    private int userid;
+
+    public usercontrollerimpl(int userid){
+        this.userid=userid;
+        usv=new userserviceimpl(userid);
+    }
 
     @Override
     public void back() {
         con.login();
+        usv.logout(userid);
     }
 
     @Override
@@ -28,8 +36,13 @@ public class usercontrollerimpl implements usercontroller {
     }
 
     @Override
-    public String getname(int userid) {
+    public String getname() {
         return  usv.getname();
+    }
+
+    @Override
+    public void gerenxinxi() {
+        con.gerenxinxi(userid);
     }
 
 }

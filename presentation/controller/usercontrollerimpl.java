@@ -1,5 +1,6 @@
 package presentation.controller;
 
+import businesslogicservice.userservice;
 import presentation.userui.user;
 import presentation.userui.usercontroller;
 
@@ -9,6 +10,7 @@ import presentation.userui.usercontroller;
 public class usercontrollerimpl implements usercontroller {
     private controller con;
     private user view;
+    private userservice usv;
 
     @Override
     public void back() {
@@ -23,6 +25,11 @@ public class usercontrollerimpl implements usercontroller {
     @Override
     public void setView(user view) {
         this.view=view;
+    }
+
+    @Override
+    public String getname(int userid) {
+        return  usv.getname();
     }
 
 }

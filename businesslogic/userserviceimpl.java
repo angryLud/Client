@@ -140,6 +140,10 @@ public class userserviceimpl implements userservice {
 		return null;
 	}
 
+	@Override
+	public String getname() {
+		return upo.getUserName();
+	}
 
 
 }

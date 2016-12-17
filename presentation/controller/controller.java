@@ -63,7 +63,7 @@ public class controller {
             usercon=new usercontrollerimpl();
             frame.getContentPane().removeAll();
             frame.repaint();
-            this.view=new user(usercon);
+            this.view=new user(usercon,Integer.parseInt(id));
             usercon.setcon(this);
             frame.getContentPane().add(this.view);
             frame.setVisible(true);

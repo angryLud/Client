@@ -66,7 +66,9 @@ public class ManageOrderView extends JPanel{
 		//组件
 		scrollPane = new JScrollPane();
 		tempLabel = new JLabel("                                                        ");
-		
+		executeLabel1 = new JLabel("输入订单号");
+		executeField1 = new JTextField(10);
+		executingButton = new JButton("执行");
 		orderBrowseButton = new JButton("浏览");
 		orderSearchButton = new JButton("搜索");
 		executeButton = new JButton("执行订单");
@@ -189,6 +191,7 @@ public class ManageOrderView extends JPanel{
 		searchFrame.setVisible(true);
 	}
 	public void ExecuteButtonClicked(){
+		serviceTypeJpanel.repaint();
 		executeOrderModel = new DefaultTableModel(executeData, executeColumns);
 		executeOrderTable = new JTable(executeOrderModel){
 			private static final long serialVersionUID = 1L;
@@ -218,6 +221,7 @@ public class ManageOrderView extends JPanel{
 	    serviceTypeJpanel.remove(searchButtonJpanel);
 		serviceTypeJpanel.add(executeJpanel);
 		serviceTypeJpanel.add(scrollPane);
+		serviceTypeJpanel.validate();
 }
 	
 	public void ExecutingButtonClicked(){
@@ -227,7 +231,7 @@ public class ManageOrderView extends JPanel{
 			JOptionPane.showMessageDialog(null, "执行成功！");
 		}
 		else{
-			JOptionPane.showMessageDialog(null, "订单已执行或被撤销！");
+			JOptionPane.showMessageDialog(null, "订单不存在或被撤销！");
 		}
 	}
 }

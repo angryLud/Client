@@ -13,8 +13,9 @@ import vo.OrderVo;
 public class SearchHotelControllerimpl implements SearchHotelController{
 
 	private userservice userso;
-	private SearchHotel view;
+	private SearchHotel View;
 	private int userId;
+	private controller con;
 
 public SearchHotelControllerimpl(){
 	userso = new userserviceimpl(userId);
@@ -26,7 +27,7 @@ public SearchHotelControllerimpl(){
 	}
 	public void setview(SearchHotel view) {
 		// TODO Auto-generated method stub
-		this.view = view;
+		this.View = view;
 	}
 	@Override
 	public int getUserID() {
@@ -40,6 +41,14 @@ public SearchHotelControllerimpl(){
 	@Override
 	public void usersearchhotel(String s1,String s2,String s3,String s4) {
 		// TODO Auto-generated method stub
-		view.createtable(userso.usersearchhotel(s1,s2,s3,s4));
+//		View=new SearchHotel(this);
+//		System.out.println(userso.usersearchhotel(s1,s2,s3,s4).elementAt(0).getHotelName());
+		System.out.println("shit");
+		View.createtable(userso.usersearchhotel(s1,s2,s3,s4));
+	}
+
+	@Override
+	public void setcon(controller controller) {
+		this.con=con;
 	}
 }

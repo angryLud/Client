@@ -16,10 +16,7 @@ import presentation.manageui.ManageView;
 import presentation.manageui.ManageViewControllerService;
 import presentation.signup.signup;
 import presentation.signup.signupcontroller;
-import presentation.userui.UserInformation;
-import presentation.userui.UserInformationCotroller;
-import presentation.userui.user;
-import presentation.userui.usercontroller;
+import presentation.userui.*;
 
 import javax.swing.*;
 
@@ -117,7 +114,7 @@ public class controller {
         frame.getContentPane().add(this.view);
         frame.setVisible(true);
         signupcon.setview((signup) this.view);
-
+        System.out.println("test");
         signupcon.setcon(this);
 
     }
@@ -195,4 +192,18 @@ public class controller {
     }
 
 
+    public void chexunjiudian(int userid) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        SearchHotelController searchhotelcon=new SearchHotelControllerimpl();
+
+        this.view=new SearchHotel(searchhotelcon);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        searchhotelcon.setview((SearchHotel) this.view);
+        System.out.print("test");
+        searchhotelcon.setcon(this);
+    }
 }

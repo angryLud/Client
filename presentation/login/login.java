@@ -83,6 +83,7 @@ public class login extends JPanel {
              if(  logcon.login(name.getText(),password.getPassword())){
                  logcon.loginsuccess(name.getText());
              }else{
+                 System.out.println("as");
                 logcon.loginfail();
              }
             }

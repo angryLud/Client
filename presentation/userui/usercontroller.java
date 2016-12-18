@@ -12,4 +12,6 @@ public interface usercontroller {
     String getname();
 
     void gerenxinxi();
+
+    void chexunjiudian();
 }

@@ -77,10 +77,18 @@ public class user extends JPanel{
         });
         this.add(gerenxinxi);
 
-        chaxundingdan=new JButton("查询酒店");
-        chaxundingdan.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
-        chaxundingdan.setBounds(440,370,100,100);
-        this.add(chaxundingdan);
+        chaxunjiudian=new JButton("查询酒店");
+        chaxunjiudian.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
+        chaxunjiudian.setBounds(440,370,100,100);
+        chaxunjiudian.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usercon.chexunjiudian();
+            }
+        });
+        this.add(chaxunjiudian);
+
+
 
         chaxundingdan=new JButton("查询订单");
         chaxundingdan.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));

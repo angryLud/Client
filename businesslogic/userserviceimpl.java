@@ -140,7 +140,10 @@ public class userserviceimpl implements userservice {
 	@Override
 	public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4) {
 		// TODO Auto-generated method stub
-		return null;
+		Vector<HotelVo> x=new Vector<>();
+		x.add(new HotelVo(2,"saf","麻痹 "));
+		x.add(new HotelVo(2,"saf","sef"));
+		return x;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package presentation.userui;
 import java.util.Collection;
 import java.util.List;
 
+import presentation.controller.controller;
 import vo.HotelVo;
 import vo.OrderVo;
 
@@ -15,4 +16,5 @@ public interface SearchHotelController {
 
 	void usersearchhotel(String s1,String s2,String s3,String s4);
 
+    void setcon(controller controller);
 }

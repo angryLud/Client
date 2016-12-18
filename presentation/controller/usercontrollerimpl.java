@@ -45,4 +45,9 @@ public class usercontrollerimpl implements usercontroller {
         con.gerenxinxi(userid);
     }
 
+    @Override
+    public void chexunjiudian() {
+        con.chexunjiudian(userid);
+    }
+
 }

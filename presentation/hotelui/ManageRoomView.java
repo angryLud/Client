@@ -12,14 +12,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
-
+import presentation.controller.controller;
 public class ManageRoomView extends JPanel{
 	
 	private ManageRoomViewController controller;
-	
 	private JLabel tempLabel;
 	
 	private JButton manageModifyButton;
+	private JButton manageConfirmButton;
 	private JButton inputButton;
 	private JButton inputRoomButton;
 	private JButton deleteRoomButton;
@@ -55,6 +55,7 @@ public class ManageRoomView extends JPanel{
 		scrollPane = new JScrollPane();
 		
 		manageModifyButton = new JButton("管理");
+		manageConfirmButton = new JButton("确定");
 		inputButton = new JButton("可用客房");
 		inputRoomButton = new JButton("录入");
 		deleteRoomButton = new JButton("删除");
@@ -114,6 +115,12 @@ public class ManageRoomView extends JPanel{
 				manageRoomTable.setEnabled(true);
 			}
         });
+        manageButtonJpanel.add(manageConfirmButton);
+        manageConfirmButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				manageRoomTable.setEnabled(false);
+			}
+        });
         manageButtonJpanel.add(inputButton);
         inputButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -141,6 +148,8 @@ public class ManageRoomView extends JPanel{
 	}
 	
 	public void InputButtonClicked(){
+		
+		serviceTypeJpanel.repaint();
 		roomModel = new DefaultTableModel(vData, vColumns);
 		roomTable = new JTable(roomModel){
 			private static final long serialVersionUID = 1L;
@@ -171,10 +180,21 @@ public class ManageRoomView extends JPanel{
 	         }
 
         });
-        serviceTypeJpanel.remove(manageButtonJpanel);
-        serviceTypeJpanel.add(inputButtonJpanel);
         
-        this.add(serviceTypeJpanel);
+        serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+	    serviceTypeJpanel.add(tempLabel);
+	    serviceTypeJpanel.add(exitButton);
+	    exitButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				controller.ExitButtonClicked();
+			}
+	    });
+	    serviceTypeJpanel.add(scrollPane);
+	    serviceTypeJpanel.remove(manageButtonJpanel);
+	    serviceTypeJpanel.add(inputButtonJpanel);
+	    serviceTypeJpanel.validate();
+	    this.remove(serviceTypeJpanel);
+	    this.add(serviceTypeJpanel);
 		serviceTypeJpanel.setBounds(0, 0, 800, 600);
 }
 	public void InputRoomButtonClicked(){

@@ -118,15 +118,10 @@ public class HotelStrategyView extends JPanel{
 		});
 		JButton strategyCancelButton = new JButton("取消");
 		strategyCancelButton.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				strategyAddFrame.dispose();
-				
 			}
-			
 		});
-		
 		JLabel strategyAddLabel = new JLabel("输入促销策略");
 		strategyAddField = new JTextField(30);
 		JPanel strategyAddPanel = new JPanel();
@@ -140,6 +135,7 @@ public class HotelStrategyView extends JPanel{
 		strategyAddFrame.setBounds(600,400,300,150);
 		strategyAddFrame.setVisible(true);
 		strategyAddFrame.getContentPane().add(strategyAddPanel);
+		serviceTypeJpanel.validate();
 	}
 	
 }

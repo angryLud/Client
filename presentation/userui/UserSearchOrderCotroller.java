@@ -17,4 +17,5 @@ public interface UserSearchOrderCotroller {
  List<OrderVo> getCancelOrders(int userId);
 
     void setcon(controller controller);
+	void ExitButtonClicked();
 }

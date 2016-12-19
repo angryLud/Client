@@ -22,6 +22,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import presentation.controller.UserSearchOrderCotrollerimpl;
+import presentation.userui.UserInformation.exitbuttonListener;
 import vo.OrderVo;
 
 
@@ -41,6 +42,7 @@ public class UserSearchOrder extends JPanel{
 	private JButton button4;
 	private JButton button6;
 	private JButton button7;
+	private JButton exitbutton;
 	private JScrollPane scrollPane;
 	private JTable orderTable;
 	private DefaultTableModel orderListModel;
@@ -65,9 +67,12 @@ public void go(){
 	panel1.setLayout(new FlowLayout(FlowLayout.LEFT));
 	panel2.setLayout(new BoxLayout(panel2,BoxLayout.Y_AXIS));
 	
-	label1 = new JLabel("个人信息管理     当前身份：客户                         ");
+	label1 = new JLabel("个人信息管理     当前身份：客户                                                                                                                                                                              ");
+	exitbutton = new JButton("返回");
+	exitbutton.addActionListener(new exitbuttonListener());
 	this.setLayout(new FlowLayout(FlowLayout.LEFT));
 	this.add(label1);
+	this.add(exitbutton);
 	
 	button1 = new JButton("未执行正常订单");
 	button1.addActionListener(new button1Listener());
@@ -107,7 +112,7 @@ public void go(){
 			vColumns.add("订单价值");
 			//数据
 			vData = new Vector<OrderVo>();
-			UserSearchOrderCon = new UserSearchOrderCotrollerimpl();
+			UserSearchOrderCon = new UserSearchOrderCotrollerimpl(userId);
 			vData.addAll(UserSearchOrderCon.getAllOrders(userId));
 			//模型
 			orderListModel = new DefaultTableModel(vData, vColumns);
@@ -214,6 +219,15 @@ class button7Listener implements ActionListener{
 			}
 		
 	}
+}
+class exitbuttonListener implements ActionListener{
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		UserSearchOrderCon.ExitButtonClicked();
+	}
+	
 }
 }
 

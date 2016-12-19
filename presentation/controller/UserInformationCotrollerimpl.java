@@ -9,9 +9,9 @@ public class UserInformationCotrollerimpl  implements UserInformationCotroller {
 	private UserInformation view;
 	private userservice userser;
 	private controller con;
-
-public UserInformationCotrollerimpl(){
-	userser = new userserviceimpl(1);
+	private int UserID;
+public UserInformationCotrollerimpl(int UserID){
+	this.UserID = UserID;
 }
 	@Override
 	public void cancel() {
@@ -38,6 +38,11 @@ public UserInformationCotrollerimpl(){
 
 	public int getcredit(){
 		return 0;
+	}
+	@Override
+	public void ExitButtonClicked() {
+		con.loggedin(UserID+"");
+		
 	}
 
 

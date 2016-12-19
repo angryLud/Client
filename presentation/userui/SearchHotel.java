@@ -33,6 +33,8 @@ public class SearchHotel extends JPanel{
 	private JComboBox comboBox_3;
 	private JButton button_1;
 	private JButton button2;
+	private JButton exitbutton;
+	
 
 
 	public SearchHotel(SearchHotelController searchHotelCon) {
@@ -57,6 +59,10 @@ public class SearchHotel extends JPanel{
 		label1 = new JLabel("个人信息管理     当前身份：客户");
 		this.add(label1);
 		label1.setBounds(0,0,200,27);
+		exitbutton = new JButton("返回");
+		exitbutton.setBounds(680, 0, 100, 30);
+		exitbutton.addActionListener(new exitbuttonListener());
+		this.add(exitbutton);
 		//商圈
 		comboBox = new JComboBox();
 		comboBox.setBounds(56, 40, 70, 21);
@@ -201,6 +207,16 @@ public class SearchHotel extends JPanel{
 	public String toString( )
 	{
 		return "ri";
+	}
+	//返回按钮实现
+	class exitbuttonListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			searchHotelCon.ExitButtonClicked();
+		}
+		
 	}
 
 	}

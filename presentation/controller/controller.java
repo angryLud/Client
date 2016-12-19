@@ -197,7 +197,7 @@ public class controller {
         frame.repaint();
 
 
-        UserInformationCotroller userinfocon=new UserInformationCotrollerimpl();
+        UserInformationCotroller userinfocon=new UserInformationCotrollerimpl(userid);
 
         this.view=new UserInformation(userinfocon);
         frame.getContentPane().add(this.view);
@@ -213,7 +213,7 @@ public class controller {
         frame.repaint();
 
 
-        SearchHotelController searchhotelcon=new SearchHotelControllerimpl();
+        SearchHotelController searchhotelcon=new SearchHotelControllerimpl(userid);
 
         this.view=new SearchHotel(searchhotelcon);
         frame.getContentPane().add(this.view);
@@ -227,7 +227,7 @@ public class controller {
         frame.repaint();
 
 
-        UserSearchOrderCotroller searchordercon=new UserSearchOrderCotrollerimpl();
+        UserSearchOrderCotroller searchordercon=new UserSearchOrderCotrollerimpl(userid);
 
         this.view=new UserSearchOrder(searchordercon);
         frame.getContentPane().add(this.view);

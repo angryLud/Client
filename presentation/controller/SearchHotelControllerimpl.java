@@ -17,8 +17,9 @@ public class SearchHotelControllerimpl implements SearchHotelController{
 	private int userId;
 	private controller con;
 
-public SearchHotelControllerimpl(){
+public SearchHotelControllerimpl(int userId){
 	userso = new userserviceimpl(userId);
+	this.userId = userId;
 	
 }
 	public void cancel() {
@@ -48,7 +49,12 @@ public SearchHotelControllerimpl(){
 	}
 
 	@Override
-	public void setcon(controller controller) {
+	public void setcon(controller con) {
 		this.con=con;
+	}
+	@Override
+	public void ExitButtonClicked() {
+		// TODO Auto-generated method stub
+		con.loggedin(userId+"");
 	}
 }

@@ -9,4 +9,5 @@ public interface UserInformationCotroller {
     void setview(UserInformation view);
     void registerprocessButton();
     void setcon(controller con);
+	void ExitButtonClicked();
 }

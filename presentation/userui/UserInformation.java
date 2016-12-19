@@ -16,6 +16,7 @@ public class UserInformation extends JPanel {
 	private JButton button3;
 	private JButton button4;
 	private JButton button5;
+	private JButton exitbutton;
 	private JLabel label1;
 	private JLabel label2;
 	private JTextArea userinfor;
@@ -49,6 +50,10 @@ public void go(){
 	label1 = new JLabel("个人信息管理     当前身份：客户");
 	this.add(label1);
 	label1.setBounds(0,0,200,27);
+	exitbutton = new JButton("返回");
+	exitbutton.addActionListener(new exitbuttonListener());
+	exitbutton.setBounds(680, 0, 100, 30);
+	this.add(exitbutton);
 	userinfor = new JTextArea(10,5);
 	userinfor.setEditable(false);
 	userinfor.append("姓名：\nID：\n联系方式：");
@@ -58,15 +63,31 @@ public void go(){
     label2 = new JLabel("信用值："+UserInforCon.getcredit()+"");
     this.add(label2);
     label2.setBounds(40, 40, 140, 270);
+    
+    button5 = new JButton("确定");
+    button5.setBounds(350, 80, 100, 30);
+    button5.setVisible(false);
+    button5.addActionListener(new button5Listener());
+    this.add(button5);
+    
     this.setVisible(true);
 }
+class exitbuttonListener implements ActionListener{
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		UserInforCon.ExitButtonClicked();
+	}
+	
+}
 class button3Listener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		userinfor.setEditable(true);
+		button5.setVisible(true);
 	}
 	
 }
@@ -137,6 +158,15 @@ class button4Listener implements ActionListener{
 			}
 			
 		}
+	}
+	
+}
+class button5Listener implements ActionListener{
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		userinfor.setEditable(false);
 	}
 	
 }

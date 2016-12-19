@@ -32,7 +32,7 @@ public class HotelStrategyView extends JPanel{
 	}
 	
 	public void init(){
-	   tempLabel = new JLabel("                                                                       ");
+//	   tempLabel = new JLabel("                                                                       ");
 	   strategyJpanel = new JPanel();
 	   serviceTypeJpanel = new JPanel();
 	   
@@ -85,10 +85,13 @@ public class HotelStrategyView extends JPanel{
 			
 		}
 	   });
-	    serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		serviceTypeJpanel.add(tempLabel);
+	    serviceTypeJpanel.setLayout(null);
+//		serviceTypeJpanel.add(tempLabel);
+//		tempLabel.setBounds();
 		serviceTypeJpanel.add(exitButton);
+		exitButton.setBounds(650, 20, 70, 25);
 		serviceTypeJpanel.add(strategyJpanel);
+		strategyJpanel.setBounds(0,40,650,600);
 		
 		this.add(serviceTypeJpanel);
 		serviceTypeJpanel.setBounds(0, 0, 800, 600);

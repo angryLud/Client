@@ -65,7 +65,7 @@ public class ManageOrderView extends JPanel{
 	public void init(){
 		//组件
 		scrollPane = new JScrollPane();
-		tempLabel = new JLabel("                                                        ");
+//		tempLabel = new JLabel("                                                        ");
 		executeLabel1 = new JLabel("输入订单号");
 		executeField1 = new JTextField(10);
 		executingButton = new JButton("执行");
@@ -148,11 +148,13 @@ public class ManageOrderView extends JPanel{
 				controller.ExitButtonClicked();
 			}
 		});
-		    serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		    serviceTypeJpanel.add(tempLabel);
+		    serviceTypeJpanel.setLayout(null);
 		    serviceTypeJpanel.add(exitButton);
+		    exitButton.setBounds(600, 40, 70, 25);
 			serviceTypeJpanel.add(scrollPane);
+			scrollPane.setBounds(20,80,470,300);
 			serviceTypeJpanel.add(searchButtonJpanel);
+			searchButtonJpanel.setBounds(480,300,250,100);
 			
 			this.add(serviceTypeJpanel);
 			serviceTypeJpanel.setBounds(0, 0, 800, 600);
@@ -218,9 +220,14 @@ public class ManageOrderView extends JPanel{
 			}
 	    	
 	    });
+	    serviceTypeJpanel.setLayout(null);
+	    serviceTypeJpanel.add(exitButton);
+	    exitButton.setBounds(600, 40, 70, 25);
 	    serviceTypeJpanel.remove(searchButtonJpanel);
 		serviceTypeJpanel.add(executeJpanel);
+		executeJpanel.setBounds(0,80,400,50);
 		serviceTypeJpanel.add(scrollPane);
+		scrollPane.setBounds(20,150,470,300);
 		serviceTypeJpanel.validate();
 }
 	

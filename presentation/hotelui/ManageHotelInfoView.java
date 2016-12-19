@@ -40,7 +40,7 @@ public class ManageHotelInfoView extends JPanel{
 		confirmButton = new JButton("确定");
 		exitButton = new JButton("返回");
 		
-		templabel = new JLabel("                                                                                                             ");
+//		templabel = new JLabel("                                                                                                             ");
 		
 		//界面内容
 		
@@ -83,10 +83,12 @@ public class ManageHotelInfoView extends JPanel{
 		textJpanel.add(modifyButton);
 		textJpanel.add(confirmButton);
         
-		serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		serviceTypeJpanel.add(templabel);
+		serviceTypeJpanel.setLayout(null);
+//		serviceTypeJpanel.add(templabel);
 		serviceTypeJpanel.add(exitButton);
+		exitButton.setBounds(600, 40, 70, 25);
 		serviceTypeJpanel.add(textJpanel);
+		textJpanel.setBounds(0,80,650,600);
 		textJpanel.setVisible(true);
 		
 		

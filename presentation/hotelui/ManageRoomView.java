@@ -51,7 +51,6 @@ public class ManageRoomView extends JPanel{
 	
 	
 	public void init(){
-		tempLabel = new JLabel("                                                        ");
 		scrollPane = new JScrollPane();
 		
 		manageModifyButton = new JButton("管理");
@@ -128,9 +127,9 @@ public class ManageRoomView extends JPanel{
 			}
         });
         
-        serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-	    serviceTypeJpanel.add(tempLabel);
+        serviceTypeJpanel.setLayout(null);
 	    serviceTypeJpanel.add(exitButton);
+	    exitButton.setBounds(600, 40, 70, 25);
 	    exitButton.addActionListener(new ActionListener(){
 
 			@Override
@@ -141,7 +140,9 @@ public class ManageRoomView extends JPanel{
 	    	
 	    });
 	    serviceTypeJpanel.add(scrollPane);
+	    scrollPane.setBounds(20,80,470,300);
 	    serviceTypeJpanel.add(manageButtonJpanel);
+	    manageButtonJpanel.setBounds(480,300,250,100);
 	    
 	    this.add(serviceTypeJpanel);
 		serviceTypeJpanel.setBounds(0, 0, 800, 600);
@@ -181,17 +182,20 @@ public class ManageRoomView extends JPanel{
 
         });
         
-        serviceTypeJpanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-	    serviceTypeJpanel.add(tempLabel);
+        serviceTypeJpanel.setLayout(null);
+	    
 	    serviceTypeJpanel.add(exitButton);
+	    exitButton.setBounds(600, 40, 70, 25);
 	    exitButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				controller.ExitButtonClicked();
 			}
 	    });
 	    serviceTypeJpanel.add(scrollPane);
+	    scrollPane.setBounds(20,80,470,300);
 	    serviceTypeJpanel.remove(manageButtonJpanel);
 	    serviceTypeJpanel.add(inputButtonJpanel);
+	    inputButtonJpanel.setBounds(480,300,250,100);
 	    serviceTypeJpanel.validate();
 	    this.remove(serviceTypeJpanel);
 	    this.add(serviceTypeJpanel);

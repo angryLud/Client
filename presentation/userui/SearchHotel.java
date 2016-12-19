@@ -7,16 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Vector;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import presentation.controller.SearchHotelControllerimpl;
@@ -40,6 +31,10 @@ public class SearchHotel extends JPanel{
 	private JComboBox comboBox_1;
 	private JComboBox comboBox_2;
 	private JComboBox comboBox_3;
+	private JButton button_1;
+	private JButton button2;
+	private JButton exitbutton;
+	
 
 
 	public SearchHotel(SearchHotelController searchHotelCon) {
@@ -51,19 +46,23 @@ public class SearchHotel extends JPanel{
 	}
 
 
-	public static void main(String[] args){
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800,600);
-		SearchHotel gui = new SearchHotel(new SearchHotelControllerimpl());	
-		frame.getContentPane().add(gui);
-		frame.setVisible(true);
-	}
+//	public static void main(String[] args){
+//		JFrame frame = new JFrame();
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.setSize(800,600);
+//		SearchHotel gui = new SearchHotel(new SearchHotelControllerimpl());
+//		frame.getContentPane().add(gui);
+//		frame.setVisible(true);
+//	}
 	private void go() {
 		// TODO Auto-generated method stub
 		label1 = new JLabel("个人信息管理     当前身份：客户");
 		this.add(label1);
 		label1.setBounds(0,0,200,27);
+		exitbutton = new JButton("返回");
+		exitbutton.setBounds(680, 0, 100, 30);
+		exitbutton.addActionListener(new exitbuttonListener());
+		this.add(exitbutton);
 		//商圈
 		comboBox = new JComboBox();
 		comboBox.setBounds(56, 40, 70, 21);
@@ -99,9 +98,18 @@ public class SearchHotel extends JPanel{
 		textField.setBounds(410, 40, 102, 21);
 		this.add(textField);
 		textField.setColumns(10);
-		
-		JButton button_1 = new JButton("搜索");
-		button_1.addActionListener(new button_1Listener());
+
+		button_1 = new JButton("搜索");
+		button_1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String s1 = (String)comboBox.getSelectedItem();
+				String s2 = (String)comboBox_1.getSelectedItem();
+				String s3 = (String)comboBox_2.getSelectedItem();
+				String s4 = (String)comboBox_3.getSelectedItem();
+				searchHotelCon.usersearchhotel(s1,s2,s3,s4);
+			}
+		});
 		button_1.setBounds(520, 40, 93, 23);
 		this.add(button_1);
 		
@@ -114,10 +122,11 @@ public class SearchHotel extends JPanel{
 				vColumns.add("评分");
 				vColumns.add("是否预定过");
 				//数据
-				vData = new Vector<HotelVo>();
-				searchHotelCon = new SearchHotelControllerimpl();
+				vData=new Vector<>();
+		Vector<HotelVo> x=new Vector<>();
+		x.add(new HotelVo(2,"saf","卧槽 "));
 				//模型
-                hotelListModel = new DefaultTableModel(vData, vColumns);
+                hotelListModel = new DefaultTableModel(x, vColumns);
 				//表格
 				hotelTable = new JTable(hotelListModel){
 
@@ -126,66 +135,89 @@ public class SearchHotel extends JPanel{
 					}
 				};
 				hotelTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-				scrollPane.getViewport().add(hotelTable);
+//				scrollPane.getViewport().add(hotelTable);
+				scrollPane.setViewportView(hotelTable);
+				scrollPane.setBounds(56,74,400,200);
 				this.add(scrollPane);
 				hotelTable.setFillsViewportHeight(true);
 				hotelTable.setBounds(56, 74, 400, 200);
+				hotelTable.setSize( 400, 200);
 				hotelTable.setBackground(Color.LIGHT_GRAY);
-				this.add(hotelTable);
+//		hotelTable.add(scrollPane);
 				
 				
 			
 				
-				JButton button2 = new JButton("生成订单");
-				button2.addActionListener(new button2Listener());
+				button2 = new JButton("生成订单");
+				button2.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+					}
+				});
 				this.add(button2);
 				button2.setBounds(56, 284, 100, 30);
 	}
 	
-//搜索按钮的实现
-	class button_1Listener implements ActionListener{
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		String s1 = (String)comboBox.getSelectedItem();
-		String s2 = (String)comboBox_1.getSelectedItem();
-		String s3 = (String)comboBox_2.getSelectedItem();
-		String s4 = (String)comboBox_3.getSelectedItem();
-		searchHotelCon.usersearchhotel(s1,s2,s3,s4);
-		
-
-	}
-	
-	}
 //生成订单按钮实现
-	class button2Listener implements ActionListener{
+//	class button2Listener implements ActionListener{
+//
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			// TODO Auto-generated method stub
+//
+//		}
+//
+//		}
+
+
+		public void createtable(Vector<HotelVo> vData){
+			this.remove(scrollPane);
+			scrollPane = new JScrollPane();
+
+			//表头
+//			vColumns = new Vector<String>();
+//			vColumns.add("酒店名称");
+//			vColumns.add("星级");
+//			vColumns.add("评分");
+//			vColumns.add("是否预定过");
+			//数据
+			//模型
+			hotelListModel = new DefaultTableModel(vData, vColumns);
+			//表格
+			hotelTable = new JTable(hotelListModel){
+
+				public boolean isCellEditable(int row, int column){
+					return false;
+				}
+			};
+			hotelTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//				scrollPane.getViewport().add(hotelTable);
+			scrollPane.setViewportView(hotelTable);
+			scrollPane.setBounds(56,74,400,200);
+
+			hotelTable.setFillsViewportHeight(true);
+			hotelTable.setBounds(56, 74, 400, 200);
+			hotelTable.setSize( 400, 200);
+			hotelTable.setEnabled(true);
+			hotelTable.setBackground(Color.LIGHT_GRAY);
+			this.add(scrollPane);
+		}
+
+	public String toString( )
+	{
+		return "ri";
+	}
+	//返回按钮实现
+	class exitbuttonListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
-			
+			searchHotelCon.ExitButtonClicked();
 		}
 		
-		}
+	}
 
-
-		public void createtable(Vector<HotelVo> vData){
-		hotelListModel = new DefaultTableModel(vData, vColumns);
-		//表格
-		hotelTable = new JTable(hotelListModel){
-
-			public boolean isCellEditable(int row, int column){
-				return false;
-			}
-		};
-		hotelTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.getViewport().add(hotelTable);
-		this.add(scrollPane);
-		hotelTable.setFillsViewportHeight(true);
-		hotelTable.setBounds(56, 74, 400, 200);
-		hotelTable.setBackground(Color.LIGHT_GRAY);
-		this.add(hotelTable);
-		}
 	}
 

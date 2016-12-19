@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import businesslogicservice.loginservice;
 import businesslogicservice.userservice;
 import dataservice.userdataservice;
 import po.OrderPo;
@@ -16,13 +17,15 @@ import vo.OrderVo;
 public class userserviceimpl implements userservice {
 	private userdataservice userdaser;
 	private UserPo upo;
+	private loginservice logs;
 	public userserviceimpl(int userId){
-		try {
-			upo=RemoteHelper.getInstance().getUserdataservice().find(userId);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			upo=RemoteHelper.getInstance().getUserdataservice().find(userId);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		logs=new login();
 	}
 
 	@Override
@@ -137,9 +140,22 @@ public class userserviceimpl implements userservice {
 	@Override
 	public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4) {
 		// TODO Auto-generated method stub
-		return null;
+		Vector<HotelVo> x=new Vector<>();
+		x.add(new HotelVo(2,"saf","麻痹 "));
+		x.add(new HotelVo(2,"saf","sef"));
+		return x;
 	}
 
+	@Override
+	public String getname() {
+		return  "a";
+		//return upo.getUserName();
+	}
+
+	@Override
+	public void logout(int userid) {
+		logs.logout(userid);
+	}
 
 
 }

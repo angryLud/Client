@@ -14,12 +14,14 @@ import presentation.login.login;
 import presentation.login.logincontroller;
 import presentation.manageui.ManageView;
 import presentation.manageui.ManageViewControllerService;
+import presentation.promotionui.PromotionView;
+import presentation.promotionui.PromotionViewControllerService;
 import presentation.signup.signup;
 import presentation.signup.signupcontroller;
-import presentation.userui.user;
-import presentation.userui.usercontroller;
+import presentation.userui.*;
 
 import javax.swing.*;
+import java.util.Date;
 
 /**
  * Created by huihantao on 2016/11/17.
@@ -60,7 +62,7 @@ public class controller {
     public void loggedin(String id){
         if (id.substring(0).equals("0")){
 
-            usercon=new usercontrollerimpl();
+            usercon=new usercontrollerimpl(Integer.parseInt(id));
             frame.getContentPane().removeAll();
             frame.repaint();
             this.view=new user(usercon);
@@ -90,6 +92,20 @@ public class controller {
             frame.repaint();
             this.view=new ManageView(manageViewController);
             manageViewController.setcon(this);
+            manageViewController.setView((ManageView)this.view);
+            frame.getContentPane().add(this.view);
+            frame.setVisible(true);
+            return;
+        }
+        if (id.substring(0).equals("3")){
+            Date date=new Date();
+
+            PromotionViewControllerService  promotionViewCon=new PromotionViewControllerImpl(date);
+            frame.getContentPane().removeAll();
+            frame.repaint();
+            this.view=new PromotionView(promotionViewCon);
+//            promotionViewCon.setcon(this);
+            promotionViewCon.setView((PromotionView)this.view);
             frame.getContentPane().add(this.view);
             frame.setVisible(true);
             return;
@@ -115,7 +131,6 @@ public class controller {
         frame.getContentPane().add(this.view);
         frame.setVisible(true);
         signupcon.setview((signup) this.view);
-
         signupcon.setcon(this);
 
     }
@@ -177,5 +192,47 @@ public class controller {
         hotelController.setcon(this);
     }
 
+    public void gerenxinxi(int userid){
+        frame.getContentPane().removeAll();
+        frame.repaint();
 
+
+        UserInformationCotroller userinfocon=new UserInformationCotrollerimpl(userid);
+
+        this.view=new UserInformation(userinfocon);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        userinfocon.setview((UserInformation) this.view);
+
+        userinfocon.setcon(this);
+    }
+
+
+    public void chexunjiudian(int userid) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        SearchHotelController searchhotelcon=new SearchHotelControllerimpl(userid);
+
+        this.view=new SearchHotel(searchhotelcon);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        searchhotelcon.setview((SearchHotel) this.view);
+        searchhotelcon.setcon(this);
+    }
+
+    public void chaxundingdan(int userid) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        UserSearchOrderCotroller searchordercon=new UserSearchOrderCotrollerimpl(userid);
+
+        this.view=new UserSearchOrder(searchordercon);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        searchordercon.setview((UserSearchOrder) this.view);
+        searchordercon.setcon(this);
+    }
 }

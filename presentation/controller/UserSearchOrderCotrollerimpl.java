@@ -14,22 +14,20 @@ public class UserSearchOrderCotrollerimpl implements UserSearchOrderCotroller {
 	private userservice userso;
 	private UserSearchOrder view;
 	private int userId;
+	private controller con;
 
-public UserSearchOrderCotrollerimpl(){
+public UserSearchOrderCotrollerimpl(int userId){
 	userso = new userserviceimpl(userId);
+	this.userId = userId;
 	
 }
-	public void cancel() {
-		// TODO Auto-generated method stub
-		
-	}
 	public void setview(UserSearchOrder view) {
 		// TODO Auto-generated method stub
 		this.view = view;
 	}
 	public int getUserID() {
 		// TODO Auto-generated method stub
-		return 123;
+		return 0;
 	}
 	public List<OrderVo> getAllOrders(int userId){
 		// TODO Auto-generated method stub
@@ -51,8 +49,21 @@ public UserSearchOrderCotrollerimpl(){
 		// TODO Auto-generated method stub
 		return userso.getCancelOrders(userId);
 	}
-	
 
+	@Override
+	public void setcon(controller con) {
+		this.con=con;
+	}
+	@Override
+	public void ExitButtonClicked() {
+		// TODO Auto-generated method stub
+		con.loggedin(userId+"");
+	}
+	@Override
+	public void cancel() {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 }

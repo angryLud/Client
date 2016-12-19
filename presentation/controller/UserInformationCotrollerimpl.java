@@ -8,9 +8,10 @@ import presentation.userui.UserInformationCotroller;
 public class UserInformationCotrollerimpl  implements UserInformationCotroller {
 	private UserInformation view;
 	private userservice userser;
-
-public UserInformationCotrollerimpl(){
-	userser = new userserviceimpl(1);
+	private controller con;
+	private int UserID;
+public UserInformationCotrollerimpl(int UserID){
+	this.UserID = UserID;
 }
 	@Override
 	public void cancel() {
@@ -29,8 +30,19 @@ public UserInformationCotrollerimpl(){
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void setcon(controller con) {
+		this.con=con;
+	}
+
 	public int getcredit(){
 		return 0;
+	}
+	@Override
+	public void ExitButtonClicked() {
+		con.loggedin(UserID+"");
+		
 	}
 
 

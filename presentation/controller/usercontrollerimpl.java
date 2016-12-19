@@ -50,4 +50,10 @@ public class usercontrollerimpl implements usercontroller {
         con.chexunjiudian(userid);
     }
 
+    @Override
+    public void chaxundingdan() {
+        con.chaxundingdan(userid);
+    }
+
+
 }

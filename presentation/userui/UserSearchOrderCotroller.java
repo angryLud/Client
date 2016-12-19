@@ -3,6 +3,7 @@ package presentation.userui;
 import java.util.Collection;
 import java.util.List;
 
+import presentation.controller.controller;
 import vo.OrderVo;
 
 public interface UserSearchOrderCotroller {
@@ -14,4 +15,6 @@ public interface UserSearchOrderCotroller {
  List<OrderVo> getFinishedOrders(int userId);
  List<OrderVo> getAbnormalOrders(int userId);
  List<OrderVo> getCancelOrders(int userId);
+
+    void setcon(controller controller);
 }

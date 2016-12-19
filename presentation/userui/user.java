@@ -93,6 +93,12 @@ public class user extends JPanel{
         chaxundingdan=new JButton("查询订单");
         chaxundingdan.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
         chaxundingdan.setBounds(600,270,100,100);
+        chaxundingdan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                usercon.chaxundingdan();
+            }
+        });
         this.add(chaxundingdan);
 
 

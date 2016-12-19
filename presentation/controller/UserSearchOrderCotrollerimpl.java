@@ -14,6 +14,7 @@ public class UserSearchOrderCotrollerimpl implements UserSearchOrderCotroller {
 	private userservice userso;
 	private UserSearchOrder view;
 	private int userId;
+	private controller con;
 
 public UserSearchOrderCotrollerimpl(){
 	userso = new userserviceimpl(userId);
@@ -51,8 +52,11 @@ public UserSearchOrderCotrollerimpl(){
 		// TODO Auto-generated method stub
 		return userso.getCancelOrders(userId);
 	}
-	
 
+	@Override
+	public void setcon(controller controller) {
+		this.con=con;
+	}
 
 
 }

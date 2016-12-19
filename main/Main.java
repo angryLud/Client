@@ -19,26 +19,26 @@ import java.rmi.RemoteException;
 public class Main {
     private RemoteHelper remoteHelper;
     public Main(){
-//        linkToServer();
+        linkToServer();
         initGUI();
     }
     public static void main(String[] args) {
         Main main=new Main();
 
     }
-//    private void linkToServer() {
-//        try {
-//            remoteHelper = RemoteHelper.getInstance();
-//            remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
-//            System.out.println("linked");
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        } catch (NotBoundException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void linkToServer() {
+        try {
+            remoteHelper = RemoteHelper.getInstance();
+            remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
+            System.out.println("linked");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        }
+    }
     private void initGUI() {
         JFrame frame = new JFrame("互联网酒店预订系统");
         frame.setSize(800, 600);

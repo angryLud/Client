@@ -14,6 +14,13 @@ public HotelVo(int hotelID,String position,String hotelName){
 	this.add(position);
 	this.add(hotelName);
 }
+	public HotelVo(String hotelname,String star,String mark,boolean reserved){
+		this.add(hotelname);
+		this.add(star);
+		this.add(mark);
+		if (reserved) this.add("预订过");
+		else this.add("未订过");
+	}
 
 public int getHotelID(){
 	return Integer.parseInt(this.get(0));

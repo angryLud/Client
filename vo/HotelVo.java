@@ -8,9 +8,7 @@ public HotelVo(HotelPo hotelPo) {
 	this.add(String.valueOf(hotelPo.getHotelID()));
 	this.add(hotelPo.getPosition());
 	this.add(hotelPo.getHotelName());
-	this.add(String.valueOf(hotelPo.getRoomNums()));
-	this.add(String.valueOf(hotelPo.getAvailableRoomNums()));
-	this.add(String.valueOf(hotelPo.getPrices()));
+	
 	this.add(String.valueOf(hotelPo.getStar()));
 	this.add(String.valueOf(hotelPo.getScore()));
 	this.add(hotelPo.getAssess());
@@ -22,7 +20,6 @@ public HotelVo(HotelPo hotelPo) {
 		this.add("未订过.");
 	}
 }
-
 
 	public HotelVo(String hotelname,String star,String mark,boolean reserved){
 		this.add(hotelname);

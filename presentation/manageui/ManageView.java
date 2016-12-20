@@ -480,6 +480,7 @@ public class ManageView extends JPanel{
 //		if(manageService.addHotel(hotelPo)){
 //			return true;
 //		}
+
 		return false;
 	}
 

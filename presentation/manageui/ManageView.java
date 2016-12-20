@@ -475,11 +475,11 @@ public class ManageView extends JPanel{
 		int id = Integer.valueOf(newHotelTextField1.getText());
 		String hotelName = newHotelTextField2.getText();
 		String hotelAddress = newHotelTextField3.getText();
-		HotelPo hotelPo = new HotelPo(id,hotelAddress,hotelName);
-		manageService = new ManageServiceImpl();
-		if(manageService.addHotel(hotelPo)){
-			return true;
-		}
+//		HotelPo hotelPo = new HotelPo(id,hotelAddress,hotelName);
+//		manageService = new ManageServiceImpl();
+//		if(manageService.addHotel(hotelPo)){
+//			return true;
+//		}
 		return false;
 	}
 

@@ -22,12 +22,12 @@ public class OrderServiceImpl implements OrderService{
 	//未新建orderdataservice对象可以直接使用吗？
 	public OrderServiceImpl(int hotelID) {
 		this.hotelID = hotelID;
-		try {
-			hotelOrderList=RemoteHelper.getInstance().getOrderdataservice().findbyhotelid(hotelID);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+////			orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
+//			hotelOrderList=RemoteHelper.getInstance().getOrderdataservice().findbyhotelid(hotelID);
+//		} catch (RemoteException e){
+//			e.printStackTrace();
+//		}    运行此段会导致订单界面无法显示
 	}
 
 	@Override

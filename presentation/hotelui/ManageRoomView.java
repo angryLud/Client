@@ -1,10 +1,11 @@
 package presentation.hotelui;
 
 import javax.swing.*;
+
 import javax.swing.table.DefaultTableModel;
 
-import po.RoomPo;
-import vo.RoomVo;
+import po.*;
+import vo.*;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -35,8 +36,8 @@ public class ManageRoomView extends JPanel{
 	private Vector<String> vColumns;
 	private Vector<String> manageColumns;
 	
-	private Vector<RoomVo> vData;
-	private Vector<RoomVo> manageData;
+	private Vector<HotelVo> vData;
+	private Vector<HotelVo> manageData;
 	
 	private JTable roomTable;
 	private JTable manageRoomTable;
@@ -67,18 +68,27 @@ public class ManageRoomView extends JPanel{
 		
 		manageColumns = new Vector<String>();
 		manageColumns.add("酒店id");
-		manageColumns.add("房间号");
-		manageColumns.add("房间类型");
+		manageColumns.add("商圈");
+		manageColumns.add("酒店名称");
 		manageColumns.add("价格");
 		manageColumns.add("使用情况");
 		manageColumns.add("入住时间");
 		manageColumns.add("预计离开时间");
 		manageColumns.add("实际离开时间");
 		
-		manageData = new Vector<RoomVo>();
-		RoomPo roomPo2 = new RoomPo(1,316,"大床房","198","使用中","20161213","20161221","201211111");
-		RoomVo roomVo2 = new RoomVo(roomPo2);
-		manageData.add(roomVo2);
+		manageData = new Vector<HotelVo>();
+//		HotelPo hotelPo1 = new HotelPo(1,"仙林","英尊",false);
+//		hotelPo1.setRoomNum(0, 29);
+//		hotelPo1.setRoomNum(1, 25);
+//		hotelPo1.setRoomNum(2, 18);
+//		hotelPo1.setAvailableRoomNum(0, 19);
+//		hotelPo1.setAvailableRoomNum(0, 15);
+//		hotelPo1.setAvailableRoomNum(0, 6);
+//		hotelPo1.setPrice(0, 198);
+//		hotelPo1.setPrice(1, 288);
+//		hotelPo1.setPrice(2, 328);
+//		HotelVo hotelVo1 = new HotelVo(hotelPo1);
+//		manageData.add(hotelVo1);
 		
 		vColumns = new Vector<String>();
 		vColumns.add("酒店id");
@@ -90,10 +100,10 @@ public class ManageRoomView extends JPanel{
 		vColumns.add("预计离开时间");
 		vColumns.add("实际离开时间");
 		
-		vData = new Vector<RoomVo>();
-		RoomPo roomPo = new RoomPo(1,316,"大床房","198","使用中","20161213","20161221","201211111");
-		RoomVo roomVo = new RoomVo(roomPo);
-		vData.add(roomVo);
+//		vData = new Vector<HotelVo>();
+//		RoomPo roomPo = new RoomPo(1,316,"大床房","198","使用中","20161213","20161221","201211111");
+//		RoomVo roomVo = new RoomVo(roomPo);
+//		vData.add(roomVo);
 		
 		manageRoomModel = new DefaultTableModel(manageData, manageColumns);
 		manageRoomTable = new JTable(manageRoomModel){

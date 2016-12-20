@@ -22,7 +22,7 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	
 	public ManageOrderViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
-//		orderservice = new OrderServiceImpl(HotelID);
+		orderservice = new OrderServiceImpl(HotelID);
 		
 	}
 

@@ -1,5 +1,7 @@
 package presentation.controller;
 
+import businesslogic.OrderServiceImpl;
+import businesslogicservice.OrderService;
 import presentation.hotelui.HotelStrategyView;
 import presentation.hotelui.HotelStrategyViewController;
 
@@ -12,8 +14,11 @@ public class HotelStrategyViewControllerImpl implements HotelStrategyViewControl
 	
 	private controller con;
 	
+	private OrderService orderservice;
+	
 	public HotelStrategyViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
+//		orderservice = new OrderServiceImpl(HotelID);
 	}
 
 	@Override

@@ -129,7 +129,7 @@ public class SearchHotel extends JPanel{
 				//数据
 				vData=new Vector<>();
 		Vector<HotelVo> x=new Vector<>();
-		x.add(new HotelVo(2,"saf","卧槽 "));
+		x.add(new HotelVo("牛批","saf","卧槽 ",true));
 				//模型
                 hotelListModel = new DefaultTableModel(x, vColumns);
 				//表格

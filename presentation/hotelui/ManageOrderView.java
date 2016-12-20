@@ -177,8 +177,6 @@ public class ManageOrderView extends JPanel{
 		searchPanel.add(searchfield);
 		searchPanel.add(confirmButton);
 		confirmButton.addActionListener(new ActionListener(){
-
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				int orderid = Integer.parseInt(searchfield.getText());
 				OrderVo orderVo = controller.searchOrder(orderid);

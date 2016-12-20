@@ -19,7 +19,7 @@ public class OrderServiceImpl implements OrderService{
 	private List<OrderPo> hotelOrderList;
 	
 	private orderdataservice orderdataservice;
-	
+	//未新建orderdataservice对象可以直接使用吗？
 	public OrderServiceImpl(int hotelID) {
 		this.hotelID = hotelID;
 		try {

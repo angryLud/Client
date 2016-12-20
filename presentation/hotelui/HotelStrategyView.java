@@ -2,17 +2,24 @@ package presentation.hotelui;
 
 
 import javax.swing.*;
+import dataservice.*;
+import po.OrderPo;
+import rmi.RemoteHelper;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.Vector;
 
 public class HotelStrategyView extends JPanel{
 	
 	private HotelStrategyViewController controller;
 	
-	private JLabel tempLabel;
+	private orderdataservice orderdataservice;
+	
+	
 	private JFrame strategyAddFrame;
 	private JPanel serviceTypeJpanel;
 	private JPanel strategyJpanel;
@@ -32,7 +39,6 @@ public class HotelStrategyView extends JPanel{
 	}
 	
 	public void init(){
-//	   tempLabel = new JLabel("                                                                       ");
 	   strategyJpanel = new JPanel();
 	   serviceTypeJpanel = new JPanel();
 	   
@@ -61,13 +67,9 @@ public class HotelStrategyView extends JPanel{
 	   strategyJpanel.add(strategyBox);
 	   strategyJpanel.add(strategyConfirmButton);
 	   strategyConfirmButton.addActionListener(new ActionListener(){
-
-		@Override
 		public void actionPerformed(ActionEvent e) {
 			controller.StrategyConfirmButtonClicked();
-			
 		}
-		   
 	   });
 	   strategyJpanel.add(strategyAddButton);
 	   strategyAddButton.addActionListener(new ActionListener(){
@@ -86,8 +88,6 @@ public class HotelStrategyView extends JPanel{
 		}
 	   });
 	    serviceTypeJpanel.setLayout(null);
-//		serviceTypeJpanel.add(tempLabel);
-//		tempLabel.setBounds();
 		serviceTypeJpanel.add(exitButton);
 		exitButton.setBounds(650, 20, 70, 25);
 		serviceTypeJpanel.add(strategyJpanel);
@@ -98,12 +98,17 @@ public class HotelStrategyView extends JPanel{
 	}
 	
 	public void StrategyConfirmButtonClicked(){
-//		int selected = strategyBox.getSelectedIndex();
+		orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
 		double discount = Double.parseDouble((String)strategyBox.getSelectedItem());
 		int orderid = Integer.parseInt(strategyField1.getText());
-//		controller.selectStrategy(discount,orderid);
-//		OrderPo orderPo = orderservice.orderfindbyid(Integer.parseInt(strategyField1.getText()));
-//		orderPo.setStrategyNum(strategyNum+1);
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,"0",0);
+		try {
+			po = orderdataservice.find(orderid);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	    po.setDiscount(discount);
+		
 	}
 
 	public void StrategyAddButtonClicked(){

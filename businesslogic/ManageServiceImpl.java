@@ -3,10 +3,12 @@ package businesslogic;
 import businesslogicservice.ManageService;
 import vo.UserVo;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import po.HotelPo;
 import po.UserPo;
+import rmi.RemoteHelper;
 
 public class ManageServiceImpl implements ManageService {
 	
@@ -15,7 +17,12 @@ public class ManageServiceImpl implements ManageService {
 	private List<UserPo> userList;
 	
 	public boolean addUser(UserPo userPo){
-		//userDao.addUserPo(userPo);
+		try {
+			RemoteHelper.getInstance().getUserdataservice().insert(userPo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 	

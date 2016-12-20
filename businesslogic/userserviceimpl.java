@@ -8,6 +8,7 @@ import java.util.Vector;
 import businesslogicservice.loginservice;
 import businesslogicservice.userservice;
 import dataservice.userdataservice;
+import po.HotelPo;
 import po.OrderPo;
 import po.UserPo;
 import rmi.RemoteHelper;
@@ -18,9 +19,12 @@ public class userserviceimpl implements userservice {
 	private userdataservice userdaser;
 	private UserPo upo;
 	private loginservice logs;
+	private List<HotelPo> hpolist;
 	public userserviceimpl(int userId){
 //		try {
 //			upo=RemoteHelper.getInstance().getUserdataservice().find(userId);
+//			opo=RemoteHelper.getInstance().getOrderdataservice().findbyuserid(userId);
+//			hpolist=RemoteHelper.getInstance().getHoteldataservice().usergethotellist(userId);
 //		} catch (RemoteException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -141,8 +145,11 @@ public class userserviceimpl implements userservice {
 	public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4) {
 		// TODO Auto-generated method stub
 		Vector<HotelVo> x=new Vector<>();
-		x.add(new HotelVo(2,"saf","麻痹 "));
-		x.add(new HotelVo(2,"saf","sef"));
+
+		for (HotelPo hpo:hpolist){
+
+		}
+
 		return x;
 	}
 

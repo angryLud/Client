@@ -15,7 +15,22 @@ public HotelVo(HotelPo hotelPo) {
 	this.add(String.valueOf(hotelPo.getScore()));
 	this.add(hotelPo.getAssess());
 	this.add(hotelPo.getDescription());
+	if(hotelPo.getReserved()){
+	this.add("预订过.");
+	}
+	else{
+		this.add("未订过.");
+	}
 }
+
+
+	public HotelVo(String hotelname,String star,String mark,boolean reserved){
+		this.add(hotelname);
+		this.add(star);
+		this.add(mark);
+		if (reserved) this.add("预订过");
+		else this.add("未订过");
+	}
 
 
 public int getHotelID(){
@@ -49,5 +64,8 @@ public String getAssess(){
 }
 public String getDescription(){
 	return this.get(9);
+}
+public String getReserved(){
+	return this.get(10);
 }
 }

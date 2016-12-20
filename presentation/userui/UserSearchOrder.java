@@ -112,7 +112,6 @@ public void go(){
 			vColumns.add("订单价值");
 			//数据
 			vData = new Vector<OrderVo>();
-			UserSearchOrderCon = new UserSearchOrderCotrollerimpl(userId);
 			vData.addAll(UserSearchOrderCon.getAllOrders(userId));
 			//模型
 			orderListModel = new DefaultTableModel(vData, vColumns);

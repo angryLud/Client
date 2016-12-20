@@ -1,10 +1,7 @@
 package rmi;
 
 import businesslogicservice.loginservice;
-import dataservice.logindataservice;
-import dataservice.orderdataservice;
-import dataservice.promotiondataservice;
-import dataservice.userdataservice;
+import dataservice.*;
 
 import java.rmi.Remote;
 
@@ -35,5 +32,8 @@ public class RemoteHelper {
         return (promotiondataservice) remote;
     }
     public logindataservice getloginservice(){return (logindataservice) remote;}
+
+    public hoteldataservice getHoteldataservice() {return (hoteldataservice) remote;
+    }
 }
 

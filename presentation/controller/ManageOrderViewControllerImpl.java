@@ -2,6 +2,8 @@ package presentation.controller;
 
 import java.util.List;
 
+import businesslogic.OrderServiceImpl;
+import businesslogicservice.OrderService;
 import dataservice.orderdataservice;
 import presentation.hotelui.ManageOrderView;
 import presentation.hotelui.ManageOrderViewController;
@@ -14,10 +16,13 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	
 	private int HotelID;
 	
-	private orderdataservice orderservice;
+	private OrderService orderservice;
+	
+	/*新建逻辑层orderservice时总是报空指针错误*/
 	
 	public ManageOrderViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
+//		orderservice = new OrderServiceImpl(HotelID);
 		
 	}
 
@@ -54,13 +59,13 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 
 	@Override
 	public List<OrderVo> getAllOrders(int holelID) {
-		// TODO Auto-generated method stub
+//		return orderservice.getAllOrders(holelID);
 		return null;
 	}
 
 	@Override
 	public OrderVo searchOrder(int orderID) {
-		// TODO Auto-generated method stub
+//		return orderservice.getOrder(orderID);
 		return null;
 	}
 

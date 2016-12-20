@@ -221,25 +221,25 @@ public class SearchHotel extends JPanel{
 		
 		
         String[] s1 = {"大床房","标准间","三人间"};
-        JComboBox combo1 = new JComboBox(s1);
+        final JComboBox combo1 = new JComboBox(s1);
         combo1.setBorder(BorderFactory.createTitledBorder("房间类型"));
         String[] s2 = {"1","2","3","4","5"};
-        JComboBox combo2 = new JComboBox(s2);
+        final JComboBox combo2 = new JComboBox(s2);
         combo2.setBorder(BorderFactory.createTitledBorder("房间数量"));
         String[] s3 = {"1","2","3","4","5"};
-        JComboBox combo3 = new JComboBox(s3);
+        final JComboBox combo3 = new JComboBox(s3);
         combo3.setBorder(BorderFactory.createTitledBorder("预定人数"));
         String[] s4 = {"是","否"};
-        JComboBox combo4 = new JComboBox(s4);
+        final JComboBox combo4 = new JComboBox(s4);
         combo4.setBorder(BorderFactory.createTitledBorder("是否有小孩"));
         JLabel label2 = new JLabel("预定日期：(xx/xx)");
-        JTextField textfield1 = new JTextField();
+        final JTextField textfield1 = new JTextField();
         textfield1.setColumns(10);
         JLabel label3 = new JLabel("退房日期：(xx/xx)");
-        JTextField textfield2 = new JTextField();
+        final JTextField textfield2 = new JTextField();
         textfield2.setColumns(10);
         JLabel label4 = new JLabel("最晚订单执行时间：(xx/xx hh/hh)");
-        JTextField textfield3 = new JTextField();
+        final JTextField textfield3 = new JTextField();
         textfield3.setColumns(10);
         JLabel label5 = new JLabel("预定信息:");
         JButton button1 = new JButton("生成订单");

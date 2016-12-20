@@ -49,12 +49,41 @@ public SearchHotelControllerimpl(int userId){
 	}
 
 	@Override
-	public void setcon(controller con) {
-		this.con=con;
-	}
-	@Override
 	public void ExitButtonClicked() {
 		// TODO Auto-generated method stub
 		con.loggedin(userId+"");
 	}
+	@Override
+	public void reservehotel() {
+		// TODO Auto-generated method stub
+		View.reservehotel();
+	}
+	public SearchHotelControllerimpl(){
+		userso = new userserviceimpl(1);
+	}
+	@Override
+	public int getcredit() {
+		// TODO Auto-generated method stub
+		return userso.getcredit();
+	}
+	@Override
+	public void setcon(controller con) {
+		// TODO Auto-generated method stub
+		this.con=con;
+	}
+	@Override
+	public void change() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public int createorder(int userid,int hotelid,int intnowtime,long s5,long s7,long s6,int status,String s1,int s2) {
+		// TODO Auto-generated method stub
+		
+		OrderVo ovo = new OrderVo(userid,hotelid,intnowtime,s5,s7,s6,status,s1,s2);
+		
+		return userso.createorder(ovo);
+		
+	}
+
 }

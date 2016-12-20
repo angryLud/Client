@@ -16,7 +16,15 @@ public interface SearchHotelController {
 
 	void usersearchhotel(String s1,String s2,String s3,String s4);
 
-    void setcon(controller controller);
+    void setcon(controller con);
 
 	void ExitButtonClicked();
+
+	void reservehotel();
+	
+    int getcredit();
+	
+	void change();
+
+	int createorder(int userid,int hotelid,int intnowtime,long s5,long s7,long s6,int status,String s1,int s2);
 }

@@ -67,7 +67,7 @@ public class user extends JPanel{
 
         gerenxinxi=new JButton("个人信息");
         gerenxinxi.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
-        gerenxinxi.setBounds(280,270,100,100);
+        gerenxinxi.setBounds(280,270,180,70);
         gerenxinxi.addActionListener(new ActionListener(){
 
             @Override
@@ -79,7 +79,7 @@ public class user extends JPanel{
 
         chaxunjiudian=new JButton("查询酒店");
         chaxunjiudian.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
-        chaxunjiudian.setBounds(440,370,100,100);
+        chaxunjiudian.setBounds(440,370,180,70);
         chaxunjiudian.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,7 +92,7 @@ public class user extends JPanel{
 
         chaxundingdan=new JButton("查询订单");
         chaxundingdan.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
-        chaxundingdan.setBounds(600,270,100,100);
+        chaxundingdan.setBounds(600,270,180,70);
         chaxundingdan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

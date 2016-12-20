@@ -9,7 +9,7 @@ public class HotelPo {
 	
 	int avshuangrenfang;
 	int avsanrenjian;
-	int dachaungfangprice;
+	int dachuangfangprice;
 	
 	int shuangrenfangprice;
 	int sanrenjianprice;
@@ -22,10 +22,16 @@ public class HotelPo {
 	public HotelPo(){
 		super();
 	}
-	public HotelPo(int hotelID,String position,String hotelName){
+	public HotelPo(int hotelID,String position,String hotelName,int dachuangfangprice,int shuangrenfangprice,int sanrenjianprice,int star,double score,String description){
 		this.hotelID = hotelID;
 		this.position = position;
 		this.hotelName = hotelName;
+		this.dachuangfangprice = dachuangfangprice;
+		this.shuangrenfangprice = shuangrenfangprice;
+		this.sanrenjianprice = sanrenjianprice;
+		this.star = star;
+		this.score = score;
+		this.description = description;
 		
 	}
 	
@@ -72,7 +78,7 @@ public class HotelPo {
 	}
 	
 	public int getDachaungfangprice() {
-		return dachaungfangprice;
+		return dachuangfangprice;
 	}
 	public int getShuangrenfangprice() {
 		return shuangrenfangprice;

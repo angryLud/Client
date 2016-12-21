@@ -176,13 +176,14 @@ class button4Listener implements ActionListener{
 	}
 	
 }
-
+//撤销订单按钮的实现
 class button6Listener implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		UserSearchOrderCon.cancel();
+		int index = orderTable.getSelectedRow();
+		orderListModel.removeRow(index);
 	}
 	
 }

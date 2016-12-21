@@ -53,7 +53,6 @@ public UserSearchOrderCotrollerimpl(int userId){
 	@Override
 	public void setcon(controller con) {
 		this.con=con;
-		System.out.println("test");
 	}
 	@Override
 	public void ExitButtonClicked() {

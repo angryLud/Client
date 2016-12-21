@@ -67,4 +67,6 @@ String getname();
 void logout(int userid);
 
 public void updateuserinfo(UserVo uvo);
+
+public String getphone();
 }

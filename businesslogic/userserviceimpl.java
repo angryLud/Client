@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Vector;
 
 import businesslogicservice.loginservice;
-import businesslogicservice.userservice;
 import dataservice.userdataservice;
 import po.HotelPo;
 import po.OrderPo;
@@ -16,7 +15,7 @@ import vo.HotelVo;
 import vo.OrderVo;
 import vo.UserVo;
 
-public class userserviceimpl implements userservice {
+public class userserviceimpl implements businesslogicservice.userservice {
 	private userdataservice userdaser;
 	private UserPo upo;
 	private loginservice logs;
@@ -170,11 +169,17 @@ public class userserviceimpl implements userservice {
 		// TODO Auto-generated method stub
 		//插入数据库
 		try {
-			RemoteHelper.getInstance().getUserdataservice().insert(new UserPo(0,uvo.getUserName(),null,uvo.getPhone(),100,null));
+			RemoteHelper.getInstance().getUserdataservice().update(new UserPo(0,uvo.getUserName(),null,uvo.getPhone(),100,null));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String getphone() {
+		// TODO Auto-generated method stub
+		return upo.getPhone();
 	}
 
 

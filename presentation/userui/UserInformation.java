@@ -56,7 +56,7 @@ public void go(){
 	this.add(exitbutton);
 	userinfor = new JTextArea(10,5);
 	userinfor.setEditable(false);
-	userinfor.append("姓名：\nID：\n联系方式：");
+	userinfor.append("姓名："+UserInforCon.getusername()+"\n"+"ID："+UserInforCon.getuserid()+"\n"+"联系方式："+UserInforCon.getphone());
 	userinfor.setFont(new Font("宋体", Font.PLAIN, 15));
     this.add(userinfor);
     userinfor.setBounds(150, 40, 200, 70);

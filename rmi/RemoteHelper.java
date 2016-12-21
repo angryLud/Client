@@ -1,6 +1,5 @@
 package rmi;
 
-import businesslogicservice.loginservice;
 import dataservice.*;
 
 import java.rmi.Remote;

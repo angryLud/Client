@@ -5,6 +5,7 @@ import java.util.Vector;
 
 import vo.HotelVo;
 import vo.OrderVo;
+import vo.UserVo;
 
 public interface userservice {
 	
@@ -58,10 +59,12 @@ public int getMark(int userId);
 public int createorder(OrderVo ovo);
 
 public int getuserid();
+
 public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4);
 
+String getname();
 
-    String getname();
+void logout(int userid);
 
-    void logout(int userid);
+public void updateuserinfo(UserVo uvo);
 }

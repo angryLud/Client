@@ -4,9 +4,15 @@ public class HotelPo {
 	int hotelID;
 	String position;
 	String hotelName;
-	int[] roomNums;
-	int[] availableRoomNums;
-	int[] prices;
+	
+	int avdachuangfang;
+	
+	int avshuangrenfang;
+	int avsanrenjian;
+	int dachuangfangprice;
+	
+	int shuangrenfangprice;
+	int sanrenjianprice;
 	int star;
 	double score;
 	String assess;
@@ -16,11 +22,17 @@ public class HotelPo {
 	public HotelPo(){
 		super();
 	}
-	public HotelPo(int hotelID,String position,String hotelName,boolean reserved){
+	public HotelPo(int hotelID,String position,String hotelName,int dachuangfangprice,int shuangrenfangprice,int sanrenjianprice,int star,double score,String description){
 		this.hotelID = hotelID;
 		this.position = position;
 		this.hotelName = hotelName;
-		this.reserved = reserved;
+		this.dachuangfangprice = dachuangfangprice;
+		this.shuangrenfangprice = shuangrenfangprice;
+		this.sanrenjianprice = sanrenjianprice;
+		this.star = star;
+		this.score = score;
+		this.description = description;
+		
 	}
 	
 	public int getHotelID(){
@@ -46,47 +58,33 @@ public class HotelPo {
 	public void setHotelName(String hotelName){
 		this.hotelName = hotelName;
 	}
-	public int[] getRoomNums(){
-		return this.roomNums;
+	public int getAvdachuangfang() {
+		return avdachuangfang;
 	}
-	public int[] getAvailableRoomNums(){
-		return this.availableRoomNums;
+	public void setAvdachuangfang(int avdachuangfang) {
+		this.avdachuangfang = avdachuangfang;
 	}
-	public int getRoomNum(int i){
-		if(i>=0&&i<=2){
-		return this.roomNums[i];
-		}
-		return 0;
+	public int getAvshuangrenfang() {
+		return avshuangrenfang;
 	}
-	public void setRoomNum(int i,int num){
-		if(i>=0&&i<=2){
-			roomNums[i]=num;
-		}
+	public void setAvshuangrenfang(int avshuangrenfang) {
+		this.avshuangrenfang = avshuangrenfang;
 	}
-	public int getAvailableRoomNum(int i){
-		if(i>=0&&i<=2){
-			return availableRoomNums[i];
-		}
-		return 0;
+	public int getAvsanrenjian() {
+		return avsanrenjian;
 	}
-	public void setAvailableRoomNum(int i,int num){
-		if(i>=0&&i<=2){
-			availableRoomNums[i] = num;
-		}
+	public void setAvsanrenjian(int avsanrenjian) {
+		this.avsanrenjian = avsanrenjian;
 	}
-	public int getPrice(int i){
-		if(i>=0&&i<=2){
-			return prices[i];
-		}
-		return 0;
+	
+	public int getDachaungfangprice() {
+		return dachuangfangprice;
 	}
-	public void setPrice(int i,int price){
-		if(i>=0&&i<=2){
-			prices[i] = price;
-		}
+	public int getShuangrenfangprice() {
+		return shuangrenfangprice;
 	}
-	public int[] getPrices(){
-		return this.prices;
+	public int getSanrenjianprice() {
+		return sanrenjianprice;
 	}
 	public int getStar(){
 		return this.star;

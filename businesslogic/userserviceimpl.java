@@ -14,6 +14,7 @@ import po.UserPo;
 import rmi.RemoteHelper;
 import vo.HotelVo;
 import vo.OrderVo;
+import vo.UserVo;
 
 public class userserviceimpl implements userservice {
 	private userdataservice userdaser;
@@ -162,6 +163,18 @@ public class userserviceimpl implements userservice {
 	@Override
 	public void logout(int userid) {
 		logs.logout(userid);
+	}
+
+	@Override
+	public void updateuserinfo(UserVo uvo) {
+		// TODO Auto-generated method stub
+		//插入数据库
+		try {
+			RemoteHelper.getInstance().getUserdataservice().insert(new UserPo(0,uvo.getUserName(),null,uvo.getPhone(),100,null));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

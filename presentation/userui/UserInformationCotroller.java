@@ -10,4 +10,5 @@ public interface UserInformationCotroller {
     void registerprocessButton();
     void setcon(controller con);
 	void ExitButtonClicked();
+	void updateuserinfor(String name, String phone);
 }

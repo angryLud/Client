@@ -4,6 +4,7 @@ import businesslogic.userserviceimpl;
 import businesslogicservice.userservice;
 import presentation.userui.UserInformation;
 import presentation.userui.UserInformationCotroller;
+import vo.UserVo;
 
 public class UserInformationCotrollerimpl  implements UserInformationCotroller {
 	private UserInformation view;
@@ -43,6 +44,12 @@ public UserInformationCotrollerimpl(int UserID){
 	public void ExitButtonClicked() {
 		con.loggedin(UserID+"");
 		
+	}
+	@Override
+	public void updateuserinfor(String name, String phone) {
+		// TODO Auto-generated method stub
+		UserVo uvo = new UserVo(name,phone);
+		userser.updateuserinfo(uvo);
 	}
 
 

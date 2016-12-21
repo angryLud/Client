@@ -84,5 +84,10 @@ public SearchHotelControllerimpl(int userId){
 		return userso.createorder(ovo);
 		
 	}
+	@Override
+	public void hotelinformation(int hotelid) {
+		// TODO Auto-generated method stub
+		View.hotelinformation(hotelid);
+	}
 
 }

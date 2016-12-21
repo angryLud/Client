@@ -44,7 +44,6 @@ public SearchHotelControllerimpl(int userId){
 		// TODO Auto-generated method stub
 //		View=new SearchHotel(this);
 //		System.out.println(userso.usersearchhotel(s1,s2,s3,s4).elementAt(0).getHotelName());
-		System.out.println("shit");
 		View.createtable(userso.usersearchhotel(s1,s2,s3,s4));
 	}
 

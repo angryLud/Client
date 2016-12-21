@@ -81,4 +81,39 @@ public class OrderServiceImpl implements OrderService{
 		return false;
 	}
 
+	@Override
+	public List<OrderVo> getUnfinishedOrders(int hotelID) {
+		List<OrderVo> list = new ArrayList<OrderVo>();
+		for(OrderPo po:hotelOrderList){
+			if(po.getStatus()==0){
+			OrderVo vo = new OrderVo(po);
+			list.add(vo);
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<OrderVo> getFinishedOrders(int hotelID) {
+		List<OrderVo> list = new ArrayList<OrderVo>();
+		for(OrderPo po:hotelOrderList){
+			if(po.getStatus()==1){
+			OrderVo vo = new OrderVo(po);
+			list.add(vo);
+			}
+		}
+		return list;
+	}
+
+	@Override
+	public List<OrderVo> getAbnormalOrders(int hotelID) {
+		List<OrderVo> list = new ArrayList<OrderVo>();
+		for(OrderPo po:hotelOrderList){
+			if(po.getStatus()==2){
+			OrderVo vo = new OrderVo(po);
+			list.add(vo);
+		    }
+	    }
+		return list;
+	}
 }

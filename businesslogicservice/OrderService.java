@@ -12,6 +12,10 @@ public interface OrderService {
 
 	public boolean executeOrder(int orderID);
 	
+	List<OrderVo> getUnfinishedOrders(int hotelID);
 	
+	List<OrderVo> getFinishedOrders(int hotelID);
+	
+	List<OrderVo> getAbnormalOrders(int hotelID);
 	
 }

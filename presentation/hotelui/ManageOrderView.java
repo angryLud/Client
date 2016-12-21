@@ -4,10 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -26,21 +33,27 @@ public class ManageOrderView extends JPanel{
 	private int HotelID;
 	private ManageOrderViewController controller;
 	
+	private JFrame delayFrame;
 	private JButton orderBrowseButton;
 	private JButton orderSearchButton;
 	private JButton executingButton;
 	private JButton executeButton;
 	private JButton exitButton;
+	private JButton delayButton;
+	
 	
 	private JLabel tempLabel;
+	private JLabel delayLabel;
 	
 	private JTextField executeField1;
+	private JTextField delayTextField;
 	
 	private JLabel executeLabel1;
 	
 	private JPanel serviceTypeJpanel;
 	private JPanel searchButtonJpanel;
 	private JPanel executeJpanel;
+	private JPanel delayPanel;
 	
 	private JTable searchOrderTable;
 	private JTable executeOrderTable;
@@ -56,6 +69,8 @@ public class ManageOrderView extends JPanel{
 	
 	private JScrollPane scrollPane;
 	
+	private JComboBox orderTypeBox;
+	
 	public ManageOrderView(ManageOrderViewController controller){
 		this.controller = controller;
 		this.init();
@@ -64,16 +79,37 @@ public class ManageOrderView extends JPanel{
 	
 	public void init(){
 		//组件
+		
+		Vector<String> list = new Vector<String>();
+		list.add("所有类型");
+		list.add("已执行订单");
+		list.add("未执行订单");
+		list.add("异常订单");
+		orderTypeBox = new JComboBox(list);
+		final String selected = (String) orderTypeBox.getSelectedItem();
+		orderTypeBox.addItemListener(new ItemListener(){
+			public void itemStateChanged(ItemEvent e) {
+				controller.updateListModel(selected);
+			}
+			
+		});
+		
 		scrollPane = new JScrollPane();
-//		tempLabel = new JLabel("                                                        ");
 		executeLabel1 = new JLabel("输入订单号");
 		executeField1 = new JTextField(10);
-		executingButton = new JButton("执行");
-		orderBrowseButton = new JButton("浏览");
+		
 		orderSearchButton = new JButton("搜索");
 		executeButton = new JButton("执行订单");
 		executingButton = new JButton("执行");
 		exitButton = new JButton("返回");
+		delayButton = new JButton("延迟入住");
+		delayButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				delayOrderButtonClicked();
+				
+			}
+			
+		});
 		
 		serviceTypeJpanel = new JPanel();
 		searchButtonJpanel = new JPanel();
@@ -124,13 +160,7 @@ public class ManageOrderView extends JPanel{
 		searchOrderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.getViewport().add(searchOrderTable);
 		searchOrderTable.setFillsViewportHeight(true);
-		
-		searchButtonJpanel.add(orderBrowseButton);
-		orderBrowseButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				controller.OrderBrowseButtonClicked();
-			}
-		});
+
 		searchButtonJpanel.add(orderSearchButton);
 		orderSearchButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -148,25 +178,65 @@ public class ManageOrderView extends JPanel{
 				controller.ExitButtonClicked();
 			}
 		});
+		searchButtonJpanel.add(delayButton);
 		    serviceTypeJpanel.setLayout(null);
 		    serviceTypeJpanel.add(exitButton);
 		    exitButton.setBounds(600, 40, 70, 25);
 			serviceTypeJpanel.add(scrollPane);
 			scrollPane.setBounds(20,80,470,300);
 			serviceTypeJpanel.add(searchButtonJpanel);
-			searchButtonJpanel.setBounds(480,300,250,100);
+			searchButtonJpanel.setBounds(500,300,250,100);
+			serviceTypeJpanel.add(orderTypeBox);
+			orderTypeBox.setBounds(20,40,100,25);
 			
 			this.add(serviceTypeJpanel);
 			serviceTypeJpanel.setBounds(0, 0, 800, 600);
 		   
 	}
-	public void OrderBrowseButtonClicked(){
-		List<OrderVo> list = controller.getAllOrders(HotelID);
-		for(OrderVo orderVo:list){
-			searchOrderModel.addRow(orderVo);
+	public void updateListModel(String selected) {
+		if(selected == "所有类型"){
+			//更新订单列表
+			searchOrderModel.setRowCount(0);
+			for (OrderVo orderVo : controller.getAllOrders(HotelID)) {
+				searchOrderModel.addRow(orderVo);
+			}
+			//设置控件可用类型
+			delayButton.setEnabled(false);
+			
+			
+		}else if(selected == "未执行订单"){
+			//更新订单列表
+			searchOrderModel.setRowCount(0);
+			for (OrderVo orderVo : controller.getUnfinishedOrders(HotelID)) {
+				searchOrderModel.addRow(orderVo);
+			}
+			
+			//设置控件可用类型
+			delayButton.setEnabled(false);
+			
+			
+		}else if(selected == "已执行订单"){
+			//更新订单列表
+			searchOrderModel.setRowCount(0);
+			for (OrderVo orderVo : controller.getFinishedOrders(HotelID)) {
+				searchOrderModel.addRow(orderVo);
+			}
+			
+			//设置控件可用类型
+			delayButton.setEnabled(false);
+			
+		}else if(selected == "异常订单"){
+			//更新订单列表
+			searchOrderModel.setRowCount(0);
+			for (OrderVo orderVo : controller.getAbnormalOrders(HotelID)) {
+				searchOrderModel.addRow(orderVo);
+			}
+			
+			//设置控件可用类型
+			delayButton.setEnabled(true);
+			
 		}
 	}
-
 	public void OrderSearchButtonClicked(){
 		final JFrame searchFrame = new JFrame("搜索订单");
 		JPanel searchPanel = new JPanel();
@@ -190,53 +260,142 @@ public class ManageOrderView extends JPanel{
 		searchFrame.setResizable(false);
 		searchFrame.setVisible(true);
 	}
-	public void ExecuteButtonClicked(){
-		serviceTypeJpanel.repaint();
-		executeOrderModel = new DefaultTableModel(executeData, executeColumns);
-		executeOrderTable = new JTable(executeOrderModel){
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column){
-				return false;
-			}
-		};
-		executeOrderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.getViewport().add(executeOrderTable);
-		executeOrderTable.setFillsViewportHeight(true);
-	
-	
-	    executeJpanel.add(executeLabel1);
-	    executeJpanel.add(executeField1);
-
-	    executeJpanel.add(executingButton);
-	    executingButton.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				ExecutingButtonClicked();
-				
-			}
-	    	
-	    });
-	    serviceTypeJpanel.setLayout(null);
-	    serviceTypeJpanel.add(exitButton);
-	    exitButton.setBounds(600, 40, 70, 25);
-	    serviceTypeJpanel.remove(searchButtonJpanel);
-		serviceTypeJpanel.add(executeJpanel);
-		executeJpanel.setBounds(0,80,400,50);
-		serviceTypeJpanel.add(scrollPane);
-		scrollPane.setBounds(20,150,470,300);
-		serviceTypeJpanel.validate();
-}
-	
-	public void ExecutingButtonClicked(){
-		
-		int orderID = Integer.parseInt(executeField1.getText());
-		if(controller.executeOrder(orderID)){
-			JOptionPane.showMessageDialog(null, "执行成功！");
+//	public void ExecuteButtonClicked(){
+//		serviceTypeJpanel.repaint();
+//		executeOrderModel = new DefaultTableModel(executeData, executeColumns);
+//		executeOrderTable = new JTable(executeOrderModel){
+//			private static final long serialVersionUID = 1L;
+//
+//			public boolean isCellEditable(int row, int column){
+//				return false;
+//			}
+//		};
+//		executeOrderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//		scrollPane.getViewport().add(executeOrderTable);
+//		executeOrderTable.setFillsViewportHeight(true);
+//	
+//	
+//	    executeJpanel.add(executeLabel1);
+//	    executeJpanel.add(executeField1);
+//
+//	    executeJpanel.add(executingButton);
+//	    executingButton.addActionListener(new ActionListener(){
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				ExecutingButtonClicked();
+//				
+//			}
+//	    	
+//	    });
+//	    serviceTypeJpanel.setLayout(null);
+//	    serviceTypeJpanel.add(exitButton);
+//	    exitButton.setBounds(600, 40, 70, 25);
+//	    serviceTypeJpanel.remove(searchButtonJpanel);
+//		serviceTypeJpanel.add(executeJpanel);
+//		executeJpanel.setBounds(0,80,400,50);
+//		serviceTypeJpanel.add(scrollPane);
+//		scrollPane.setBounds(20,150,470,300);
+//		serviceTypeJpanel.validate();
+//}
+	public void ExecuteButtonClicked() {
+		int index = searchOrderTable.getSelectedRow();
+		if(index == -1){
+			JOptionPane.showMessageDialog(null, "请选择订单！","", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
-		else{
-			JOptionPane.showMessageDialog(null, "订单不存在或被撤销！");
+		
+		int orderNo=Integer.valueOf((String)searchOrderTable.getValueAt(index, 0));
+		if(controller.executeOrder(orderNo)){
+			searchOrderModel.removeRow(index);
+		}else{
+			JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+public void delayOrderButtonClicked(){
+		
+		int index = searchOrderTable.getSelectedRow();
+		
+		if(index == -1){
+			JOptionPane.showMessageDialog(null, "请选择订单！","", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		
+		final int rowIndex = index;
+		final int orderNo =Integer.valueOf((String)searchOrderTable.getValueAt(index, 0));
+		
+		delayFrame = new JFrame();
+		delayFrame.setSize(600, 80);
+		delayFrame.setLocation(400, 400);
+		
+		delayPanel = new JPanel();
+		delayPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		delayLabel = new JLabel("订单延期至：（yyyy/MM/dd）");
+		delayTextField = new JTextField(10);
+		JButton delayProcessButton = new JButton("延期");
+		//处理订单延期
+		delayProcessButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				
+				if(delayOrder(orderNo)){
+					searchOrderModel.removeRow(rowIndex);
+				}
+				
+			}
+		});
+		JButton cancelButton = new JButton("取消");
+		//取消订单延期处理
+		cancelButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				//关闭窗口
+				delayFrame.dispose();
+				
+			}
+		});
+		delayPanel = new JPanel();
+		delayPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		delayPanel.add(delayLabel);
+		delayPanel.add(delayTextField);
+		delayPanel.add(delayProcessButton);
+		delayPanel.add(cancelButton);
+		
+		delayFrame.getContentPane().add(delayPanel);
+		delayFrame.setVisible(true);
+		
+	}
+
+   private boolean delayOrder(int orderNo) {
+ 	
+	String time = delayTextField.getText().replaceAll("/", "");
+	double delayTime = Double.parseDouble(time);
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	try {
+		Date date = sdf.parse(time);
+	} catch (ParseException e) {
+		JOptionPane.showMessageDialog(null, "请按格式（yyyy/MM/dd）填写时间！","", JOptionPane.ERROR_MESSAGE);
+		delayTextField.setText("");
+		return false;
+	}
+	if(controller.processAbnormalOrder(orderNo,time)){	
+		delayFrame.dispose();
+		return true;
+	}else{
+		JOptionPane.showMessageDialog(null, "延期异常订单失败！","", JOptionPane.ERROR_MESSAGE);
+		return false;
+	}
+	
+}
+//	public void ExecutingButtonClicked(){
+//		
+//		int orderID = Integer.parseInt(executeField1.getText());
+//		if(controller.executeOrder(orderID)){
+//			JOptionPane.showMessageDialog(null, "执行成功！");
+//		}
+//		else{
+//			JOptionPane.showMessageDialog(null, "订单不存在或被撤销！");
+//		}
+//	}
 }

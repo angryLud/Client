@@ -18,7 +18,6 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	
 	private OrderService orderservice;
 	
-	/*新建逻辑层orderservice时总是报空指针错误*/
 	
 	public ManageOrderViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
@@ -29,12 +28,6 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	@Override
 	public void setView(ManageOrderView view) {
 		this.view = view;
-		
-	}
-
-	@Override
-	public void OrderBrowseButtonClicked() {
-		view.OrderBrowseButtonClicked();
 		
 	}
 
@@ -71,7 +64,7 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 
 	@Override
 	public boolean executeOrder(int orderID) {
-		// TODO Auto-generated method stub
+//		return orderservice.executeOrder(orderID);
 		return false;
 	}
 
@@ -79,6 +72,36 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	public void setcon(controller con) {
 		this.con = con;
 		
+	}
+
+	@Override
+	public void updateListModel(String selected) {
+		view.updateListModel(selected);
+		
+	}
+
+	@Override
+	public List<OrderVo> getUnfinishedOrders(int hotelID) {
+//    return orderservice.getUnfinishedOrders(hotelID);
+	  return null;
+	}
+
+	@Override
+	public List<OrderVo> getFinishedOrders(int hotelID) {
+//		return orderservice.getFinishedOrders(hotelID);
+		return null;
+	}
+
+	@Override
+	public List<OrderVo> getAbnormalOrders(int hotelID) {
+//		return orderservice.getAbnormalOrders(hotelID);
+		return null;
+	}
+
+	@Override
+	public boolean processAbnormalOrder(int orderId, String delayTime) {
+//
+		return false;
 	}
 
 	

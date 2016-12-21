@@ -48,13 +48,14 @@ public class HotelStrategyView extends JPanel{
 	   strategyLabel2.setText("选择促销策略");
 	   
 	   strategyConfirmButton = new JButton("确定");
-	   strategyAddButton = new JButton("添加促销策略");
+	   strategyAddButton = new JButton("管理");
 	   exitButton = new JButton("返回");
 	   
 	   options = new Vector<String>();
-	   options.add("0.95");
-	   options.add("0.85");
-	   options.add("0.75");
+	   options.add("生日特惠");
+	   options.add("三间以上特惠");
+	   options.add("合作企业折扣");
+	   options.add("双十一特惠");
 	  
 	   strategyField1 = new JTextField(20);
 	   
@@ -71,16 +72,16 @@ public class HotelStrategyView extends JPanel{
 			controller.StrategyConfirmButtonClicked();
 		}
 	   });
-	   strategyJpanel.add(strategyAddButton);
-	   strategyAddButton.addActionListener(new ActionListener(){
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			controller.StrategyAddButtonClicked();
-			
-		}
-		   
-	   });
+//	   strategyJpanel.add(strategyAddButton);
+//	   strategyAddButton.addActionListener(new ActionListener(){
+//
+//		@Override
+//		public void actionPerformed(ActionEvent e) {
+//			controller.StrategyAddButtonClicked();
+//			
+//		}
+//		   
+//	   });
 	   exitButton.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
 			controller.ExitButtonClicked();
@@ -91,7 +92,7 @@ public class HotelStrategyView extends JPanel{
 		serviceTypeJpanel.add(exitButton);
 		exitButton.setBounds(650, 20, 70, 25);
 		serviceTypeJpanel.add(strategyJpanel);
-		strategyJpanel.setBounds(0,40,650,600);
+		strategyJpanel.setBounds(0,80,650,600);
 		
 		this.add(serviceTypeJpanel);
 		serviceTypeJpanel.setBounds(0, 0, 800, 600);
@@ -99,7 +100,21 @@ public class HotelStrategyView extends JPanel{
 	
 	public void StrategyConfirmButtonClicked(){
 		orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
-		double discount = Double.parseDouble((String)strategyBox.getSelectedItem());
+		String selected = (String)strategyBox.getSelectedItem();
+		double discount = 0.0;
+		if(selected == "生日特惠"){
+			discount = 0.85;
+		}
+		if(selected == "三间以上特惠"){
+			discount = 0.75;
+		}
+		if(selected == "合作企业折扣"){
+			discount = 0.88;
+		}
+		if(selected == "双十一特惠"){
+			discount = 0.8;
+		}
+		
 		int orderid = Integer.parseInt(strategyField1.getText());
 		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,"0",0);
 		try {
@@ -111,39 +126,48 @@ public class HotelStrategyView extends JPanel{
 		
 	}
 
-	public void StrategyAddButtonClicked(){
-		
-		JButton strategySaveButton = new JButton("保存");
-		strategySaveButton.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			String appendence = strategyAddField.getText();
-			options.add(appendence);
-			strategyAddFrame.dispose();
-			}
-			
-		});
-		JButton strategyCancelButton = new JButton("取消");
-		strategyCancelButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				strategyAddFrame.dispose();
-			}
-		});
-		JLabel strategyAddLabel = new JLabel("输入促销策略");
-		strategyAddField = new JTextField(30);
-		JPanel strategyAddPanel = new JPanel();
-		strategyAddPanel.add(strategyAddLabel);
-		strategyAddPanel.add(strategyAddField);
-		strategyAddPanel.add(strategySaveButton);
-		strategyAddPanel.add(strategyCancelButton);
-		strategyAddPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		
-		strategyAddFrame = new JFrame("添加促销策略");
-		strategyAddFrame.setBounds(600,400,300,150);
-		strategyAddFrame.setVisible(true);
-		strategyAddFrame.getContentPane().add(strategyAddPanel);
-		serviceTypeJpanel.validate();
-	}
+//	public void StrategyAddButtonClicked(){
+//		
+//		JButton strategySaveButton = new JButton("生效");
+//		strategySaveButton.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e) {
+//			String appendence = strategyAddField.getText();
+//			if(appendence == "生日特惠"){
+//				
+//			}
+//			if(appendence == "三间以上特惠"){
+//				
+//			}
+//			if(appendence == "合作企业折扣"){
+//				
+//			}
+//			if(appendence == "双十一特惠"){
+//				
+//			}
+//			strategyAddFrame.dispose();
+//			}
+//			
+//		});
+//		JButton strategyCancelButton = new JButton("失效");
+//		strategyCancelButton.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e) {
+//				strategyAddFrame.dispose();
+//			}
+//		});
+//		JLabel strategyAddLabel = new JLabel("输入促销策略");
+//		strategyAddField = new JTextField(30);
+//		JPanel strategyAddPanel = new JPanel();
+//		strategyAddPanel.add(strategyAddLabel);
+//		strategyAddPanel.add(strategyAddField);
+//		strategyAddPanel.add(strategySaveButton);
+//		strategyAddPanel.add(strategyCancelButton);
+//		strategyAddPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+//		
+//		strategyAddFrame = new JFrame("添加促销策略");
+//		strategyAddFrame.setBounds(600,400,300,150);
+//		strategyAddFrame.setVisible(true);
+//		strategyAddFrame.getContentPane().add(strategyAddPanel);
+//		serviceTypeJpanel.validate();
+//	}
 	
 }

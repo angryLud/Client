@@ -9,7 +9,7 @@ public interface HotelStrategyViewController {
 	
 	public void StrategyConfirmButtonClicked();
 	
-	public void StrategyAddButtonClicked();
+//	public void StrategyAddButtonClicked();
 	
 	public void ExitButtonClicked();
 

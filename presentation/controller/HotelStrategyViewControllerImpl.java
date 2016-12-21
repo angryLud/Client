@@ -27,11 +27,11 @@ public class HotelStrategyViewControllerImpl implements HotelStrategyViewControl
 		
 	}
 
-	@Override
-	public void StrategyAddButtonClicked() {
-		view.StrategyAddButtonClicked();
-		
-	}
+//	@Override
+//	public void StrategyAddButtonClicked() {
+//		view.StrategyAddButtonClicked();
+//		
+//	}
 
 	@Override
 	public void setView(HotelStrategyView view) {

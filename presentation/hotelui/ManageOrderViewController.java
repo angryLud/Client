@@ -10,8 +10,6 @@ public interface ManageOrderViewController {
 	
 	public void setView(ManageOrderView view);
 	
-	public void OrderBrowseButtonClicked();
-	
 	public void OrderSearchButtonClicked();
 	
 	public void ExecuteButtonClicked();
@@ -20,8 +18,18 @@ public interface ManageOrderViewController {
 	
 	public List<OrderVo> getAllOrders(int holelID);
 	
+	public List<OrderVo> getUnfinishedOrders(int hotelID);
+	
+	public List<OrderVo> getFinishedOrders(int hotelID);
+	
+	public List<OrderVo> getAbnormalOrders(int hotelID);
+	
 	public OrderVo searchOrder(int orderID);
 	
 	public boolean executeOrder(int orderID);
+	
+	public void updateListModel(String selected);
+	
+    public boolean processAbnormalOrder(int orderId,String delayTime);
 
 }

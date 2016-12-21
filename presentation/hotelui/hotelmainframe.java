@@ -57,7 +57,7 @@ public class hotelmainframe extends JPanel{
         });
         this.add(back);
         
-        img = new ImageIcon("src/presentation/userui/c.jpg");
+        img = new ImageIcon("Client/presentation.hotelui/c.jpg");
         imgLabel = new JLabel(img);
         imgLabel.setBounds(40,120,150,150);
         this.add(imgLabel);
@@ -76,7 +76,7 @@ public class hotelmainframe extends JPanel{
 
 
         HotelInfo=new JButton("酒店信息");
-        HotelInfo.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
+        HotelInfo.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,15));
         HotelInfo.setBounds(340,250,100,100);
         HotelInfo.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +86,7 @@ public class hotelmainframe extends JPanel{
         this.add(HotelInfo);
 
         ManageOrder=new JButton("订单管理");
-        ManageOrder.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
+        ManageOrder.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,15));
         ManageOrder.setBounds(340,370,100,100);
         ManageOrder.addActionListener(new ActionListener(){
 
@@ -99,7 +99,7 @@ public class hotelmainframe extends JPanel{
         this.add(ManageOrder);
 
         ManageRoom=new JButton("客房管理");
-        ManageRoom.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
+        ManageRoom.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,15));
         ManageRoom.setBounds(460,250,100,100);
         ManageRoom.addActionListener(new ActionListener(){
 
@@ -112,7 +112,7 @@ public class hotelmainframe extends JPanel{
         this.add(ManageRoom);
 
         HotelStrategy=new JButton("促销策略");
-        HotelStrategy.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
+        HotelStrategy.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,15));
         HotelStrategy.setBounds(460,370,100,100);
         HotelStrategy.addActionListener(new ActionListener(){
 

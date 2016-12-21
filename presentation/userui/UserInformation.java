@@ -87,14 +87,14 @@ class button3Listener implements ActionListener{
 		name.setFont(new Font("宋体", Font.PLAIN, 15));
 		frameupdate.add(name);
 		name.setBounds(10,5,120,30);
-		JTextField name_ = new JTextField(10);
+		final JTextField name_ = new JTextField(10);
 		frameupdate.add(name_);
 		name_.setBounds(80,5,150,30);
 		JLabel phone = new JLabel("联系方式：");
 		phone.setFont(new Font("宋体", Font.PLAIN, 15));
 		frameupdate.add(phone);
 		phone.setBounds(10,35,120,30);
-		JTextField phone_ = new JTextField(11);
+		final JTextField phone_ = new JTextField(11);
 		frameupdate.add(phone_);
 		phone_.setBounds(80,35,150,30);
 		JButton button = new JButton("确认");

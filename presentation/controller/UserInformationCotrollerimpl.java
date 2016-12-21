@@ -12,6 +12,7 @@ public class UserInformationCotrollerimpl  implements UserInformationCotroller {
 	private controller con;
 	private int UserID;
 public UserInformationCotrollerimpl(int UserID){
+	userser=new userserviceimpl(UserID);
 	this.UserID = UserID;
 }
 	@Override

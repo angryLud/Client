@@ -73,7 +73,7 @@ public class controller {
             return;
         }
 
-        if (id.substring(0).equals("1")){
+        if (id.substring(0,1).equals("1")){
 
             hotelcon =new hotelcontroller("1");
             frame.getContentPane().removeAll();
@@ -85,7 +85,7 @@ public class controller {
             return;
         }
 
-        if (id.substring(0).equals("2")){
+        if (id.substring(0,1).equals("2")){
 
             manageViewController =new ManageViewControllerImpl();
             frame.getContentPane().removeAll();
@@ -97,7 +97,7 @@ public class controller {
             frame.setVisible(true);
             return;
         }
-        if (id.substring(0).equals("3")){
+        if (id.substring(0,1).equals("3")){
             Date date=new Date();
 
             PromotionViewControllerService  promotionViewCon=new PromotionViewControllerImpl(date);

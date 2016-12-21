@@ -64,12 +64,6 @@ public void go(){
     this.add(label2);
     label2.setBounds(40, 40, 140, 270);
     
-    button5 = new JButton("确定");
-    button5.setBounds(350, 80, 100, 30);
-    button5.setVisible(false);
-    button5.addActionListener(new button5Listener());
-    this.add(button5);
-    
     this.setVisible(true);
 }
 class exitbuttonListener implements ActionListener{
@@ -86,8 +80,38 @@ class button3Listener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		userinfor.setEditable(true);
-		button5.setVisible(true);
+		JFrame frameupdate = new JFrame();
+		frameupdate.setLayout(null);
+		frameupdate.setSize(400, 150);
+		JLabel name = new JLabel("姓名：");
+		name.setFont(new Font("宋体", Font.PLAIN, 15));
+		frameupdate.add(name);
+		name.setBounds(10,5,120,30);
+		JTextField name_ = new JTextField(10);
+		frameupdate.add(name_);
+		name_.setBounds(80,5,150,30);
+		JLabel phone = new JLabel("联系方式：");
+		phone.setFont(new Font("宋体", Font.PLAIN, 15));
+		frameupdate.add(phone);
+		phone.setBounds(10,35,120,30);
+		JTextField phone_ = new JTextField(11);
+		frameupdate.add(phone_);
+		phone_.setBounds(80,35,150,30);
+		JButton button = new JButton("确认");
+		frameupdate.add(button);
+		button.setBounds(10, 65, 70, 30);
+		button.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String name = name_.getText();
+				String phone = phone_.getText();
+				UserInforCon.updateuserinfor(name,phone);
+			}
+			
+		});
+		frameupdate.setVisible(true);
 	}
 	
 }

@@ -206,6 +206,7 @@ public class SearchHotel extends JPanel{
 		}
 		
 	}
+	//生成订单的界面填写订单信息
 	public void reservehotel() {
 		// TODO Auto-generated method stub
 		ReserveHotel = new JFrame();
@@ -261,7 +262,7 @@ public class SearchHotel extends JPanel{
         				long endtime = Integer.parseInt(s6);
         				String s7 = textfield3.getText();
         				long delaytime = Integer.parseInt(s7);
-        				SimpleDateFormat df = new SimpleDateFormat("MM-dd HH:mm");
+        				SimpleDateFormat df = new SimpleDateFormat("MMddHHmm");
         				String nowtime = df.format(new Date());
         				int intnowtime = Integer.parseInt(nowtime);
         				int status = 1;//1表示未执行订单

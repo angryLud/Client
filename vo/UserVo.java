@@ -30,6 +30,13 @@ public class UserVo {
 		this.company = userPo.getCompany();
 	}
 
+	public UserVo(String name, String phone) {
+		// TODO Auto-generated constructor stub
+		this.userName = name;
+		this.phone = phone;
+		
+	}
+
 	public int getId() {
 		return id;
 	}

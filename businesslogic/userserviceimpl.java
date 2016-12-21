@@ -169,11 +169,17 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		// TODO Auto-generated method stub
 		//插入数据库
 		try {
-			RemoteHelper.getInstance().getUserdataservice().insert(new UserPo(0,uvo.getUserName(),null,uvo.getPhone(),100,null));
+			RemoteHelper.getInstance().getUserdataservice().update(new UserPo(0,uvo.getUserName(),null,uvo.getPhone(),100,null));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String getphone() {
+		// TODO Auto-generated method stub
+		return upo.getPhone();
 	}
 
 

@@ -51,6 +51,21 @@ public UserInformationCotrollerimpl(int UserID){
 		UserVo uvo = new UserVo(name,phone);
 		userser.updateuserinfo(uvo);
 	}
+	@Override
+	public String getusername() {
+		// TODO Auto-generated method stub
+		return userser.getname();
+	}
+	@Override
+	public int getuserid() {
+		// TODO Auto-generated method stub
+		return userser.getuserid();
+	}
+	@Override
+	public String getphone() {
+		// TODO Auto-generated method stub
+		return userser.getphone();
+	}
 
 
 

@@ -16,7 +16,7 @@ public class login implements loginservice {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        return false;
+        return true;
 
 //        if (id.equals("abc")) return false;
 //        return  true;

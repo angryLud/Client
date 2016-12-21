@@ -17,7 +17,7 @@ public class HotelPo {
 	double score;
 	String assess;
 	String description;
-	boolean reserved;
+//	boolean reserved;
 	
 	public HotelPo(){
 		super();
@@ -112,11 +112,11 @@ public class HotelPo {
 	public void setDescription(String description){
 		this.description = description;
 	}
-	public boolean getReserved(){
-		return this.reserved;
-	}
-	public void setReserved(boolean reserved){
-		this.reserved = reserved;
-	}
+//	public boolean getReserved(){
+//		return this.reserved;
+//	}
+//	public void setReserved(boolean reserved){
+//		this.reserved = reserved;
+//	}
 
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Vector;
 
 import businesslogicservice.loginservice;
-import businesslogicservice.userservice;
 import dataservice.userdataservice;
 import po.HotelPo;
 import po.OrderPo;
@@ -15,7 +14,7 @@ import rmi.RemoteHelper;
 import vo.HotelVo;
 import vo.OrderVo;
 
-public class userserviceimpl implements userservice {
+public class userserviceimpl implements businesslogicservice.userservice {
 	private userdataservice userdaser;
 	private UserPo upo;
 	private loginservice logs;

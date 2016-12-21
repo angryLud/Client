@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 /**
  * id           用户ID
  * userName     用户姓名
@@ -10,7 +12,7 @@ package po;
  * @author summer
  */
 
-public class UserPo {
+public class UserPo implements Serializable{
 	
 	private int id;
 	
@@ -23,6 +25,8 @@ public class UserPo {
 	private int credit;
 	
 	private String company;
+
+	private static final long serialVersionUID = 1L;
 	
 	public UserPo(){
 		super();

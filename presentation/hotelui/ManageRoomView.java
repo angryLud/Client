@@ -137,7 +137,6 @@ public class ManageRoomView extends JPanel{
 		
 		manageRoomModel = new DefaultTableModel(manageData, manageColumns);
 		manageRoomTable = new JTable(manageRoomModel){
-			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column){
 				return false;
@@ -263,7 +262,6 @@ public class ManageRoomView extends JPanel{
 				}
 				manageRoomModel = new DefaultTableModel(manageData, manageColumns);
 				manageRoomTable = new JTable(manageRoomModel){
-					private static final long serialVersionUID = 1L;
 
 					public boolean isCellEditable(int row, int column){
 						return false;

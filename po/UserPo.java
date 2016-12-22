@@ -2,15 +2,6 @@ package po;
 
 import java.io.Serializable;
 
-/**
- * id           用户ID
- * userName     用户姓名
- * birthday     用户生日
- * phone        用户电话
- * credit	           用户信用
- * company		所属公司
- * @author summer
- */
 
 public class UserPo implements Serializable{
 	
@@ -26,7 +17,7 @@ public class UserPo implements Serializable{
 	
 	private String company;
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8383901821872620925L;
 	
 	public UserPo(){
 		super();

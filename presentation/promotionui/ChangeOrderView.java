@@ -110,8 +110,7 @@ public class ChangeOrderView extends JPanel{
 		orderListModel = new DefaultTableModel(vData,vColumns);
 		//表格
 		orderTable = new JTable(orderListModel){
-			private static final long serialVersionUID = 1L;
-					
+
 			public boolean isCellEditable(int row,int column){
 				return false;
 			}

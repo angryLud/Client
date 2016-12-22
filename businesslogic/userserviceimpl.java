@@ -193,7 +193,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		UserPo x=new UserPo(0,name,null,number,0,null);
 		int i=0;
 		try {
-			i=RemoteHelper.getInstance().getUserdataservice().insert(x,password);
+			i=RemoteHelper.getInstance().getUserdataservice().userinsert(x,password);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

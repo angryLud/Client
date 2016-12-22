@@ -55,8 +55,7 @@ public class PromotionView extends JPanel{
 		
 	}
 	
-	private static final long serialVersionUID = 1L;
-	
+
 	private PromotionViewControllerService controller;
 	
 	private PromotionService promotionService;
@@ -202,8 +201,7 @@ public class PromotionView extends JPanel{
 		promotionListModel = new DefaultTableModel(vData,vColumns);
 		//表格
 		promotionTable = new JTable(promotionListModel){
-			private static final long serialVersionUID = 1L;
-			
+
 			public boolean isCellEditable(int row,int column){
 				return false;
 			}

@@ -151,7 +151,6 @@ public class ManageOrderView extends JPanel{
 	    //界面内容
 		searchOrderModel = new DefaultTableModel(searchData, searchColumns);
 		searchOrderTable = new JTable(searchOrderModel){
-			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column){
 				return false;

@@ -6,7 +6,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface userdataservice extends Remote {
-	int insert(UserPo upo,char[] password) throws RemoteException;
+	int userinsert(UserPo upo,char[] password) throws RemoteException;
 	boolean update(UserPo upo) throws RemoteException;
 	UserPo find(int id) throws RemoteException;
 }

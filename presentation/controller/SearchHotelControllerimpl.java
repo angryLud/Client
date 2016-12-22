@@ -35,16 +35,16 @@ public SearchHotelControllerimpl(int userId){
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	public List<HotelVo> getAllHotels(int userId){
+	public List<HotelVo> getAllHotels(int userid){
 		// TODO Auto-generated method stub
-		return userso.getAllHotels(userId);
+		return userso.getAllHotels(userid);
 	}
 	@Override
-	public void usersearchhotel(String s1,String s2,String s3,String s4) {
+	public void usersearchhotel(String s1,String s2,String s3) {
 		// TODO Auto-generated method stub
 //		View=new SearchHotel(this);
-//		System.out.println(userso.usersearchhotel(s1,s2,s3,s4).elementAt(0).getHotelName());
-		View.createtable(userso.usersearchhotel(s1,s2,s3,s4));
+//		System.out.println(userso.usersearchhotel(s1,s2,s3).elementAt(0).getHotelName());
+		View.createtable(userso.usersearchhotel(s1,s2,s3));
 	}
 
 	@Override
@@ -83,6 +83,11 @@ public SearchHotelControllerimpl(int userId){
 		
 		return userso.createorder(ovo);
 		
+	}
+	@Override
+	public void hotelinformation(int hotelid) {
+		// TODO Auto-generated method stub
+		View.hotelinformation(hotelid);
 	}
 
 }

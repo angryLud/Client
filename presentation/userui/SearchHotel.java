@@ -22,6 +22,7 @@ import vo.OrderVo;
 
 public class SearchHotel extends JPanel{
 	private JFrame ReserveHotel;
+	private JFrame Hotelinformation;
 	private JTextField textField;
 	private JLabel label1;
 	private int userId;
@@ -38,6 +39,7 @@ public class SearchHotel extends JPanel{
 	private JComboBox comboBox_3;
 	private JButton button_1;
 	private JButton button2;
+	private JButton button3;
 	private JButton exitbutton;
 	
 
@@ -95,10 +97,6 @@ public class SearchHotel extends JPanel{
 		comboBox_3.addItem("未住过");
 		this.add(comboBox_3);
 		
-		JLabel label_7 = new JLabel("搜索:");
-		label_7.setBounds(380, 43, 36, 15);
-		this.add(label_7);
-		
 		textField = new JTextField();
 		textField.setBounds(410, 40, 102, 21);
 		this.add(textField);
@@ -108,11 +106,19 @@ public class SearchHotel extends JPanel{
 		button_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String s1 = (String)comboBox.getSelectedItem();
-				String s2 = (String)comboBox_1.getSelectedItem();
-				String s3 = (String)comboBox_2.getSelectedItem();
-				String s4 = (String)comboBox_3.getSelectedItem();
-				searchHotelCon.usersearchhotel(s1,s2,s3,s4);
+				String s1 = (String)comboBox.getSelectedItem();//商圈
+				String s2 = (String)comboBox_1.getSelectedItem();//地址
+				String s3 = (String)comboBox_3.getSelectedItem();//限定是否预定过
+				if(s1=="商圈"||s2=="地址"){
+					JFrame frame = new JFrame();
+					frame.setLayout(null);
+					JLabel label = new JLabel("请选择地址或商圈!");
+					frame.add(label);
+					label.setBounds(20, 10, 150, 30);
+					frame.setSize(160, 100);
+					frame.setVisible(true);
+				}else
+				searchHotelCon.usersearchhotel(s1,s2,s3);
 			}
 		});
 		button_1.setBounds(520, 40, 93, 23);
@@ -120,22 +126,24 @@ public class SearchHotel extends JPanel{
 		
 		scrollPane = new JScrollPane();
 		
-		        //表头
-				vColumns = new Vector<String>();
-				vColumns.add("酒店名称");
-				vColumns.add("星级");
-				vColumns.add("评分");
-				vColumns.add("是否预定过");
-				//数据
-				vData=new Vector<>();
+		 //表头
+		vColumns = new Vector<String>();
+		vColumns.add("酒店ID");
+		vColumns.add("酒店名称");
+		vColumns.add("商圈");
+		vColumns.add("地址");
+		vColumns.add("星级");
+		vColumns.add("评分");
+		vColumns.add("是否预定过");
+		//数据
+		vData=new Vector<>();
 		Vector<HotelVo> x=new Vector<>();
-		x.add(new HotelVo("牛批","saf","卧槽 ",true));
-				//模型
-                hotelListModel = new DefaultTableModel(x, vColumns);
-				//表格
-				hotelTable = new JTable(hotelListModel){
-
-					public boolean isCellEditable(int row, int column){
+		x.add(new HotelVo(1,"如家","新街口","南京",1,5,true));
+		//模型
+        hotelListModel = new DefaultTableModel(x, vColumns);
+		//表格
+		hotelTable = new JTable(hotelListModel){
+		   public boolean isCellEditable(int row, int column){
 						return false;
 					}
 				};
@@ -152,16 +160,39 @@ public class SearchHotel extends JPanel{
 				
 				
 			
-				
-				button2 = new JButton("生成订单");
-				button2.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
+//生成订单按钮的实现			
+		button2 = new JButton("生成订单");
+		button2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 						searchHotelCon.reservehotel();
 					}
 				});
-				this.add(button2);
-				button2.setBounds(56, 284, 100, 30);
+	    this.add(button2);
+		button2.setBounds(56, 284, 100, 30);
+//查看酒店详细信息按钮的实现
+		button3 = new JButton("查看酒店详细信息");
+		button3.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				int index = hotelTable.getSelectedRow();
+				if(index==-1){
+					JFrame frame = new JFrame();
+					frame.setLayout(null);
+					JLabel label = new JLabel("请选择酒店!");
+					frame.add(label);
+					label.setBounds(20, 10, 100, 30);
+					frame.setSize(100, 100);
+					frame.setVisible(true);
+				}else
+				searchHotelCon.hotelinformation(index+1);
+			}
+			
+		});
+		this.add(button3);
+		button3.setBounds(170, 284, 150, 30);
 	}
 	
 
@@ -243,7 +274,7 @@ public class SearchHotel extends JPanel{
         final JTextField textfield3 = new JTextField();
         textfield3.setColumns(10);
         JLabel label5 = new JLabel("预定信息:");
-        JButton button1 = new JButton("生成订单");
+        JButton button1 = new JButton("预定");
         button1.addActionListener(new ActionListener(){
         		public void actionPerformed(ActionEvent e) {
         			// TODO Auto-generated method stub
@@ -313,6 +344,33 @@ public class SearchHotel extends JPanel{
         ReserveHotel.setSize(500, 500);
         ReserveHotel.setVisible(true);
     	
+	}
+
+
+	public void hotelinformation(int hotelid) {
+		// TODO Auto-generated method stub
+		Hotelinformation = new JFrame();
+		Hotelinformation.setLayout(null);
+		JPanel panelinfor = new JPanel();
+		Hotelinformation.add(panelinfor);
+		panelinfor.setBounds(30, 30, 300, 400);
+		
+		JButton button = new JButton("生成订单");
+		Hotelinformation.add(button);
+		button.setBounds(30, 450, 100, 30);
+		button.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				searchHotelCon.reservehotel();
+			}
+			
+		});
+		
+		Hotelinformation.setSize(800, 600);
+		Hotelinformation.setVisible(true);
+		
 	}
 }
 

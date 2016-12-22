@@ -10,6 +10,7 @@ import dataservice.userdataservice;
 import po.HotelPo;
 import po.OrderPo;
 import po.UserPo;
+import presentation.userui.SearchHotelController;
 import rmi.RemoteHelper;
 import vo.HotelVo;
 import vo.OrderVo;
@@ -140,16 +141,18 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		// TODO Auto-generated method stub
 		return upo.getId();
 	}
-
+//按条件搜索酒店（商圈、地址、是否预定过）
 	@Override
-	public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3, String s4) {
+	public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3) {
 		// TODO Auto-generated method stub
+//搜索筛选
 		Vector<HotelVo> x=new Vector<>();
-
-		for (HotelPo hpo:hpolist){
-
-		}
-
+//		List<HotelVo> hpolist=SearchHotelController.getAllHotels(0);
+//			for(int i=0;i<hpolist.size();i++){
+//				if(hpolist.get(i).get(3).equals(s1)){
+//					
+//				}
+//			}
 		return x;
 	}
 

@@ -12,9 +12,9 @@ public interface SearchHotelController {
 
 	int getUserID();
 
-	List<HotelVo> getAllHotels(int userId);
+	List<HotelVo> getAllHotels(int userid);
 
-	void usersearchhotel(String s1,String s2,String s3,String s4);
+	void usersearchhotel(String s1,String s2,String s3);
 
     void setcon(controller con);
 
@@ -27,4 +27,6 @@ public interface SearchHotelController {
 	void change();
 
 	int createorder(int userid,int hotelid,int intnowtime,long s5,long s7,long s6,int status,String s1,int s2);
+
+	void hotelinformation(int hotelid);
 }

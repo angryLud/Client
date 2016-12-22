@@ -97,10 +97,6 @@ public class SearchHotel extends JPanel{
 		comboBox_3.addItem("未住过");
 		this.add(comboBox_3);
 		
-		JLabel label_7 = new JLabel("搜索:");
-		label_7.setBounds(380, 43, 36, 15);
-		this.add(label_7);
-		
 		textField = new JTextField();
 		textField.setBounds(410, 40, 102, 21);
 		this.add(textField);
@@ -110,11 +106,19 @@ public class SearchHotel extends JPanel{
 		button_1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String s1 = (String)comboBox.getSelectedItem();
-				String s2 = (String)comboBox_1.getSelectedItem();
-				String s3 = (String)comboBox_2.getSelectedItem();
-				String s4 = (String)comboBox_3.getSelectedItem();
-				searchHotelCon.usersearchhotel(s1,s2,s3,s4);
+				String s1 = (String)comboBox.getSelectedItem();//商圈
+				String s2 = (String)comboBox_1.getSelectedItem();//地址
+				String s3 = (String)comboBox_3.getSelectedItem();//限定是否预定过
+				if(s1=="商圈"||s2=="地址"){
+					JFrame frame = new JFrame();
+					frame.setLayout(null);
+					JLabel label = new JLabel("请选择地址或商圈!");
+					frame.add(label);
+					label.setBounds(20, 10, 150, 30);
+					frame.setSize(160, 100);
+					frame.setVisible(true);
+				}else
+				searchHotelCon.usersearchhotel(s1,s2,s3);
 			}
 		});
 		button_1.setBounds(520, 40, 93, 23);
@@ -124,14 +128,17 @@ public class SearchHotel extends JPanel{
 		
 		 //表头
 		vColumns = new Vector<String>();
+		vColumns.add("酒店ID");
 		vColumns.add("酒店名称");
+		vColumns.add("商圈");
+		vColumns.add("地址");
 		vColumns.add("星级");
 		vColumns.add("评分");
 		vColumns.add("是否预定过");
 		//数据
 		vData=new Vector<>();
 		Vector<HotelVo> x=new Vector<>();
-		x.add(new HotelVo("牛批","saf","卧槽 ",true));
+		x.add(new HotelVo(1,"如家","新街口","南京",1,5,true));
 		//模型
         hotelListModel = new DefaultTableModel(x, vColumns);
 		//表格

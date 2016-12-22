@@ -21,10 +21,13 @@ public HotelVo(HotelPo hotelPo) {
 //	}
 }
 
-	public HotelVo(String hotelname,String star,String mark,boolean reserved){
+	public HotelVo(int hotelid,String hotelname,String position,String address,int star,float mark,boolean reserved){
+		this.add(String.valueOf(hotelid));
 		this.add(hotelname);
-		this.add(star);
-		this.add(mark);
+		this.add(position);
+		this.add(address);
+		this.add(String.valueOf(star));
+		this.add(String.valueOf(mark));
 		if (reserved) this.add("预订过");
 		else this.add("未订过");
 	}

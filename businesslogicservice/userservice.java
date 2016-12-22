@@ -70,5 +70,5 @@ public void updateuserinfo(UserVo uvo);
 
 public String getphone();
 
-    void insert(String name, String number,char[] password);
+    int insert(String name, String number,char[] password);
 }

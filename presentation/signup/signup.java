@@ -94,6 +94,8 @@ public class signup extends JPanel{
                     char[] password=passwordfield.getPassword();
                     String number=numberfield.getText();
                     int id=signcon.signup(name,password,number);
+                    if (id==0)  JOptionPane.showMessageDialog(null, "注册失败","", JOptionPane.ERROR_MESSAGE);
+                    else
                     JOptionPane.showMessageDialog(null, "您的id是"+id+"  请务必记住！！！");
                 }
                 else{

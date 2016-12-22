@@ -18,6 +18,7 @@ public class signupcontrollerimpl implements signupcontroller {
     private userservice userser;
 
     public signupcontrollerimpl(){
+        userser=new userserviceimpl();
         logser=new login();
     }
 
@@ -77,7 +78,7 @@ public class signupcontrollerimpl implements signupcontroller {
 
     @Override
     public int signup(String name, char[] password, String number) {
-        userser.insert(name,number,password);
-        return 0;
+
+        return userser.insert(name,number,password);
     }
 }

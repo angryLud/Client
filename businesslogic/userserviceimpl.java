@@ -21,6 +21,9 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	private UserPo upo;
 	private loginservice logs;
 	private List<HotelPo> hpolist;
+	public userserviceimpl(){
+
+	}
 	public userserviceimpl(int userId){
 //		try {
 //			upo=RemoteHelper.getInstance().getUserdataservice().find(userId);
@@ -186,14 +189,16 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	}
 
 	@Override
-	public void insert(String name, String number,char[] password) {
+	public int insert(String name, String number,char[] password) {
 		UserPo x=new UserPo(0,name,null,number,0,null);
+		int i=0;
 		try {
-			RemoteHelper.getInstance().getUserdataservice().insert(x,password);
+			i=RemoteHelper.getInstance().getUserdataservice().insert(x,password);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return i;
 	}
 
 

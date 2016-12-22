@@ -1,7 +1,12 @@
 package presentation.controller;
 
+import businesslogic.login;
+import businesslogic.userserviceimpl;
+import businesslogicservice.loginservice;
+import businesslogicservice.userservice;
 import presentation.signup.signup;
 import presentation.signup.signupcontroller;
+import vo.UserVo;
 
 /**
  * Created by huihantao on 2016/11/18.
@@ -9,15 +14,11 @@ import presentation.signup.signupcontroller;
 public class signupcontrollerimpl implements signupcontroller {
     private signup view;
     private controller con;
+    private loginservice logser;
+    private userservice userser;
 
-    @Override
-    public void signup(String type) {
-        if (type.equals("客户")){
-            view.usersignup();
-        }
-        if (type.equals("酒店")){
-            view.hotelsignup();
-        }
+    public signupcontrollerimpl(){
+        logser=new login();
     }
 
     @Override
@@ -35,15 +36,9 @@ public class signupcontrollerimpl implements signupcontroller {
         con.login();
     }
 
-    @Override
-    public void signupuser() {
 
-    }
 
-    @Override
-    public void signuphotel() {
 
-    }
 
     @Override
     public boolean uservalidate(String name,char[] password,char[] passwordconfirm,String number) {
@@ -73,13 +68,16 @@ public class signupcontrollerimpl implements signupcontroller {
         return true;
     }
 
-    @Override
-    public boolean hotelvalidate() {
-        return false;
-    }
+
 
     @Override
     public void signupfail() {
         view.signupfail();
+    }
+
+    @Override
+    public int signup(String name, char[] password, String number) {
+        userser.insert(name,number,password);
+        return 0;
     }
 }

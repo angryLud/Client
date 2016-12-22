@@ -9,5 +9,8 @@ import java.rmi.RemoteException;
 public interface logindataservice extends Remote{
     boolean login(String id,char[] password) throws RemoteException;
 
-//    void logout(int id) throws RemoteException;
+    void logout(int id) throws RemoteException;
+
+    int signup(char[] password) throws RemoteException;
+
 }

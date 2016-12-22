@@ -10,4 +10,5 @@ public interface loginservice  {
     boolean login(String id,char[] password);
 
     void logout(int id);
+
 }

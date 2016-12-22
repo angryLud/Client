@@ -182,5 +182,16 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		return upo.getPhone();
 	}
 
+	@Override
+	public void insert(String name, String number,char[] password) {
+		UserPo x=new UserPo(0,name,null,number,0,null);
+		try {
+			RemoteHelper.getInstance().getUserdataservice().insert(x,password);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 }

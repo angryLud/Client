@@ -12,9 +12,9 @@ public interface SearchHotelController {
 
 	int getUserID();
 
-	List<HotelVo> getAllHotels(int userId);
+	List<HotelVo> getAllHotels(int userid);
 
-	void usersearchhotel(String s1,String s2,String s3,String s4);
+	void usersearchhotel(String s1,String s2,String s3);
 
     void setcon(controller con);
 

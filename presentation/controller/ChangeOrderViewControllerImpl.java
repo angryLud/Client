@@ -12,6 +12,8 @@ public class ChangeOrderViewControllerImpl implements ChangeOrderViewControllerS
 	private ChangeOrderView view;
 	
 	private int hotelId;
+
+	private controller con;
 	
 	public ChangeOrderViewControllerImpl(int hotelId){
 		this.hotelId = hotelId;
@@ -24,7 +26,12 @@ public class ChangeOrderViewControllerImpl implements ChangeOrderViewControllerS
 	public int getHotelId(){
 		return hotelId;
 	}
-	
+
+	@Override
+	public void setcon(controller controller) {
+		this.con=con;
+	}
+
 	public List<OrderVo> getAbnormalOrder(){
 		return null;
 //		return changeOrderService.getAbnormalOrder();

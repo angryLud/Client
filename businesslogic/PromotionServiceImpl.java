@@ -24,12 +24,12 @@ public class PromotionServiceImpl implements PromotionService {
 		this.date = date;
 //		promotionDao = promotiondataservice.getInstance();
 //		promotionList = promotionDao.find(date);
-		try {
-			RemoteHelper.getInstance().getPromotiondataservice().find(date);
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			RemoteHelper.getInstance().getPromotiondataservice().find(date);
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	
@@ -69,6 +69,16 @@ public class PromotionServiceImpl implements PromotionService {
 		}
 		return list;
 	}
-	
-	
+
+	@Override
+	public void logout(int id) {
+
+	}
+
+	@Override
+	public String getname() {
+		return "a";
+	}
+
+
 }

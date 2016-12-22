@@ -19,4 +19,8 @@ public interface PromotionService {
 	* @return	查看销售策略列表
 	*/
 	public List<PromotionVo> find(Date date);
+
+    void logout(int id);
+
+	String getname();
 }

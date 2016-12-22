@@ -16,6 +16,8 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 	private PromotionService promotionService;
 	
 	private PromotionView view;
+
+	private controller con;
 	
 	public PromotionViewControllerImpl(Date date){
 		this.date = date;
@@ -56,6 +58,11 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 	 */
 	public void inputDateButtonClicked(){
 		view.inputDateButtonClicked();
+	}
+
+	@Override
+	public void setcon(controller controller) {
+		this.con=con;
 	}
 
 }

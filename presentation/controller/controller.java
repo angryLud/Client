@@ -14,8 +14,7 @@ import presentation.login.login;
 import presentation.login.logincontroller;
 import presentation.manageui.ManageView;
 import presentation.manageui.ManageViewControllerService;
-import presentation.promotionui.PromotionView;
-import presentation.promotionui.PromotionViewControllerService;
+import presentation.promotionui.*;
 import presentation.signup.signup;
 import presentation.signup.signupcontroller;
 import presentation.userui.*;
@@ -100,16 +99,17 @@ public class controller {
         if (id.substring(0,1).equals("3")){
             Date date=new Date();
 
-            PromotionViewControllerService  promotionViewCon=new PromotionViewControllerImpl(date);
+            PromotionController promotionCon=new PromotionControllerimpl(Integer.parseInt(id));
             frame.getContentPane().removeAll();
             frame.repaint();
-            this.view=new PromotionView(promotionViewCon);
-//            promotionViewCon.setcon(this);
-            promotionViewCon.setView((PromotionView)this.view);
+            this.view=new Promotion(promotionCon);
+            promotionCon.setcon(this);
+            promotionCon.setView((Promotion)this.view);
             frame.getContentPane().add(this.view);
             frame.setVisible(true);
             return;
         }
+
 
 
 
@@ -234,5 +234,46 @@ public class controller {
         frame.setVisible(true);
         searchordercon.setview((UserSearchOrder) this.view);
         searchordercon.setcon(this);
+    }
+
+    public void cuxiaocelue(){
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        PromotionViewControllerService promocon=new PromotionViewControllerImpl(new Date());
+
+        this.view=new PromotionView(promocon);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        promocon.setView((PromotionView) this.view);
+        promocon.setcon(this);
+    }
+    public void xinyongchongzhi(){
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        CreditChangeViewControllerService crecon=new CreditChangeViewControllerImpl();
+
+        this.view=new CreditChangeView(crecon);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        crecon.setView((CreditChangeView) this.view);
+        crecon.setcon(this);
+    }
+
+    public void liulandingdan(){
+        frame.getContentPane().removeAll();
+        frame.repaint();
+
+
+        ChangeOrderViewControllerService chancon=new ChangeOrderViewControllerImpl(1);
+
+        this.view=new ChangeOrderView(chancon);
+        frame.getContentPane().add(this.view);
+        frame.setVisible(true);
+        chancon.setView((ChangeOrderView) this.view);
+        chancon.setcon(this);
     }
 }

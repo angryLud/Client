@@ -2,6 +2,7 @@ package presentation.controller;
 
 import businesslogic.OrderServiceImpl;
 import businesslogicservice.OrderService;
+import po.OrderPo;
 import presentation.hotelui.HotelStrategyView;
 import presentation.hotelui.HotelStrategyViewController;
 
@@ -49,6 +50,13 @@ public class HotelStrategyViewControllerImpl implements HotelStrategyViewControl
 	public void setcon(controller con) {
 		this.con = con;
 		
+	}
+
+	@Override
+	public boolean updateOrder(int orderID) {
+		
+//		return orderservice.updateOrder(orderID);
+		return false;
 	}
 
 }

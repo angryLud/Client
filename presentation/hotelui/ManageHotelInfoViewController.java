@@ -12,4 +12,6 @@ public interface ManageHotelInfoViewController {
 	public void setView(ManageHotelInfoView view);
 	
 	public void setcon(controller con);
+	
+	public boolean updateHotel(int hotelID);
 }

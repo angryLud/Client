@@ -9,6 +9,7 @@ import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -51,7 +52,7 @@ public class ManageHotelInfoView extends JPanel{
 //		}
 //		catch(RemoteException e){
 //			e.printStackTrace();
-//		}
+//		}  运行即报错
 		//界面内容
 		area.setFont(new Font("serif",Font.BOLD,20));
 		area.setText(po.getDescription());
@@ -86,15 +87,22 @@ public class ManageHotelInfoView extends JPanel{
 		
 		this.add(serviceTypeJpanel);
 		serviceTypeJpanel.setBounds(0, 0, 800, 600);
-
 	}
 		
 		public void ModifyButtonClicked(){
 			area.setEditable(true);
-			po.setDescription(area.getText());
+			
 		}
 
 		public void ConfirmButtonClicked(){
 			area.setEditable(false);
+			po.setDescription(area.getText());
+			int hotelID = po.getHotelID();
+			if(controller.updateHotel(hotelID)){
+				JOptionPane.showMessageDialog(null, "修改成功！","", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "输入不符合规定！","", JOptionPane.INFORMATION_MESSAGE);
+			}
 		}
 }

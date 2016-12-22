@@ -23,7 +23,7 @@ public class OrderServiceImpl implements OrderService{
 	public OrderServiceImpl(int hotelID) {
 		this.hotelID = hotelID;
 //		try {
-////			orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
+//			orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
 //			hotelOrderList=RemoteHelper.getInstance().getOrderdataservice().findbyhotelid(hotelID);
 //		} catch (RemoteException e){
 //			e.printStackTrace();
@@ -79,6 +79,25 @@ public class OrderServiceImpl implements OrderService{
 			}
         
 		return false;
+	}
+	public boolean updateOrder(int orderID){
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,"0",0);
+		try{
+			po = orderdataservice.find(orderID);
+			if(orderdataservice.update(po)){
+				for(OrderPo o:hotelOrderList){
+					if(o.getOrderid()==orderID){
+						o = po;
+						break;
+					}
+				}
+				return true;
+			}
+		}catch(RemoteException e){
+			e.printStackTrace();
+		}
+		return false;
+		
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package businesslogicservice;
 
 import java.util.*;
 
+import po.OrderPo;
 import vo.OrderVo;
 
 public interface OrderService {
@@ -11,6 +12,8 @@ public interface OrderService {
 	OrderVo getOrder(int orderID);
 
 	public boolean executeOrder(int orderID);
+	
+	public boolean updateOrder(int orderID);
 	
 	List<OrderVo> getUnfinishedOrders(int hotelID);
 	

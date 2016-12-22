@@ -7,7 +7,7 @@ public interface ManageRoomViewController {
 	
 	public void setView(ManageRoomView view);
 	
-	public void InputButtonClicked();
+//	public void InputButtonClicked();
 	
 	public void manageModifyButtonClicked();
 	

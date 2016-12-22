@@ -21,11 +21,11 @@ public class ManageRoomViewControllerImpl implements ManageRoomViewController{
 		
 	}
 
-	@Override
-	public void InputButtonClicked() {
-		view.InputButtonClicked();
-		
-	}
+//	@Override
+//	public void InputButtonClicked() {
+//		view.InputButtonClicked();
+//		
+//	}
 
 
 	@Override

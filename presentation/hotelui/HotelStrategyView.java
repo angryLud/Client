@@ -2,6 +2,8 @@ package presentation.hotelui;
 
 
 import javax.swing.*;
+
+import businesslogicservice.OrderService;
 import dataservice.*;
 import po.OrderPo;
 import rmi.RemoteHelper;
@@ -123,6 +125,12 @@ public class HotelStrategyView extends JPanel{
 			e.printStackTrace();
 		}
 	    po.setDiscount(discount);
+	    if(controller.updateOrder(orderid)){
+	    	JOptionPane.showMessageDialog(null, "已生效！","", JOptionPane.INFORMATION_MESSAGE);
+	    }
+	    else{
+	    	JOptionPane.showMessageDialog(null, "未能应用该优惠！","", JOptionPane.ERROR_MESSAGE);
+	    }
 		
 	}
 

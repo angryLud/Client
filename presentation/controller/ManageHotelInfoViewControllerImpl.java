@@ -1,5 +1,7 @@
 package presentation.controller;
 
+import businesslogic.HotelServiceImpl;
+import businesslogicservice.HotelService;
 import presentation.hotelui.ManageHotelInfoView;
 import presentation.hotelui.ManageHotelInfoViewController;
 import presentation.hotelui.ManageRoomView;
@@ -8,13 +10,15 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
 	
     private ManageHotelInfoView view;
     
+    private HotelService hotelservice;
+    
     private controller con;
 	
 	private int HotelID;
 	
 	public ManageHotelInfoViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
-		
+		hotelservice = new HotelServiceImpl(HotelID);
 	}
 	
 	
@@ -48,6 +52,13 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
 	public void setcon(controller con) {
 		this.con = con;
 		
+	}
+
+
+	@Override
+	public boolean updateHotel(int hotelID) {
+//		return hotelservice.updateHotel(hotelID);
+		return false;
 	}
 
 	

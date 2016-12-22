@@ -98,49 +98,49 @@ public class ManageRoomView extends JPanel{
 		manageData.add(vo2);
 		manageData.add(vo3);
 		
-		vColumns = new Vector<String>();
-		vColumns.add("酒店id");
-		vColumns.add("酒店名称");
-		vColumns.add("房间类型");
-		vColumns.add("可用数量");
-		vColumns.add("价格");
-		
-        vData = new Vector<Vector<String>>();
-        Vector<String> vo4 = new Vector<String>();
-		Vector<String> vo5 = new Vector<String>();
-		Vector<String> vo6 = new Vector<String>();
-		po1.setAvdachuangfang(28);
-		po1.setAvshuangrenfang(19);
-		po1.setAvsanrenjian(20);
-		
-		vo4.add(String.valueOf(po1.getHotelID()));
-		vo4.add(po1.getHotelName());
-		vo4.add("大床房");
-		vo4.add(String.valueOf(po1.getAvdachuangfang()));
-		vo4.add(String.valueOf(po1.getDachaungfangprice()));
-		
-		vo5.add(String.valueOf(po1.getHotelID()));
-		vo5.add(po1.getHotelName());
-		vo5.add("双人房");
-		vo5.add(String.valueOf(po1.getAvshuangrenfang()));
-		vo5.add(String.valueOf(po1.getShuangrenfangprice()));
-		
-		vo6.add(String.valueOf(po1.getHotelID()));
-		vo6.add(po1.getHotelName());
-		vo6.add("三人间");
-		vo6.add(String.valueOf(po1.getAvsanrenjian()));
-		vo6.add(String.valueOf(po1.getSanrenjianprice()));
-		vData.add(vo4);
-		vData.add(vo5);
-		vData.add(vo6);
-        
+//		vColumns = new Vector<String>();
+//		vColumns.add("酒店id");
+//		vColumns.add("酒店名称");
+//		vColumns.add("房间类型");
+//		vColumns.add("可用数量");
+//		vColumns.add("价格");
+//		
+//        vData = new Vector<Vector<String>>();
+//        Vector<String> vo4 = new Vector<String>();
+//		Vector<String> vo5 = new Vector<String>();
+//		Vector<String> vo6 = new Vector<String>();
+//		po1.setAvdachuangfang(28);
+//		po1.setAvshuangrenfang(19);
+//		po1.setAvsanrenjian(20);
+//		
+//		vo4.add(String.valueOf(po1.getHotelID()));
+//		vo4.add(po1.getHotelName());
+//		vo4.add("大床房");
+//		vo4.add(String.valueOf(po1.getAvdachuangfang()));
+//		vo4.add(String.valueOf(po1.getDachaungfangprice()));
+//		
+//		vo5.add(String.valueOf(po1.getHotelID()));
+//		vo5.add(po1.getHotelName());
+//		vo5.add("双人房");
+//		vo5.add(String.valueOf(po1.getAvshuangrenfang()));
+//		vo5.add(String.valueOf(po1.getShuangrenfangprice()));
+//		
+//		vo6.add(String.valueOf(po1.getHotelID()));
+//		vo6.add(po1.getHotelName());
+//		vo6.add("三人间");
+//		vo6.add(String.valueOf(po1.getAvsanrenjian()));
+//		vo6.add(String.valueOf(po1.getSanrenjianprice()));
+//		vData.add(vo4);
+//		vData.add(vo5);
+//		vData.add(vo6);
+//        
 		
 		manageRoomModel = new DefaultTableModel(manageData, manageColumns);
 		manageRoomTable = new JTable(manageRoomModel){
 			private static final long serialVersionUID = 1L;
 
 			public boolean isCellEditable(int row, int column){
-				return true;
+				return false;
 			}
 		};
 		manageRoomTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -183,54 +183,54 @@ public class ManageRoomView extends JPanel{
 		serviceTypeJpanel.setBounds(0, 0, 800, 600);
 	}
 	
-	public void InputButtonClicked(){
-		serviceTypeJpanel.repaint();
-		roomModel = new DefaultTableModel(vData, vColumns);
-		roomTable = new JTable(roomModel){
-			private static final long serialVersionUID = 1L;
-
-			public boolean isCellEditable(int row, int column){
-				return false;
-			}
-		};
-		roomTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		scrollPane.getViewport().add(roomTable);
-		roomTable.setFillsViewportHeight(true);
-		
-        inputButtonJpanel.add(inputRoomButton);
-        inputButtonJpanel.add(deleteRoomButton);
-
-
-        inputRoomButton.addActionListener(new ActionListener(){
-	         public void actionPerformed(ActionEvent e) {
-		         InputRoomButtonClicked();
-	         }
-         });
-        deleteRoomButton.addActionListener(new ActionListener(){
-	         public void actionPerformed(ActionEvent e) {
-		          DeleteRoomButtonClicked();
-	         }
-        });
-        
-        serviceTypeJpanel.setLayout(null);
-	    
-	    serviceTypeJpanel.add(exitButton);
-	    exitButton.setBounds(600, 40, 70, 25);
-	    exitButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-				controller.ExitButtonClicked();
-			}
-	    });
-	    serviceTypeJpanel.add(scrollPane);
-	    scrollPane.setBounds(20,80,470,300);
-	    serviceTypeJpanel.remove(manageButtonJpanel);
-	    serviceTypeJpanel.add(inputButtonJpanel);
-	    inputButtonJpanel.setBounds(480,300,250,100);
-	    serviceTypeJpanel.validate();
-	    this.remove(serviceTypeJpanel);
-	    this.add(serviceTypeJpanel);
-		serviceTypeJpanel.setBounds(0, 0, 800, 600);
-}
+//	public void InputButtonClicked(){
+//		serviceTypeJpanel.repaint();
+//		roomModel = new DefaultTableModel(vData, vColumns);
+//		roomTable = new JTable(roomModel){
+//			private static final long serialVersionUID = 1L;
+//
+//			public boolean isCellEditable(int row, int column){
+//				return false;
+//			}
+//		};
+//		roomTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+//		scrollPane.getViewport().add(roomTable);
+//		roomTable.setFillsViewportHeight(true);
+//		
+//        inputButtonJpanel.add(inputRoomButton);
+//        inputButtonJpanel.add(deleteRoomButton);
+//
+//
+//        inputRoomButton.addActionListener(new ActionListener(){
+//	         public void actionPerformed(ActionEvent e) {
+//		         InputRoomButtonClicked();
+//	         }
+//         });
+//        deleteRoomButton.addActionListener(new ActionListener(){
+//	         public void actionPerformed(ActionEvent e) {
+//		          DeleteRoomButtonClicked();
+//	         }
+//        });
+//        
+//        serviceTypeJpanel.setLayout(null);
+//	    
+//	    serviceTypeJpanel.add(exitButton);
+//	    exitButton.setBounds(600, 40, 70, 25);
+//	    exitButton.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e) {
+//				controller.ExitButtonClicked();
+//			}
+//	    });
+//	    serviceTypeJpanel.add(scrollPane);
+//	    scrollPane.setBounds(20,80,470,300);
+//	    serviceTypeJpanel.remove(manageButtonJpanel);
+//	    serviceTypeJpanel.add(inputButtonJpanel);
+//	    inputButtonJpanel.setBounds(480,300,250,100);
+//	    serviceTypeJpanel.validate();
+//	    this.remove(serviceTypeJpanel);
+//	    this.add(serviceTypeJpanel);
+//		serviceTypeJpanel.setBounds(0, 0, 800, 600);
+//}
 	public void InputRoomButtonClicked(){
 		final JFrame inputFrame = new JFrame("录入可用客房");
 		JPanel inputPanel = new JPanel();
@@ -261,6 +261,15 @@ public class ManageRoomView extends JPanel{
 				if(box1.getSelectedIndex()==2){
 					po1.setAvsanrenjian(po1.getAvsanrenjian()+1);
 				}
+				manageRoomModel = new DefaultTableModel(manageData, manageColumns);
+				manageRoomTable = new JTable(manageRoomModel){
+					private static final long serialVersionUID = 1L;
+
+					public boolean isCellEditable(int row, int column){
+						return false;
+					}
+				};
+				serviceTypeJpanel.validate();
 				inputFrame.dispose();
 				
 			}

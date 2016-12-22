@@ -1,9 +1,11 @@
 package presentation.hotelui;
 
 import java.awt.FlowLayout;
+import dataservice.hoteldataservice;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,7 +15,9 @@ import javax.swing.JTextArea;
 import po.HotelPo;
 
 public class ManageHotelInfoView extends JPanel{
+	private int hotelID;
 	private ManageHotelInfoViewController controller;
+	private hoteldataservice hoteldataservice;
 	private JTextArea area;
 	private JPanel textJpanel;
 	private JPanel serviceTypeJpanel;
@@ -28,7 +32,7 @@ public class ManageHotelInfoView extends JPanel{
 		this.setLayout(null);
 	}
 	
-		private void init(){
+		private void init() {
 		//初始化组件
 		area = new JTextArea(8,30);
 		area.setEditable(false);
@@ -42,7 +46,12 @@ public class ManageHotelInfoView extends JPanel{
 		exitButton = new JButton("返回");
 		
 		po = new HotelPo(1,"仙林","英尊",188,288,328,4,4.6,"商圈：XXXX\n地址：XXXXX\n服务设施：停车场丶wifi等\n房间价格：XXXXX\n");
-		
+//		try{
+//			po = hoteldataservice.findhotelbyid(hotelID);
+//		}
+//		catch(RemoteException e){
+//			e.printStackTrace();
+//		}
 		//界面内容
 		area.setFont(new Font("serif",Font.BOLD,20));
 		area.setText(po.getDescription());

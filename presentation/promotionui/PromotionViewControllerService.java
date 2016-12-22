@@ -12,15 +12,15 @@ public interface PromotionViewControllerService {
 	
 	public void setView(PromotionView view);
 	
-	public Date getDate();
+//	public Date getDate();
 	
-	public List<PromotionVo> observeList(Date date);
+	public List<PromotionVo> observeList();
 	
 	public void newStrategyButtonClicked();
 	
-//	public void deleteStrategyButtonClicked();
+	public void returnButtonClicked();
 	
-	public void inputDateButtonClicked();
+//	public void inputDateButtonClicked();
 
     void setcon(controller controller);
 }

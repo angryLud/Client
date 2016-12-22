@@ -12,6 +12,8 @@ public interface ChangeOrderViewControllerService {
 	 
 	 void changeButtonClicked();
 	 
+	 void returnButtonClicked();
+	 
 	 int getHotelId();
 
     void setcon(controller controller);

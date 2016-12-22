@@ -36,5 +36,9 @@ public class CreditServiceImpl implements CreditService {
 		}
 		return false;
 	}
+	
+	public void logout(){
+		
+	}
 
 }

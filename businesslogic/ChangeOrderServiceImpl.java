@@ -35,5 +35,9 @@ public class ChangeOrderServiceImpl implements ChangeOrderService{
 		}
 		return list;
 	}
+	
+	public void logout() {
+
+	}
 
 }

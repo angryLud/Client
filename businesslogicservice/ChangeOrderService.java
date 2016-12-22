@@ -7,5 +7,7 @@ import vo.OrderVo;
 public interface ChangeOrderService {
 	
 	List<OrderVo> getAbnormalOrder(int hotelId);
+	
+	void logout();
 
 }

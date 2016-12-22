@@ -1,6 +1,5 @@
 package presentation.controller;
 
-
 import businesslogic.CreditServiceImpl;
 import businesslogicservice.CreditService;
 import presentation.promotionui.CreditChangeView;
@@ -15,7 +14,7 @@ public class CreditChangeViewControllerImpl implements CreditChangeViewControlle
 	private controller con;
 	
 	public CreditChangeViewControllerImpl(){
-		creditService = new CreditServiceImpl();
+		creditService = new CreditServiceImpl();	
 	}
 	
 	
@@ -29,7 +28,13 @@ public class CreditChangeViewControllerImpl implements CreditChangeViewControlle
 
 	@Override
 	public void setcon(controller controller) {
-		this.con=con;
+		this.con=controller;
+	}
+	
+	public void cancleButtonClicked(){
+		con.login();
+		creditService.logout();
+		con.loggedin("3");
 	}
 
 }

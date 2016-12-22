@@ -19,4 +19,5 @@ public interface PromotionController {
     void chexunjiudian();
 
     void chaxundingdan();
+    
 }

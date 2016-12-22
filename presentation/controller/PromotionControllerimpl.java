@@ -14,11 +14,11 @@ import java.util.Date;
 public class PromotionControllerimpl implements PromotionController {
     private controller con;
     private Promotion view;
-    private int id;
+    private int id;//ying xiao ren yuan id
     private PromotionService proser;
 
     public PromotionControllerimpl(int id){
-        proser=new PromotionServiceImpl(new Date());
+        proser=new PromotionServiceImpl();
         this.id=id;
     }
 

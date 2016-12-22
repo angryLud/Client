@@ -21,18 +21,18 @@ import javax.swing.table.DefaultTableModel;
 
 public class ChangeOrderView extends JPanel{
 	
-	public static void main(String args[]){
-		JFrame changeOrderFrame = new JFrame();
-		changeOrderFrame.setSize(800,600);
-		changeOrderFrame.setLocation(300, 100);
-		changeOrderFrame.setTitle("更改异常订单状态");
-		int hotelId = 1; 
-		ChangeOrderViewControllerService controller = new ChangeOrderViewControllerImpl(hotelId);
-		ChangeOrderView view = new ChangeOrderView(controller);
-		controller.setView(view);
-		changeOrderFrame.getContentPane().add(view);
-		changeOrderFrame.setVisible(true);
-	}
+//	public static void main(String args[]){
+//		JFrame changeOrderFrame = new JFrame();
+//		changeOrderFrame.setSize(800,600);
+//		changeOrderFrame.setLocation(300, 100);
+//		changeOrderFrame.setTitle("更改异常订单状态");
+//		int hotelId = 1; 
+//		ChangeOrderViewControllerService controller = new ChangeOrderViewControllerImpl(hotelId);
+//		ChangeOrderView view = new ChangeOrderView(controller);
+//		controller.setView(view);
+//		changeOrderFrame.getContentPane().add(view);
+//		changeOrderFrame.setVisible(true);
+//	}
 	
 	private ChangeOrderViewControllerService controller;
 	
@@ -71,7 +71,7 @@ public class ChangeOrderView extends JPanel{
 		returnButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent arg0){
-				
+				controller.returnButtonClicked();
 			}
 		});
 		

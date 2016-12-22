@@ -11,6 +11,8 @@ public class CreditChangeViewControllerImpl implements CreditChangeViewControlle
 	private CreditChangeView view;
 	
 	private CreditService creditService;
+
+	private controller con;
 	
 	public CreditChangeViewControllerImpl(){
 		creditService = new CreditServiceImpl();
@@ -23,6 +25,11 @@ public class CreditChangeViewControllerImpl implements CreditChangeViewControlle
 	
 	public void confirmButtonClicked(){
 		view.confirmButtonClicked();
+	}
+
+	@Override
+	public void setcon(controller controller) {
+		this.con=con;
 	}
 
 }

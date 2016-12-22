@@ -17,14 +17,14 @@ public class ManageServiceImpl implements ManageService {
 	private List<UserPo> userList;
 	
 	public boolean addUser(UserPo userPo){
-		try {
-			if(RemoteHelper.getInstance().getUserdataservice().insert(userPo)){
-				return true;
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			if(RemoteHelper.getInstance().getUserdataservice().insert(userPo)){
+//				return true;
+//			}
+//		} catch (RemoteException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return false;
 	}
 	

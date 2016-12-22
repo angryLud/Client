@@ -1,5 +1,6 @@
 package presentation.promotionui;
 
+import presentation.controller.controller;
 import vo.OrderVo;
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface ChangeOrderViewControllerService {
 	 
 	 int getHotelId();
 
+    void setcon(controller controller);
 }

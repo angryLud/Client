@@ -1,16 +1,22 @@
 package po;
 
+import java.io.Serializable;
+
 /**
- * promotionNo  策略编号
- * promotionName策略名称
- * beginTime	策略开始时间
- * endTime		策略结束时间
- * discount     策略折扣
- * place        服务范围
+ * promotionNo  策略编号  4位整数
+ * promotionName策略名称  不超过10位字符串
+ * beginTime	策略开始时间  8位字符串 2016****
+ * endTime		策略结束时间	8位字符串 2016****
+ * discount     策略折扣		0～1浮点数。2位小数
+ * place        服务范围		见po.address
  * @author summer
  */
 
-public class PromotionPo {
+public class PromotionPo implements Serializable{
+
+	
+
+	private static final long serialVersionUID =30L;
 	
 	private int promotionNo;
 	

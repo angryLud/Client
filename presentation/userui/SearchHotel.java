@@ -92,12 +92,12 @@ public class SearchHotel extends JPanel{
 		comboBox_2.addItem("星级");
 		comboBox_2.addActionListener(new ActionListener(){
 
-			@Override
+			@Override//按照评分和星级排序
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				String x = (String)comboBox.getSelectedItem();
 				if(x=="评分"){
-					
+					RowSorter<TableModel> sorter = new TableRowSorter<TableModel>(model); 
 				}else if(x=="星级"){
 					
 				}

@@ -18,7 +18,7 @@ public class ChangeOrderServiceImpl implements ChangeOrderService{
 	public ChangeOrderServiceImpl(int hotelId){
 		this.hotelId = hotelId;
 		try {
-			orderList = RemoteHelper.getInstance().getOrderdataservice().findbyhotelid(hotelId);
+			orderList = RemoteHelper.getInstance().getOrderdataservice().findorderbyhotelid(hotelId);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

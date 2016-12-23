@@ -8,6 +8,8 @@ public interface ChangeOrderService {
 	
 	List<OrderVo> getAbnormalOrder(int hotelId);
 	
+	boolean updateOrder(int orderId);
+	
 	void logout();
 
 }

@@ -10,7 +10,7 @@ public interface ManageService {
 	 * @param userPo
 	 * @return 增加用户
 	 */
-	public boolean addUser(UserPo userPo);
+	public int addUser(UserPo userPo,String password);
 	
 	/**
 	 * @param userPo

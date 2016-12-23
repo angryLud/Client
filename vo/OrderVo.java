@@ -2,6 +2,8 @@ package vo;
 import po.OrderPo;
 import java.util.*;
 public class OrderVo extends Vector<String>{
+private String access;
+private int score;
 public OrderVo(OrderPo orderPo){
 	this.add(String.valueOf(orderPo.getOrderid()));
 	this.add(String.valueOf(orderPo.getUserid()));
@@ -28,17 +30,10 @@ public OrderVo(int userid, int hotelid,  long createtime, long executetime, long
 	this.add(roomstyle);
 	this.add(String.valueOf(roomnum));
 }
-public OrderVo(int userid, int hotelid,  long createtime, long executetime, long delaytime, long endtime,int status,String roomstyle,int roomnum){
-
-	this.add(String.valueOf(userid));
-	this.add(String.valueOf(hotelid));
-	this.add(String.valueOf(createtime));
-	this.add(String.valueOf(executetime));
-	this.add(String.valueOf(delaytime));
-	this.add(String.valueOf(endtime));
-	this.add(String.valueOf(status));
-	this.add(roomstyle);
-	this.add(String.valueOf(roomnum));
+public OrderVo(String access, int score) {
+	// TODO Auto-generated constructor stub
+this.access = access;
+this.score = score;
 }
 public int getOrderid(){
 	return 1;

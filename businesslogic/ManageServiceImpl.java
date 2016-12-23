@@ -53,6 +53,7 @@ public class ManageServiceImpl implements ManageService {
 	
 	public int addHotel(HotelPo hotelPo){
 		try {
+
 			int id = RemoteHelper.getInstance().getHoteldataservice().hotelinsert(hotelPo);
 			if(id>1999){
 				return id;

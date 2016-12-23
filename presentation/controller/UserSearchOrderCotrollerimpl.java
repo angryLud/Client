@@ -7,7 +7,9 @@ import businesslogic.userserviceimpl;
 import businesslogicservice.userservice;
 import presentation.userui.UserSearchOrder;
 import presentation.userui.UserSearchOrderCotroller;
+import vo.HotelVo;
 import vo.OrderVo;
+import vo.UserVo;
 
 
 public class UserSearchOrderCotrollerimpl implements UserSearchOrderCotroller {
@@ -63,6 +65,12 @@ public UserSearchOrderCotrollerimpl(int userId){
 	public void cancel() {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void updateorderinfor(String access, int score) {
+		// TODO Auto-generated method stub
+		OrderVo ovo = new OrderVo(access,score);
+		userso.updateorderinfo(ovo);
 	}
 
 

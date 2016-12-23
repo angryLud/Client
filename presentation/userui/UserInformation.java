@@ -62,7 +62,7 @@ public void go(){
     userinfor.setBounds(150, 40, 200, 70);
     label2 = new JLabel("信用值："+UserInforCon.getcredit()+"");
     this.add(label2);
-    label2.setBounds(40, 40, 140, 270);
+    label2.setBounds(150, 120, 100, 30);
     
     this.setVisible(true);
 }

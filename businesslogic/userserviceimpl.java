@@ -33,6 +33,9 @@ public class userserviceimpl implements businesslogicservice.userservice {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		upo=new UserPo(0,"cyz","19960601","12345678912",100,null);
+		
+		
 		logs=new login();
 	}
 
@@ -102,11 +105,20 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
 	@Override
 	public List<HotelVo> getAllHotels(int userId) {
 		// TODO Auto-generated method stub
-		return null;
+	//	HotelPo v = new HotelPo(hotelID,position,hotelName,dachuangfangprice,shuangrenfangprice,sanrenjianprice,star,score,description);
+		HotelVo x=new HotelVo(1,"如家","新街口","南京",3,5,true);
+		HotelVo y=new HotelVo(2,"汉庭","新百","北京",4,4,false);
+		HotelVo z=new HotelVo(3,"尼玛","仙林","新疆",5,3,true);
+		HotelVo u=new HotelVo(4,"嗨","哦哦哦","俄罗斯",1,4,true);
+		ArrayList<HotelVo> l=new ArrayList<>();
+		l.add(x);
+		l.add(y);
+		l.add(z);
+		l.add(u);
+		return l;
 	}
 
 	@Override
@@ -131,7 +143,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		
 //		插入数据库
 		 try {
-			RemoteHelper.getInstance().getOrderdataservice().insert(new OrderPo(ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
+			RemoteHelper.getInstance().getOrderdataservice().orderinsert(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -143,20 +155,6 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	public int getuserid() {
 		// TODO Auto-generated method stub
 		return upo.getId();
-	}
-//按条件搜索酒店（商圈、地址、是否预定过）
-	@Override
-	public Vector<HotelVo> usersearchhotel(String s1, String s2, String s3) {
-		// TODO Auto-generated method stub
-//搜索筛选
-		Vector<HotelVo> x=new Vector<>();
-//		List<HotelVo> hpolist=SearchHotelController.getAllHotels(0);
-//			for(int i=0;i<hpolist.size();i++){
-//				if(hpolist.get(i).get(3).equals(s1)){
-//					
-//				}
-//			}
-		return x;
 	}
 
 	@Override
@@ -175,7 +173,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		// TODO Auto-generated method stub
 		//插入数据库
 		try {
-			RemoteHelper.getInstance().getUserdataservice().update(new UserPo(0,uvo.getUserName(),null,uvo.getPhone(),100,null));
+			RemoteHelper.getInstance().getUserdataservice().userupdate(new UserPo(0,uvo.getUserName(),null,uvo.getPhone(),100,null));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

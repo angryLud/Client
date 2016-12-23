@@ -80,9 +80,9 @@ public class ManageView extends JPanel{
 	
 	private JFrame newHotelFrame;
 	
-	private JLabel newHotelLabel1,newHotelLabel2,newHotelLabel3,newHotelLabel4,newHotelLabel5,newHotelLabel6,newHotelLabel7,newHotelLabel8,newHotelLabel9;
+	private JLabel newHotelLabel1,newHotelLabel2,newHotelLabel_,newHotelLabel3,newHotelLabel4,newHotelLabel5,newHotelLabel6,newHotelLabel7,newHotelLabel8,newHotelLabel9;
 	
-	private JTextField newHotelTextField1,newHotelTextField2,newHotelTextField3,newHotelTextField4,newHotelTextField5,newHotelTextField6,newHotelTextField7,newHotelTextField8,newHotelTextField9;
+	private JTextField newHotelTextField1,newHotelTextField2,newHotelTextField3,newHotelTextField_,newHotelTextField4,newHotelTextField5,newHotelTextField6,newHotelTextField7,newHotelTextField8,newHotelTextField9;
 	
 	private ManageService manageService;
 	
@@ -403,6 +403,7 @@ public class ManageView extends JPanel{
 //		newHotelLabel1 = new JLabel("酒店ID");
 		newHotelLabel2 = new JLabel("酒店名称");
 		newHotelLabel3 = new JLabel("酒店地址");
+		newHotelLabel_ = new JLabel("酒店商圈");
 		newHotelLabel4 = new JLabel("酒店星级");
 		newHotelLabel5 = new JLabel("酒店描述");
 		newHotelLabel6 = new JLabel("评分");
@@ -412,6 +413,7 @@ public class ManageView extends JPanel{
 //		newHotelTextField1 = new JTextField(20);
 		newHotelTextField2 = new JTextField(20);
 		newHotelTextField3 = new JTextField(20);
+		newHotelTextField_ = new JTextField(20);
 		newHotelTextField4 = new JTextField(20);
 		newHotelTextField5 = new JTextField(20);
 		newHotelTextField6 = new JTextField(20);
@@ -446,6 +448,8 @@ public class ManageView extends JPanel{
 		panel2.add(newHotelTextField2);
 		panel2.add(newHotelLabel3);
 		panel2.add(newHotelTextField3);
+		panel2.add(newHotelLabel_);
+		panel2.add(newHotelTextField_);
 		panel2.add(newHotelLabel4);
 		panel2.add(newHotelTextField4);
 		panel2.add(newHotelLabel5);
@@ -488,14 +492,14 @@ public class ManageView extends JPanel{
 		int id = Integer.valueOf(newHotelTextField1.getText());
 		String hotelName = newHotelTextField2.getText();
 		String hotelAddress = newHotelTextField3.getText();
-
+		String position = newHotelTextField_.getText();
 		int dachuangfangprice = Integer.valueOf(newHotelTextField7.getText());
 		int shuangrenfangprice =Integer.valueOf(newHotelTextField8.getText());
 		int sanrenjianprice =Integer.valueOf(newHotelTextField9.getText());
 		int star =Integer.valueOf(newHotelTextField4.getText());
 		double score =Double.valueOf(newHotelTextField6.getText());
 		String description = newHotelTextField5.getText();
-		HotelPo hotelPo = new HotelPo(id,hotelAddress,hotelName,dachuangfangprice,shuangrenfangprice,
+		HotelPo hotelPo = new HotelPo(id,hotelAddress,position,hotelName,dachuangfangprice,shuangrenfangprice,
 				sanrenjianprice,star,score,description);
 
 		manageService = new ManageServiceImpl();

@@ -72,7 +72,7 @@ public class ManageRoomView extends JPanel{
 		Vector<String> vo1 = new Vector<String>();
 		Vector<String> vo2 = new Vector<String>();
 		Vector<String> vo3 = new Vector<String>();
-		po1 = new HotelPo(1,"仙林","英尊",188,288,328,4,4.6,"不错");
+		po1 = new HotelPo(1,"仙林","南京","英尊",188,288,328,4,4.6,"不错");
 		po1.setAvdachuangfang(28);
 		po1.setAvshuangrenfang(19);
 		po1.setAvsanrenjian(20);

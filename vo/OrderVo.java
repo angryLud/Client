@@ -40,8 +40,8 @@ public OrderVo(int userid, int hotelid,  long createtime, long executetime, long
 	this.add(roomstyle);
 	this.add(String.valueOf(roomnum));
 }
-public String getOrderid(){
-	return this.get(0);
+public int getOrderid(){
+	return 1;
 }
 public int getUserid(){
 	return 11;
@@ -68,8 +68,8 @@ public String getValue(){
 public int getStatus(){
 	return 1;
 }
-public String getRoomstyle(){
-	return this.get(10);
+public int getRoomstyle(){
+	return 0;
 }
 public int getRoomnum(){
 	return 0;

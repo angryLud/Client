@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import com.sun.jndi.cosnaming.IiopUrl.Address;
 
 import businesslogic.PromotionServiceImpl;
 import businesslogicservice.PromotionService;
@@ -296,47 +297,60 @@ public class PromotionView extends JPanel{
 		
 		newStrategyPanel = new JPanel();
 		newStrategyPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		newStrategyLabel1 = new JLabel("策略序号（4位）");
-		newStrategyTextField1 = new JTextField(20);
+//		newStrategyLabel1 = new JLabel("策略序号（4位）");
+//		newStrategyTextField1 = new JTextField(20);
 		newStrategyLabel2 = new JLabel("策略名称（不超过20字）");
 		newStrategyTextField2 = new JTextField(35);
-		newStrategyLabel3 = new JLabel("开始时间（yyyy/MM/dd HH:mm:ss）");
+		newStrategyLabel3 = new JLabel("开始时间（yyyyMMdd）");
 		newStrategyTextField3 = new JTextField(20);
-		newStrategyLabel4 = new JLabel("结束时间（yyyy/MM/dd HH:mm:ss）");
+		newStrategyLabel4 = new JLabel("结束时间（yyyyMMdd）");
 		newStrategyTextField4 = new JTextField(20);
 		newStrategyLabel5 = new JLabel("折扣");
 		newStrategyTextField5 = new JTextField(20);
 		newStrategyLabel6 = new JLabel("服务范围");
 		newStrategyCombobox1 = new JComboBox<String>();
 			List<String> list=new ArrayList<String>();
-			list.add("全国");
-			list.add("江苏");
-			list.add("辽宁");		
+			list.add("南京_仙林");
+			list.add("南京_鼓楼");
+			list.add("南京_浦口");
+			list.add("南京_玄武");
+			list.add("北京_海淀");
+			list.add("北京_朝阳");
+			list.add("北京_西城");
+			list.add("北京_东城");
+			list.add("上海_浦东");
+			list.add("上海_黄埔");
+			list.add("上海_外滩");
+			list.add("上海_长宁");
+			list.add("西安_碑林");
+			list.add("西安_雁塔");
+			list.add("西安_曲江");
+			list.add("西安_长安");
 			for(String str : list){
 				newStrategyCombobox1.addItem(str);
 			}
-		newStrategyCombobox2 = new JComboBox<String>();
-			list=new ArrayList<String>();
-			list.add("全省");
-			list.add("南京");
-			list.add("苏州");		
-			for(String str : list){
-				newStrategyCombobox2.addItem(str);
-			}
-		newStrategyCombobox3 = new JComboBox<String>();
-			list=new ArrayList<String>();
-			list.add("全区/商圈");
-			list.add("新街口");
-			list.add("栖霞区");		
-			for(String str : list){
-				newStrategyCombobox3.addItem(str);
-			}
+//		newStrategyCombobox2 = new JComboBox<String>();
+//			list=new ArrayList<String>();
+//			list.add("全省");
+//			list.add("南京");
+//			list.add("苏州");		
+//			for(String str : list){
+//				newStrategyCombobox2.addItem(str);
+//			}
+//		newStrategyCombobox3 = new JComboBox<String>();
+//			list=new ArrayList<String>();
+//			list.add("全区/商圈");
+//			list.add("新街口");
+//			list.add("栖霞区");		
+//			for(String str : list){
+//				newStrategyCombobox3.addItem(str);
+//			}
 		confirmButton = new JButton("确定");
 		//确定增加新策略
 		confirmButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent args0){
-				int index = Integer.valueOf(newStrategyTextField1.getText());
+				int index = 0;
 				if(newPromotion(index)){
 					promotionVo = new PromotionVo(promotionPo);
 					promotionListModel.addRow(promotionVo);
@@ -353,8 +367,8 @@ public class PromotionView extends JPanel{
 			}
 		});
 		newStrategyPanel = new JPanel();
-		newStrategyLabel1.setBounds(200,10,100,30);
-		newStrategyTextField1.setBounds(350,10,200,30);
+//		newStrategyLabel1.setBounds(200,10,100,30);
+//		newStrategyTextField1.setBounds(350,10,200,30);
 		newStrategyLabel2.setBounds(150,50,200,30);
 		newStrategyTextField2.setBounds(350,50,200,30);
 		newStrategyLabel3.setBounds(100,90,300,30);
@@ -364,12 +378,12 @@ public class PromotionView extends JPanel{
 		newStrategyLabel5.setBounds(250,170,100,30);
 		newStrategyTextField5.setBounds(350,170,200,30);
 		newStrategyLabel6.setBounds(200,210,100,30);
-		newStrategyCombobox1.setBounds(350,210,60,30);
-		newStrategyCombobox2.setBounds(420,210,60,30);
-		newStrategyCombobox3.setBounds(490,210,80,30);
+		newStrategyCombobox1.setBounds(350,210,180,30);
+//		newStrategyCombobox2.setBounds(420,210,60,30);
+//		newStrategyCombobox3.setBounds(490,210,80,30);
 		newStrategyPanel.setLayout(null);
-		newStrategyPanel.add(newStrategyLabel1);
-		newStrategyPanel.add(newStrategyTextField1);
+//		newStrategyPanel.add(newStrategyLabel1);
+//		newStrategyPanel.add(newStrategyTextField1);
 		newStrategyPanel.add(newStrategyLabel2);
 		newStrategyPanel.add(newStrategyTextField2);
 		newStrategyPanel.add(newStrategyLabel3);
@@ -380,8 +394,8 @@ public class PromotionView extends JPanel{
 		newStrategyPanel.add(newStrategyTextField5);
 		newStrategyPanel.add(newStrategyLabel6);
 		newStrategyPanel.add(newStrategyCombobox1);
-		newStrategyPanel.add(newStrategyCombobox2);
-		newStrategyPanel.add(newStrategyCombobox3);
+//		newStrategyPanel.add(newStrategyCombobox2);
+//		newStrategyPanel.add(newStrategyCombobox3);
 		newStrategyPanel.add(confirmButton);
 		newStrategyPanel.add(cancleButton);
 		
@@ -397,7 +411,7 @@ public class PromotionView extends JPanel{
 		String beginTime = newStrategyTextField3.getText();
 		String endTime = newStrategyTextField4.getText();
 		double discount = Double.valueOf(newStrategyTextField5.getText());
-		String place = (String)newStrategyCombobox1.getSelectedItem()+(String)newStrategyCombobox2.getSelectedItem()+(String)newStrategyCombobox3.getSelectedItem();
+		String place = (String)newStrategyCombobox1.getSelectedItem();
 		promotionService = new PromotionServiceImpl();
 		promotionPo = new PromotionPo(promotionNo,promotionName,beginTime,endTime,discount,place);	
 		if(promotionService.insert(promotionPo)){

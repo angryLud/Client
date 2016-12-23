@@ -36,7 +36,7 @@ public class ManageServiceImpl implements ManageService {
 				userPo.setPhone(usPo.getPhone());
 				userPo.setBirthday(usPo.getBirthday());
 				try {
-					if(RemoteHelper.getInstance().getUserdataservice().update(userPo)){
+					if(RemoteHelper.getInstance().getUserdataservice().userupdate(userPo)){
 						return true;
 					}
 				} catch (RemoteException e) {
@@ -49,16 +49,17 @@ public class ManageServiceImpl implements ManageService {
 		return false;
 	}
 	
-	public boolean addHotel(HotelPo hotelPo){
+	public int addHotel(HotelPo hotelPo){
 		try {
-			if(RemoteHelper.getInstance().getHoteldataservice().insert(hotelPo)){
-				return true;
+			int id = RemoteHelper.getInstance().getHoteldataservice().hotelinsert(hotelPo);
+			if(id>1999){
+				return id;
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 	}
 	
 	public UserVo uploadUser(int id){

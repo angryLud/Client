@@ -6,7 +6,29 @@ import java.io.Serializable;
  * Created by huihantao on 2016/11/30.
  */
 public class OrderPo implements Serializable {
-    private static final long serialVersionUID=3L;
+
+    //id四位整数
+
+    // 时间8位
+
+    // 价格 不超过4位整数
+
+    // 状态 0 未执行
+    //     1 已执行
+    //     2 异常
+    //     3 已撤销
+
+
+    // 折扣0～1 浮点数 小数点后2位
+    // 评价不超过20位字符
+
+    // 房间类型
+    // 0:大床房
+    // 1:双人房
+    // 2:三人间
+
+
+    private static final long serialVersionUID=40L;
     private int orderid;
     private int userid;
     private int hotelid;
@@ -17,13 +39,13 @@ public class OrderPo implements Serializable {
     private int value;
     private int status;
     
-    private int roomNum;
     private double discount;
     private String assess;
-	private String roomstyle;
+	private int roomstyle;
 	private int roomnum;
 
-    public OrderPo(int userid, int hotelid, long createtime, long executetime, long delaytime ,long endtime, int value, int status,String roomstyle,int roomnum) {
+    public OrderPo(int orderid,int userid, int hotelid, long createtime, long executetime, long delaytime ,long endtime, int value, int status,int roomstyle,int roomnum) {
+        this.orderid=orderid;
         this.createtime = createtime;
         this.executetime = executetime;
         this.delaytime = delaytime;
@@ -78,12 +100,7 @@ public class OrderPo implements Serializable {
     public void setEndtime(long endtime){
     	this.endtime = endtime;
     }
-//    public int getStrategyNum(){
-//    	return strategyNum;
-//    }
-//    public void setStrategyNum(int strategyNum){
-//    	this.strategyNum = strategyNum;
-//    }
+
     public int getStatus(){
     	return status;
     }
@@ -102,10 +119,10 @@ public class OrderPo implements Serializable {
     public void setAssess(String assess){
     	this.assess=assess;
     	}
-    public String getRoomstyle(){
+    public int getRoomstyle(){
     	return roomstyle;
     }
-    public void setRoomstyle(String roomstyle){
+    public void setRoomstyle(int roomstyle){
     	this.roomstyle=roomstyle;
     	}
     public int getRoomnum(){

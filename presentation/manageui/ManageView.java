@@ -28,17 +28,17 @@ import vo.UserVo;
 
 public class ManageView extends JPanel{
 	
-	public static void main(String args[]){
-		JFrame manageFrame = new JFrame();
-		manageFrame.setSize(800,600);
-		manageFrame.setLocation(300,100);
-		ManageViewControllerService controller = new ManageViewControllerImpl();
-		ManageView view = new ManageView(controller);
-		controller.setView(view);
-		manageFrame.setTitle("人员管理");
-		manageFrame.getContentPane().add(view);
-		manageFrame.setVisible(true);
-	}
+//	public static void main(String args[]){
+//		JFrame manageFrame = new JFrame();
+//		manageFrame.setSize(800,600);
+//		manageFrame.setLocation(300,100);
+//		ManageViewControllerService controller = new ManageViewControllerImpl();
+//		ManageView view = new ManageView(controller);
+//		controller.setView(view);
+//		manageFrame.setTitle("人员管理");
+//		manageFrame.getContentPane().add(view);
+//		manageFrame.setVisible(true);
+//	}
 	
 	private int userID;
 	
@@ -47,6 +47,8 @@ public class ManageView extends JPanel{
 	private JComboBox<String> userTypeCombobox;
 	
 	private JButton searchButton;
+	
+	private JButton returnButton;
 	
 	private JButton newMemberButton,newHotelButton;
 	
@@ -176,6 +178,16 @@ public class ManageView extends JPanel{
 			}
 		});
 		
+		returnButton = new JButton("注销");
+		returnButton.setBounds(680,10,100,50);
+        returnButton.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,30));
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controller.back( );
+            }
+        });
+		
 		searchButton.setFont(new Font("宋体",Font.BOLD,20));
 		newMemberButton.setFont(new Font("宋体",Font.BOLD,20));
 		newHotelButton.setFont(new Font("宋体",Font.BOLD,20));
@@ -185,6 +197,7 @@ public class ManageView extends JPanel{
 		userTypeJpanel.add(searchButton);
 		userTypeJpanel.add(newMemberButton);
 		userTypeJpanel.add(newHotelButton);
+		userTypeJpanel.add(returnButton);
 				
 		searchButton.setEnabled(false);
 		newMemberButton.setEnabled(false);

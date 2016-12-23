@@ -86,7 +86,7 @@ public class controller {
 
         if (id.substring(0,1).equals("2")){
 
-            manageViewController =new ManageViewControllerImpl();
+            manageViewController =new ManageViewControllerImpl(Integer.parseInt(id));
             frame.getContentPane().removeAll();
             frame.repaint();
             this.view=new ManageView(manageViewController);
@@ -97,7 +97,7 @@ public class controller {
             return;
         }
         if (id.substring(0,1).equals("3")){
-            Date date=new Date();
+//            Date date=new Date();
 
             PromotionController promotionCon=new PromotionControllerimpl(Integer.parseInt(id));
             frame.getContentPane().removeAll();
@@ -241,7 +241,7 @@ public class controller {
         frame.repaint();
 
 
-        PromotionViewControllerService promocon=new PromotionViewControllerImpl(new Date());
+        PromotionViewControllerService promocon=new PromotionViewControllerImpl();
 
         this.view=new PromotionView(promocon);
         frame.getContentPane().add(this.view);

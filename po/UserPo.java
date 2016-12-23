@@ -4,6 +4,14 @@ import java.io.Serializable;
 
 
 public class UserPo implements Serializable{
+
+	//id为4位整数，第一位是0
+//	username为不超过10位字符
+//	credit 为不超过4位的整数
+//	birthday为8位纯数字字符串 如1996xxxx
+//	phone位11位纯数字字符串
+//	company位不超过6位字符串
+
 	
 	private int id;
 	
@@ -17,7 +25,7 @@ public class UserPo implements Serializable{
 	
 	private String company;
 
-	private static final long serialVersionUID = 8383901821872620925L;
+	private static final long serialVersionUID = 10L;
 	
 	public UserPo(){
 		super();

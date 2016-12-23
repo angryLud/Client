@@ -1,7 +1,5 @@
 package presentation.signup;
 
-import vo.Address;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

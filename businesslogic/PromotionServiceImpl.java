@@ -18,14 +18,15 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	private List<PromotionPo> promotionList;
 	
-	private  Date date;
+//	private  Date date;
 	
-	public PromotionServiceImpl(Date date){
-		this.date = date;
+	public PromotionServiceImpl(){
+//		this.date = date;
 //		promotionDao = promotiondataservice.getInstance();
 //		promotionList = promotionDao.find(date);
+		promotionList = new ArrayList<PromotionPo>();
 //		try {
-//			RemoteHelper.getInstance().getPromotiondataservice().find(date);
+//			promotionList = RemoteHelper.getInstance().getPromotiondataservice().find();
 //		} catch (RemoteException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -52,20 +53,21 @@ public class PromotionServiceImpl implements PromotionService {
 	
 
 	
-	public List<PromotionVo> find(Date date){
+	public List<PromotionVo> find(){
 		List<PromotionVo> list = new ArrayList<PromotionVo>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		for(PromotionPo promotionPo : promotionList){
 			PromotionVo promotionVo = new PromotionVo(promotionPo);
-			try {
-				Date dateBegin = sdf.parse(promotionVo.getBeginTime());
-				if(date.getTime()<=dateBegin.getTime()){
-					list.add(promotionVo);
-				}
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+			list.add(promotionVo);
+//			try {
+//				Date dateBegin = sdf.parse(promotionVo.getBeginTime());
+//				if(date.getTime()<=dateBegin.getTime()){
+//					list.add(promotionVo);
+//				}
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}	
 		}
 		return list;
 	}

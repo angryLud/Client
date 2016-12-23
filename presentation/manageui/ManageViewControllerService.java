@@ -7,6 +7,8 @@ public interface ManageViewControllerService {
 	
 	public void setView(ManageView view);
 	
+	void back();
+	
 	public void updateScene(String comboboxValue);
 	
 	public void searchButtonClicked();

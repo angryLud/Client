@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public interface orderdataservice extends Remote {
-	boolean orderinsert(OrderPo opo) throws RemoteException;
+	int orderinsert(OrderPo opo) throws RemoteException;
 	boolean orderupdate(OrderPo opo) throws RemoteException;
 	OrderPo orderfind(int orderid) throws RemoteException;
 	ArrayList<OrderPo> findorderbyuserid(int userid) throws RemoteException;

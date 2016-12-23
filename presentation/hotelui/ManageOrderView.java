@@ -127,7 +127,7 @@ public class ManageOrderView extends JPanel{
 		searchColumns.add("执行情况");
 		
 		searchData = new Vector<OrderVo>();
-		OrderPo orderPo = new OrderPo(1,2,3,20161203,20161205,20161205,20161208,198,1,0,316);
+		OrderPo orderPo = new OrderPo(1,2,3,20161203,20161205,20161205,20161208,198,1,0,316,null,0);
 		OrderVo orderVo = new OrderVo(orderPo);
 		searchData.add(orderVo);
 		
@@ -143,7 +143,7 @@ public class ManageOrderView extends JPanel{
 		executeColumns.add("执行情况");
 		
 		executeData = new Vector<OrderVo>();
-		OrderPo orderPo2 = new OrderPo(1,2,3,20161203,20161205,20161205,20161208,198,1,0,316);
+		OrderPo orderPo2 = new OrderPo(1,2,3,20161203,20161205,20161205,20161208,198,1,0,316,null,0);
 		OrderVo orderVo2 = new OrderVo(orderPo2);
 		executeData.add(orderVo2);
 		

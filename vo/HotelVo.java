@@ -33,6 +33,8 @@ public HotelVo(HotelPo hotelPo) {
 	}
 
 
+
+
 public int getHotelID(){
 	return Integer.parseInt(this.get(0));
 }

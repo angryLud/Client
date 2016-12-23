@@ -7,12 +7,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import presentation.controller.SearchHotelControllerimpl;
 import presentation.controller.UserSearchOrderCotrollerimpl;
@@ -36,11 +39,11 @@ public class SearchHotel extends JPanel{
 	private JScrollPane scrollPane;
 	private JComboBox comboBox;
 	private JComboBox comboBox_1;
-	private JComboBox comboBox_2;
 	private JComboBox comboBox_3;
 	private JButton button_1;
 	private JButton button2;
 	private JButton button3;
+	private JButton button4;
 	private JButton exitbutton;
 	private Vector<HotelVo> hotellist;
 	
@@ -85,35 +88,26 @@ public class SearchHotel extends JPanel{
 		comboBox_1.addItem("南京");
 		this.add(comboBox_1);
 		//排序
-		comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"排序"}));
-		comboBox_2.setBounds(216, 40, 70, 21);
-		comboBox_2.addItem("评分");
-		comboBox_2.addItem("星级");
-		comboBox_2.addActionListener(new ActionListener(){
-
-			@Override
+		button4 = new JButton("排序");
+		button4.setBounds(296, 40, 70, 21);
+		button4.addActionListener(new ActionListener(){
+			@Override//按照评分和星级排序
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				String x = (String)comboBox.getSelectedItem();
-				if(x=="评分"){
-					
-				}else if(x=="星级"){
-					
-				}
-			}
-			
+				RowSorter sorter = new TableRowSorter(hotelListModel);
+				hotelTable.setRowSorter(sorter);
+				}		
 		});
-		this.add(comboBox_2);
+		this.add(button4);
 		//限定
 		comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"限定"}));
-		comboBox_3.setBounds(296, 40, 70, 21);
+		comboBox_3.setBounds(216, 40, 70, 21);
 		comboBox_3.addItem("预订过");
 		comboBox_3.addItem("未订过");
 		this.add(comboBox_3);
 		
-		textField = new JTextField();
+		textField = new JTextField("名称/房间/星级");
 		textField.setBounds(410, 40, 102, 21);
 		this.add(textField);
 		textField.setColumns(10);

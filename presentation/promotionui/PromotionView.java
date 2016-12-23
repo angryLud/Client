@@ -30,6 +30,7 @@ import com.sun.jndi.cosnaming.IiopUrl.Address;
 
 import businesslogic.PromotionServiceImpl;
 import businesslogicservice.PromotionService;
+import po.HotelPo;
 import po.PromotionPo;
 import presentation.controller.PromotionViewControllerImpl;
 import vo.PromotionVo;
@@ -66,6 +67,8 @@ public class PromotionView extends JPanel{
 	private JButton deleteStrategyButton;
 	
 	private JButton inputDateButton;
+	
+	private JButton comeToUseButton;
 	
 	private JButton returnButton;
 	
@@ -160,11 +163,20 @@ public class PromotionView extends JPanel{
 			}
 		});
 		
+		comeToUseButton = new JButton("应用");
+		comeToUseButton.addActionListener(new ActionListener(){
+			
+			public void actionPerformed(ActionEvent arg0){
+				controller.comeToUseButtonClicked();
+			}
+		});
+		
 		//添加策略处理栏
 		JPanel processPanel = new JPanel();
 		JPanel processPanel1 = new JPanel();	
 		processPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		processPanel.add(newStrategyButton);
+		processPanel.add(comeToUseButton);
 //		processPanel.add(deleteStrategyButton);
 //		processPanel.add(inputDateButton);
 		processPanel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -175,6 +187,7 @@ public class PromotionView extends JPanel{
 		processPanel2.add(processPanel1);
 		
 		newStrategyButton.setEnabled(true);
+		comeToUseButton.setEnabled(true);
 //		deleteStrategyButton.setEnabled(true);
 //		inputDateButton.setEnabled(true);
 		returnButton.setEnabled(true);
@@ -421,6 +434,19 @@ public class PromotionView extends JPanel{
 		else{
 			JOptionPane.showMessageDialog(null,"增加销售策略失败","",JOptionPane.ERROR_MESSAGE);
 			return false;
+		}
+	}
+	
+	public void comeToUseButtonClicked(){
+		int index = promotionTable.getSelectedRow();
+		if(index==-1){
+			JOptionPane.showMessageDialog(null,"请选择销售策略","",JOptionPane.ERROR_MESSAGE);
+		}
+		String place = (String)promotionTable.getValueAt(index,5);
+		double discount = (Double)promotionTable.getValueAt(index, 4);
+		promotionService = new PromotionServiceImpl();
+		if(promotionService.updateOrder(place,discount)){
+			JOptionPane.showMessageDialog(null,"应用成功","",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

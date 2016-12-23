@@ -20,7 +20,10 @@ public interface PromotionViewControllerService {
 	
 	public void returnButtonClicked();
 	
+	void comeToUseButtonClicked();
+	
 //	public void inputDateButtonClicked();
 
     void setcon(controller controller);
+    
 }

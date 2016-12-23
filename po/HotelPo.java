@@ -23,6 +23,12 @@ public class HotelPo implements Serializable{
 	int hotelID;
 	String position;
 	String address;
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	String hotelName;
 	
 	int avdachuangfang;
@@ -31,6 +37,15 @@ public class HotelPo implements Serializable{
 	int avsanrenjian;
 	int dachuangfangprice;
 	
+	public void setDachuangfangprice(int dachuangfangprice) {
+		this.dachuangfangprice = dachuangfangprice;
+	}
+	public void setShuangrenfangprice(int shuangrenfangprice) {
+		this.shuangrenfangprice = shuangrenfangprice;
+	}
+	public void setSanrenjianprice(int sanrenjianprice) {
+		this.sanrenjianprice = sanrenjianprice;
+	}
 	int shuangrenfangprice;
 	int sanrenjianprice;
 	int star;

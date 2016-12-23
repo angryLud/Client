@@ -223,7 +223,15 @@ public class userserviceimpl implements businesslogicservice.userservice {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+//		pingjiadingdan(){
+//			getdingdan po (id);
+//			
+//			po.setassess(pi);
+//			po.setscor();
+//			Remot.xxxx.update(po);
+		}
 	}
 
 
-}
+//}

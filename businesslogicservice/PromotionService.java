@@ -19,6 +19,8 @@ public interface PromotionService {
 	* @return	查看销售策略列表
 	*/
 	public List<PromotionVo> find();
+	
+	public boolean updateOrder(String place,double discount);
 
     void logout(int id);
 

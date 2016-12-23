@@ -21,25 +21,6 @@ public class ManageRoomViewControllerImpl implements ManageRoomViewController{
 		
 	}
 
-//	@Override
-//	public void InputButtonClicked() {
-//		view.InputButtonClicked();
-//		
-//	}
-
-
-	@Override
-	public void manageModifyButtonClicked() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void manageConfirmButtonClicked() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
 	public void ExitButtonClicked() {
 		con.loggedin(HotelID+"");
@@ -50,5 +31,10 @@ public class ManageRoomViewControllerImpl implements ManageRoomViewController{
 		this.con = con;
 		
 	}
+	
+	public void refresh(){
+		con.ManageRoom();
+	}
+	
 	
 }

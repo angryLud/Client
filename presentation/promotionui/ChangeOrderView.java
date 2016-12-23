@@ -12,11 +12,15 @@ import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+
+import businesslogic.ChangeOrderServiceImpl;
+import businesslogicservice.ChangeOrderService;
 
 
 public class ChangeOrderView extends JPanel{
@@ -96,16 +100,20 @@ public class ChangeOrderView extends JPanel{
 		
 		//表头
 		Vector<String> vColumns = new Vector<String>();
-		vColumns.add("订单编号");
-		vColumns.add("订单详情");
+		vColumns.add("订单id");
+		vColumns.add("用户id");
+		vColumns.add("酒店id");
+		vColumns.add("订单创建时间");
 		vColumns.add("用户入住时间");
+		vColumns.add("最晚执行时间");
 		vColumns.add("用户退房时间");
-		vColumns.add("订单价值");
-		vColumns.add("酒店名称");
+		vColumns.add("订单状态");
+		vColumns.add("房间样式");
+		vColumns.add("房间数量");
 		
 		//数据
 		Vector<OrderVo> vData = new Vector<OrderVo>();
-//		vData.addAll(controller.getAbnormalOrder(hotelId));
+		vData.addAll(controller.getAbnormalOrder(hotelId));
 		//模型
 		orderListModel = new DefaultTableModel(vData,vColumns);
 		//表格
@@ -123,7 +131,16 @@ public class ChangeOrderView extends JPanel{
 	}
 	
 	public void changeButtonClicked(){
-		
+		int index = orderTable.getSelectedRow();
+		if(index == -1){
+			JOptionPane.showMessageDialog(null,"请选择订单","",JOptionPane.ERROR_MESSAGE);
+		}
+		int orderid = (int) orderTable.getValueAt(index, 0);
+		ChangeOrderService changeOrderService = new ChangeOrderServiceImpl(orderid);
+		if(changeOrderService.updateOrder(orderid)){
+			JOptionPane.showMessageDialog(null,"更改成功","",JOptionPane.ERROR_MESSAGE);
+			orderTable.remove(index);
+		}
 	}
 	
 	

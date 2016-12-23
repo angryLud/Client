@@ -37,6 +37,16 @@ public class HotelServiceImpl implements HotelService{
 		}
 		return false;
 	}
+
+	@Override
+	public HotelPo getHotel(int hotelID) {
+		try {
+			hpo = hoteldataservice.findhotelbyid(hotelID);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return hpo;
+	}
 	
 
 }

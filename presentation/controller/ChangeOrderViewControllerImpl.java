@@ -44,7 +44,7 @@ public class ChangeOrderViewControllerImpl implements ChangeOrderViewControllerS
 		this.con=controller;
 	}
 
-	public List<OrderVo> getAbnormalOrder(){
+	public List<OrderVo> getAbnormalOrder(int hotelId){
 		return null;
 //		return changeOrderService.getAbnormalOrder();
 	}

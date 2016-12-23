@@ -48,10 +48,10 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	@Override
 	public List<OrderVo> getAllOrders(int userId) {
 		// TODO Auto-generated method stub
-		OrderVo x=new OrderVo(19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
-		OrderVo y=new OrderVo(23,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
-		OrderVo z=new OrderVo(28,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
-		OrderVo u=new OrderVo(69,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
+		OrderVo x=new OrderVo(1,19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2,null,0);
+		OrderVo y=new OrderVo(2,23,1,20161209,20161210,20161210,20161213,198,1,"大床房",2,null,0);
+		OrderVo z=new OrderVo(3,28,1,20161209,20161210,20161210,20161213,198,1,"大床房",2,null,0);
+		OrderVo u=new OrderVo(4,69,1,20161209,20161210,20161210,20161213,198,1,"大床房",2,null,0);
 		ArrayList<OrderVo> l=new ArrayList<OrderVo>();
 		l.add(x);
 		l.add(y);
@@ -63,7 +63,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	@Override
 	public List<OrderVo> getUnfinishedOrders(int userId) {
 		// TODO Auto-generated method stub
-		OrderVo x=new OrderVo(19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
+		OrderVo x=new OrderVo(1,19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2,null,0);
 		ArrayList<OrderVo> l=new ArrayList<OrderVo>();
 		l.add(x);
 		return l;
@@ -72,7 +72,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	@Override
 	public List<OrderVo> getFinishedOrders(int userId) {
 		// TODO Auto-generated method stub
-		OrderVo x=new OrderVo(19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
+		OrderVo x=new OrderVo(2,19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2,null,0);
 		ArrayList<OrderVo> l=new ArrayList<OrderVo>();
 		l.add(x);
 		return l;
@@ -81,14 +81,14 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	@Override
 	public List<OrderVo> getAbnormalOrders(int userId) {
 		// TODO Auto-generated method stub
-		OrderVo x=new OrderVo(19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
+		OrderVo x=new OrderVo(3,19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2,null,0);
 		ArrayList<OrderVo> l=new ArrayList<OrderVo>();
 		l.add(x);
 		return l;
 	}
 	public List<OrderVo> getCancelOrders(int userId) {
 		// TODO Auto-generated method stub
-		OrderVo x=new OrderVo(19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
+		OrderVo x=new OrderVo(4,19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2,null,0);
 		ArrayList<OrderVo> l=new ArrayList<OrderVo>();
 		l.add(x);
 		return l;
@@ -218,7 +218,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	public void updateorderinfo(OrderVo ovo) {
 		// TODO Auto-generated method stub
 		try {
-			RemoteHelper.getInstance().getOrderdataservice().orderupdate(new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",1));
+			RemoteHelper.getInstance().getOrderdataservice().orderupdate(new OrderPo(0,0,0,0,0,0,0,0,0,0,0,ovo.getAssess(),ovo.getScore()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

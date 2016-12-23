@@ -17,8 +17,8 @@ public OrderVo(OrderPo orderPo){
 }
 
 
-public OrderVo(int userid, int hotelid,  long createtime, long executetime, long delaytime, long endtime,int value,int status,String roomstyle,int roomnum){
-
+public OrderVo(int orderid,int userid, int hotelid,  long createtime, long executetime, long delaytime, long endtime,int value,int status,String roomstyle,int roomnum,String access, int score){
+	this.add(String.valueOf(orderid));
 	this.add(String.valueOf(userid));
 	this.add(String.valueOf(hotelid));
 	this.add(String.valueOf(createtime));
@@ -29,44 +29,47 @@ public OrderVo(int userid, int hotelid,  long createtime, long executetime, long
 	this.add(String.valueOf(status));
 	this.add(roomstyle);
 	this.add(String.valueOf(roomnum));
-}
-public OrderVo(String access, int score) {
-	// TODO Auto-generated constructor stub
-this.access = access;
-this.score = score;
+	this.add(access);
+	this.add(String.valueOf(score));
 }
 public int getOrderid(){
-	return 1;
+	return Integer.parseInt(this.get(0));
 }
 public int getUserid(){
-	return 11;
+	return Integer.parseInt(this.get(1));
 }
 public int getHotelid(){
-	return 22;
+	return Integer.parseInt(this.get(2));
 }
 public long getCreatetime(){
-	return 1;
+	return Integer.parseInt(this.get(3));
 }
 public long getExecutetime(){
-	return 1;
+	return Integer.parseInt(this.get(4));
 }
 public long getDelaytime(){
-	return 1;
+	return Integer.parseInt(this.get(5));
 }
 public long getEndtime(){
-	return 1;
+	return Integer.parseInt(this.get(6));
 }
 
 public String getValue(){
-	return this.get(8);
+	return this.get(7);
 }
 public int getStatus(){
-	return 1;
+	return Integer.parseInt(this.get(8));
 }
 public int getRoomstyle(){
-	return 0;
+	return Integer.parseInt(this.get(9));
 }
 public int getRoomnum(){
-	return 0;
+	return Integer.parseInt(this.get(10));
+}
+public String getAssess(){
+	return this.get(11);
+}
+public int getScore(){
+	return Integer.parseInt(this.get(12));
 }
 }

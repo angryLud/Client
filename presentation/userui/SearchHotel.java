@@ -29,6 +29,7 @@ public class SearchHotel extends JPanel{
 	private JFrame Hotelinformation;
 	private JTextField textField;
 	private JLabel label1;
+	private int orderId;
 	private int userId;
 	private int hotelId;
 	private SearchHotelController searchHotelCon;
@@ -323,7 +324,7 @@ public class SearchHotel extends JPanel{
         				String nowtime = df.format(new Date());
         				int intnowtime = Integer.parseInt(nowtime);
         				int status = 1;//1表示未执行订单
-        				int value=searchHotelCon.createorder(userId,hotelId,intnowtime,executetime,delaytime,endtime,status,s1,s2);
+        				int value=searchHotelCon.createorder(orderId,userId,hotelId,intnowtime,executetime,delaytime,endtime,status,s1,s2,null,0);
         				JLabel label1 = new JLabel("预定成功,价格为 "+value);
         				frame1.add(label1);
         			}else if(searchHotelCon.getcredit()<0){

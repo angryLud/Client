@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -489,7 +490,7 @@ public class ManageView extends JPanel{
 	}
 	
 	private boolean saveHotel(){
-		int id = Integer.valueOf(newHotelTextField1.getText());
+		int id = 0;
 		String hotelName = newHotelTextField2.getText();
 		String hotelAddress = newHotelTextField3.getText();
 		String position = newHotelTextField_.getText();
@@ -503,7 +504,9 @@ public class ManageView extends JPanel{
 				sanrenjianprice,star,score,description);
 
 		manageService = new ManageServiceImpl();
-		if(manageService.addHotel(hotelPo)){
+		id = manageService.addHotel(hotelPo);
+		if(id!=0){
+			JOptionPane.showMessageDialog(null,"酒店id为"+id,"",JOptionPane.ERROR_MESSAGE);
 			return true;
 		}
 

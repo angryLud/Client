@@ -36,9 +36,8 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	public boolean insert(PromotionPo promotionPo){
 		try {
-
-
-			if(RemoteHelper.getInstance().getPromotiondataservice().insert(promotionPo)){
+			int id = RemoteHelper.getInstance().getPromotiondataservice().promotioninsert(promotionPo);
+			if(id>999){
 				return true;
 			}
 
@@ -55,7 +54,7 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	public List<PromotionVo> find(){
 		List<PromotionVo> list = new ArrayList<PromotionVo>();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		for(PromotionPo promotionPo : promotionList){
 			PromotionVo promotionVo = new PromotionVo(promotionPo);
 			list.add(promotionVo);

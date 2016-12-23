@@ -18,4 +18,5 @@ public interface UserSearchOrderCotroller {
 
     void setcon(controller controller);
 	void ExitButtonClicked();
+	void updateorderinfor(String access, int score);
 }

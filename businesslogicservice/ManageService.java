@@ -22,7 +22,7 @@ public interface ManageService {
 	 * @param hotelPo
 	 * @return 增加酒店
 	 */
-	public boolean addHotel(HotelPo hotelPo);
+	public int addHotel(HotelPo hotelPo);
 	/**
 	 * @param id
 	 * @return 上传用户信息

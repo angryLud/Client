@@ -28,10 +28,10 @@ public class ChangeOrderServiceImpl implements ChangeOrderService{
 	public List<OrderVo> getAbnormalOrder(int hotelId){
 		List<OrderVo> list = new ArrayList<OrderVo>();
 		for (OrderPo orderPo : orderList) {
-//			if(orderPo.getStatus() == 2){
-//				OrderVo orderVo = new OrderVo(orderPo);
-//				list.add(orderVo);
-//			}
+			if(orderPo.getStatus() == 2){
+				OrderVo orderVo = new OrderVo(orderPo);
+				list.add(orderVo);
+			}
 		}
 		return list;
 	}

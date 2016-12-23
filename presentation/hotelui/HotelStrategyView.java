@@ -118,7 +118,7 @@ public class HotelStrategyView extends JPanel{
 		}
 		
 		int orderid = Integer.parseInt(strategyField1.getText());
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0);
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",0);
 		try {
 			po = orderdataservice.orderfind(orderid);
 		} catch (RemoteException e) {

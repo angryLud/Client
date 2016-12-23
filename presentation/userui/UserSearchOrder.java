@@ -205,6 +205,17 @@ class button7Listener implements ActionListener{
 			panel3.add(textfield1);
 			panel3.add(combobox);
 			JButton button1 = new JButton("保存");
+			button1.addActionListener(new ActionListener(){
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					String access = textfield1.getText();
+					int score = Integer.parseInt(combobox.getToolTipText());
+					UserSearchOrderCon.updateorderinfor(access,score);
+				}
+				
+			});
 			panel3.add(button1);
 			frame2.add(panel3);
 			frame2.setSize(400,200);

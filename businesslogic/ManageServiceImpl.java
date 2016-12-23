@@ -49,16 +49,18 @@ public class ManageServiceImpl implements ManageService {
 		return false;
 	}
 	
-	public boolean addHotel(HotelPo hotelPo){
+	public int addHotel(HotelPo hotelPo){
 		try {
-			if(RemoteHelper.getInstance().getHoteldataservice().hotelinsert(hotelPo)){
-				return true;
+
+			int id = RemoteHelper.getInstance().getHoteldataservice().hotelinsert(hotelPo);
+			if(id>1999){
+				return id;
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 	}
 	
 	public UserVo uploadUser(int id){

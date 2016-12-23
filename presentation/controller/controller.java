@@ -34,6 +34,7 @@ public class controller {
     private ManageViewControllerService managecon;
     private mainframecontroller hotelcon;
     private ManageViewControllerService manageViewController;
+    private String id;
 
 
 
@@ -59,6 +60,7 @@ public class controller {
 
 // decision
     public void loggedin(String id){
+    	this.id=id;
         if (id.substring(0,1).equals("0")){
 
             usercon=new usercontrollerimpl(Integer.parseInt(id));
@@ -140,7 +142,7 @@ public class controller {
         frame.repaint();
 
 
-        ManageHotelInfoViewController hotelController=new ManageHotelInfoViewControllerImpl(1);
+        ManageHotelInfoViewController hotelController=new ManageHotelInfoViewControllerImpl(Integer.parseInt(id));
 
         this.view=new ManageHotelInfoView(hotelController);
         frame.getContentPane().add(this.view);
@@ -154,7 +156,7 @@ public class controller {
         frame.repaint();
 
 
-        ManageOrderViewController hotelController=new ManageOrderViewControllerImpl(1);
+        ManageOrderViewController hotelController=new ManageOrderViewControllerImpl(Integer.parseInt(id));
 
         this.view=new ManageOrderView(hotelController);
         frame.getContentPane().add(this.view);
@@ -168,7 +170,7 @@ public class controller {
         frame.repaint();
 
 
-        ManageRoomViewController hotelController=new ManageRoomViewControllerImpl(1);
+        ManageRoomViewController hotelController=new ManageRoomViewControllerImpl(Integer.parseInt(id));
 
         this.view=new ManageRoomView(hotelController);
         frame.getContentPane().add(this.view);
@@ -182,7 +184,7 @@ public class controller {
         frame.repaint();
 
 
-        HotelStrategyViewController hotelController=new HotelStrategyViewControllerImpl(1);
+        HotelStrategyViewController hotelController=new HotelStrategyViewControllerImpl(Integer.parseInt(id));
 
         this.view=new HotelStrategyView(hotelController);
         frame.getContentPane().add(this.view);

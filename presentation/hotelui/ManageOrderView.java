@@ -307,6 +307,7 @@ public class ManageOrderView extends JPanel{
 		int orderNo=Integer.valueOf((String)searchOrderTable.getValueAt(index, 0));
 		if(controller.executeOrder(orderNo)){
 			searchOrderModel.removeRow(index);
+			//逻辑层方法：改状态、getuserpo、加信用、更新
 		}else{
 			JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.ERROR_MESSAGE);
 		}

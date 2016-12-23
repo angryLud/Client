@@ -20,17 +20,17 @@ import javax.swing.JTextField;
 
 public class CreditChangeView extends JPanel{
 	
-	public static void main(String args[]){
-		JFrame creditFrame = new JFrame();
-		creditFrame.setSize(800, 600);
-		creditFrame.setLocation(300, 100);
-		creditFrame.setTitle("恢复信用值");
-		CreditChangeViewControllerService controller = new CreditChangeViewControllerImpl();
-		CreditChangeView view = new CreditChangeView(controller);
-		controller.setView(view);
-		creditFrame.getContentPane().add(view);
-		creditFrame.setVisible(true);
-	}
+//	public static void main(String args[]){
+//		JFrame creditFrame = new JFrame();
+//		creditFrame.setSize(800, 600);
+//		creditFrame.setLocation(300, 100);
+//		creditFrame.setTitle("恢复信用值");
+//		CreditChangeViewControllerService controller = new CreditChangeViewControllerImpl();
+//		CreditChangeView view = new CreditChangeView(controller);
+//		controller.setView(view);
+//		creditFrame.getContentPane().add(view);
+//		creditFrame.setVisible(true);
+//	}
 	
 	private CreditChangeViewControllerService controller;
 	
@@ -80,7 +80,7 @@ public class CreditChangeView extends JPanel{
 		cancleButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent arg0){
-				
+				controller.cancleButtonClicked();
 			}
 		});
 		

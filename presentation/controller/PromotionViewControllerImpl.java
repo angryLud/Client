@@ -1,17 +1,19 @@
 package presentation.controller;
 
 import java.util.List;
-import java.util.Date;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import businesslogic.PromotionServiceImpl;
 import businesslogicservice.PromotionService;
+import presentation.promotionui.Promotion;
+import presentation.promotionui.PromotionController;
 import presentation.promotionui.PromotionView;
 import presentation.promotionui.PromotionViewControllerService;
 import vo.PromotionVo;
 
 public class PromotionViewControllerImpl implements PromotionViewControllerService {
-	
-	private Date date;
 	
 	private PromotionService promotionService;
 	
@@ -19,24 +21,25 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 
 	private controller con;
 	
-	public PromotionViewControllerImpl(Date date){
-		this.date = date;
-		promotionService = new PromotionServiceImpl(date);
+	private JPanel view2;
+	
+	public PromotionViewControllerImpl(){
+		promotionService = new PromotionServiceImpl();
 	}
 	
 	public void setView(PromotionView view){
 		this.view = view;
 	}
 	
-	public Date getDate(){
-		return date;
-	}
+//	public Date getDate(){
+//		return date;
+//	}
 	
 	/**
 	 * @return 获取销售策略列表
 	 */
-	public List<PromotionVo> observeList(Date date){
-		return promotionService.find(date);
+	public List<PromotionVo> observeList(){
+		return promotionService.find();
 	}
 	
 	/**
@@ -46,19 +49,27 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 		view.newStrategyButtonClicked();
 	}
 	
-	/**
-	 * 删除销售策略按钮点击事件
-	 */
-//	public void deleteStrategyButtonClicked(){
-//		view.deleteStrategyButtonClicked();
-//	}
+	
+	public void returnButtonClicked(){
+//		con.loggedin("3");
+		JFrame frame = new JFrame();
+		PromotionController promotionCon=new PromotionControllerimpl(3);
+        frame.getContentPane().removeAll();
+        frame.repaint();
+        this.view2=new Promotion(promotionCon);
+//        promotionCon.setcon(this);
+        promotionCon.setView((Promotion)this.view2);
+        frame.getContentPane().add(this.view2);
+        frame.setVisible(true);
+        return;
+	}
 	
 	/**
 	 * 输入日期按钮点击事件
 	 */
-	public void inputDateButtonClicked(){
-		view.inputDateButtonClicked();
-	}
+//	public void inputDateButtonClicked(){
+//		view.inputDateButtonClicked();
+//	}
 
 	@Override
 	public void setcon(controller controller) {

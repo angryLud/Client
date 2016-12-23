@@ -29,4 +29,6 @@ public interface ManageService {
 	 */
 	public UserVo uploadUser(int id);
 	
+	void logout(int id);
+	
 }

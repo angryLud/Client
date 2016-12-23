@@ -11,7 +11,7 @@ import java.util.List;
  * Created by huihantao on 2016/12/10.
  */
 public interface promotiondataservice extends Remote {
-    List<PromotionPo> find(Date date) throws RemoteException;
-    boolean insert(PromotionPo pormotionPo) throws RemoteException;
+    List<PromotionPo> promotionfind() throws RemoteException;
+    int promotioninsert(PromotionPo pormotionPo) throws RemoteException;
    
 }

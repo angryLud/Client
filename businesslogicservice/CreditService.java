@@ -7,5 +7,7 @@ public interface CreditService {
 	 * @return   恢复信用值
 	 */
 	public boolean recoverCredit(int id, int credit);
+	
+	void logout();
 
 }

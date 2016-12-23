@@ -35,25 +35,25 @@ import vo.PromotionVo;
 
 public class PromotionView extends JPanel{
 	
-	public static void main(String args[]){
-		JFrame promotionFrame = new JFrame();
-		promotionFrame.setSize(800,600);
-		promotionFrame.setLocation(300,100);
-		promotionFrame.setTitle("查看销售策略");
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = null;
-		try {
-			date = sdf.parse("2015/01/01 00:00:01");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		PromotionViewControllerService controller = new PromotionViewControllerImpl(date);
-		PromotionView view = new PromotionView(controller);
-		controller.setView(view);
-		promotionFrame.getContentPane().add(view);
-		promotionFrame.setVisible(true);
-		
-	}
+//	public static void main(String args[]){
+//		JFrame promotionFrame = new JFrame();
+//		promotionFrame.setSize(800,600);
+//		promotionFrame.setLocation(300,100);
+//		promotionFrame.setTitle("查看销售策略");
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//		Date date = null;
+//		try {
+//			date = sdf.parse("2015/01/01 00:00:01");
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//		PromotionViewControllerService controller = new PromotionViewControllerImpl(date);
+//		PromotionView view = new PromotionView(controller);
+//		controller.setView(view);
+//		promotionFrame.getContentPane().add(view);
+//		promotionFrame.setVisible(true);
+//		
+//	}
 	
 
 	private PromotionViewControllerService controller;
@@ -86,7 +86,7 @@ public class PromotionView extends JPanel{
 	
 	private JButton cancleButton;
 	
-	private Date date;
+//	private Date date;
 	
 	private JFrame inputDateFrame;
 	
@@ -102,7 +102,7 @@ public class PromotionView extends JPanel{
 	
 	public PromotionView(PromotionViewControllerService controller){
 		this.controller = controller;
-		this.date = controller.getDate();
+//		this.date = controller.getDate();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		
 		//初始化操作按钮
@@ -138,23 +138,23 @@ public class PromotionView extends JPanel{
 //			}
 //		});
 		
-		inputDateButton = new JButton("输入日期");
-		//添加按钮监听事件
-		inputDateButton.addActionListener(new ActionListener(){
-			
-			public void actionPerformed(ActionEvent arg0){
-				
-				//界面跳转
-				controller.inputDateButtonClicked();
-			}
-		});
+//		inputDateButton = new JButton("输入日期");
+//		//添加按钮监听事件
+//		inputDateButton.addActionListener(new ActionListener(){
+//			
+//			public void actionPerformed(ActionEvent arg0){
+//				
+//				//界面跳转
+//				controller.inputDateButtonClicked();
+//			}
+//		});
 		
 		returnButton = new JButton("返回");
 		//添加按钮监听事件
 		returnButton.addActionListener(new ActionListener(){
 			
 			public void actionPerformed(ActionEvent arg0){
-				
+				controller.returnButtonClicked();
 				//界面跳转
 			}
 		});
@@ -165,7 +165,7 @@ public class PromotionView extends JPanel{
 		processPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		processPanel.add(newStrategyButton);
 //		processPanel.add(deleteStrategyButton);
-		processPanel.add(inputDateButton);
+//		processPanel.add(inputDateButton);
 		processPanel1.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		processPanel1.add(returnButton);
 		JPanel processPanel2 = new JPanel();
@@ -175,7 +175,7 @@ public class PromotionView extends JPanel{
 		
 		newStrategyButton.setEnabled(true);
 //		deleteStrategyButton.setEnabled(true);
-		inputDateButton.setEnabled(true);
+//		inputDateButton.setEnabled(true);
 		returnButton.setEnabled(true);
 		
 		this.add(processPanel2);
@@ -196,7 +196,7 @@ public class PromotionView extends JPanel{
 		
 		//数据
 		Vector<PromotionVo> vData = new Vector<PromotionVo>();
-		vData.addAll(controller.observeList(date));
+		vData.addAll(controller.observeList());
 		//模型
 		promotionListModel = new DefaultTableModel(vData,vColumns);
 		//表格
@@ -227,62 +227,62 @@ public class PromotionView extends JPanel{
 //
 //	}
 	
-	/**
-	 * 输入日期按钮点击事件
-	 */
-	public void inputDateButtonClicked(){
-		inputDateFrame = new JFrame();
-		inputDateFrame.setSize(600,100);
-		inputDateFrame.setLocation(400, 200);
-		
-		inputDateLabel = new JLabel("请输入日期(yyyy-MM-dd HH:mm:ss)：");
-		inputDateTextField = new JTextField(25);
-		confirmButton = new JButton("确定");
-		//确定显示
-		confirmButton.addActionListener(new ActionListener(){
-			
-			public void actionPerformed(ActionEvent arg0){
-				String newDateS = inputDateTextField.getText();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				Date newDate = null;
-				try {
-					newDate = sdf.parse(newDateS);
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				promotionListModel.setRowCount(0);
-				for(PromotionVo prmotionVo : controller.observeList(newDate)){
-					promotionListModel.addRow(prmotionVo);
-				}
-				inputDateFrame.dispose();
-			}
-		});
-		cancleButton = new JButton("取消");
-		//取消显示
-		cancleButton.addActionListener(new ActionListener(){
-					
-			public void actionPerformed(ActionEvent e){
-				//关闭窗口
-				inputDateFrame.dispose();
-			}
-		});
-		
-		JPanel inputDatePanel1 = new JPanel();
-		JPanel inputDatePanel2 = new JPanel();
-		inputDatePanel1.setLayout(new FlowLayout(FlowLayout.CENTER));
-		inputDatePanel2.setLayout(new GridLayout(2,2));
-		inputDatePanel2.add(inputDateLabel);
-		inputDatePanel2.add(inputDateTextField);
-		inputDatePanel2.add(confirmButton);
-		inputDatePanel2.add(cancleButton);
-		inputDatePanel1.add(inputDatePanel2);
-		
-		inputDateFrame.setTitle("输入日期");
-		inputDateFrame.getContentPane().add(inputDatePanel1);
-		inputDateFrame.setVisible(true);
-		
-	}
+//	/**
+//	 * 输入日期按钮点击事件
+//	 */
+//	public void inputDateButtonClicked(){
+//		inputDateFrame = new JFrame();
+//		inputDateFrame.setSize(600,100);
+//		inputDateFrame.setLocation(400, 200);
+//		
+//		inputDateLabel = new JLabel("请输入日期(yyyy-MM-dd HH:mm:ss)：");
+//		inputDateTextField = new JTextField(25);
+//		confirmButton = new JButton("确定");
+//		//确定显示
+//		confirmButton.addActionListener(new ActionListener(){
+//			
+//			public void actionPerformed(ActionEvent arg0){
+//				String newDateS = inputDateTextField.getText();
+//				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//				Date newDate = null;
+//				try {
+//					newDate = sdf.parse(newDateS);
+//				} catch (ParseException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//				promotionListModel.setRowCount(0);
+//				for(PromotionVo prmotionVo : controller.observeList()){
+//					promotionListModel.addRow(prmotionVo);
+//				}
+//				inputDateFrame.dispose();
+//			}
+//		});
+//		cancleButton = new JButton("取消");
+//		//取消显示
+//		cancleButton.addActionListener(new ActionListener(){
+//					
+//			public void actionPerformed(ActionEvent e){
+//				//关闭窗口
+//				inputDateFrame.dispose();
+//			}
+//		});
+//		
+//		JPanel inputDatePanel1 = new JPanel();
+//		JPanel inputDatePanel2 = new JPanel();
+//		inputDatePanel1.setLayout(new FlowLayout(FlowLayout.CENTER));
+//		inputDatePanel2.setLayout(new GridLayout(2,2));
+//		inputDatePanel2.add(inputDateLabel);
+//		inputDatePanel2.add(inputDateTextField);
+//		inputDatePanel2.add(confirmButton);
+//		inputDatePanel2.add(cancleButton);
+//		inputDatePanel1.add(inputDatePanel2);
+//		
+//		inputDateFrame.setTitle("输入日期");
+//		inputDateFrame.getContentPane().add(inputDatePanel1);
+//		inputDateFrame.setVisible(true);
+//		
+//	}
 	
 	/**
 	 * 打开制定新销售策略界面
@@ -398,7 +398,7 @@ public class PromotionView extends JPanel{
 		String endTime = newStrategyTextField4.getText();
 		double discount = Double.valueOf(newStrategyTextField5.getText());
 		String place = (String)newStrategyCombobox1.getSelectedItem()+(String)newStrategyCombobox2.getSelectedItem()+(String)newStrategyCombobox3.getSelectedItem();
-		promotionService = new PromotionServiceImpl(date);
+		promotionService = new PromotionServiceImpl();
 		promotionPo = new PromotionPo(promotionNo,promotionName,beginTime,endTime,discount,place);	
 		if(promotionService.insert(promotionPo)){
 			newStrategyFrame.dispose();

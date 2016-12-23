@@ -1,6 +1,25 @@
 package po;
 
-public class HotelPo {
+import java.io.Serializable;
+
+public class HotelPo implements Serializable{
+
+
+
+	//hotelid 未4位整数 第一位是1
+	// hotelname 为不超过10位字符串
+	// 所有可用客房数量 不超过100
+	//position  只有4中选择，见po.address
+	// 所有房间价格不超过100
+
+	// 星级只有12345
+
+	// 评分为0～5之间浮点数
+	// 评价不超过20为字符串
+	// 描述不超过20为字符串
+	
+	private static final long serialVersionUID =20L;
+
 	int hotelID;
 	String position;
 	String hotelName;
@@ -17,8 +36,7 @@ public class HotelPo {
 	double score;
 	String assess;
 	String description;
-//	boolean reserved;
-	
+
 	public HotelPo(){
 		super();
 	}
@@ -112,11 +130,6 @@ public class HotelPo {
 	public void setDescription(String description){
 		this.description = description;
 	}
-//	public boolean getReserved(){
-//		return this.reserved;
-//	}
-//	public void setReserved(boolean reserved){
-//		this.reserved = reserved;
-//	}
+
 
 }

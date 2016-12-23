@@ -18,7 +18,7 @@ public interface PromotionService {
 	* @param date
 	* @return	查看销售策略列表
 	*/
-	public List<PromotionVo> find(Date date);
+	public List<PromotionVo> find();
 
     void logout(int id);
 

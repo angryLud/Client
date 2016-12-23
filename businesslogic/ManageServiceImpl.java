@@ -17,16 +17,16 @@ public class ManageServiceImpl implements ManageService {
 	private List<UserPo> userList;
 	
 	public int addUser(UserPo userPo,String password){
-//		try {
-//			char[] pass = password.toCharArray();
-//			int id = RemoteHelper.getInstance().getUserdataservice().userinsert(userPo,pass)+2000;
-//			if(id>2999){
-//				return id;
-//			}
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			char[] pass = password.toCharArray();
+			int id = RemoteHelper.getInstance().getUserdataservice().userinsert(userPo,pass)+2000;
+			if(id>2999){
+				return id;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 	

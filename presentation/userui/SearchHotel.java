@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -89,6 +90,20 @@ public class SearchHotel extends JPanel{
 		comboBox_2.setBounds(216, 40, 70, 21);
 		comboBox_2.addItem("评分");
 		comboBox_2.addItem("星级");
+		comboBox_2.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String x = (String)comboBox.getSelectedItem();
+				if(x=="评分"){
+					
+				}else if(x=="星级"){
+					
+				}
+			}
+			
+		});
 		this.add(comboBox_2);
 		//限定
 		comboBox_3 = new JComboBox();

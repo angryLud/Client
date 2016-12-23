@@ -45,6 +45,7 @@ public class HotelPo implements Serializable{
 		this.hotelID = hotelID;
 		this.position = position;
 		this.hotelName = hotelName;
+		this.address=address;
 		this.dachuangfangprice = dachuangfangprice;
 		this.shuangrenfangprice = shuangrenfangprice;
 		this.sanrenjianprice = sanrenjianprice;

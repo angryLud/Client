@@ -91,7 +91,7 @@ public class ManageHotelInfoView extends JPanel{
 //		}
 //		catch(RemoteException e){
 //			e.printStackTrace();
-//		}  运行即报错
+//		}  
 		//界面内容
 		dizhi.setText(po.getAddress());
 		shangquan.setText(po.getPosition());

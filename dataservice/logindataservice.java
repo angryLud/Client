@@ -11,6 +11,5 @@ public interface logindataservice extends Remote{
 
     void logout(int id) throws RemoteException;
 
-    int signup(char[] password) throws RemoteException;
 
 }

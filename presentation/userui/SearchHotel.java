@@ -41,6 +41,7 @@ public class SearchHotel extends JPanel{
 	private JButton button2;
 	private JButton button3;
 	private JButton exitbutton;
+	private Vector<HotelVo> hotellist;
 	
 
 
@@ -93,8 +94,8 @@ public class SearchHotel extends JPanel{
 		comboBox_3 = new JComboBox();
 		comboBox_3.setModel(new DefaultComboBoxModel(new String[] {"限定"}));
 		comboBox_3.setBounds(296, 40, 70, 21);
-		comboBox_3.addItem("住过");
-		comboBox_3.addItem("未住过");
+		comboBox_3.addItem("预订过");
+		comboBox_3.addItem("未订过");
 		this.add(comboBox_3);
 		
 		textField = new JTextField();
@@ -102,27 +103,6 @@ public class SearchHotel extends JPanel{
 		this.add(textField);
 		textField.setColumns(10);
 
-		button_1 = new JButton("搜索");
-		button_1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String s1 = (String)comboBox.getSelectedItem();//商圈
-				String s2 = (String)comboBox_1.getSelectedItem();//地址
-				String s3 = (String)comboBox_3.getSelectedItem();//限定是否预定过
-				if(s1=="商圈"||s2=="地址"){
-					JFrame frame = new JFrame();
-					frame.setLayout(null);
-					JLabel label = new JLabel("请选择地址或商圈!");
-					frame.add(label);
-					label.setBounds(20, 10, 150, 30);
-					frame.setSize(160, 100);
-					frame.setVisible(true);
-				}else
-				searchHotelCon.usersearchhotel(s1,s2,s3);
-			}
-		});
-		button_1.setBounds(520, 40, 93, 23);
-		this.add(button_1);
 		
 		scrollPane = new JScrollPane();
 		
@@ -137,10 +117,11 @@ public class SearchHotel extends JPanel{
 		vColumns.add("是否预定过");
 		//数据
 		vData=new Vector<>();
-		Vector<HotelVo> x=new Vector<>();
-		x.add(new HotelVo(1,"如家","新街口","南京",1,5,true));
+		hotellist=new Vector<>();
+
+		hotellist.addAll(searchHotelCon.getAllHotels(userId));
 		//模型
-        hotelListModel = new DefaultTableModel(x, vColumns);
+        hotelListModel = new DefaultTableModel(hotellist, vColumns);
 		//表格
 		hotelTable = new JTable(hotelListModel){
 		   public boolean isCellEditable(int row, int column){
@@ -158,7 +139,43 @@ public class SearchHotel extends JPanel{
 				hotelTable.setBackground(Color.LIGHT_GRAY);
 //		hotelTable.add(scrollPane);
 				
-				
+				//搜索按钮的实现（不包括排序）
+				button_1 = new JButton("搜索");
+				button_1.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String s1 = (String)comboBox.getSelectedItem();//商圈
+						String s2 = (String)comboBox_1.getSelectedItem();//地址
+						String s3 = (String)comboBox_3.getSelectedItem();//限定是否预定过
+						if(s1=="商圈"||s2=="地址"){
+							JFrame frame = new JFrame();
+							frame.setLayout(null);
+							JLabel label = new JLabel("请选择地址或商圈!");
+							frame.add(label);
+							label.setBounds(20, 10, 150, 30);
+							frame.setSize(160, 100);
+							frame.setVisible(true);
+						}else if(s3=="限定"){//没有限定直接搜索特定地址和商圈
+							Vector<Vector<String>> volist=new Vector<Vector<String>>();
+							for(int i=0;i<hotellist.size();i++){
+								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)){
+									volist.add(hotellist.get(i));
+								}
+							}
+							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));
+						}else{//有地址和商圈限定，还有是否预定过的限定
+							Vector<Vector<String>> volist=new Vector<Vector<String>>();
+							for(int i=0;i<hotellist.size();i++){
+								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)){
+									volist.add(hotellist.get(i));
+								}
+							}
+							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));
+						}
+					}
+				});
+				button_1.setBounds(520, 40, 93, 23);
+				this.add(button_1);				
 			
 //生成订单按钮的实现			
 		button2 = new JButton("生成订单");

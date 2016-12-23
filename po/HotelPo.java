@@ -3,6 +3,7 @@ package po;
 public class HotelPo {
 	int hotelID;
 	String position;
+	String address;
 	String hotelName;
 	
 	int avdachuangfang;
@@ -22,7 +23,7 @@ public class HotelPo {
 	public HotelPo(){
 		super();
 	}
-	public HotelPo(int hotelID,String position,String hotelName,int dachuangfangprice,int shuangrenfangprice,int sanrenjianprice,int star,double score,String description){
+	public HotelPo(int hotelID,String address,String position,String hotelName,int dachuangfangprice,int shuangrenfangprice,int sanrenjianprice,int star,double score,String description){
 		this.hotelID = hotelID;
 		this.position = position;
 		this.hotelName = hotelName;

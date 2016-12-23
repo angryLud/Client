@@ -6,7 +6,7 @@ import java.util.Vector;
  * Created by huihantao on 2016/12/22.
  */
 public class shangquan extends Vector<String> {
-    public shangquan(String address){
+   public  shangquan(String address){
         switch (new Address().getindex(address)) {
             case 0:{
                 this.add("鼓楼");

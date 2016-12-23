@@ -37,16 +37,9 @@ public SearchHotelControllerimpl(int userId){
 	}
 	public List<HotelVo> getAllHotels(int userid){
 		// TODO Auto-generated method stub
+		System.out.println("fuu");
 		return userso.getAllHotels(userid);
 	}
-	@Override
-	public void usersearchhotel(String s1,String s2,String s3) {
-		// TODO Auto-generated method stub
-//		View=new SearchHotel(this);
-//		System.out.println(userso.usersearchhotel(s1,s2,s3).elementAt(0).getHotelName());
-		View.createtable(userso.usersearchhotel(s1,s2,s3));
-	}
-
 	@Override
 	public void ExitButtonClicked() {
 		// TODO Auto-generated method stub

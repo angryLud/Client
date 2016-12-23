@@ -59,7 +59,7 @@ public class controller {
 
 // decision
     public void loggedin(String id){
-        if (id.substring(0).equals("0")){
+        if (id.substring(0,1).equals("0")){
 
             usercon=new usercontrollerimpl(Integer.parseInt(id));
             frame.getContentPane().removeAll();

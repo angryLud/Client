@@ -14,8 +14,6 @@ public interface SearchHotelController {
 
 	List<HotelVo> getAllHotels(int userid);
 
-	void usersearchhotel(String s1,String s2,String s3);
-
     void setcon(controller con);
 
 	void ExitButtonClicked();

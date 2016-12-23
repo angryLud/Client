@@ -29,7 +29,7 @@ public class HotelServiceImpl implements HotelService{
 //				return true;
 //			}
 			
-			return RemoteHelper.getInstance().getHoteldataservice().update(hpo);
+			return RemoteHelper.getInstance().getHoteldataservice().hotelupdate(hpo);
 			} catch (RemoteException e) {
 			e.printStackTrace();
 		}

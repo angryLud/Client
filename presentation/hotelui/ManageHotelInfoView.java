@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import po.HotelPo;
 
@@ -19,8 +20,25 @@ public class ManageHotelInfoView extends JPanel{
 	private int hotelID;
 	private ManageHotelInfoViewController controller;
 	private hoteldataservice hoteldataservice;
-	private JTextArea area;
-	private JPanel textJpanel;
+	
+	private JTextField dizhi;
+	private JTextField shangquan;
+	private JTextField jianjie;
+	private JTextField dachuangfangjiage;
+	private JTextField shuangrenfangjiage;
+	private JTextField sanrenjianjiage;
+	private JTextField xingji;
+	
+	private JLabel dizhil;
+	private JLabel shangquanl;
+	private JLabel jianjiel;
+	private JLabel dachuangfangjiagel;
+	private JLabel shuangrenfangjiagel;
+	private JLabel sanrenjianjiagel;
+	private JLabel xingjil;
+
+
+	
 	private JPanel serviceTypeJpanel;
 	private JButton modifyButton;
 	private JButton confirmButton;
@@ -35,10 +53,31 @@ public class ManageHotelInfoView extends JPanel{
 	
 		private void init() {
 		//初始化组件
-		area = new JTextArea(8,30);
-		area.setEditable(false);
+		dizhi = new JTextField(10);
+		shangquan = new JTextField(10);
+		jianjie = new JTextField(50);
+		dachuangfangjiage = new JTextField(10);
+		shuangrenfangjiage = new JTextField(10);
+		sanrenjianjiage = new JTextField(10);
+		xingji = new JTextField(10);
 		
-		textJpanel = new JPanel();
+		dizhi.setEditable(false);
+		shangquan.setEditable(false);
+		jianjie.setEditable(false);
+		dachuangfangjiage.setEditable(false);
+		shuangrenfangjiage.setEditable(false);
+		sanrenjianjiage.setEditable(false);
+		xingji.setEditable(false);
+		
+		dizhil = new JLabel("地址");
+		shangquanl = new JLabel("商圈");
+		jianjiel = new JLabel("简介");
+		dachuangfangjiagel = new JLabel("大床房价格");
+		shuangrenfangjiagel = new JLabel("双人房价格");
+		sanrenjianjiagel = new JLabel("三人间价格");
+		xingjil = new JLabel("星级");
+		
+		
 		
 		serviceTypeJpanel = new JPanel();
 		
@@ -46,18 +85,22 @@ public class ManageHotelInfoView extends JPanel{
 		confirmButton = new JButton("确定");
 		exitButton = new JButton("返回");
 		
-		po = new HotelPo(1,"仙林","南京","英尊",188,288,328,4,4.6,"商圈：XXXX\n地址：XXXXX\n服务设施：停车场丶wifi等\n房间价格：XXXXX\n");
+		po = new HotelPo(1,"南京","仙林","英尊",188,288,328,4,4.6,"很棒");
 //		try{
 //			po = hoteldataservice.findhotelbyid(hotelID);
 //		}
 //		catch(RemoteException e){
 //			e.printStackTrace();
-//		}  运行即报错
+//		}  
 		//界面内容
-		area.setFont(new Font("serif",Font.BOLD,20));
-		area.setText(po.getDescription());
-		area.setEditable(false);
-		textJpanel.add(area);
+		dizhi.setText(po.getAddress());
+		shangquan.setText(po.getPosition());
+		jianjie.setText(po.getDescription());
+		dachuangfangjiage.setText(String.valueOf(po.getDachaungfangprice()));
+		shuangrenfangjiage.setText(String.valueOf(po.getShuangrenfangprice()));
+		sanrenjianjiage.setText(String.valueOf(po.getSanrenjianprice()));
+		xingji.setText(String.valueOf(po.getStar()));
+		
 		
 	    modifyButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
@@ -75,34 +118,95 @@ public class ManageHotelInfoView extends JPanel{
 				controller.ExitButtonClicked();
 			}
 		});
-		textJpanel.add(modifyButton);
-		textJpanel.add(confirmButton);
+		
         
 		serviceTypeJpanel.setLayout(null);
 		serviceTypeJpanel.add(exitButton);
 		exitButton.setBounds(600, 40, 70, 25);
-		serviceTypeJpanel.add(textJpanel);
-		textJpanel.setBounds(0,80,650,600);
-		textJpanel.setVisible(true);
+		
+		serviceTypeJpanel.add(dizhil);
+		dizhil.setBounds(20,60,80,20);
+		serviceTypeJpanel.add(shangquanl);
+		shangquanl.setBounds(20,90,80,20);
+		serviceTypeJpanel.add(jianjiel);
+		jianjiel.setBounds(20,120,80,20);
+		serviceTypeJpanel.add(dachuangfangjiagel);
+		dachuangfangjiagel.setBounds(20,150,80,20);
+		serviceTypeJpanel.add(shuangrenfangjiagel);
+		shuangrenfangjiagel.setBounds(20,180,80,20);
+		serviceTypeJpanel.add(sanrenjianjiagel);
+		sanrenjianjiagel.setBounds(20,210,80,20);
+		serviceTypeJpanel.add(xingjil);
+		xingjil.setBounds(20,240,80,20);
+		
+		serviceTypeJpanel.add(dizhi);
+		dizhi.setBounds(120,60,180,20);
+		serviceTypeJpanel.add(shangquan);
+		shangquan.setBounds(120,90,180,20);
+		serviceTypeJpanel.add(jianjie);
+		jianjie.setBounds(120,120,180,20);
+		serviceTypeJpanel.add(dachuangfangjiage);
+		dachuangfangjiage.setBounds(120,150,180,20);
+		serviceTypeJpanel.add(shuangrenfangjiage);
+		shuangrenfangjiage.setBounds(120,180,180,20);
+		serviceTypeJpanel.add(sanrenjianjiage);
+		sanrenjianjiage.setBounds(120,210,180,20);
+		serviceTypeJpanel.add(xingji);
+		xingji.setBounds(120,240,180,20);
+		
+		serviceTypeJpanel.add(modifyButton);
+		modifyButton.setBounds(400,210,70,25);
+		serviceTypeJpanel.add(confirmButton);
+		confirmButton.setBounds(480,210,70,25);
 		
 		this.add(serviceTypeJpanel);
 		serviceTypeJpanel.setBounds(0, 0, 800, 600);
 	}
 		
 		public void ModifyButtonClicked(){
-			area.setEditable(true);
+			dizhi.setEditable(true);
+			shangquan.setEditable(true);
+			jianjie.setEditable(true);
+			dachuangfangjiage.setEditable(true);
+			shuangrenfangjiage.setEditable(true);
+			sanrenjianjiage.setEditable(true);
+			xingji.setEditable(true);
 			
 		}
 
 		public void ConfirmButtonClicked(){
-			area.setEditable(false);
-			po.setDescription(area.getText());
+			dizhi.setEditable(false);
+			shangquan.setEditable(false);
+			jianjie.setEditable(false);
+			dachuangfangjiage.setEditable(false);
+			shuangrenfangjiage.setEditable(false);
+			sanrenjianjiage.setEditable(false);
+			xingji.setEditable(false);
+//			if(dizhi.getText()==null||shangquan.getText()==null||jianjie.getText()==null||dachuangfangjiage.getText()==null
+//					||shuangrenfangjiage.getText()==null||sanrenjianjiage.getText()==null||xingji.getText()==null
+//					||Integer.parseInt(dachuangfangjiage.getText())>Integer.parseInt(shuangrenfangjiage.getText())
+//					||Integer.parseInt(dachuangfangjiage.getText())>Integer.parseInt(sanrenjianjiage.getText())
+//					||Integer.parseInt(shuangrenfangjiage.getText())>Integer.parseInt(sanrenjianjiage.getText())){
+//				JOptionPane.showMessageDialog(null, "输入不符合规定！","", JOptionPane.INFORMATION_MESSAGE);
+//			}
+//			else{
+			po.setAddress(dizhi.getText());
+			po.setPosition(shangquan.getText());
+			po.setDescription(jianjie.getText());
+			po.setDachuangfangprice(Integer.parseInt(dachuangfangjiage.getText()));
+			po.setShuangrenfangprice(Integer.parseInt(shuangrenfangjiage.getText()));
+			po.setSanrenjianprice(Integer.parseInt(sanrenjianjiage.getText()));
+			po.setStar(Integer.parseInt(xingji.getText()));
 			int hotelID = po.getHotelID();
 			if(controller.updateHotel(hotelID)){
 				JOptionPane.showMessageDialog(null, "修改成功！","", JOptionPane.INFORMATION_MESSAGE);
+				controller.refresh();
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "输入不符合规定！","", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "修改失败！","", JOptionPane.INFORMATION_MESSAGE);
+				controller.refresh();
 			}
+//			}
+			
 		}
 }

@@ -16,16 +16,18 @@ public class ManageServiceImpl implements ManageService {
 	
 	private List<UserPo> userList;
 	
-	public boolean addUser(UserPo userPo){
-//		try {
-//			if(RemoteHelper.getInstance().getUserdataservice().insert(userPo)){
-//				return true;
-//			}
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		return false;
+	public int addUser(UserPo userPo,String password){
+		try {
+			char[] pass = password.toCharArray();
+			int id = RemoteHelper.getInstance().getUserdataservice().userinsert(userPo,pass)+2000;
+			if(id>2999){
+				return id;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 	
 	public boolean changeUserInfo(int id,UserPo usPo){
@@ -36,7 +38,7 @@ public class ManageServiceImpl implements ManageService {
 				userPo.setPhone(usPo.getPhone());
 				userPo.setBirthday(usPo.getBirthday());
 				try {
-					if(RemoteHelper.getInstance().getUserdataservice().update(userPo)){
+					if(RemoteHelper.getInstance().getUserdataservice().userupdate(userPo)){
 						return true;
 					}
 				} catch (RemoteException e) {
@@ -49,24 +51,29 @@ public class ManageServiceImpl implements ManageService {
 		return false;
 	}
 	
-	public boolean addHotel(HotelPo hotelPo){
+	public int addHotel(HotelPo hotelPo){
 		try {
-			if(RemoteHelper.getInstance().getHoteldataservice().insert(hotelPo)){
-				return true;
+
+			int id = RemoteHelper.getInstance().getHoteldataservice().hotelinsert(hotelPo);
+			if(id>1999){
+				return id;
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 	}
 	
 	public UserVo uploadUser(int id){
-		for(UserPo userPo : userList){
-			if(userPo.getId() == id){
-				userVo = new UserVo(userPo);
-			}
+		try {
+			UserPo userPo = RemoteHelper.getInstance().getUserdataservice().userfind(id);
+			userVo = new UserVo(userPo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 		return userVo;
 	}
 	

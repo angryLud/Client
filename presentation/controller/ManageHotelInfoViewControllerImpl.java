@@ -60,6 +60,10 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
 //		return hotelservice.updateHotel(hotelID);
 		return false;
 	}
+	
+	public void refresh(){
+		con.ManageHotelInfo();
+	}
 
 	
 

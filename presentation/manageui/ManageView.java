@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -156,7 +157,7 @@ public class ManageView extends JPanel{
 			}
 		});
 		
-		newMemberButton = new JButton("添加新人员");
+		newMemberButton = new JButton("添加网络营销人员");
 		//添加按钮监听事件
 		newMemberButton.addActionListener(new ActionListener() {
 									
@@ -167,7 +168,7 @@ public class ManageView extends JPanel{
 			}
 		});
 		
-		newHotelButton = new JButton("添加新酒店");
+		newHotelButton = new JButton("添加酒店及工作人员");
 		//添加按钮监听事件
 		newHotelButton.addActionListener(new ActionListener() {
 											
@@ -311,39 +312,40 @@ public class ManageView extends JPanel{
 		newMemberFrame = new JFrame();
 		newMemberFrame.setSize(500, 250);
 		newMemberFrame.setLocation(400, 200);
-		newMemberFrame.setTitle("添加新人员");
+		newMemberFrame.setTitle("添加网络营销人员");
 		
 		newMemberPanel = new JPanel();
 		newMemberPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		newMemberLabel1 = new JLabel("姓名");
-		newMemberLabel2 = new JLabel("用户类型");
+		newMemberLabel2 = new JLabel("密码");
 		newMemberLabel3 = new JLabel("生日");
 		newMemberLabel4 = new JLabel("手机号码");
 		newMemberLabel5 = new JLabel("信用");
 		newMemberLabel6 = new JLabel("公司");
-		newMemberCombobox = new JComboBox<String>();
+//		newMemberCombobox = new JComboBox<String>();
+//		
+//		List<String> list=new ArrayList<String>();
+//		list.add("客户");
+//		list.add("酒店工作人员");
+//		list.add("网站营销人员");
 		
-		List<String> list=new ArrayList<String>();
-		list.add("客户");
-		list.add("酒店工作人员");
-		list.add("网站营销人员");
-		
-		for(String str : list){
-			newMemberCombobox.addItem(str);
-		}
-				
-		newMemberCombobox.addItemListener(new ItemListener(){
-					
-			public void itemStateChanged(ItemEvent evt){
-						
-				if(evt.getStateChange() == ItemEvent.SELECTED){
-							
-					String selected=(String)newMemberCombobox.getSelectedItem();
-				}
-			}
-		});
+//		for(String str : list){
+//			newMemberCombobox.addItem(str);
+//		}
+//				
+//		newMemberCombobox.addItemListener(new ItemListener(){
+//					
+//			public void itemStateChanged(ItemEvent evt){
+//						
+//				if(evt.getStateChange() == ItemEvent.SELECTED){
+//							
+//					String selected=(String)newMemberCombobox.getSelectedItem();
+//				}
+//			}
+//		});
 		
 		newMemberTextField1 = new JTextField(20);
+		newMemberTextField2 = new JTextField(20);
 		newMemberTextField3 = new JTextField(20);
 		newMemberTextField4 = new JTextField(20);
 		newMemberTextField5 = new JTextField(20);
@@ -353,7 +355,9 @@ public class ManageView extends JPanel{
         saveButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-				
+				 if(newUser()){
+					 newMemberFrame.dispose();
+				 }
 			}
 		});
 		cancleButton = new JButton("取消");
@@ -374,7 +378,7 @@ public class ManageView extends JPanel{
 		newMemberPanel2.add(newMemberLabel1);
 		newMemberPanel2.add(newMemberTextField1);
 		newMemberPanel2.add(newMemberLabel2);
-		newMemberPanel2.add(newMemberCombobox);
+		newMemberPanel2.add(newMemberTextField2);
 		newMemberPanel2.add(newMemberLabel3);
 		newMemberPanel2.add(newMemberTextField3);
 		newMemberPanel2.add(newMemberLabel4);
@@ -398,7 +402,7 @@ public class ManageView extends JPanel{
 		newHotelFrame = new JFrame();
 		newHotelFrame.setSize(600, 350);
 		newHotelFrame.setLocation(400, 200);
-		newHotelFrame.setTitle("添加酒店");
+		newHotelFrame.setTitle("添加酒店及工作人员");
 		
 //		newHotelLabel1 = new JLabel("酒店ID");
 		newHotelLabel2 = new JLabel("酒店名称");
@@ -489,7 +493,7 @@ public class ManageView extends JPanel{
 	}
 	
 	private boolean saveHotel(){
-		int id = Integer.valueOf(newHotelTextField1.getText());
+		int id = 0;
 		String hotelName = newHotelTextField2.getText();
 		String hotelAddress = newHotelTextField3.getText();
 		String position = newHotelTextField_.getText();
@@ -503,12 +507,32 @@ public class ManageView extends JPanel{
 				sanrenjianprice,star,score,description);
 
 		manageService = new ManageServiceImpl();
-		if(manageService.addHotel(hotelPo)){
+		id = manageService.addHotel(hotelPo);
+		if(id!=0){
+			JOptionPane.showMessageDialog(null,"酒店id为"+id,"",JOptionPane.ERROR_MESSAGE);
 			return true;
 		}
 
 		return false;
 
+	}
+	
+	public boolean newUser(){
+		int id = 0;
+		String userName = newMemberTextField1.getText();
+		String password = newMemberTextField2.getText();
+		String birthday = newMemberTextField3.getText();
+		String phone = newMemberTextField4.getText();
+		int credit = Integer.valueOf(newMemberTextField5.getText());
+		String company = newMemberTextField6.getText();
+		UserPo userPo = new UserPo(id,userName,birthday,phone,credit,company);
+		manageService = new ManageServiceImpl();
+		id = manageService.addUser(userPo,password);
+		if(id>2999){
+			JOptionPane.showMessageDialog(null,"网络营销人员id为"+id,"",JOptionPane.ERROR_MESSAGE);
+			return true;
+		}
+		return false;	
 	}
 
 }

@@ -11,6 +11,8 @@ import java.util.Date;
 import businesslogicservice.PromotionService;
 import dataservice.promotiondataservice;
 import vo.PromotionVo;
+import po.HotelPo;
+import po.OrderPo;
 import po.PromotionPo;
 import rmi.RemoteHelper;
 
@@ -18,12 +20,9 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	private List<PromotionPo> promotionList;
 	
-//	private  Date date;
+	private List<HotelPo> hotelList;
 	
 	public PromotionServiceImpl(){
-//		this.date = date;
-//		promotionDao = promotiondataservice.getInstance();
-//		promotionList = promotionDao.find(date);
 		promotionList = new ArrayList<PromotionPo>();
 //		try {
 //			promotionList = RemoteHelper.getInstance().getPromotiondataservice().find();
@@ -36,9 +35,8 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	public boolean insert(PromotionPo promotionPo){
 		try {
-
-
-			if(RemoteHelper.getInstance().getPromotiondataservice().insert(promotionPo)){
+			int id = RemoteHelper.getInstance().getPromotiondataservice().promotioninsert(promotionPo);
+			if(id>999){
 				return true;
 			}
 
@@ -55,7 +53,6 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	public List<PromotionVo> find(){
 		List<PromotionVo> list = new ArrayList<PromotionVo>();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		for(PromotionPo promotionPo : promotionList){
 			PromotionVo promotionVo = new PromotionVo(promotionPo);
 			list.add(promotionVo);
@@ -70,6 +67,31 @@ public class PromotionServiceImpl implements PromotionService {
 //			}	
 		}
 		return list;
+	}
+	
+	public boolean updateOrder(String place,double discount){
+		for(HotelPo hotelPo : hotelList){
+			if(hotelPo.getPosition() == place){
+				int id = hotelPo.getHotelID();
+				List<OrderPo> list = new ArrayList<OrderPo>();
+				try {
+					list = RemoteHelper.getInstance().getOrderdataservice().findorderbyhotelid(id);
+					for(OrderPo orderPo:list){
+						int value = orderPo.getValue();
+						value = (int)(value * discount);
+						orderPo.setValue(value);
+						if(RemoteHelper.getInstance().getOrderdataservice().orderupdate(orderPo)){						
+						}else{
+							return false;
+						}
+					}
+				} catch (RemoteException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return true;
 	}
 
 	@Override

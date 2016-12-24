@@ -48,6 +48,6 @@ public class hotelcontroller implements mainframecontroller {
 		
 	}
 	public void ExitButtonClicked(){
-		con.loggedin("1");
+		con.loggedin(this.HotelID);
 	}
 }

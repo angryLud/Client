@@ -42,10 +42,10 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public OrderVo getOrder(int orderID) {
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,"0",0);
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",1);
 		OrderVo vo = new OrderVo(po);
 		try{
-		po = orderdataservice.find(orderID);
+		po = orderdataservice.orderfind(orderID);
 		vo = new OrderVo(po);
 		}catch(RemoteException e){
 			e.printStackTrace();
@@ -55,16 +55,16 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public boolean executeOrder(int orderID) {
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,"0",0);
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",1);
         	try {
-				po = orderdataservice.find(orderID);
+				po = orderdataservice.orderfind(orderID);
 				if(po.getExecutetime()==0){
 					Date date=new Date();
 					DateFormat format=new SimpleDateFormat("yyyy/MM/dd");
 					String time=format.format(date);
 					String res = time.replaceAll("/","");
 					po.setExecutetime(Long.parseLong(time));
-					if(orderdataservice.update(po)){
+					if(orderdataservice.orderupdate(po)){
 						for(OrderPo o : hotelOrderList){
 							if(o.getOrderid()==orderID){
 								o = po;
@@ -81,10 +81,10 @@ public class OrderServiceImpl implements OrderService{
 		return false;
 	}
 	public boolean updateOrder(int orderID){
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,"0",0);
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",1);
 		try{
-			po = orderdataservice.find(orderID);
-			if(orderdataservice.update(po)){
+			po = orderdataservice.orderfind(orderID);
+			if(orderdataservice.orderupdate(po)){
 				for(OrderPo o:hotelOrderList){
 					if(o.getOrderid()==orderID){
 						o = po;

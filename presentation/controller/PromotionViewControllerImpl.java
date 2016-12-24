@@ -51,17 +51,13 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 	
 	
 	public void returnButtonClicked(){
-//		con.loggedin("3");
-		JFrame frame = new JFrame();
-		PromotionController promotionCon=new PromotionControllerimpl(3);
-        frame.getContentPane().removeAll();
-        frame.repaint();
-        this.view2=new Promotion(promotionCon);
-//        promotionCon.setcon(this);
-        promotionCon.setView((Promotion)this.view2);
-        frame.getContentPane().add(this.view2);
-        frame.setVisible(true);
-        return;
+		con.login();
+		promotionService.logout(3);
+		con.loggedin("3");
+	}
+	
+	public void comeToUseButtonClicked(){
+		view.comeToUseButtonClicked();
 	}
 	
 	/**
@@ -73,7 +69,7 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 
 	@Override
 	public void setcon(controller controller) {
-		this.con=con;
+		this.con=controller;
 	}
 
 }

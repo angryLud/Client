@@ -138,12 +138,28 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		// TODO Auto-generated method stub
 		//计算价格
 		
+		HotelPo hpo = null;
+		try {
+			hpo = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(ovo.getHotelid());
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		int value = 0;
+		if(ovo.getRoomstyle()==0){
+			value = ovo.getRoomnum()*hpo.getAvdachuangfang();
+		}else if(ovo.getRoomstyle()==1){
+			value = ovo.getRoomnum()*hpo.getAvshuangrenfang();
+		}else if(ovo.getRoomstyle()==2){
+			value = ovo.getRoomnum()*hpo.getAvsanrenjian();
+		}
+		
 		
 		
 //		插入数据库
 		 try {
-			RemoteHelper.getInstance().getOrderdataservice().orderinsert(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
+			RemoteHelper.getInstance().getOrderdataservice().orderinsert(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum(),null,0));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -198,6 +214,24 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		}
 		return i;
 	}
+	@Override
+	public void updateorderinfo(OrderVo ovo) {
+		// TODO Auto-generated method stub
+		try {
+			RemoteHelper.getInstance().getOrderdataservice().orderupdate(new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",1));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		pingjiadingdan(){
+//			getdingdan po (id);
+//			
+//			po.setassess(pi);
+//			po.setscor();
+//			Remot.xxxx.update(po);
+		}
+	}
 
 
-}
+//}

@@ -10,7 +10,7 @@ public interface ManageService {
 	 * @param userPo
 	 * @return 增加用户
 	 */
-	public boolean addUser(UserPo userPo);
+	public int addUser(UserPo userPo,String password);
 	
 	/**
 	 * @param userPo
@@ -22,7 +22,7 @@ public interface ManageService {
 	 * @param hotelPo
 	 * @return 增加酒店
 	 */
-	public boolean addHotel(HotelPo hotelPo);
+	public int addHotel(HotelPo hotelPo);
 	/**
 	 * @param id
 	 * @return 上传用户信息

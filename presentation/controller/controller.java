@@ -20,6 +20,8 @@ import presentation.signup.signupcontroller;
 import presentation.userui.*;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 
 /**
@@ -39,7 +41,16 @@ public class controller {
 
     public controller(JFrame frame){
         this.frame=frame;
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+
+
+            }
+        });
         this.login();
+
 
     }
     public void login(){

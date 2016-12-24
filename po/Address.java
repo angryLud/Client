@@ -1,7 +1,6 @@
 package po;
 
 import java.io.Serializable;
-import java.util.Vector;
 
 /**
  * Created by huihantao on 2016/12/22.

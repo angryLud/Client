@@ -9,7 +9,9 @@ public class HotelPo implements Serializable{
 	//hotelid 未4位整数 第一位是1
 	// hotelname 为不超过10位字符串
 	// 所有可用客房数量 不超过100
-	//position  只有4中选择，见po.address
+	//addres  只有4中选择，见po.address
+	//position 
+
 	// 所有房间价格不超过100
 
 	// 星级只有12345

@@ -47,7 +47,7 @@ public class user extends JPanel{
         });
         this.add(back);
 
-        img = new ImageIcon("src/presentation/userui/c.jpg");
+        img = new ImageIcon("src/images/c.jpg");
         imgLabel = new JLabel(img);
         imgLabel.setBounds(40,120,150,150);
         this.add(imgLabel);

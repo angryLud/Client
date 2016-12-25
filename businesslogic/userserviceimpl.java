@@ -21,22 +21,23 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	private userdataservice userdaser;
 	private orderdataservice orderdaser;
 	private UserPo upo;
-	private OrderPo opo;
+	private List<OrderPo> opolist;
 	private loginservice logs;
 	private List<HotelPo> hpolist;
 	public userserviceimpl(){
 
 	}
 	public userserviceimpl(int userId){
-//		try {
-//			upo=RemoteHelper.getInstance().getUserdataservice().find(userId);
-//			opo=RemoteHelper.getInstance().getOrderdataservice().findbyuserid(userId);
-//			hpolist=RemoteHelper.getInstance().getHoteldataservice().usergethotellist(userId);
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		upo=new UserPo(0,"cyz","19960601","12345678912",100,null);
+		try {
+			upo=RemoteHelper.getInstance().getUserdataservice().userfind(userId);
+//			opolist=RemoteHelper.getInstance().getOrderdataservice().findorderbyuserid(userId);
+			RemoteHelper.getInstance().getOrderdataservice();
+			hpolist=RemoteHelper.getInstance().getHoteldataservice().usergethotellist(userId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		
 		
 		logs=new login();
@@ -51,15 +52,10 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	@Override
 	public List<OrderVo> getAllOrders(int userId) {
 		// TODO Auto-generated method stub
-		OrderVo x=new OrderVo(1,19,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
-		OrderVo y=new OrderVo(2,23,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
-		OrderVo z=new OrderVo(3,28,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
-		OrderVo u=new OrderVo(4,69,1,20161209,20161210,20161210,20161213,198,1,"大床房",2);
-		ArrayList<OrderVo> l=new ArrayList<OrderVo>();
-		l.add(x);
-		l.add(y);
-		l.add(z);
-		l.add(u);
+		ArrayList<OrderVo> l=new ArrayList();
+		for (OrderPo op:opolist){
+			l.add(new OrderVo(op));
+		}
 		return l;
 	}
 

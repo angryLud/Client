@@ -11,13 +11,13 @@ import java.rmi.RemoteException;
 public class login implements loginservice {
     @Override
     public boolean login(String id, char[] password) {
-//        try {
-//            return RemoteHelper.getInstance().getloginservice().login(id,password);
-//
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
-        return true;
+        try {
+            return RemoteHelper.getInstance().getloginservice().login(id,password);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return false;
 
 //        if (id.equals("abc")) return false;
 //        return  true;

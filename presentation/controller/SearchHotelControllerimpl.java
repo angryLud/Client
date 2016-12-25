@@ -69,10 +69,10 @@ public SearchHotelControllerimpl(int userId){
 		
 	}
 	@Override
-	public int createorder(int orderid,int userid,int hotelid,int intnowtime,long s5,long s7,long s6,int status,String s1,int s2,String assess,int score) {
+	public int createorder(int orderid,int userid,int hotelid,int intnowtime,long s5,long s7,long s6,int status,String s1,int s2) {
 		// TODO Auto-generated method stub
 		
-		OrderVo ovo = new OrderVo(orderid,userid,hotelid,intnowtime,s5,s7,s6,0,status,s1,s2,null,0);
+		OrderVo ovo = new OrderVo(orderid,userid,hotelid,intnowtime,s5,s7,s6,0,status,s1,s2);
 		
 		return userso.createorder(ovo);
 		

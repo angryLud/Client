@@ -17,7 +17,7 @@ public OrderVo(OrderPo orderPo){
 }
 
 
-public OrderVo(int orderid,int userid, int hotelid,  long createtime, long executetime, long delaytime, long endtime,int value,int status,String roomstyle,int roomnum,String access, int score){
+public OrderVo(int orderid,int userid, int hotelid,  long createtime, long executetime, long delaytime, long endtime,int value,int status,String roomstyle,int roomnum){
 	this.add(String.valueOf(orderid));
 	this.add(String.valueOf(userid));
 	this.add(String.valueOf(hotelid));
@@ -29,8 +29,6 @@ public OrderVo(int orderid,int userid, int hotelid,  long createtime, long execu
 	this.add(String.valueOf(status));
 	this.add(roomstyle);
 	this.add(String.valueOf(roomnum));
-	this.add(access);
-	this.add(String.valueOf(score));
 }
 public int getOrderid(){
 	return Integer.parseInt(this.get(0));
@@ -65,11 +63,5 @@ public int getRoomstyle(){
 }
 public int getRoomnum(){
 	return Integer.parseInt(this.get(10));
-}
-public String getAssess(){
-	return this.get(11);
-}
-public int getScore(){
-	return Integer.parseInt(this.get(12));
 }
 }

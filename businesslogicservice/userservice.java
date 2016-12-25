@@ -70,5 +70,5 @@ public String getphone();
 
 int insert(String name, String number,char[] password);
 
-public void updateorderinfo(OrderVo ovo);
+public void updateorderinfo(int orderid,String assess, int score);
 }

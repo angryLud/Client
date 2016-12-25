@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -29,6 +30,7 @@ public class SearchHotel extends JPanel{
 	private JFrame Hotelinformation;
 	private JTextField textField;
 	private JLabel label1;
+	private int orderId;
 	private int userId;
 	private int hotelId;
 	private SearchHotelController searchHotelCon;
@@ -107,7 +109,7 @@ public class SearchHotel extends JPanel{
 		comboBox_3.addItem("未订过");
 		this.add(comboBox_3);
 		
-		textField = new JTextField("名称/房间/星级");
+		textField = new JTextField("名称/星级");
 		textField.setBounds(410, 40, 102, 21);
 		this.add(textField);
 		textField.setColumns(10);
@@ -125,7 +127,6 @@ public class SearchHotel extends JPanel{
 		vColumns.add("评分");
 		vColumns.add("是否预定过");
 		//数据
-		vData=new Vector<>();
 		hotellist=new Vector<>();
 
 		hotellist.addAll(searchHotelCon.getAllHotels(userId));
@@ -174,9 +175,17 @@ public class SearchHotel extends JPanel{
 							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));
 						}else{//有地址和商圈限定，还有是否预定过的限定
 							Vector<Vector<String>> volist=new Vector<Vector<String>>();
+							String text = textField.getText();
+							boolean isNum = Pattern.matches("^\\d+$", text);//"^\\d+$"
 							for(int i=0;i<hotellist.size();i++){
-								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)){
+								if(isNum==true){
+								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)&&hotellist.get(i).get(4).equals(text)){
 									volist.add(hotellist.get(i));
+								}
+								}else if(text.matches("[\\u4e00-\\u9fa5]+")){
+									if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)&&hotellist.get(i).get(1).equals(text)){
+										volist.add(hotellist.get(i));
+									}
 								}
 							}
 							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));
@@ -323,7 +332,7 @@ public class SearchHotel extends JPanel{
         				String nowtime = df.format(new Date());
         				int intnowtime = Integer.parseInt(nowtime);
         				int status = 1;//1表示未执行订单
-        				int value=searchHotelCon.createorder(userId,hotelId,intnowtime,executetime,delaytime,endtime,status,s1,s2);
+        				int value=searchHotelCon.createorder(orderId,userId,hotelId,intnowtime,executetime,delaytime,endtime,status,s1,s2);
         				JLabel label1 = new JLabel("预定成功,价格为 "+value);
         				frame1.add(label1);
         			}else if(searchHotelCon.getcredit()<0){

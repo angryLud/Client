@@ -7,6 +7,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import po.HotelPo;
+import po.PromotionerPo;
 import po.UserPo;
 import rmi.RemoteHelper;
 
@@ -16,10 +17,10 @@ public class ManageServiceImpl implements ManageService {
 	
 	private List<UserPo> userList;
 	
-	public int addUser(UserPo userPo,String password){
+	public int addUser(PromotionerPo pPo,String password){
 		try {
 			char[] pass = password.toCharArray();
-			int id = RemoteHelper.getInstance().getUserdataservice().userinsert(userPo,pass)+2000;
+			int id = RemoteHelper.getInstance().getPromotiondataservice().promotionerinsert(pPo,pass);
 			if(id>2999){
 				return id;
 			}
@@ -51,10 +52,10 @@ public class ManageServiceImpl implements ManageService {
 		return false;
 	}
 	
-	public int addHotel(HotelPo hotelPo){
+	public int addHotel(HotelPo hotelPo,String password){
 		try {
-
-			int id = RemoteHelper.getInstance().getHoteldataservice().hotelinsert(hotelPo);
+			char[] pass = password.toCharArray();
+			int id = RemoteHelper.getInstance().getHoteldataservice().hotelinsert(hotelPo,pass);
 			if(id>1999){
 				return id;
 			}

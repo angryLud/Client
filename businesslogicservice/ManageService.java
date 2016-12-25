@@ -1,6 +1,7 @@
 package businesslogicservice;
 
 import po.HotelPo;
+import po.PromotionerPo;
 import po.UserPo;
 import vo.UserVo;
 
@@ -10,7 +11,7 @@ public interface ManageService {
 	 * @param userPo
 	 * @return 增加用户
 	 */
-	public int addUser(UserPo userPo,String password);
+	public int addUser(PromotionerPo ppo,String password);
 	
 	/**
 	 * @param userPo
@@ -22,7 +23,7 @@ public interface ManageService {
 	 * @param hotelPo
 	 * @return 增加酒店
 	 */
-	public int addHotel(HotelPo hotelPo);
+	public int addHotel(HotelPo hotelPo,String password);
 	/**
 	 * @param id
 	 * @return 上传用户信息

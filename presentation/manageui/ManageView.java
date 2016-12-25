@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import businesslogic.ManageServiceImpl;
 import businesslogicservice.ManageService;
 import po.HotelPo;
+import po.PromotionerPo;
 import po.UserPo;
 
 import presentation.controller.ManageViewControllerImpl;
@@ -192,9 +193,9 @@ public class ManageView extends JPanel{
 		searchButton.setFont(new Font("宋体",Font.BOLD,20));
 		newMemberButton.setFont(new Font("宋体",Font.BOLD,20));
 		newHotelButton.setFont(new Font("宋体",Font.BOLD,20));
-		searchButton.setBounds(50, 400, 220,50);
-		newMemberButton.setBounds(300, 400, 200,50);
-		newHotelButton.setBounds(530, 400, 200,50);
+		searchButton.setBounds(20, 400, 220,50);
+		newMemberButton.setBounds(260, 400, 220,50);
+		newHotelButton.setBounds(500, 400, 260,50);
 		userTypeJpanel.add(searchButton);
 		userTypeJpanel.add(newMemberButton);
 		userTypeJpanel.add(newHotelButton);
@@ -310,7 +311,7 @@ public class ManageView extends JPanel{
 	 */
 	public void newMemberButtonClicked(){
 		newMemberFrame = new JFrame();
-		newMemberFrame.setSize(500, 250);
+		newMemberFrame.setSize(500, 150);
 		newMemberFrame.setLocation(400, 200);
 		newMemberFrame.setTitle("添加网络营销人员");
 		
@@ -318,10 +319,10 @@ public class ManageView extends JPanel{
 		newMemberPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		newMemberLabel1 = new JLabel("姓名");
 		newMemberLabel2 = new JLabel("密码");
-		newMemberLabel3 = new JLabel("生日");
-		newMemberLabel4 = new JLabel("手机号码");
-		newMemberLabel5 = new JLabel("信用");
-		newMemberLabel6 = new JLabel("公司");
+//		newMemberLabel3 = new JLabel("生日");
+//		newMemberLabel4 = new JLabel("手机号码");
+//		newMemberLabel5 = new JLabel("信用");
+//		newMemberLabel6 = new JLabel("公司");
 //		newMemberCombobox = new JComboBox<String>();
 //		
 //		List<String> list=new ArrayList<String>();
@@ -346,10 +347,10 @@ public class ManageView extends JPanel{
 		
 		newMemberTextField1 = new JTextField(20);
 		newMemberTextField2 = new JTextField(20);
-		newMemberTextField3 = new JTextField(20);
-		newMemberTextField4 = new JTextField(20);
-		newMemberTextField5 = new JTextField(20);
-		newMemberTextField6 = new JTextField(20);
+//		newMemberTextField3 = new JTextField(20);
+//		newMemberTextField4 = new JTextField(20);
+//		newMemberTextField5 = new JTextField(20);
+//		newMemberTextField6 = new JTextField(20);
 		saveButton = new JButton("保存");
 		//保存信息
         saveButton.addActionListener(new ActionListener() {
@@ -374,19 +375,19 @@ public class ManageView extends JPanel{
 		newMemberPanel = new JPanel();
 		newMemberPanel2 = new JPanel();
 		newMemberPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		newMemberPanel2.setLayout(new GridLayout(7,2));
+		newMemberPanel2.setLayout(new GridLayout(3,2));
 		newMemberPanel2.add(newMemberLabel1);
 		newMemberPanel2.add(newMemberTextField1);
 		newMemberPanel2.add(newMemberLabel2);
 		newMemberPanel2.add(newMemberTextField2);
-		newMemberPanel2.add(newMemberLabel3);
-		newMemberPanel2.add(newMemberTextField3);
-		newMemberPanel2.add(newMemberLabel4);
-		newMemberPanel2.add(newMemberTextField4);
-		newMemberPanel2.add(newMemberLabel5);
-		newMemberPanel2.add(newMemberTextField5);
-		newMemberPanel2.add(newMemberLabel6);
-		newMemberPanel2.add(newMemberTextField6);
+//		newMemberPanel2.add(newMemberLabel3);
+//		newMemberPanel2.add(newMemberTextField3);
+//		newMemberPanel2.add(newMemberLabel4);
+//		newMemberPanel2.add(newMemberTextField4);
+//		newMemberPanel2.add(newMemberLabel5);
+//		newMemberPanel2.add(newMemberTextField5);
+//		newMemberPanel2.add(newMemberLabel6);
+//		newMemberPanel2.add(newMemberTextField6);
 		newMemberPanel2.add(saveButton);
 		newMemberPanel2.add(cancleButton);
 		newMemberPanel.add(newMemberPanel2);
@@ -404,7 +405,7 @@ public class ManageView extends JPanel{
 		newHotelFrame.setLocation(400, 200);
 		newHotelFrame.setTitle("添加酒店及工作人员");
 		
-//		newHotelLabel1 = new JLabel("酒店ID");
+		newHotelLabel1 = new JLabel("密码");
 		newHotelLabel2 = new JLabel("酒店名称");
 		newHotelLabel3 = new JLabel("酒店地址");
 		newHotelLabel_ = new JLabel("酒店商圈");
@@ -414,7 +415,7 @@ public class ManageView extends JPanel{
 		newHotelLabel7 = new JLabel("大床房价格");
 		newHotelLabel8 = new JLabel("双人间价格");
 		newHotelLabel9 = new JLabel("三人间价格");
-//		newHotelTextField1 = new JTextField(20);
+		newHotelTextField1 = new JTextField(20);
 		newHotelTextField2 = new JTextField(20);
 		newHotelTextField3 = new JTextField(20);
 		newHotelTextField_ = new JTextField(20);
@@ -445,11 +446,11 @@ public class ManageView extends JPanel{
 		JPanel panel1 = new JPanel();
 		panel1.setLayout(new FlowLayout(FlowLayout.CENTER));
 		JPanel panel2 = new JPanel();
-		panel2.setLayout(new GridLayout(9,2));
-//		panel2.add(newHotelLabel1);
-//		panel2.add(newHotelTextField1);
+		panel2.setLayout(new GridLayout(11,2));
 		panel2.add(newHotelLabel2);
 		panel2.add(newHotelTextField2);
+		panel2.add(newHotelLabel1);
+		panel2.add(newHotelTextField1);
 		panel2.add(newHotelLabel3);
 		panel2.add(newHotelTextField3);
 		panel2.add(newHotelLabel_);
@@ -494,6 +495,7 @@ public class ManageView extends JPanel{
 	
 	private boolean saveHotel(){
 		int id = 0;
+		String password = newHotelTextField1.getText();
 		String hotelName = newHotelTextField2.getText();
 		String hotelAddress = newHotelTextField3.getText();
 		String position = newHotelTextField_.getText();
@@ -507,7 +509,7 @@ public class ManageView extends JPanel{
 				sanrenjianprice,star,score,description);
 
 		manageService = new ManageServiceImpl();
-		id = manageService.addHotel(hotelPo);
+		id = manageService.addHotel(hotelPo,password);
 		if(id!=0){
 			JOptionPane.showMessageDialog(null,"酒店id为"+id,"",JOptionPane.ERROR_MESSAGE);
 			return true;
@@ -521,13 +523,13 @@ public class ManageView extends JPanel{
 		int id = 0;
 		String userName = newMemberTextField1.getText();
 		String password = newMemberTextField2.getText();
-		String birthday = newMemberTextField3.getText();
-		String phone = newMemberTextField4.getText();
-		int credit = Integer.valueOf(newMemberTextField5.getText());
-		String company = newMemberTextField6.getText();
-		UserPo userPo = new UserPo(id,userName,birthday,phone,credit,company);
+//		String birthday = newMemberTextField3.getText();
+//		String phone = newMemberTextField4.getText();
+//		int credit = Integer.valueOf(newMemberTextField5.getText());
+//		String company = newMemberTextField6.getText();
+		PromotionerPo pPo = new PromotionerPo(id,userName);
 		manageService = new ManageServiceImpl();
-		id = manageService.addUser(userPo,password);
+		id = manageService.addUser(pPo,password);
 		if(id>2999){
 			JOptionPane.showMessageDialog(null,"网络营销人员id为"+id,"",JOptionPane.ERROR_MESSAGE);
 			return true;

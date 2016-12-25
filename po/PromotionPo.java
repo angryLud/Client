@@ -14,29 +14,28 @@ import java.io.Serializable;
 
 public class PromotionPo implements Serializable{
 
-	
+
 
 	private static final long serialVersionUID =30L;
-	
+
 	private int promotionNo;
-	
+
 	private String promotionName;
-	
+
 	private String beginTime;
-	
+
 	private String endTime;
-	
+
 	private double discount;
-	
+
 	private String place;
-	
+
 	public PromotionPo(){
 		super();
 	}
-	
+
 	public PromotionPo(int promotionNo,String promotionName,String beginTime,
-			String endTime,double discount,String place){
-		super();
+					   String endTime,double discount,String place){
 		this.promotionNo = promotionNo;
 		this.promotionName = promotionName;
 		this.beginTime = beginTime;
@@ -44,51 +43,51 @@ public class PromotionPo implements Serializable{
 		this.discount = discount;
 		this.place = place;
 	}
-	
+
 	public int getPromotionNo(){
 		return promotionNo;
 	}
-	
+
 	public void setPromotionNo(int promotionNo){
 		this.promotionNo = promotionNo;
 	}
-	
+
 	public String getPromotionName(){
 		return promotionName;
 	}
-	
+
 	public void setPromotionName(String promotionName){
 		this.promotionName = promotionName;
 	}
-	
+
 	public String getBeginTime(){
 		return beginTime;
 	}
-	
+
 	public void setBeginTime(String beginTime){
 		this.beginTime = beginTime;
 	}
-	
+
 	public String getEndTime(){
 		return endTime;
 	}
-	
+
 	public void setEndTime(String endTime){
 		this.endTime = endTime;
 	}
-	
+
 	public double getDiscount(){
 		return discount;
 	}
-	
+
 	public void setDiscount(double discount){
 		this.discount = discount;
 	}
-	
+
 	public String getPlace(){
 		return place;
 	}
-	
+
 	public void setPlace(String place){
 		this.place = place;
 	}

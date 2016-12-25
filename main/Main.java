@@ -21,7 +21,7 @@ import java.rmi.RemoteException;
 public class Main {
     private RemoteHelper remoteHelper;
     public Main(){
-//        linkToServer();
+        linkToServer();
         initGUI();
     }
     public static void main(String[] args) {

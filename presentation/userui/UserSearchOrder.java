@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 import presentation.controller.UserSearchOrderCotrollerimpl;
 import presentation.userui.UserInformation.exitbuttonListener;
+import vo.HotelVo;
 import vo.OrderVo;
 
 
@@ -51,6 +52,7 @@ public class UserSearchOrder extends JPanel{
 	private UserSearchOrderCotroller UserSearchOrderCon;
 	private int userId;
 	private Vector<OrderVo> vData;
+	private Vector<OrderVo> orderlist;
 
 
 
@@ -111,10 +113,10 @@ public void go(){
 			vColumns.add("预定退房时间");
 			vColumns.add("订单价值");
 			//数据
-			vData = new Vector<OrderVo>();
-			vData.addAll(UserSearchOrderCon.getAllOrders(userId));
+			orderlist=new Vector<>();
+			orderlist.addAll(UserSearchOrderCon.getAllOrders(userId));
 			//模型
-			orderListModel = new DefaultTableModel(vData, vColumns);
+			orderListModel = new DefaultTableModel(orderlist, vColumns);
 			//表格
 			orderTable = new JTable(orderListModel){
 
@@ -210,9 +212,10 @@ class button7Listener implements ActionListener{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
+					int index = orderTable.getSelectedRow();
 					String access = textfield1.getText();
 					int score = Integer.parseInt(combobox.getToolTipText());
-					UserSearchOrderCon.updateorderinfor(access,score);
+					UserSearchOrderCon.updateorderinfor(Integer.parseInt(orderlist.get(index).get(0)),access,score);
 				}
 				
 			});

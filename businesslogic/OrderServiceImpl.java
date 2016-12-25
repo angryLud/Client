@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public OrderVo getOrder(int orderID) {
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",1);
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0);
 		OrderVo vo = new OrderVo(po);
 		try{
 		po = orderdataservice.orderfind(orderID);
@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	public boolean executeOrder(int orderID) {
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",1);
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0);
         	try {
 				po = orderdataservice.orderfind(orderID);
 				if(po.getExecutetime()==0){
@@ -81,7 +81,7 @@ public class OrderServiceImpl implements OrderService{
 		return false;
 	}
 	public boolean updateOrder(int orderID){
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0,"hao",1);
+		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0);
 		try{
 			po = orderdataservice.orderfind(orderID);
 			if(orderdataservice.orderupdate(po)){

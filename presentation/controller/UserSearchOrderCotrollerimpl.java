@@ -67,10 +67,10 @@ public UserSearchOrderCotrollerimpl(int userId){
 		
 	}
 	@Override
-	public void updateorderinfor(String access, int score) {
+	public void updateorderinfor(int orderid,String assess, int score) {
 		// TODO Auto-generated method stub
-		OrderVo ovo = new OrderVo(access,score);
-		userso.updateorderinfo(ovo);
+		
+		userso.updateorderinfo(orderid,assess,score);
 	}
 
 

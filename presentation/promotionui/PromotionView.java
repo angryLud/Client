@@ -384,11 +384,11 @@ public class PromotionView extends JPanel{
 //		newStrategyTextField1.setBounds(350,10,200,30);
 		newStrategyLabel2.setBounds(150,50,200,30);
 		newStrategyTextField2.setBounds(350,50,200,30);
-		newStrategyLabel3.setBounds(100,90,300,30);
+		newStrategyLabel3.setBounds(150,90,200,30);
 		newStrategyTextField3.setBounds(350,90,200,30);
-		newStrategyLabel4.setBounds(100,130,300,30);
+		newStrategyLabel4.setBounds(150,130,200,30);
 		newStrategyTextField4.setBounds(350,130,200,30);
-		newStrategyLabel5.setBounds(250,170,100,30);
+		newStrategyLabel5.setBounds(200,170,100,30);
 		newStrategyTextField5.setBounds(350,170,200,30);
 		newStrategyLabel6.setBounds(200,210,100,30);
 		newStrategyCombobox1.setBounds(350,210,180,30);

@@ -30,8 +30,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	public userserviceimpl(int userId){
 		try {
 			upo=RemoteHelper.getInstance().getUserdataservice().userfind(userId);
-//			opolist=RemoteHelper.getInstance().getOrderdataservice().findorderbyuserid(userId);
-			RemoteHelper.getInstance().getOrderdataservice();
+			opolist=RemoteHelper.getInstance().getOrderdataservice().findorderbyuserid(userId);
 			hpolist=RemoteHelper.getInstance().getHoteldataservice().usergethotellist(userId);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -53,6 +52,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	public List<OrderVo> getAllOrders(int userId) {
 		// TODO Auto-generated method stub
 		ArrayList<OrderVo> l=new ArrayList();
+		if (opolist==null) return null;
 		for (OrderPo op:opolist){
 			l.add(new OrderVo(op));
 		}
@@ -174,8 +174,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 
 	@Override
 	public String getname() {
-		return  "a";
-		//return upo.getUserName();
+		return  upo.getUserName();
 	}
 
 	@Override

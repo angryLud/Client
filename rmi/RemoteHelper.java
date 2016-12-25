@@ -30,9 +30,12 @@ public class RemoteHelper {
     public promotiondataservice getPromotiondataservice(){
         return (promotiondataservice) remote;
     }
-    public logindataservice getloginservice(){return (logindataservice) remote;}
+    public logindataservice getloginservice(){
+        return (logindataservice) remote;
+    }
 
-    public hoteldataservice getHoteldataservice() {return (hoteldataservice) remote;
+    public hoteldataservice getHoteldataservice() {
+        return (hoteldataservice) remote;
     }
 }
 

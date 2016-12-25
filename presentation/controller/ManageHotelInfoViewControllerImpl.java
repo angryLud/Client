@@ -14,7 +14,7 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
     
     private controller con;
 	
-	private int HotelID;
+	public int HotelID;
 	
 	public ManageHotelInfoViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;

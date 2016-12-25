@@ -271,6 +271,17 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		}
 		opo.setStatus(3);
 	}
+	@Override
+	public UserPo getUser(int userId) {
+		UserPo upo = null;
+		try{
+			upo = RemoteHelper.getInstance().getUserdataservice().userfind(userId);
+		}catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return upo;
+	}
 	}
 
 

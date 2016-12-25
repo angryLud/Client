@@ -9,7 +9,7 @@ public interface OrderService {
 	
 	List<OrderVo> getAllOrders(int hotelID);
 	
-	OrderVo getOrder(int orderID);
+	OrderPo getOrder(int orderID);
 
 	public boolean executeOrder(int orderID);
 	

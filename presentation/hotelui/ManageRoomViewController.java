@@ -8,6 +8,8 @@ public interface ManageRoomViewController {
 	public void setView(ManageRoomView view);
 	
 	public void ExitButtonClicked();
+	
+	public boolean updateHotel(int hotelID);
   
     public void refresh();
 }

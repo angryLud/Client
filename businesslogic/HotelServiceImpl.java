@@ -17,24 +17,20 @@ public class HotelServiceImpl implements HotelService{
 	public HotelServiceImpl(int hotelID){
 		this.hotelID = hotelID;
 		hoteldataservice = RemoteHelper.getInstance().getHoteldataservice();
+		
 	}
 
 	@Override
 
 	public boolean updateHotel(int hotelID) {
-
-		HotelPo po = new HotelPo(1,"仙林","南京","英尊",188,288,328,4,4.6,"商圈：XXXX\n地址：XXXXX\n服务设施：停车场丶wifi等\n房间价格：XXXXX\n");
-
-		try {
-//			po = hoteldataservice.findhotelbyid(hotelID);
-//			if(hoteldataservice.update(po)){
-//				return true;
-//			}
 			
-			return RemoteHelper.getInstance().getHoteldataservice().hotelupdate(hpo);
+			try {
+				hpo = hoteldataservice.findhotelbyid(hotelID);
+				return RemoteHelper.getInstance().getHoteldataservice().hotelupdate(hpo);
 			} catch (RemoteException e) {
-			e.printStackTrace();
-		}
+				e.printStackTrace();
+			}
+			
 		return false;
 	}
 

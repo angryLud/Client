@@ -85,7 +85,7 @@ public class ManageHotelInfoView extends JPanel{
 		confirmButton = new JButton("确定");
 		exitButton = new JButton("返回");
 		
-		po = new HotelPo(1,"南京","仙林","英尊",188,288,328,4,4.6,"很棒");
+		po = new HotelPo(2210,"南京","仙林","英尊",188,288,328,4,4.6,"很棒");
 //		try{
 //			po = hoteldataservice.findhotelbyid(hotelID);
 //		}

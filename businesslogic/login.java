@@ -25,11 +25,11 @@ public class login implements loginservice {
 
     @Override
     public  void logout(int id) {
-//        try {
-//            RemoteHelper.getInstance().getloginservice().logout(id);
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            RemoteHelper.getInstance().getloginservice().logout(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
 }

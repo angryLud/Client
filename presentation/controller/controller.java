@@ -20,6 +20,8 @@ import presentation.signup.signupcontroller;
 import presentation.userui.*;
 
 import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Date;
 
 /**
@@ -40,7 +42,16 @@ public class controller {
 
     public controller(JFrame frame){
         this.frame=frame;
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+
+
+            }
+        });
         this.login();
+
 
     }
     public void login(){
@@ -61,7 +72,7 @@ public class controller {
 // decision
     public void loggedin(String id){
     	this.id=id;
-        if (id.substring(0,1).equals("0")){
+        if (id.substring(0,1).equals("1")){
 
             usercon=new usercontrollerimpl(Integer.parseInt(id));
             frame.getContentPane().removeAll();
@@ -74,7 +85,7 @@ public class controller {
             return;
         }
 
-        if (id.substring(0,1).equals("1")){
+        if (id.substring(0,1).equals("2")){
 
             hotelcon =new hotelcontroller("1");
             frame.getContentPane().removeAll();
@@ -86,7 +97,7 @@ public class controller {
             return;
         }
 
-        if (id.substring(0,1).equals("2")){
+        if (id.substring(0,1).equals("4")){
 
             manageViewController =new ManageViewControllerImpl(Integer.parseInt(id));
             frame.getContentPane().removeAll();

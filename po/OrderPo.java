@@ -38,14 +38,18 @@ public class OrderPo implements Serializable {
     private long endtime;
     private int value;
     private int status;
-    
+
     private double discount;
     private String assess;
     private int score;
-	private int roomstyle;
-	private int roomnum;
+    private int roomstyle;
+    private int roomnum;
 
+<<<<<<< HEAD
     public OrderPo(int orderid,int userid, int hotelid, long createtime, long executetime, long delaytime ,long endtime, int value, int status,int roomstyle,int roomnum) {
+=======
+    public OrderPo(int orderid,int userid, int hotelid, long createtime, long executetime, long delaytime ,long endtime, int value, int status,int roomstyle,int roomnum,String assess,double discount,int score) {
+>>>>>>> 357cafba2835b1f17d158d81bb5bbeaf2b90155f
         this.orderid=orderid;
         this.createtime = createtime;
         this.executetime = executetime;
@@ -57,6 +61,12 @@ public class OrderPo implements Serializable {
         this.status = status;
         this.roomstyle = roomstyle;
         this.roomnum = roomnum;
+<<<<<<< HEAD
+=======
+        this.assess = assess;
+        this.discount=discount;
+        this.score = score;
+>>>>>>> 357cafba2835b1f17d158d81bb5bbeaf2b90155f
     }
 
 
@@ -64,19 +74,19 @@ public class OrderPo implements Serializable {
         return createtime;
     }
     public void setCreatetime(long createtime){
-    	this.createtime = createtime;
+        this.createtime = createtime;
     }
     public long getExecutetime() {
         return executetime;
     }
     public void setExecutetime(long executetime){
-    	this.executetime = executetime;
+        this.executetime = executetime;
     }
     public long getDelaytime() {
         return delaytime;
     }
     public void setDelaytime(long delaytime){
-    	this.delaytime = delaytime;
+        this.delaytime = delaytime;
     }
     public int getUserid() {
         return userid;
@@ -93,43 +103,44 @@ public class OrderPo implements Serializable {
         return value;
     }
     public void setValue(int value){
-    	this.value = value;
+        this.value = value;
     }
     public long getEndtime() {
         return endtime;
     }
     public void setEndtime(long endtime){
-    	this.endtime = endtime;
+        this.endtime = endtime;
     }
 
     public int getStatus(){
-    	return status;
+        return status;
     }
     public void setStatus(int status){
-    	this.status = status;
+        this.status = status;
     }
     public double getDiscount(){
-    	return discount;
+        return discount;
     }
     public void setDiscount(double discount){
-    	this.discount = discount;
+        this.discount = discount;
     }
     public String getAssess(){
-    	return assess;
+        return assess;
     }
     public void setAssess(String assess){
-    	this.assess=assess;
-    	}
+        this.assess=assess;
+    }
     public int getRoomstyle(){
-    	return roomstyle;
+        return roomstyle;
     }
     public void setRoomstyle(int roomstyle){
-    	this.roomstyle=roomstyle;
-    	}
+        this.roomstyle=roomstyle;
+    }
     public int getRoomnum(){
-    	return roomnum;
+        return roomnum;
     }
     public void setRoomnum(int roomnum){
+<<<<<<< HEAD
     	this.roomnum=roomnum;
     	}
     public int getScore(){
@@ -138,4 +149,13 @@ public class OrderPo implements Serializable {
     public void setScore(int score){
     	this.score=score;
     	}
+=======
+        this.roomnum=roomnum;
+    }
+
+    public String toString (){
+        return "'"+userid+"','"+hotelid+"','"+createtime+"','"+executetime+"','"+delaytime+"','"+endtime+"','"+value+"','"+status+"','"+roomnum+"','"+roomstyle+"','"+(assess==null?"":assess)+"','"+discount+"','"+score+"'";
+    }
+
+>>>>>>> 357cafba2835b1f17d158d81bb5bbeaf2b90155f
 }

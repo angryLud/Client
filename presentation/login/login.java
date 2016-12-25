@@ -63,6 +63,7 @@ public class login extends JPanel {
         name.setBounds(380, 200, 250, 45);
         name.setBorder(BorderFactory.createLineBorder(Color.black,3));
         name.setFont(new Font("STSongti-SC-Regular",Font.PLAIN,35));
+
         this.add(name);
 
 
@@ -80,6 +81,7 @@ public class login extends JPanel {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("a"+name.getText());
              if(  logcon.login(name.getText(),password.getPassword())){
                  logcon.loginsuccess(name.getText());
              }else{

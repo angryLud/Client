@@ -15,7 +15,6 @@ public class UserInformation extends JPanel {
 	private JButton button2;
 	private JButton button3;
 	private JButton button4;
-	private JButton button5;
 	private JButton exitbutton;
 	private JLabel label1;
 	private JLabel label2;
@@ -128,6 +127,16 @@ class button1Listener implements ActionListener{
 		JTextField text = new JTextField(10);
 		frame.getContentPane().add(text);
 		JButton button1 =new JButton("保存");
+		button1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String company = text.getText();
+				UserInforCon.updatecompanyvip(company);
+			}
+			
+		});
 		frame.getContentPane().add(button1);
 		frame.setVisible(true);
 	}
@@ -146,6 +155,16 @@ class button2Listener implements ActionListener{
 		JTextField text = new JTextField(10);
 		frame.getContentPane().add(text);
 		JButton button1 =new JButton("保存");
+		button1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String birthday = text.getText();
+				UserInforCon.updatenormalvip(birthday);
+			}
+			
+		});
 		frame.getContentPane().add(button1);
 		frame.setVisible(true);
 	}
@@ -182,15 +201,6 @@ class button4Listener implements ActionListener{
 			}
 			
 		}
-	}
-	
-}
-class button5Listener implements ActionListener{
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		userinfor.setEditable(false);
 	}
 	
 }

@@ -38,23 +38,7 @@ public List<OrderVo> getAbnormalOrders(int userId);
  */
 public List<OrderVo> getCancelOrders(int userId);
 
-/**
- * @param orderId
- * @return	获取订单用户编号
- */
-public int getOrderUser(int orderId);
-
-/**
- * @param orderId
- * @return	获取订单价值
- */
-public int getOrderPrice(int orderId);
-
 public List<HotelVo> getAllHotels(int userId);
-
-public int getStars(int userId);
-
-public int getMark(int userId);
 
 public int createorder(OrderVo ovo);
 
@@ -64,11 +48,14 @@ String getname();
 
 void logout(int userid);
 
-public void updateuserinfo(UserVo uvo);
+public void updateuserinfo(String name,String phone);
 
 public String getphone();
 
 int insert(String name, String number,char[] password);
 
 public void updateorderinfo(int orderid,String assess, int score);
+public void updatecompanyvip(String company);
+public void updatenormalvip(String birthday);
+public void cancelorder(int orderid);
 }

@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.regex.Pattern;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -108,7 +109,7 @@ public class SearchHotel extends JPanel{
 		comboBox_3.addItem("未订过");
 		this.add(comboBox_3);
 		
-		textField = new JTextField("名称/房间/星级");
+		textField = new JTextField("名称/星级");
 		textField.setBounds(410, 40, 102, 21);
 		this.add(textField);
 		textField.setColumns(10);
@@ -174,9 +175,17 @@ public class SearchHotel extends JPanel{
 							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));
 						}else{//有地址和商圈限定，还有是否预定过的限定
 							Vector<Vector<String>> volist=new Vector<Vector<String>>();
+							String text = textField.getText();
+							boolean isNum = Pattern.matches("^\\d+$", text);//"^\\d+$"
 							for(int i=0;i<hotellist.size();i++){
-								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)){
+								if(isNum==true){
+								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)&&hotellist.get(i).get(4).equals(text)){
 									volist.add(hotellist.get(i));
+								}
+								}else if(text.matches("[\\u4e00-\\u9fa5]+")){
+									if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)&&hotellist.get(i).get(1).equals(text)){
+										volist.add(hotellist.get(i));
+									}
 								}
 							}
 							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));

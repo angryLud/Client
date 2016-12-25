@@ -114,6 +114,10 @@ public void go(){
 			vColumns.add("订单价值");
 			//数据
 			orderlist=new Vector<>();
+			if(UserSearchOrderCon.getAllOrders(userId)==null){
+				JOptionPane.showMessageDialog(null, "未查询到订单信息！","", JOptionPane.ERROR_MESSAGE);
+				
+			}else
 			orderlist.addAll(UserSearchOrderCon.getAllOrders(userId));
 			//模型
 			orderListModel = new DefaultTableModel(orderlist, vColumns);
@@ -185,7 +189,13 @@ class button6Listener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		int index = orderTable.getSelectedRow();
-		orderListModel.removeRow(index);
+		if(index == -1){
+			JOptionPane.showMessageDialog(null, "请选择订单！","", JOptionPane.ERROR_MESSAGE);
+			frame2.setVisible(false);
+			return;
+		}else{
+			UserSearchOrderCon.cancelorder(Integer.parseInt(orderlist.get(index).get(0)));
+		}
 	}
 	
 }

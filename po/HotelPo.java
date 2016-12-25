@@ -55,6 +55,8 @@ public class HotelPo implements Serializable{
     String assess;
     String description;
     int scorenum;
+    
+    
 
     public HotelPo(){
         super();
@@ -96,6 +98,12 @@ public class HotelPo implements Serializable{
 
     public int getHotelID(){
         return this.hotelID;
+    }
+    public int getscorenum(){
+        return this.scorenum;
+    }
+    public void setscorenum(int scorenum){
+        this.scorenum=scorenum;
     }
 
     public void setHotelID(int hotelID){

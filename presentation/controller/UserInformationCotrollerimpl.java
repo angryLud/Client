@@ -49,8 +49,7 @@ public UserInformationCotrollerimpl(int UserID){
 	@Override
 	public void updateuserinfor(String name, String phone) {
 		// TODO Auto-generated method stub
-		UserVo uvo = new UserVo(name,phone);
-		userser.updateuserinfo(uvo);
+		userser.updateuserinfo(name,phone);
 	}
 	@Override
 	public String getusername() {
@@ -67,7 +66,15 @@ public UserInformationCotrollerimpl(int UserID){
 		// TODO Auto-generated method stub
 		return userser.getphone();
 	}
-
+	@Override
+	public void updatecompanyvip(String company) {
+		// TODO Auto-generated method stub
+		userser.updatecompanyvip(company);
+	}
+	public void updatenormalvip(String birthday) {
+		// TODO Auto-generated method stub
+		userser.updatenormalvip(birthday);
+	}
 
 
 

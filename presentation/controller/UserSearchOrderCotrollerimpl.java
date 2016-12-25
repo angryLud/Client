@@ -72,6 +72,11 @@ public UserSearchOrderCotrollerimpl(int userId){
 		
 		userso.updateorderinfo(orderid,assess,score);
 	}
+	@Override
+	public void cancelorder(int orderid) {
+		// TODO Auto-generated method stub
+		userso.cancelorder(orderid);
+	}
 
 
 }

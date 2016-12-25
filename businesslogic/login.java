@@ -18,18 +18,15 @@ public class login implements loginservice {
             e.printStackTrace();
         }
         return false;
-
-//        if (id.equals("abc")) return false;
-//        return  true;
     }
 
     @Override
     public  void logout(int id) {
-//        try {
-//            RemoteHelper.getInstance().getloginservice().logout(id);
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            RemoteHelper.getInstance().getloginservice().logout(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
 }

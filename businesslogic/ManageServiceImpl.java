@@ -1,9 +1,11 @@
 package businesslogic;
 
 import businesslogicservice.ManageService;
+import vo.PromotionerVo;
 import vo.UserVo;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import po.HotelPo;
@@ -14,6 +16,8 @@ import rmi.RemoteHelper;
 public class ManageServiceImpl implements ManageService {
 	
 	private UserVo userVo;
+	
+	private PromotionerVo pvo;
 	
 	private List<UserPo> userList;
 	
@@ -31,23 +35,14 @@ public class ManageServiceImpl implements ManageService {
 		return 0;
 	}
 	
-	public boolean changeUserInfo(int id,UserPo usPo){
-		for(UserPo userPo :userList){
-			if(userPo.getId() == id){
-				userPo.setUserName(usPo.getUserName());
-				userPo.setCompany(usPo.getCompany());
-				userPo.setPhone(usPo.getPhone());
-				userPo.setBirthday(usPo.getBirthday());
-				try {
-					if(RemoteHelper.getInstance().getUserdataservice().userupdate(userPo)){
-						return true;
-					}
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+	public boolean changeUserInfo(UserPo usPo){
+		try {
+			if(RemoteHelper.getInstance().getUserdataservice().userupdate(usPo)){
+				return true;
 			}
-			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return false;
 	}
@@ -76,6 +71,30 @@ public class ManageServiceImpl implements ManageService {
 		}
 		
 		return userVo;
+	}
+	
+	public PromotionerVo uploadPromotioner(int id){
+		try {
+			PromotionerPo ppo = RemoteHelper.getInstance().getPromotiondataservice().promotionerfind(id);
+			pvo = new PromotionerVo(ppo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pvo;
+	}
+	
+	public boolean changePromotionerInfo(PromotionerPo ppo){
+		try {
+			if(RemoteHelper.getInstance().getPromotiondataservice().promotionerupdate(ppo)){
+					return true;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		return false;
 	}
 	
 	public void logout(int id) {

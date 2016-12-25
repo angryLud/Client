@@ -26,6 +26,7 @@ import po.PromotionerPo;
 import po.UserPo;
 
 import presentation.controller.ManageViewControllerImpl;
+import vo.PromotionerVo;
 import vo.UserVo;
 
 public class ManageView extends JPanel{
@@ -235,31 +236,13 @@ public class ManageView extends JPanel{
 		
 		int id = Integer.valueOf(userTextField.getText());
 		manageService = new ManageServiceImpl();
-		UserVo userVo = manageService.uploadUser(id);		
 		
 		searchPanel = new JPanel();
 		searchPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		searchLabel1 = new JLabel("姓名");
 		searchLabel2 = new JLabel("ID");
-		searchLabel3 = new JLabel("生日");
-		searchLabel4 = new JLabel("手机号码");
-		searchLabel5 = new JLabel("信用");
-		searchLabel6 = new JLabel("公司");
 		
-		searchTextField1 = new JTextField(20);
-		searchTextField1.setText(userVo.getUserName());
-		searchTextField2 = new JTextField(20);
-		searchTextField2.setText(String.valueOf(userVo.getId()));
-		searchTextField3 = new JTextField(20);
-		searchTextField3.setText(userVo.getBirthday());
-		searchTextField4 = new JTextField(20);
-		searchTextField4.setText(userVo.getPhone());
-		searchTextField5 = new JTextField(20);
-		searchTextField5.setText(String.valueOf(userVo.getCredit()));
-		searchTextField6 = new JTextField(20);
-		searchTextField6.setText(userVo.getCompany());
-		searchTextField2.setEditable(false);
-		searchTextField5.setEditable(false);
+		
 		saveButton = new JButton("保存");
 		//保存信息修改
 		saveButton.addActionListener(new ActionListener(){
@@ -282,25 +265,67 @@ public class ManageView extends JPanel{
 			}
 		});
 		
-		JPanel searchPanel1 = new JPanel();
-		searchPanel1.setLayout(new GridLayout(7,2));
-		searchPanel = new JPanel();
-		searchPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-		searchPanel1.add(searchLabel1);
-		searchPanel1.add(searchTextField1);
-		searchPanel1.add(searchLabel2);
-		searchPanel1.add(searchTextField2);
-		searchPanel1.add(searchLabel3);
-		searchPanel1.add(searchTextField3);
-		searchPanel1.add(searchLabel4);
-		searchPanel1.add(searchTextField4);
-		searchPanel1.add(searchLabel5);
-		searchPanel1.add(searchTextField5);
-		searchPanel1.add(searchLabel6);
-		searchPanel1.add(searchTextField6);
-		searchPanel1.add(saveButton);
-		searchPanel1.add(cancleButton);
-		searchPanel.add(searchPanel1);
+		if(id>2000){
+			PromotionerVo pvo = manageService.uploadPromotioner(id);
+			searchTextField1 = new JTextField(20);
+			searchTextField1.setText(pvo.getName());
+			searchTextField2 = new JTextField(20);
+			searchTextField2.setText(String.valueOf(pvo.getId()));
+			searchTextField2.setEditable(false);
+			
+			JPanel searchPanel1 = new JPanel();
+			searchPanel1.setLayout(new GridLayout(3,2));
+			searchPanel = new JPanel();
+			searchPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+			searchPanel1.add(searchLabel1);
+			searchPanel1.add(searchTextField1);
+			searchPanel1.add(searchLabel2);
+			searchPanel1.add(searchTextField2);
+			searchPanel1.add(saveButton);
+			searchPanel1.add(cancleButton);
+			searchPanel.add(searchPanel1);
+		}else{
+			UserVo userVo = manageService.uploadUser(id);
+			searchLabel3 = new JLabel("生日");
+			searchLabel4 = new JLabel("手机号码");
+			searchLabel5 = new JLabel("信用");
+			searchLabel6 = new JLabel("公司");
+			
+			searchTextField1 = new JTextField(20);
+			searchTextField1.setText(userVo.getUserName());
+			searchTextField2 = new JTextField(20);
+			searchTextField2.setText(String.valueOf(userVo.getId()));
+			searchTextField3 = new JTextField(20);
+			searchTextField3.setText(userVo.getBirthday());
+			searchTextField4 = new JTextField(20);
+			searchTextField4.setText(userVo.getPhone());
+			searchTextField5 = new JTextField(20);
+			searchTextField5.setText(String.valueOf(userVo.getCredit()));
+			searchTextField6 = new JTextField(20);
+			searchTextField6.setText(userVo.getCompany());
+			searchTextField2.setEditable(false);
+			searchTextField5.setEditable(false);
+			
+			JPanel searchPanel1 = new JPanel();
+			searchPanel1.setLayout(new GridLayout(7,2));
+			searchPanel = new JPanel();
+			searchPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+			searchPanel1.add(searchLabel1);
+			searchPanel1.add(searchTextField1);
+			searchPanel1.add(searchLabel2);
+			searchPanel1.add(searchTextField2);
+			searchPanel1.add(searchLabel3);
+			searchPanel1.add(searchTextField3);
+			searchPanel1.add(searchLabel4);
+			searchPanel1.add(searchTextField4);
+			searchPanel1.add(searchLabel5);
+			searchPanel1.add(searchTextField5);
+			searchPanel1.add(searchLabel6);
+			searchPanel1.add(searchTextField6);
+			searchPanel1.add(saveButton);
+			searchPanel1.add(cancleButton);
+			searchPanel.add(searchPanel1);
+		}
 
 		searchFrame.getContentPane().add(searchPanel);
 		searchFrame.setVisible(true);
@@ -481,14 +506,21 @@ public class ManageView extends JPanel{
 	private boolean saveUser(){
 		int id = Integer.valueOf(searchTextField2.getText());
 		String userName = searchTextField1.getText();
-		String birthday = searchTextField3.getText();
-		String phone = searchTextField4.getText();
-		int credit = Integer.valueOf(searchTextField5.getText());
-		String company = searchTextField6.getText();
-		UserPo userPo = new UserPo(id,userName,birthday,phone,credit,company);
 		manageService = new ManageServiceImpl();
-		if(manageService.changeUserInfo(id,userPo)){
-			return true;
+		if(id>2000){
+			PromotionerPo ppo = new PromotionerPo(id,userName);
+			if(manageService.changePromotionerInfo(ppo)){
+				return true;
+			}
+		}else{
+			String birthday = searchTextField3.getText();
+			String phone = searchTextField4.getText();
+			int credit = Integer.valueOf(searchTextField5.getText());
+			String company = searchTextField6.getText();
+			UserPo userPo = new UserPo(id,userName,birthday,phone,credit,company);
+			if(manageService.changeUserInfo(userPo)){
+				return true;
+			}
 		}
 		return false;
 	}

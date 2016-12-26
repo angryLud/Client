@@ -287,7 +287,7 @@ public class SearchHotel extends JPanel{
 		label1.setBounds(0,0,200,27);
 		
 		
-        String[] s1 = {"大床房","标准间","三人间"};
+        String[] s1 = {"大床房","双人房","三人间"};
         final JComboBox combo1 = new JComboBox(s1);
         combo1.setBorder(BorderFactory.createTitledBorder("房间类型"));
         String[] s2 = {"1","2","3","4","5"};
@@ -318,10 +318,10 @@ public class SearchHotel extends JPanel{
         				frame1.setSize(200,200);
         				frame1.setVisible(true);
         				
-        				String s1 = combo1.getToolTipText();
+        				String s1 = (String )combo1.getSelectedItem();
         				int s2 = combo2.getSelectedIndex();
         				int s3 = combo3.getSelectedIndex();
-        				String s4 = combo4.getToolTipText();
+        				String s4 = (String )combo4.getSelectedItem();
         				String s5 = textfield1.getText();
         				long executetime = Integer.parseInt(s5);
         				String s6 = textfield2.getText();
@@ -332,7 +332,16 @@ public class SearchHotel extends JPanel{
         				String nowtime = df.format(new Date());
         				int intnowtime = Integer.parseInt(nowtime);
         				int status = 1;//1表示未执行订单
-        				int value=searchHotelCon.createorder(orderId,userId,hotelId,intnowtime,executetime,delaytime,endtime,status,s1,s2);
+        				int i1 = 0;
+        				if(s1=="大床房"){
+        					i1 = 0;
+        				}if(s1=="双人房"){
+        					i1 = 1;
+        				}if(s1=="三人间"){
+        					i1 = 2;
+        				}
+        				
+        				int value=searchHotelCon.createorder(orderId,userId,hotelId,intnowtime,executetime,delaytime,endtime,status,i1+"",s2);
         				JLabel label1 = new JLabel("预定成功,价格为 "+value);
         				frame1.add(label1);
         			}else if(searchHotelCon.getcredit()<0){
@@ -361,7 +370,7 @@ public class SearchHotel extends JPanel{
         
         JLabel label6 = new JLabel("客户信息");
         label6.setFont(new Font("宋体", Font.PLAIN, 15));
-        JLabel label7 = new JLabel("姓名：张三");
+        JLabel label7 = new JLabel("姓名："+searchHotelCon.getname());
         label7.setFont(new Font("宋体", Font.PLAIN, 15));
         JLabel label8 = new JLabel("联系方式：110");
         label8.setFont(new Font("宋体", Font.PLAIN, 15));

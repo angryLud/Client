@@ -37,7 +37,6 @@ public SearchHotelControllerimpl(int userId){
 	}
 	public List<HotelVo> getAllHotels(int userid){
 		// TODO Auto-generated method stub
-		System.out.println("fuu");
 		return userso.getAllHotels(userid);
 	}
 	@Override
@@ -81,6 +80,11 @@ public SearchHotelControllerimpl(int userId){
 	public void hotelinformation(int hotelid) {
 		// TODO Auto-generated method stub
 		View.hotelinformation(hotelid);
+	}
+	@Override
+	public String getname() {
+		// TODO Auto-generated method stub
+		return userso.getname();
 	}
 
 }

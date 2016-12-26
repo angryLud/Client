@@ -107,7 +107,7 @@ public void go(){
 	//表头
 			Vector<String> vColumns = new Vector<String>();
 			vColumns.add("订单编号");
-			vColumns.add("订单详情");
+			vColumns.add("订单状态");
 			vColumns.add("酒店名称");
 			vColumns.add("预定预住时间");
 			vColumns.add("预定退房时间");
@@ -117,8 +117,9 @@ public void go(){
 			if(UserSearchOrderCon.getAllOrders(userId)==null){
 				JOptionPane.showMessageDialog(null, "未查询到订单信息！","", JOptionPane.ERROR_MESSAGE);
 				
-			}else
-			orderlist.addAll(UserSearchOrderCon.getAllOrders(userId));
+			}
+			else{
+			orderlist.addAll(UserSearchOrderCon.getAllOrders(userId));}
 			//模型
 			orderListModel = new DefaultTableModel(orderlist, vColumns);
 			//表格

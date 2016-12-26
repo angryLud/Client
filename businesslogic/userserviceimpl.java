@@ -193,6 +193,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		
 		try {
 			RemoteHelper.getInstance().getUserdataservice().userupdate(upo);
+			
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -201,7 +202,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	public void updatecompanyvip (String com) {
 		// TODO Auto-generated method stub
 		//插入数据库
-		upo.setBirthday(com);
+		upo.setCompany(com);
 		
 		try {
 			RemoteHelper.getInstance().getUserdataservice().userupdate(upo);

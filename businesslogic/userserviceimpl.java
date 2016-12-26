@@ -137,17 +137,18 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		
 		int value = 0;
 		if(ovo.getRoomstyle()==0){
-			value = ovo.getRoomnum()*hpo.getAvdachuangfang();
+			value = (ovo.getRoomnum()+1)*hpo.getAvdachuangfang();
 		}else if(ovo.getRoomstyle()==1){
-			value = ovo.getRoomnum()*hpo.getAvshuangrenfang();
+			value = (ovo.getRoomnum()+1)*hpo.getAvshuangrenfang();
 		}else if(ovo.getRoomstyle()==2){
-			value = ovo.getRoomnum()*hpo.getAvsanrenjian();
+			value = (ovo.getRoomnum()+1)*hpo.getAvsanrenjian();
 		}
 		
-		
+		System.out.println(value);
 		
 //		插入数据库
 		 try {
+			System.out.println(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
 			RemoteHelper.getInstance().getOrderdataservice().orderinsert(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block

@@ -54,6 +54,7 @@ public class SearchHotel extends JPanel{
 	public SearchHotel(SearchHotelController searchHotelCon) {
 		// TODO Auto-generated constructor stub
 		this.searchHotelCon = searchHotelCon;
+
 		this.userId = searchHotelCon.getUserID();
 		this.setLayout(null);
 		this.go();
@@ -328,7 +329,7 @@ public class SearchHotel extends JPanel{
         				long endtime = Integer.parseInt(s6);
         				String s7 = textfield3.getText();
         				long delaytime = Integer.parseInt(s7);
-        				SimpleDateFormat df = new SimpleDateFormat("MMddHHmm");
+        				SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         				String nowtime = df.format(new Date());
         				int intnowtime = Integer.parseInt(nowtime);
         				int status = 1;//1表示未执行订单
@@ -340,8 +341,8 @@ public class SearchHotel extends JPanel{
         				}if(s1=="三人间"){
         					i1 = 2;
         				}
-        				
-        				int value=searchHotelCon.createorder(orderId,userId,hotelId,intnowtime,executetime,delaytime,endtime,status,i1+"",s2);
+        				String x=(String)hotelTable.getValueAt(hotelTable.getSelectedRow(),0);
+        				int value=searchHotelCon.createorder(orderId,userId,Integer.parseInt(x),intnowtime,executetime,delaytime,endtime,status,i1+"",s2);
         				JLabel label1 = new JLabel("预定成功,价格为 "+value);
         				frame1.add(label1);
         			}else if(searchHotelCon.getcredit()<0){

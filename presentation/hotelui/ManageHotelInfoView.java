@@ -15,6 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import po.HotelPo;
+import rmi.RemoteHelper;
 
 public class ManageHotelInfoView extends JPanel{
 	private int hotelID;
@@ -86,20 +87,21 @@ public class ManageHotelInfoView extends JPanel{
 		exitButton = new JButton("返回");
 		
 		po = new HotelPo(2210,"南京","仙林","英尊",188,288,328,4,4.6,"很棒");
-//		try{
-//			po = hoteldataservice.findhotelbyid(hotelID);
+//		try {
+//			po = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(hotelID);
+//		} catch (RemoteException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
 //		}
-//		catch(RemoteException e){
-//			e.printStackTrace();
-//		}  
+		
 		//界面内容
-		dizhi.setText(po.getAddress());
-		shangquan.setText(po.getPosition());
-		jianjie.setText(po.getDescription());
-		dachuangfangjiage.setText(String.valueOf(po.getDachaungfangprice()));
-		shuangrenfangjiage.setText(String.valueOf(po.getShuangrenfangprice()));
-		sanrenjianjiage.setText(String.valueOf(po.getSanrenjianprice()));
-		xingji.setText(String.valueOf(po.getStar()));
+		dizhi.setText(controller.getAddress());
+		shangquan.setText(controller.getPosition());
+		jianjie.setText(controller.getDescription());
+		dachuangfangjiage.setText(String.valueOf(controller.getDachuangfangjiage()));
+		shuangrenfangjiage.setText(String.valueOf(controller.getShuangrenfangprice()));
+		sanrenjianjiage.setText(String.valueOf(controller.getSanrenjianprice()));
+		xingji.setText(String.valueOf(controller.getStar()));
 		
 		
 	    modifyButton.addActionListener(new ActionListener(){
@@ -198,7 +200,7 @@ public class ManageHotelInfoView extends JPanel{
 			po.setSanrenjianprice(Integer.parseInt(sanrenjianjiage.getText()));
 			po.setStar(Integer.parseInt(xingji.getText()));
 			int hotelID = po.getHotelID();
-			if(controller.updateHotel(hotelID)){
+			if(controller.updateHotel(po)){
 				JOptionPane.showMessageDialog(null, "修改成功！","", JOptionPane.INFORMATION_MESSAGE);
 				controller.refresh();
 			}

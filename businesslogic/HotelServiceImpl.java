@@ -16,17 +16,20 @@ public class HotelServiceImpl implements HotelService{
 	
 	public HotelServiceImpl(int hotelID){
 		this.hotelID = hotelID;
-		hoteldataservice = RemoteHelper.getInstance().getHoteldataservice();
+		try {
+			hpo = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(hotelID);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 
-	public boolean updateHotel(int hotelID) {
-			
+	public boolean updateHotel(HotelPo po) {
 			try {
-				hpo = hoteldataservice.findhotelbyid(hotelID);
-				return RemoteHelper.getInstance().getHoteldataservice().hotelupdate(hpo);
+				return RemoteHelper.getInstance().getHoteldataservice().hotelupdate(po);
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -34,14 +37,48 @@ public class HotelServiceImpl implements HotelService{
 		return false;
 	}
 
+	
+
 	@Override
-	public HotelPo getHotel(int hotelID) {
-		try {
-			hpo = hoteldataservice.findhotelbyid(hotelID);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return hpo;
+	public int getDachuangfangjiage() {
+		// TODO Auto-generated method stub
+		return hpo.getDachaungfangprice();
+	}
+
+	@Override
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return hpo.getAddress();
+	}
+
+	@Override
+	public String getPosition() {
+		// TODO Auto-generated method stub
+		return hpo.getPosition();
+	}
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return hpo.getDescription();
+	}
+
+	@Override
+	public int getShuangrenfangprice() {
+		// TODO Auto-generated method stub
+		return hpo.getShuangrenfangprice();
+	}
+
+	@Override
+	public int getSanrenjianprice() {
+		// TODO Auto-generated method stub
+		return hpo.getSanrenjianprice();
+	}
+
+	@Override
+	public int getStar() {
+		// TODO Auto-generated method stub
+		return hpo.getStar();
 	}
 	
 

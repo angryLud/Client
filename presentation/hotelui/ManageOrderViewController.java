@@ -1,5 +1,6 @@
 package presentation.hotelui;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import presentation.controller.controller;
@@ -31,5 +32,7 @@ public interface ManageOrderViewController {
 	public void updateListModel(String selected);
 	
     public boolean processAbnormalOrder(int orderId,String delayTime);
+    
+    public void CreditChange(int orderID,int userid,int credit) throws RemoteException;
 
 }

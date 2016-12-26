@@ -22,12 +22,12 @@ public class OrderServiceImpl implements OrderService{
 	//未新建orderdataservice对象可以直接使用吗？
 	public OrderServiceImpl(int hotelID) {
 		this.hotelID = hotelID;
-//		try {
-//			orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
-//			hotelOrderList=RemoteHelper.getInstance().getOrderdataservice().findbyhotelid(hotelID);
-//		} catch (RemoteException e){
-//			e.printStackTrace();
-//		}    运行此段会导致订单界面无法显示
+		try {
+			orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
+			hotelOrderList=RemoteHelper.getInstance().getOrderdataservice().findorderbyhotelid(hotelID);
+		} catch (RemoteException e){
+			e.printStackTrace();
+		}    
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 	@Override
-	public OrderVo getOrder(int orderID) {
+	public OrderPo getOrder(int orderID) {
 		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0);
 		OrderVo vo = new OrderVo(po);
 		try{
@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService{
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return vo;
+		return po;
 	}
 
 	@Override

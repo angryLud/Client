@@ -124,7 +124,7 @@ class button1Listener implements ActionListener{
 		frame.setLayout(new FlowLayout());
 		JLabel label = new JLabel("企业名称:");
 		frame.getContentPane().add(label);
-		JTextField text = new JTextField(10);
+		final JTextField text = new JTextField(10);
 		frame.getContentPane().add(text);
 		JButton button1 =new JButton("保存");
 		button1.addActionListener(new ActionListener(){
@@ -152,7 +152,7 @@ class button2Listener implements ActionListener{
 		frame.setLayout(new FlowLayout());
 		JLabel label = new JLabel("生日（xx/xx）:");
 		frame.getContentPane().add(label);
-		JTextField text = new JTextField(10);
+		final JTextField text = new JTextField(10);
 		frame.getContentPane().add(text);
 		JButton button1 =new JButton("保存");
 		button1.addActionListener(new ActionListener(){

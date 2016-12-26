@@ -1,6 +1,7 @@
 package presentation.hotelui;
 
 import javax.swing.*;
+import dataservice.hoteldataservice;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -12,9 +13,12 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 import java.util.Vector;
 import presentation.controller.controller;
 public class ManageRoomView extends JPanel{
+	
+	private int HotelID;
 	
 	private ManageRoomViewController controller;
 	
@@ -39,6 +43,8 @@ public class ManageRoomView extends JPanel{
 	private JTable manageRoomTable;
 	
 	private HotelPo po1;
+	
+	private hoteldataservice hoteldataservice;
 	
 	private JScrollPane scrollPane;
 	
@@ -72,6 +78,12 @@ public class ManageRoomView extends JPanel{
 		Vector<String> vo1 = new Vector<String>();
 		Vector<String> vo2 = new Vector<String>();
 		Vector<String> vo3 = new Vector<String>();
+//        try {
+//			po1 = hoteldataservice.findhotelbyid(HotelID);
+//		} catch (RemoteException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 		po1 = new HotelPo(1,"仙林","南京","英尊",188,288,328,4,4.6,"不错");
 		po1.setAvdachuangfang(28);
 		po1.setAvshuangrenfang(19);
@@ -183,8 +195,17 @@ public class ManageRoomView extends JPanel{
 						return false;
 					}
 				};
+				
 				serviceTypeJpanel.validate();
 				inputFrame.dispose();
+				if(controller.updateHotel(HotelID)){
+					JOptionPane.showMessageDialog(null, "修改成功！","", JOptionPane.INFORMATION_MESSAGE);
+					controller.refresh();
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "修改失败！","", JOptionPane.INFORMATION_MESSAGE);
+					controller.refresh();
+				}
 				controller.refresh();
 			}
 			
@@ -226,10 +247,30 @@ public class ManageRoomView extends JPanel{
 				if(box1.getSelectedIndex()==2){
 					po1.setAvsanrenjian(po1.getAvsanrenjian()-1);
 				}
-				deleteFrame.dispose();
 				
+				manageRoomModel = new DefaultTableModel(manageData, manageColumns);
+				manageRoomTable = new JTable(manageRoomModel){
+
+					public boolean isCellEditable(int row, int column){
+						return false;
+					}
+				};
+				
+				serviceTypeJpanel.validate();
+				
+				if(controller.updateHotel(HotelID)){
+					JOptionPane.showMessageDialog(null, "修改成功！","", JOptionPane.INFORMATION_MESSAGE);
+					controller.refresh();
+				}
+				else{
+					JOptionPane.showMessageDialog(null, "修改失败！","", JOptionPane.INFORMATION_MESSAGE);
+					controller.refresh();
+				}
+				
+				deleteFrame.dispose();
+				controller.refresh();
 			}
-			
+				
 		});
 		
 		deleteFrame.getContentPane().add(deletePanel);

@@ -1,11 +1,14 @@
 package presentation.hotelui;
 
 import java.awt.BorderLayout;
+
+import dataservice.*;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 import po.OrderPo;
+import po.UserPo;
 import vo.OrderVo;
 
 public class ManageOrderView extends JPanel{
@@ -70,6 +74,9 @@ public class ManageOrderView extends JPanel{
 	private JScrollPane scrollPane;
 	
 	private JComboBox orderTypeBox;
+	
+	private orderdataservice orderdataservice;
+	private userdataservice userdataservice;
 	
 	public ManageOrderView(ManageOrderViewController controller){
 		this.controller = controller;
@@ -117,7 +124,7 @@ public class ManageOrderView extends JPanel{
 		
 		searchColumns = new Vector<String>();
 		searchColumns.add("订单号");
-		searchColumns.add("房间号");
+		searchColumns.add("用户id");
 		searchColumns.add("酒店id");
 		searchColumns.add("创建时间");
 		searchColumns.add("执行时间");
@@ -308,6 +315,15 @@ public class ManageOrderView extends JPanel{
 		if(controller.executeOrder(orderNo)){
 			searchOrderModel.removeRow(index);
 			//逻辑层方法：改状态、getuserpo、加信用、更新
+			
+			int userid = Integer.valueOf((String)searchOrderTable.getValueAt(index, 1));
+			int credit = Integer.valueOf((String)searchOrderTable.getValueAt(index, 7));
+			try {
+				controller.CreditChange(orderNo, userid, credit);
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			
 		}else{
 			JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.ERROR_MESSAGE);
 		}

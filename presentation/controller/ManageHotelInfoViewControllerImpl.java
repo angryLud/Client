@@ -2,6 +2,7 @@ package presentation.controller;
 
 import businesslogic.HotelServiceImpl;
 import businesslogicservice.HotelService;
+import po.HotelPo;
 import presentation.hotelui.ManageHotelInfoView;
 import presentation.hotelui.ManageHotelInfoViewController;
 import presentation.hotelui.ManageRoomView;
@@ -14,7 +15,7 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
     
     private controller con;
 	
-	private int HotelID;
+	public int HotelID;
 	
 	public ManageHotelInfoViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
@@ -56,13 +57,62 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
 
 
 	@Override
-	public boolean updateHotel(int hotelID) {
-//		return hotelservice.updateHotel(hotelID);
+	public boolean updateHotel(HotelPo po) {
+//		return hotelservice.updateHotel(po);
 		return false;
 	}
 	
 	public void refresh(){
 		con.ManageHotelInfo();
+	}
+
+
+	@Override
+	public int getDachuangfangjiage() {
+		// TODO Auto-generated method stub
+		return hotelservice.getDachuangfangjiage();
+	}
+
+
+	@Override
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return hotelservice.getAddress();
+	}
+
+
+	@Override
+	public String getPosition() {
+		// TODO Auto-generated method stub
+		return hotelservice.getPosition();
+	}
+
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return hotelservice.getDescription();
+	}
+
+
+	@Override
+	public int getShuangrenfangprice() {
+		// TODO Auto-generated method stub
+		return hotelservice.getShuangrenfangprice();
+	}
+
+
+	@Override
+	public int getSanrenjianprice() {
+		// TODO Auto-generated method stub
+		return hotelservice.getSanrenjianprice();
+	}
+
+
+	@Override
+	public int getStar() {
+		// TODO Auto-generated method stub
+		return hotelservice.getStar();
 	}
 
 	

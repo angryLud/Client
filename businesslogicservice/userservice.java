@@ -3,6 +3,7 @@ package businesslogicservice;
 import java.util.List;
 import java.util.Vector;
 
+import po.UserPo;
 import vo.HotelVo;
 import vo.OrderVo;
 import vo.UserVo;
@@ -51,6 +52,8 @@ void logout(int userid);
 public void updateuserinfo(String name,String phone);
 
 public String getphone();
+
+public UserPo getUser(int userId);
 
 int insert(String name, String number,char[] password);
 

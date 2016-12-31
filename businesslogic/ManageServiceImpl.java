@@ -1,6 +1,7 @@
 package businesslogic;
 
 import businesslogicservice.ManageService;
+import vo.HotelVo;
 import vo.PromotionerVo;
 import vo.UserVo;
 
@@ -19,13 +20,15 @@ public class ManageServiceImpl implements ManageService {
 	
 	private PromotionerVo pvo;
 	
+	private HotelPo hotelPo;
+	
 	private List<UserPo> userList;
 	
 	public int addUser(PromotionerPo pPo,String password){
 		try {
 			char[] pass = password.toCharArray();
 			int id = RemoteHelper.getInstance().getPromotiondataservice().promotionerinsert(pPo,pass);
-			if(id>2999){
+			if(id>3999){
 				return id;
 			}
 		} catch (RemoteException e) {
@@ -71,6 +74,29 @@ public class ManageServiceImpl implements ManageService {
 		}
 		
 		return userVo;
+	}
+	
+	public HotelPo uploadHotel(int id){
+		try {
+			hotelPo = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(id);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return hotelPo;
+	}
+	
+	public boolean changeHotelInfo(HotelPo hPo){
+		try {
+			if(RemoteHelper.getInstance().getHoteldataservice().hotelupdate(hPo)){
+				return true;
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	public PromotionerVo uploadPromotioner(int id){

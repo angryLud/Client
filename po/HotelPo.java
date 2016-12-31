@@ -62,25 +62,25 @@ public class HotelPo implements Serializable{
         super();
     }
 
-
-    public HotelPo(String args){
-        String[] s=args.split(",");
-        this.hotelID=Integer.parseInt(s[0]);
-        this.position=s[1];
-        address=s[2];
-        hotelName=s[3];
-        avdachuangfang=Integer.parseInt(s[4]);
-        avshuangrenfang=Integer.parseInt(s[5]);
-        avsanrenjian=Integer.parseInt(s[6]);
-        dachuangfangprice=Integer.parseInt(s[7]);
-        shuangrenfangprice=Integer.parseInt(s[8]);
-        sanrenjianprice=Integer.parseInt(s[9]);
-        star=Integer.parseInt(s[10]);
-        score= Double.parseDouble(s[11]);
-        assess=s[12];
-        description=s[13];
-        scorenum=Integer.parseInt(s[14]);
-    }
+//
+//    public HotelPo(String args){
+//        String[] s=args.split(",");
+//        this.hotelID=Integer.parseInt(s[0]);
+//        this.position=s[1];
+//        address=s[2];
+//        hotelName=s[3];
+//        avdachuangfang=Integer.parseInt(s[4]);
+//        avshuangrenfang=Integer.parseInt(s[5]);
+//        avsanrenjian=Integer.parseInt(s[6]);
+//        dachuangfangprice=Integer.parseInt(s[7]);
+//        shuangrenfangprice=Integer.parseInt(s[8]);
+//        sanrenjianprice=Integer.parseInt(s[9]);
+//        star=Integer.parseInt(s[10]);
+//        score= Double.parseDouble(s[11]);
+//        assess=s[12];
+//        description=s[13];
+//        scorenum=Integer.parseInt(s[14]);
+//    }
 
     public HotelPo(int hotelID,String address,String position,String hotelName,int dachuangfangprice,int shuangrenfangprice,int sanrenjianprice,int star,double score,String description){
         this.hotelID = hotelID;

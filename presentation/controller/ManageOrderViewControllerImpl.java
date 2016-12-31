@@ -35,7 +35,7 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	public ManageOrderViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
 		orderservice = new OrderServiceImpl(HotelID);
-		
+		userservice = new userserviceimpl();
 	}
 
 	@Override
@@ -142,10 +142,34 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//		未完成
-			
-			
 		}
+
+	@Override
+	public void refresh() {
+		con.ManageOrder();
+		
+	}
+
+	@Override
+	public void CreditRestore(int orderNo, int userid, int credit, long delaytime) throws RemoteException {
+		UserPo userpo = new UserPo();
+		userpo = userservice.getUser(userid);
+		userpo.setCredit(userpo.getCredit()+credit);
+		OrderPo orderpo = new OrderPo(credit, credit, credit, credit, credit, credit, credit, credit, credit, credit, credit);
+		orderpo = orderservice.getOrder(orderNo);
+		orderpo.setStatus(1);
+		orderpo.setDelaytime(delaytime);
+		try {
+			if(RemoteHelper.getInstance().getOrderdataservice().orderupdate(orderpo)&&RemoteHelper.getInstance().getUserdataservice().userupdate(userpo)){
+				JOptionPane.showMessageDialog(null, "执行成功！","", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else{
+				JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.INFORMATION_MESSAGE);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	

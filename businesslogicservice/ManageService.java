@@ -13,7 +13,7 @@ public interface ManageService {
 	 * @param userPo
 	 * @return 增加用户
 	 */
-	public int addUser(PromotionerPo ppo,String password);
+	public int addPromotioner(PromotionerPo ppo,String password);
 	
 	/**
 	 * @param userPo

@@ -82,13 +82,56 @@ public class SearchHotel extends JPanel{
 		comboBox = new JComboBox();
 		comboBox.setBounds(56, 40, 70, 21);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"商圈"}));
-		comboBox.addItem("新街口");
 		this.add(comboBox);
 		//地址ַ
 		comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"地址"}));
 		comboBox_1.setBounds(136, 40, 70, 21);
 		comboBox_1.addItem("南京");
+		comboBox_1.addItem("北京");
+		comboBox_1.addItem("上海");
+		comboBox_1.addItem("西安");
+		comboBox_1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String s = (String)comboBox_1.getSelectedItem();
+				if(s=="南京"){
+					comboBox.removeAll();
+					comboBox.validate();
+					comboBox.addItem("仙林");
+					comboBox.addItem("鼓楼");
+					comboBox.addItem("浦口");
+					comboBox.addItem("玄武");
+				}
+				if(s=="北京"){
+					comboBox.removeAll();
+					comboBox.validate();
+					comboBox.addItem("海淀");
+					comboBox.addItem("朝阳");
+					comboBox.addItem("西城");
+					comboBox.addItem("东城");
+				}
+				if(s=="上海"){
+					comboBox.removeAll();
+					comboBox.validate();
+					comboBox.addItem("浦东");
+					comboBox.addItem("黄埔");
+					comboBox.addItem("外滩");
+					comboBox.addItem("长宁");
+				}
+				if(s=="西安"){
+					comboBox.removeAll();
+					comboBox.validate();
+					comboBox.addItem("碑林");
+					comboBox.addItem("雁塔");
+					comboBox.addItem("曲江");
+					comboBox.addItem("长安");
+				}
+			}
+			
+		});
 		this.add(comboBox_1);
 		//排序
 		button4 = new JButton("排序");
@@ -126,7 +169,7 @@ public class SearchHotel extends JPanel{
 		vColumns.add("地址");
 		vColumns.add("星级");
 		vColumns.add("评分");
-		vColumns.add("是否预定过");
+		vColumns.add("价格");
 		//数据
 		hotellist=new Vector<>();
 
@@ -166,32 +209,50 @@ public class SearchHotel extends JPanel{
 							label.setBounds(20, 10, 150, 30);
 							frame.setSize(160, 100);
 							frame.setVisible(true);
-						}else if(s3=="限定"){//没有限定直接搜索特定地址和商圈
-							Vector<Vector<String>> volist=new Vector<Vector<String>>();
-							for(int i=0;i<hotellist.size();i++){
-								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)){
-									volist.add(hotellist.get(i));
-								}
-							}
-							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));
-						}else{//有地址和商圈限定，还有是否预定过的限定
+						}else if(s3.equals("限定")){//没有限定直接搜索特定地址和商圈文本搜索
 							Vector<Vector<String>> volist=new Vector<Vector<String>>();
 							String text = textField.getText();
 							boolean isNum = Pattern.matches("^\\d+$", text);//"^\\d+$"
 							for(int i=0;i<hotellist.size();i++){
-								if(isNum==true){
-								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)&&hotellist.get(i).get(4).equals(text)){
+								if(isNum){
+								if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(4).equals(text)){
 									volist.add(hotellist.get(i));
 								}
 								}else if(text.matches("[\\u4e00-\\u9fa5]+")){
-									if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(6).equals(s3)&&hotellist.get(i).get(1).equals(text)){
+									if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)&&hotellist.get(i).get(1).equals(text)){
+										volist.add(hotellist.get(i));
+									}
+								}else if(text.equals("名称/星级")||text.equals("")){
+									if(hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)){
 										volist.add(hotellist.get(i));
 									}
 								}
 							}
 							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));
+						}else if(s3.equals("预订过")){//有地址和商圈限定，还有是否预定过的限定
+							
+							
+							Vector<Vector<String>> volist=new Vector<Vector<String>>();
+							for(int i=0;i<hotellist.size();i++){
+							 int selectedhotelid = Integer.parseInt(hotellist.get(i).get(0));
+						     boolean reserve = searchHotelCon.isreserved(selectedhotelid,userId);
+						     if(reserve&&hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)){
+						    	 volist.add(hotellist.get(i));
+						     }
+							}
+							 hotelTable.setModel(new DefaultTableModel(volist,vColumns));
+						}else if(s3.equals("未订过")){
+							Vector<Vector<String>> volist=new Vector<Vector<String>>();
+							for(int i=0;i<hotellist.size();i++){
+								 int selectedhotelid = Integer.parseInt(hotellist.get(i).get(0));
+							     boolean reserve = searchHotelCon.isreserved(selectedhotelid,userId);
+							     if(!reserve&&hotellist.get(i).get(2).equals(s1)&&hotellist.get(i).get(3).equals(s2)){
+							    	 volist.add(hotellist.get(i));
+							     }			
 						}
-					}
+							hotelTable.setModel(new DefaultTableModel(volist,vColumns));
+						}
+					}		
 				});
 				button_1.setBounds(520, 40, 93, 23);
 				this.add(button_1);				
@@ -222,14 +283,68 @@ public class SearchHotel extends JPanel{
 					label.setBounds(20, 10, 100, 30);
 					frame.setSize(100, 100);
 					frame.setVisible(true);
-				}else
-				searchHotelCon.hotelinformation(index+1);
+				}else{
+					int selectedhotelid = Integer.parseInt((String)hotelTable.getValueAt(index, 0));
+					JFrame frame;
+					JLabel dizhil;
+					JLabel shangquanl;
+					JLabel jianjiel;
+					JLabel dachuangfangjiagel;
+					JLabel shuangrenfangjiagel;
+					JLabel sanrenjianjiagel;
+					JLabel xingjil;
+					JButton exitButton;
+					frame = new JFrame();
+					searchHotelCon.creatpo(selectedhotelid);
+					dizhil = new JLabel("地址:"+searchHotelCon.getAddress());
+					shangquanl = new JLabel("商圈:"+searchHotelCon.getPosition());
+					jianjiel = new JLabel("简介:"+searchHotelCon.getDescription());
+					dachuangfangjiagel = new JLabel("大床房价格:"+searchHotelCon.getDachuangfangprice());
+					shuangrenfangjiagel = new JLabel("双人房价格:"+searchHotelCon.getShuangrenfangprice());
+					sanrenjianjiagel = new JLabel("三人间价格:"+searchHotelCon.getSanrenjianprice());
+					xingjil = new JLabel("星级:"+searchHotelCon.getStar());
+					exitButton = new JButton("返回");
+					exitButton.addActionListener(new ActionListener(){
+						public void actionPerformed(ActionEvent e) {
+							searchHotelCon.ExitButtonClicked();
+							frame.dispose();
+						}
+					});
+					frame.add(button2);
+					button2.setBounds(600, 150, 140, 25);
+					frame.add(exitButton);
+					exitButton.setBounds(600, 40, 70, 25);
+					frame.add(dizhil);
+					dizhil.setBounds(20,60,300,20);
+					dizhil.setFont(new Font("STXingkaiSC-Light",Font.BOLD,16));
+					frame.add(shangquanl);
+					shangquanl.setBounds(20,90,300,20);
+					shangquanl.setFont(new Font("STXingkaiSC-Light",Font.BOLD,16));
+					frame.add(jianjiel);
+					jianjiel.setBounds(20,120,300,20);
+					jianjiel.setFont(new Font("STXingkaiSC-Light",Font.BOLD,16));
+					frame.add(dachuangfangjiagel);
+					dachuangfangjiagel.setBounds(20,150,300,20);
+					dachuangfangjiagel.setFont(new Font("STXingkaiSC-Light",Font.BOLD,16));
+					frame.add(shuangrenfangjiagel);
+					shuangrenfangjiagel.setBounds(20,180,300,20);
+					shuangrenfangjiagel.setFont(new Font("STXingkaiSC-Light",Font.BOLD,16));
+					frame.add(sanrenjianjiagel);
+					sanrenjianjiagel.setBounds(20,210,300,20);
+					sanrenjianjiagel.setFont(new Font("STXingkaiSC-Light",Font.BOLD,16));
+					frame.add(xingjil);
+					xingjil.setBounds(20,240,300,20);
+					xingjil.setFont(new Font("STXingkaiSC-Light",Font.BOLD,16));
+					frame.setSize(800, 600);
+					frame.setVisible(true);
+				}
 			}
 			
 		});
 		this.add(button3);
 		button3.setBounds(170, 284, 150, 30);
 	}
+
 	
 
 		public void createtable(Vector<HotelVo> vData){

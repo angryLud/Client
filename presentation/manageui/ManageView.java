@@ -222,7 +222,7 @@ public class ManageView extends JPanel{
 			newMemberButton.setEnabled(true);
 			newHotelButton.setEnabled(false);
 		}else if(selected == "酒店"){
-			searchButton.setEnabled(false);
+			searchButton.setEnabled(true);
 			newMemberButton.setEnabled(false);
 			newHotelButton.setEnabled(true);
 		}
@@ -292,7 +292,7 @@ public class ManageView extends JPanel{
 			searchLabel2 = new JLabel("ID");
 			searchLabel1 = new JLabel("酒店名称");
 			searchLabel3 = new JLabel("酒店地址");
-//			newHotelLabel_ = new JLabel("酒店商圈");
+			searchLabel_ = new JLabel("酒店商圈");
 			searchLabel4 = new JLabel("酒店星级");
 			searchLabel5 = new JLabel("酒店描述");
 			searchLabel6 = new JLabel("评分");
@@ -304,9 +304,9 @@ public class ManageView extends JPanel{
 			searchTextField1 = new JTextField(20);
 			searchTextField1.setText(hotelVo.getHotelName());
 			searchTextField3 = new JTextField(20);
-			searchTextField3.setText(hotelVo.getPosition());
-//			searchTextField_ = new JTextField(20);
-//			searchTextField_.setText();
+			searchTextField3.setText(hotelVo.getAddress());
+			searchTextField_ = new JTextField(20);
+			searchTextField_.setText(hotelVo.getPosition());
 			searchTextField4 = new JTextField(20);
 			searchTextField4.setText(hotelVo.getStar());
 			searchTextField5 = new JTextField(20);
@@ -319,11 +319,11 @@ public class ManageView extends JPanel{
 //			searchTextField8.setText();
 //			searchTextField9 = new JTextField(20);
 //			searchTextField9.setText();
-			searchTextField1.setEditable(false);
+			searchTextField2.setEditable(false);
 			searchTextField6.setEditable(false);
 			
 			JPanel searchPanel1 = new JPanel();
-			searchPanel1.setLayout(new GridLayout(7,2));
+			searchPanel1.setLayout(new GridLayout(8,2));
 			searchPanel = new JPanel();
 			searchPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 			searchPanel1.add(searchLabel1);
@@ -332,6 +332,8 @@ public class ManageView extends JPanel{
 			searchPanel1.add(searchTextField2);
 			searchPanel1.add(searchLabel3);
 			searchPanel1.add(searchTextField3);
+			searchPanel1.add(searchLabel_);
+			searchPanel1.add(searchTextField_);
 			searchPanel1.add(searchLabel4);
 			searchPanel1.add(searchTextField4);
 			searchPanel1.add(searchLabel5);
@@ -572,13 +574,12 @@ public class ManageView extends JPanel{
 				return true;
 			}
 		}else if(id>1999&&id<3000){
-			String position = searchTextField3.getText();
-			String star = searchTextField4.getText();
+			String position = searchTextField_.getText();
+			String address = searchTextField3.getText();
+			int star = Integer.valueOf(searchTextField4.getText());
 			String description = searchTextField5.getText();
-			hotelPo.setStar(Integer.valueOf(star));
-			hotelPo.setDescription(description);
-			hotelPo.setPosition(position);
-			if(manageService.changeHotelInfo(hotelPo)){
+			HotelPo hpo = new HotelPo(hotelPo.getHotelID(),address,position,userName,hotelPo.getDachaungfangprice(),hotelPo.getShuangrenfangprice(),hotelPo.getSanrenjianprice(),star,hotelPo.getScore(),description);
+			if(manageService.changeHotelInfo(hpo)){
 				return true;
 			}
 		}
@@ -613,7 +614,7 @@ public class ManageView extends JPanel{
 		manageService = new ManageServiceImpl();
 		id = manageService.addHotel(hotelPo,password);
 		if(id!=0){
-			JOptionPane.showMessageDialog(null,"酒店id为"+id,"",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"酒店id为"+id);
 			return true;
 		}
 
@@ -631,9 +632,9 @@ public class ManageView extends JPanel{
 //		String company = newMemberTextField6.getText();
 		PromotionerPo pPo = new PromotionerPo(id,userName);
 		manageService = new ManageServiceImpl();
-		id = manageService.addUser(pPo,password);
+		id = manageService.addPromotioner(pPo,password);
 		if(id>2999){
-			JOptionPane.showMessageDialog(null,"网络营销人员id为"+id,"",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"网络营销人员id为"+id);
 			return true;
 		}
 		return false;	

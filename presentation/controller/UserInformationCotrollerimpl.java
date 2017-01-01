@@ -75,6 +75,11 @@ public UserInformationCotrollerimpl(int UserID){
 		// TODO Auto-generated method stub
 		userser.updatenormalvip(birthday);
 	}
+	@Override
+	public void refreshuserinfo() {
+		// TODO Auto-generated method stub
+		con.gerenxinxi(UserID);
+	}
 
 
 

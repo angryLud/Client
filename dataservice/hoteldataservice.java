@@ -12,11 +12,12 @@ import java.util.List;
 public interface hoteldataservice extends Remote {
     List<HotelPo> usergethotellist(int userid) throws RemoteException;
     
+    
+    
     List<HotelPo> getallhotellist() throws RemoteException;
     
     int hotelinsert(HotelPo hpo, char[] password) throws RemoteException;
 
-    
 	boolean hotelupdate(HotelPo hpo) throws RemoteException;
 	
 	HotelPo findhotelbyid(int hotelID) throws RemoteException;

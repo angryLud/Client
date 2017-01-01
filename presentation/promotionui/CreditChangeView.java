@@ -113,7 +113,7 @@ public class CreditChangeView extends JPanel{
 		int credit = Integer.valueOf(creditTextField2.getText());
 		CreditService creditService = new CreditServiceImpl();
 		if(creditService.recoverCredit(id, credit)){
-			JOptionPane.showMessageDialog(null,"信用恢复成功","",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"信用恢复成功");
 		}
 		else{
 			JOptionPane.showMessageDialog(null,"信用恢复失败","",JOptionPane.ERROR_MESSAGE);

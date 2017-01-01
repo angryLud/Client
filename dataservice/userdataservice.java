@@ -9,4 +9,5 @@ public interface userdataservice extends Remote {
 	int userinsert(UserPo upo, char[] password) throws RemoteException;
 	boolean userupdate(UserPo upo) throws RemoteException;
 	UserPo userfind(int id) throws RemoteException;
+	boolean hotelreserved(int hotelID,int userID) throws RemoteException;
 }

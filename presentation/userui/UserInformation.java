@@ -79,7 +79,7 @@ class button3Listener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		JFrame frameupdate = new JFrame();
+		final JFrame frameupdate = new JFrame();
 		frameupdate.setLayout(null);
 		frameupdate.setSize(400, 150);
 		JLabel name = new JLabel("姓名：");

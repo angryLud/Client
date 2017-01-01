@@ -20,4 +20,5 @@ public interface UserSearchOrderCotroller {
 	void ExitButtonClicked();
 	void updateorderinfor(int orderid,String access, int score);
 	void cancelorder(int orderid);
+	void refresh();
 }

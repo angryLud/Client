@@ -69,4 +69,5 @@ public String getDescription();
 public int getShuangrenfangprice();
 public int getSanrenjianprice();
 public int getStar();
+public boolean isreserved(int selectedhotelid,int userId);
 }

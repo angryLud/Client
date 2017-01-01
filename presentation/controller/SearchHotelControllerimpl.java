@@ -60,11 +60,7 @@ public SearchHotelControllerimpl(int userId){
 		// TODO Auto-generated method stub
 		this.con=con;
 	}
-	@Override
-	public void change() {
-		// TODO Auto-generated method stub
-		
-	}
+
 	@Override
 	public int createorder(int orderid,int userid,int hotelid,int intnowtime,long s5,long s7,long s6,int status,String s1,int s2) {
 		// TODO Auto-generated method stub
@@ -118,6 +114,11 @@ public SearchHotelControllerimpl(int userId){
 	public int getStar() {
 		// TODO Auto-generated method stub
 		return userso.getStar();
+	}
+	@Override
+	public boolean isreserved(int selectedhotelid,int userId) {
+		// TODO Auto-generated method stub
+		return userso.isreserved(selectedhotelid,userId);
 	}
 
 }

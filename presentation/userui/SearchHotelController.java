@@ -22,8 +22,6 @@ public interface SearchHotelController {
 	void reservehotel();
 	
     int getcredit();
-	
-	void change();
 
 	int createorder(int orderid, int userid, int hotelid, int intnowtime, long s5, long s7, long s6, int status,
 			String s1, int s2);
@@ -45,4 +43,6 @@ public interface SearchHotelController {
 	int getSanrenjianprice();
 
 	int getStar();
+
+	boolean isreserved(int selectedhotelid,int userId);
 }

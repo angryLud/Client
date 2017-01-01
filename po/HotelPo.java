@@ -187,6 +187,11 @@ public class HotelPo implements Serializable{
                 dachuangfangprice+"','"+shuangrenfangprice+"','"+sanrenjianprice+
                 "','"+star+"','"+score+"','"+(assess==null?"":assess)+"','"+description+"','"+scorenum+"'";
     }
+	public int getMinprice() {
+		// TODO Auto-generated method stub
+		 return dachuangfangprice;
+	}
+
 
 
 }

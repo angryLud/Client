@@ -136,13 +136,29 @@ public class userserviceimpl implements businesslogicservice.userservice {
 			e1.printStackTrace();
 		}
 		
+		int roomnum = ovo.getRoomnum();
+		int roomstyle = ovo.getRoomstyle();
+		
 		int value = 0;
 		if(ovo.getRoomstyle()==0){
+			if(roomnum<=hpo.getAvdachuangfang()){
 			value = (ovo.getRoomnum()+1)*hpo.getAvdachuangfang();
+			hpo.setAvdachuangfang(hpo.getAvdachuangfang()-roomnum);
+			}
+			else
+				return 0;
 		}else if(ovo.getRoomstyle()==1){
+			if(roomnum<=hpo.getAvshuangrenfang()){
 			value = (ovo.getRoomnum()+1)*hpo.getAvshuangrenfang();
+			hpo.setAvshuangrenfang(hpo.getAvshuangrenfang()-roomnum);
+			}else
+				return 0;
 		}else if(ovo.getRoomstyle()==2){
+			if(roomnum<=hpo.getAvsanrenjian()){
 			value = (ovo.getRoomnum()+1)*hpo.getAvsanrenjian();
+			hpo.setAvsanrenjian(hpo.getAvsanrenjian()-roomnum);
+			}else
+				return 0;
 		}
 		
 		System.out.println(value);
@@ -151,6 +167,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 		 try {
 			System.out.println(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
 			RemoteHelper.getInstance().getOrderdataservice().orderinsert(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
+			RemoteHelper.getInstance().getHoteldataservice().hotelupdate(hpo);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -266,6 +283,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	public void cancelorder(int orderid) {
 		// TODO Auto-generated method stub
 		OrderPo opo = null;
+		System.out.println(orderid);
 		try {
 			opo = RemoteHelper.getInstance().getOrderdataservice().orderfind(orderid);
 		} catch (RemoteException e1) {
@@ -273,6 +291,13 @@ public class userserviceimpl implements businesslogicservice.userservice {
 			e1.printStackTrace();
 		}
 		opo.setStatus(3);
+		System.out.println(opo.getStatus());
+		try {
+			RemoteHelper.getInstance().getOrderdataservice().orderupdate(opo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	@Override
 	public UserPo getUser(int userId) {
@@ -330,6 +355,19 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	public int getStar() {
 		// TODO Auto-generated method stub
 		return hpo.getStar();
+	}
+	@Override
+	//判断是否是预定过得酒店
+	public boolean isreserved(int selectedhotelid,int userId) {
+		// TODO Auto-generated method stub
+		
+		try {
+			return RemoteHelper.getInstance().getUserdataservice().hotelreserved(selectedhotelid, userId);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 	}
 

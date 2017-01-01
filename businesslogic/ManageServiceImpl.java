@@ -89,6 +89,7 @@ public class ManageServiceImpl implements ManageService {
 	
 	public boolean changeHotelInfo(HotelPo hPo){
 		try {
+			
 			if(RemoteHelper.getInstance().getHoteldataservice().hotelupdate(hPo)){
 				return true;
 			}

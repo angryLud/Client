@@ -1,5 +1,6 @@
 package presentation.hotelui;
 
+import po.HotelPo;
 import presentation.controller.controller;
 
 public interface ManageRoomViewController {
@@ -9,7 +10,23 @@ public interface ManageRoomViewController {
 	
 	public void ExitButtonClicked();
 	
-	public boolean updateHotel(int hotelID);
+	public boolean updateHotel(HotelPo po);
   
     public void refresh();
+
+	public int getHotelID();
+
+	public String getHotelName();
+
+	public int getAvdachuangfang();
+
+	public int getDachaungfangprice();
+
+	public int getAvshuangrenfang();
+
+	public int getShuangrenfangprice();
+
+	public int getAvsanrenjian();
+
+	public int getSanrenjianprice();
 }

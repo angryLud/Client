@@ -16,7 +16,6 @@ public interface hoteldataservice extends Remote {
     
     int hotelinsert(HotelPo hpo, char[] password) throws RemoteException;
 
-    
 	boolean hotelupdate(HotelPo hpo) throws RemoteException;
 	
 	HotelPo findhotelbyid(int hotelID) throws RemoteException;

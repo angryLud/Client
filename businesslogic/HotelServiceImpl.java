@@ -19,7 +19,6 @@ public class HotelServiceImpl implements HotelService{
 		try {
 			hpo = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(hotelID);
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -30,6 +29,7 @@ public class HotelServiceImpl implements HotelService{
 	public boolean updateHotel(HotelPo po) {
 			try {
 				return RemoteHelper.getInstance().getHoteldataservice().hotelupdate(po);
+				
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
@@ -47,7 +47,7 @@ public class HotelServiceImpl implements HotelService{
 
 	@Override
 	public String getAddress() {
-		// TODO Auto-generated method stub
+		
 		return hpo.getAddress();
 	}
 
@@ -79,6 +79,35 @@ public class HotelServiceImpl implements HotelService{
 	public int getStar() {
 		// TODO Auto-generated method stub
 		return hpo.getStar();
+	}
+
+	@Override
+	public String getHotelName() {
+		// TODO Auto-generated method stub
+		return hpo.getHotelName();
+	}
+
+	@Override
+	public int getAvdachuangfang() {
+		// TODO Auto-generated method stub
+		return hpo.getAvdachuangfang();
+	}
+
+	@Override
+	public int getAvshuangrenfang() {
+		// TODO Auto-generated method stub
+		return hpo.getAvshuangrenfang();
+	}
+
+	@Override
+	public int getAvsanrenjian() {
+		// TODO Auto-generated method stub
+		return hpo.getAvsanrenjian();
+	}
+
+	@Override
+	public int getHotelID() {
+		return hpo.getHotelID();
 	}
 	
 

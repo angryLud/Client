@@ -19,7 +19,7 @@ public class HotelStrategyViewControllerImpl implements HotelStrategyViewControl
 	
 	public HotelStrategyViewControllerImpl(int HotelID){
 		this.HotelID = HotelID;
-//		orderservice = new OrderServiceImpl(HotelID);
+		orderservice = new OrderServiceImpl(HotelID);
 	}
 
 	@Override
@@ -53,10 +53,10 @@ public class HotelStrategyViewControllerImpl implements HotelStrategyViewControl
 	}
 
 	@Override
-	public boolean updateOrder(int orderID) {
+	public boolean updateOrder(OrderPo opo) {
 		
-//		return orderservice.updateOrder(orderID);
-		return false;
+		return orderservice.updateOrder(opo);
+		
 	}
 
 }

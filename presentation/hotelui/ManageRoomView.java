@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
 import java.util.Vector;
 import presentation.controller.controller;
+import rmi.RemoteHelper;
 public class ManageRoomView extends JPanel{
 	
 	private int HotelID;
@@ -66,7 +67,6 @@ public class ManageRoomView extends JPanel{
 		inputButtonJpanel = new JPanel();
 		manageButtonJpanel = new JPanel();
 		
-		
 		manageColumns = new Vector<String>();
 		manageColumns.add("酒店id");
 		manageColumns.add("酒店名称");
@@ -78,34 +78,31 @@ public class ManageRoomView extends JPanel{
 		Vector<String> vo1 = new Vector<String>();
 		Vector<String> vo2 = new Vector<String>();
 		Vector<String> vo3 = new Vector<String>();
-//        try {
-//			po1 = hoteldataservice.findhotelbyid(HotelID);
-//		} catch (RemoteException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-		po1 = new HotelPo(1,"仙林","南京","英尊",188,288,328,4,4.6,"不错");
-		po1.setAvdachuangfang(28);
-		po1.setAvshuangrenfang(19);
-		po1.setAvsanrenjian(20);
 		
-		vo1.add(String.valueOf(po1.getHotelID()));
-		vo1.add(po1.getHotelName());
+		try {
+			po1 = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(HotelID);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
+		
+      
+		vo1.add(String.valueOf(controller.getHotelID()));
+		vo1.add(controller.getHotelName());
 		vo1.add("大床房");
-		vo1.add(String.valueOf(po1.getAvdachuangfang()));
-		vo1.add(String.valueOf(po1.getDachaungfangprice()));
+		vo1.add(String.valueOf(controller.getAvdachuangfang()));
+		vo1.add(String.valueOf(controller.getDachaungfangprice()));
 		
-		vo2.add(String.valueOf(po1.getHotelID()));
-		vo2.add(po1.getHotelName());
+		vo2.add(String.valueOf(controller.getHotelID()));
+		vo2.add(controller.getHotelName());
 		vo2.add("双人房");
-		vo2.add(String.valueOf(po1.getAvshuangrenfang()));
-		vo2.add(String.valueOf(po1.getShuangrenfangprice()));
+		vo2.add(String.valueOf(controller.getAvshuangrenfang()));
+		vo2.add(String.valueOf(controller.getShuangrenfangprice()));
 		
-		vo3.add(String.valueOf(po1.getHotelID()));
-		vo3.add(po1.getHotelName());
+		vo3.add(String.valueOf(controller.getHotelID()));
+		vo3.add(controller.getHotelName());
 		vo3.add("三人间");
-		vo3.add(String.valueOf(po1.getAvsanrenjian()));
-		vo3.add(String.valueOf(po1.getSanrenjianprice()));
+		vo3.add(String.valueOf(controller.getAvsanrenjian()));
+		vo3.add(String.valueOf(controller.getSanrenjianprice()));
 		manageData.add(vo1);
 		manageData.add(vo2);
 		manageData.add(vo3);
@@ -167,25 +164,28 @@ public class ManageRoomView extends JPanel{
 		categories.add("双人房");
 		categories.add("三人间");
 		final JComboBox box1 = new JComboBox(categories);
-		
-		
+	    JLabel label = new JLabel("房间数量");
+	    final JTextField field = new JTextField(10);
 		
 		JButton confirmButton = new JButton("确定");
 		
+		inputPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		inputPanel.add(label2);
 		inputPanel.add(box1);
+		inputPanel.add(label);
+		inputPanel.add(field);
 		
 		inputPanel.add(confirmButton);
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(box1.getSelectedIndex()==0){
-					po1.setAvdachuangfang(po1.getAvdachuangfang()+1);
+					po1.setAvdachuangfang(po1.getAvdachuangfang()+Integer.parseInt(field.getText()));
 				}
 				if(box1.getSelectedIndex()==1){
-					po1.setAvshuangrenfang(po1.getAvshuangrenfang()+1);
+					po1.setAvshuangrenfang(po1.getAvshuangrenfang()+Integer.parseInt(field.getText()));
 				}
 				if(box1.getSelectedIndex()==2){
-					po1.setAvsanrenjian(po1.getAvsanrenjian()+1);
+					po1.setAvsanrenjian(po1.getAvsanrenjian()+Integer.parseInt(field.getText()));
 				}
 				
 				manageRoomModel = new DefaultTableModel(manageData, manageColumns);
@@ -198,13 +198,8 @@ public class ManageRoomView extends JPanel{
 				
 				serviceTypeJpanel.validate();
 				inputFrame.dispose();
-				if(controller.updateHotel(HotelID)){
+				if(controller.updateHotel(po1)){
 					JOptionPane.showMessageDialog(null, "修改成功！","", JOptionPane.INFORMATION_MESSAGE);
-					controller.refresh();
-				}
-				else{
-					JOptionPane.showMessageDialog(null, "修改失败！","", JOptionPane.INFORMATION_MESSAGE);
-					controller.refresh();
 				}
 				controller.refresh();
 			}
@@ -212,8 +207,8 @@ public class ManageRoomView extends JPanel{
 		});
 		
 		inputFrame.getContentPane().add(inputPanel);
-		inputFrame.setBounds(400,400, 200, 200);
-		inputFrame.setResizable(false);
+		inputFrame.setBounds(400,400, 180, 200);
+		inputFrame.setResizable(true);
 		inputFrame.setVisible(true);
 		
 	}
@@ -229,23 +224,28 @@ public class ManageRoomView extends JPanel{
 		categories.add("双人房");
 		categories.add("三人间");
 		final JComboBox box1 = new JComboBox(categories);
+		JLabel label = new JLabel("房间数量");
+		final JTextField field = new JTextField(10);
 		
 		JButton confirmButton = new JButton("确定");
 		
+		deletePanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 		deletePanel.add(label2);
 		deletePanel.add(box1);
+		deletePanel.add(label);
+		deletePanel.add(field);
 		
 		deletePanel.add(confirmButton);
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				if(box1.getSelectedIndex()==0){
-					po1.setAvdachuangfang(po1.getAvdachuangfang()-1);
+					po1.setAvdachuangfang(po1.getAvdachuangfang()-Integer.parseInt(field.getText()));
 				}
 				if(box1.getSelectedIndex()==1){
-					po1.setAvshuangrenfang(po1.getAvshuangrenfang()-1);
+					po1.setAvshuangrenfang(po1.getAvshuangrenfang()-Integer.parseInt(field.getText()));
 				}
 				if(box1.getSelectedIndex()==2){
-					po1.setAvsanrenjian(po1.getAvsanrenjian()-1);
+					po1.setAvsanrenjian(po1.getAvsanrenjian()-Integer.parseInt(field.getText()));
 				}
 				
 				manageRoomModel = new DefaultTableModel(manageData, manageColumns);
@@ -258,13 +258,11 @@ public class ManageRoomView extends JPanel{
 				
 				serviceTypeJpanel.validate();
 				
-				if(controller.updateHotel(HotelID)){
+				if(controller.updateHotel(po1)){
 					JOptionPane.showMessageDialog(null, "修改成功！","", JOptionPane.INFORMATION_MESSAGE);
-					controller.refresh();
 				}
 				else{
 					JOptionPane.showMessageDialog(null, "修改失败！","", JOptionPane.INFORMATION_MESSAGE);
-					controller.refresh();
 				}
 				
 				deleteFrame.dispose();
@@ -274,7 +272,7 @@ public class ManageRoomView extends JPanel{
 		});
 		
 		deleteFrame.getContentPane().add(deletePanel);
-		deleteFrame.setBounds(400,400, 200, 200);
+		deleteFrame.setBounds(400,400, 180, 200);
 		deleteFrame.setResizable(false);
 		deleteFrame.setVisible(true);
 	}

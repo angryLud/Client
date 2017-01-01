@@ -19,7 +19,7 @@ import rmi.RemoteHelper;
 import vo.OrderVo;
 import businesslogic.userserviceimpl;
 import businesslogicservice.userservice;
-//数据层接口未实现
+
 public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	private ManageOrderView view;
 	
@@ -30,6 +30,10 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	private OrderService orderservice;
 	
 	private userservice userservice;
+	
+	private UserPo userpo;
+	
+	private OrderPo orderpo;
 	
 	
 	public ManageOrderViewControllerImpl(int HotelID){
@@ -65,20 +69,17 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 
 	@Override
 	public List<OrderVo> getAllOrders(int holelID) {
-//		return orderservice.getAllOrders(holelID);
-		return null;
+		return orderservice.getAllOrders(holelID);
 	}
 
 	@Override
-	public OrderVo searchOrder(int orderID) {
-//		return orderservice.getOrder(orderID);
-		return null;
+	public OrderPo searchOrder(int orderID) {
+		return orderservice.getOrder(orderID);
 	}
 
 	@Override
 	public boolean executeOrder(int orderID) {
-//		return orderservice.executeOrder(orderID);
-		return false;
+		return orderservice.executeOrder(orderID);
 	}
 
 	@Override
@@ -88,43 +89,34 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 	}
 
 	@Override
-	public void updateListModel(String selected) {
-		view.updateListModel(selected);
-		
-	}
-
-	@Override
 	public List<OrderVo> getUnfinishedOrders(int hotelID) {
-//    return orderservice.getUnfinishedOrders(hotelID);
-	  return null;
+      return orderservice.getUnfinishedOrders(hotelID);
 	}
 
 	@Override
 	public List<OrderVo> getFinishedOrders(int hotelID) {
-//		return orderservice.getFinishedOrders(hotelID);
-		return null;
+		return orderservice.getFinishedOrders(hotelID);
 	}
 
 	@Override
 	public List<OrderVo> getAbnormalOrders(int hotelID) {
-//		return orderservice.getAbnormalOrders(hotelID);
-		return null;
-	}
-
-	@Override
-	public boolean processAbnormalOrder(int orderId, String delayTime) {
-//
-		return false;
+		return orderservice.getAbnormalOrders(hotelID);
 	}
 
 	@Override
 	public void CreditChange(int orderID,int userid,int credit) 
 		{
-			UserPo userpo = new UserPo();
-			userpo = userservice.getUser(userid);
+			try {
+				userpo = RemoteHelper.getInstance().getUserdataservice().userfind(userid);
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
 			userpo.setCredit(userpo.getCredit()+credit);
-			OrderPo orderpo = new OrderPo(credit, credit, credit, credit, credit, credit, credit, credit, credit, credit, credit);
-			orderpo = orderservice.getOrder(orderID);
+			try {
+				orderpo = RemoteHelper.getInstance().getOrderdataservice().orderfind(orderID);
+			} catch (RemoteException e1) {
+				e1.printStackTrace();
+			}
 			orderpo.setStatus(1);
 			Date date=new Date();
 			DateFormat format=new SimpleDateFormat("yyyy/MM/dd");
@@ -139,7 +131,6 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 					JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.INFORMATION_MESSAGE);
 				}
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -152,11 +143,17 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 
 	@Override
 	public void CreditRestore(int orderNo, int userid, int credit, long delaytime) throws RemoteException {
-		UserPo userpo = new UserPo();
-		userpo = userservice.getUser(userid);
+		try {
+			userpo = RemoteHelper.getInstance().getUserdataservice().userfind(userid);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		userpo.setCredit(userpo.getCredit()+credit);
-		OrderPo orderpo = new OrderPo(credit, credit, credit, credit, credit, credit, credit, credit, credit, credit, credit);
-		orderpo = orderservice.getOrder(orderNo);
+		try {
+			orderpo = RemoteHelper.getInstance().getOrderdataservice().orderfind(orderNo);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		orderpo.setStatus(1);
 		orderpo.setDelaytime(delaytime);
 		try {
@@ -169,6 +166,11 @@ public class ManageOrderViewControllerImpl implements ManageOrderViewController{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<OrderVo> getcanceledOrders(int hotelID) {
+		return orderservice.getCanceledOrders(hotelID);
 	}
 	
 

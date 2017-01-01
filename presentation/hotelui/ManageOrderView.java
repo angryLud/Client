@@ -4,11 +4,13 @@ import java.awt.BorderLayout;
 
 import dataservice.*;
 import java.awt.FlowLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.rmi.RemoteException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import po.OrderPo;
 import po.UserPo;
+import rmi.RemoteHelper;
 import vo.OrderVo;
 
 public class ManageOrderView extends JPanel{
@@ -45,35 +48,33 @@ public class ManageOrderView extends JPanel{
 	private JButton exitButton;
 	private JButton delayButton;
 	
+	private JButton allorders;
+	private JButton inexecutedorders;
+	private JButton executedorders;
+	private JButton abnormalorders;
+	private JButton canceledorders;
 	
-	private JLabel tempLabel;
 	private JLabel delayLabel;
 	
-	private JTextField executeField1;
 	private JTextField delayTextField;
 	
-	private JLabel executeLabel1;
 	
 	private JPanel serviceTypeJpanel;
 	private JPanel searchButtonJpanel;
-	private JPanel executeJpanel;
 	private JPanel delayPanel;
 	
 	private JTable searchOrderTable;
-	private JTable executeOrderTable;
 	
 	private Vector<String> searchColumns;
-	private Vector<String> executeColumns;
 	
 	private Vector<OrderVo> searchData;
-	private Vector<OrderVo> executeData;
 	
 	private DefaultTableModel searchOrderModel;
-	private DefaultTableModel executeOrderModel;
 	
 	private JScrollPane scrollPane;
-	
-	private JComboBox orderTypeBox;
+
+    private OrderPo orderpo;
+    private UserPo userpo;
 	
 	private orderdataservice orderdataservice;
 	private userdataservice userdataservice;
@@ -87,24 +88,98 @@ public class ManageOrderView extends JPanel{
 	public void init(){
 		//组件
 		
-		Vector<String> list = new Vector<String>();
-		list.add("所有类型");
-		list.add("已执行订单");
-		list.add("未执行订单");
-		list.add("异常订单");
-		orderTypeBox = new JComboBox(list);
-		final String selected = (String) orderTypeBox.getSelectedItem();
-		orderTypeBox.addItemListener(new ItemListener(){
-			public void itemStateChanged(ItemEvent e) {
-				controller.updateListModel(selected);
+		allorders = new JButton("所有类型");
+		allorders.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				//更新订单列表
+				searchOrderModel.setRowCount(0);
+				if(controller.getAllOrders(HotelID)!=null){
+				for (OrderVo orderVo : controller.getAllOrders(HotelID)) {
+					searchOrderModel.addRow(orderVo);
+				}
+				}
+				//设置控件可用类型
+				delayButton.setEnabled(false);
+				executeButton.setEnabled(false);
 			}
 			
 		});
+		inexecutedorders = new JButton("未执行订单");
+		inexecutedorders.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//更新订单列表
+				searchOrderModel.setRowCount(0);
+				if(controller.getUnfinishedOrders(HotelID)!=null){
+				for (OrderVo orderVo : controller.getUnfinishedOrders(HotelID)) {
+					searchOrderModel.addRow(orderVo);
+				}
+				}
+				//设置控件可用类型
+				delayButton.setEnabled(false);
+				executeButton.setEnabled(true);
+			}
+			
+		});
+		executedorders = new JButton("已执行订单");
+		executedorders.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//更新订单列表
+				searchOrderModel.setRowCount(0);
+				if(controller.getFinishedOrders(HotelID)!=null){
+				for (OrderVo orderVo : controller.getFinishedOrders(HotelID)) {
+					searchOrderModel.addRow(orderVo);
+				}
+				}
+				//设置控件可用类型
+				delayButton.setEnabled(false);
+				executeButton.setEnabled(false);
+				
+			}
+			
+		});
+		abnormalorders = new JButton("异常订单");
+		abnormalorders.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//更新订单列表
+				searchOrderModel.setRowCount(0);
+				if(controller.getAbnormalOrders(HotelID)!=null){
+				for (OrderVo orderVo : controller.getAbnormalOrders(HotelID)) {
+					searchOrderModel.addRow(orderVo);
+				}
+				}
+				//设置控件可用类型
+				delayButton.setEnabled(true);
+				executeButton.setEnabled(false);
+				
+			}
+			
+		});
+		canceledorders = new JButton("已撤销订单");
+		canceledorders.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//更新订单列表
+				searchOrderModel.setRowCount(0);
+				if(controller.getcanceledOrders(HotelID)!=null){
+				for (OrderVo orderVo : controller.getcanceledOrders(HotelID)) {
+					searchOrderModel.addRow(orderVo);
+				}
+				}
+				//设置控件可用类型
+				delayButton.setEnabled(false);
+				executeButton.setEnabled(false);
+			}
+		});
 		
 		scrollPane = new JScrollPane();
-		executeLabel1 = new JLabel("输入订单号");
-		executeField1 = new JTextField(10);
-		
+
 		orderSearchButton = new JButton("搜索");
 		executeButton = new JButton("执行订单");
 		executingButton = new JButton("执行");
@@ -113,52 +188,33 @@ public class ManageOrderView extends JPanel{
 		delayButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				delayOrderButtonClicked();
-				
 			}
-			
 		});
 		
 		serviceTypeJpanel = new JPanel();
 		searchButtonJpanel = new JPanel();
-		executeJpanel = new JPanel();
-		
+
 		searchColumns = new Vector<String>();
 		searchColumns.add("订单号");
-		searchColumns.add("用户id");
+		searchColumns.add("房间号");
 		searchColumns.add("酒店id");
 		searchColumns.add("创建时间");
 		searchColumns.add("执行时间");
-		searchColumns.add("延迟时间");
-		searchColumns.add("入住时间");
+		searchColumns.add("最晚入住时间");
+		searchColumns.add("退房时间");
 		searchColumns.add("价格");
 		searchColumns.add("执行情况");
 		
 		searchData = new Vector<OrderVo>();
-		OrderPo orderPo = new OrderPo(1,2,3,20161203,20161205,20161205,20161208,198,1,0,316);
-		OrderVo orderVo = new OrderVo(orderPo);
-		searchData.add(orderVo);
-		
-		executeColumns = new Vector<String>();
-		executeColumns.add("订单号");
-		executeColumns.add("房间号");
-		executeColumns.add("酒店id");
-		executeColumns.add("创建时间");
-		executeColumns.add("执行时间");
-		executeColumns.add("延迟时间");
-		executeColumns.add("入住时间");
-		executeColumns.add("价格");
-		executeColumns.add("执行情况");
-		
-		executeData = new Vector<OrderVo>();
-		OrderPo orderPo2 = new OrderPo(1,2,3,20161203,20161205,20161205,20161208,198,1,0,316);
-		OrderVo orderVo2 = new OrderVo(orderPo2);
-		executeData.add(orderVo2);
-		
-		
+		List<OrderVo> list1 = new ArrayList<OrderVo>();
+        list1 = controller.getAllOrders(HotelID);
+        for(OrderVo vo :list1){
+        	searchData.add(vo);
+        }
+        
 	    //界面内容
 		searchOrderModel = new DefaultTableModel(searchData, searchColumns);
 		searchOrderTable = new JTable(searchOrderModel){
-
 			public boolean isCellEditable(int row, int column){
 				return false;
 			}
@@ -184,7 +240,7 @@ public class ManageOrderView extends JPanel{
 				controller.ExitButtonClicked();
 			}
 		});
-		searchButtonJpanel.add(delayButton);
+		    searchButtonJpanel.add(delayButton);
 		    serviceTypeJpanel.setLayout(null);
 		    serviceTypeJpanel.add(exitButton);
 		    exitButton.setBounds(600, 40, 70, 25);
@@ -192,60 +248,22 @@ public class ManageOrderView extends JPanel{
 			scrollPane.setBounds(20,80,470,300);
 			serviceTypeJpanel.add(searchButtonJpanel);
 			searchButtonJpanel.setBounds(500,300,250,100);
-			serviceTypeJpanel.add(orderTypeBox);
-			orderTypeBox.setBounds(20,40,100,25);
+			serviceTypeJpanel.add(allorders);
+			allorders.setBounds(20,40,100,25);
+			serviceTypeJpanel.add(inexecutedorders);
+			inexecutedorders.setBounds(130,40,100,25);
+			serviceTypeJpanel.add(executedorders);
+			executedorders.setBounds(240,40,100,25);
+			serviceTypeJpanel.add(abnormalorders);
+			abnormalorders.setBounds(350,40,100,25);
+			serviceTypeJpanel.add(canceledorders);
+			canceledorders.setBounds(460,40,100,25);
 			
 			this.add(serviceTypeJpanel);
 			serviceTypeJpanel.setBounds(0, 0, 800, 600);
 		   
 	}
-	public void updateListModel(String selected) {
-		if(selected == "所有类型"){
-			//更新订单列表
-			searchOrderModel.setRowCount(0);
-			for (OrderVo orderVo : controller.getAllOrders(HotelID)) {
-				searchOrderModel.addRow(orderVo);
-			}
-			//设置控件可用类型
-			delayButton.setEnabled(false);
-			executeButton.setEnabled(false);
-			
-		}else if(selected == "未执行订单"){
-			//更新订单列表
-			searchOrderModel.setRowCount(0);
-			for (OrderVo orderVo : controller.getUnfinishedOrders(HotelID)) {
-				searchOrderModel.addRow(orderVo);
-			}
-			
-			//设置控件可用类型
-			delayButton.setEnabled(false);
-			executeButton.setEnabled(true);
-			
-			
-		}else if(selected == "已执行订单"){
-			//更新订单列表
-			searchOrderModel.setRowCount(0);
-			for (OrderVo orderVo : controller.getFinishedOrders(HotelID)) {
-				searchOrderModel.addRow(orderVo);
-			}
-			
-			//设置控件可用类型
-			delayButton.setEnabled(false);
-			executeButton.setEnabled(false);
-			
-		}else if(selected == "异常订单"){
-			//更新订单列表
-			searchOrderModel.setRowCount(0);
-			for (OrderVo orderVo : controller.getAbnormalOrders(HotelID)) {
-				searchOrderModel.addRow(orderVo);
-			}
-			
-			//设置控件可用类型
-			delayButton.setEnabled(true);
-			executeButton.setEnabled(false);
-			
-		}
-	}
+	
 	public void OrderSearchButtonClicked(){
 		final JFrame searchFrame = new JFrame("搜索订单");
 		JPanel searchPanel = new JPanel();
@@ -258,9 +276,11 @@ public class ManageOrderView extends JPanel{
 		confirmButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
 				int orderid = Integer.parseInt(searchfield.getText());
-				OrderVo orderVo = controller.searchOrder(orderid);
+				OrderPo orderPo = controller.searchOrder(orderid);
+				OrderVo orderVo = new OrderVo(orderPo);
 				searchOrderModel.setRowCount(0);
-				searchOrderModel.addRow(orderVo);	
+				searchOrderModel.addRow(orderVo);
+				searchFrame.dispose();
 			}
 		});
 		
@@ -269,44 +289,7 @@ public class ManageOrderView extends JPanel{
 		searchFrame.setResizable(false);
 		searchFrame.setVisible(true);
 	}
-//	public void ExecuteButtonClicked(){
-//		serviceTypeJpanel.repaint();
-//		executeOrderModel = new DefaultTableModel(executeData, executeColumns);
-//		executeOrderTable = new JTable(executeOrderModel){
-//			private static final long serialVersionUID = 1L;
-//
-//			public boolean isCellEditable(int row, int column){
-//				return false;
-//			}
-//		};
-//		executeOrderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//		scrollPane.getViewport().add(executeOrderTable);
-//		executeOrderTable.setFillsViewportHeight(true);
-//	
-//	
-//	    executeJpanel.add(executeLabel1);
-//	    executeJpanel.add(executeField1);
-//
-//	    executeJpanel.add(executingButton);
-//	    executingButton.addActionListener(new ActionListener(){
-//
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				ExecutingButtonClicked();
-//				
-//			}
-//	    	
-//	    });
-//	    serviceTypeJpanel.setLayout(null);
-//	    serviceTypeJpanel.add(exitButton);
-//	    exitButton.setBounds(600, 40, 70, 25);
-//	    serviceTypeJpanel.remove(searchButtonJpanel);
-//		serviceTypeJpanel.add(executeJpanel);
-//		executeJpanel.setBounds(0,80,400,50);
-//		serviceTypeJpanel.add(scrollPane);
-//		scrollPane.setBounds(20,150,470,300);
-//		serviceTypeJpanel.validate();
-//}
+
 	public void ExecuteButtonClicked() {
 		int index = searchOrderTable.getSelectedRow();
 		if(index == -1){
@@ -314,22 +297,28 @@ public class ManageOrderView extends JPanel{
 			return;
 		}
 		
-		int orderNo=Integer.valueOf((String)searchOrderTable.getValueAt(index, 0));
-		if(controller.executeOrder(orderNo)){
-			searchOrderModel.removeRow(index);
-			//逻辑层方法：改状态、getuserpo、加信用、更新
+		int orderNo=Integer.valueOf((String)searchOrderTable.getValueAt(index, 0));			
+		int userid = Integer.valueOf((String)searchOrderTable.getValueAt(index, 1));
+		int credit = Integer.valueOf((String)searchOrderTable.getValueAt(index, 7));
+		try {
 			
-			int userid = Integer.valueOf((String)searchOrderTable.getValueAt(index, 1));
-			int credit = Integer.valueOf((String)searchOrderTable.getValueAt(index, 7));
-			try {
-				controller.CreditChange(orderNo, userid, credit);
-			} catch (RemoteException e) {
-				e.printStackTrace();
+			userpo = RemoteHelper.getInstance().getUserdataservice().userfind(userid);
+			userpo.setCredit(userpo.getCredit()+credit);
+			
+			orderpo = RemoteHelper.getInstance().getOrderdataservice().orderfind(orderNo);
+		    orderpo.setStatus(1);
+		 
+			if(RemoteHelper.getInstance().getOrderdataservice().orderupdate(orderpo)&&
+					RemoteHelper.getInstance().getUserdataservice().userupdate(userpo)){
+				JOptionPane.showMessageDialog(null, "执行成功！","", JOptionPane.INFORMATION_MESSAGE);
 			}
-			
-		}else{
-			JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.ERROR_MESSAGE);
+			else{
+				JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.ERROR_MESSAGE);
+			}
+		} catch (RemoteException e) {
+			e.printStackTrace();
 		}
+		
 		controller.refresh();
 	}
 	
@@ -341,8 +330,6 @@ public void delayOrderButtonClicked(){
 			JOptionPane.showMessageDialog(null, "请选择订单！","", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
-		final int rowIndex = index;
 		final int orderNo =Integer.valueOf((String)searchOrderTable.getValueAt(index, 0));
 		
 		delayFrame = new JFrame();
@@ -351,36 +338,39 @@ public void delayOrderButtonClicked(){
 		
 		delayPanel = new JPanel();
 		delayPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		delayLabel = new JLabel("订单延期至：（yyyy/MM/dd）");
+		delayLabel = new JLabel("订单延期至：（yyyyMMdd）");
 		delayTextField = new JTextField(10);
 		JButton delayProcessButton = new JButton("延期");
 		//处理订单延期
 		delayProcessButton.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent arg0) {
-				
-				if(delayOrder(orderNo)){
-					searchOrderModel.removeRow(rowIndex);
+					
 					String temp = delayTextField.getText();
 					long delaytime = Long.parseLong(temp);
 					int userid = Integer.valueOf((String)searchOrderTable.getValueAt(index, 1));
 					int credit = Integer.valueOf((String)searchOrderTable.getValueAt(index, 7));
 					try {
-						controller.CreditRestore(orderNo, userid, credit, delaytime);
+						userpo = RemoteHelper.getInstance().getUserdataservice().userfind(userid);
+						userpo.setCredit(userpo.getCredit()+credit);
+						orderpo = RemoteHelper.getInstance().getOrderdataservice().orderfind(orderNo);
+						orderpo.setStatus(1);
+						if(RemoteHelper.getInstance().getOrderdataservice().orderupdate(orderpo)&&
+								RemoteHelper.getInstance().getUserdataservice().userupdate(userpo)){
+							JOptionPane.showMessageDialog(null, "执行成功！","", JOptionPane.INFORMATION_MESSAGE);
+						}
+						else{
+							JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.INFORMATION_MESSAGE);
+						}
 					} catch (RemoteException e) {
 						e.printStackTrace();
 					}
+					controller.refresh();
 				}
-				else{
-					JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.ERROR_MESSAGE);
-				}
-				controller.refresh();
-			}
-		});
+			});
 		JButton cancelButton = new JButton("取消");
 		//取消订单延期处理
 		cancelButton.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
 				//关闭窗口
 				delayFrame.dispose();
@@ -399,35 +389,4 @@ public void delayOrderButtonClicked(){
 		
 	}
 
-   private boolean delayOrder(int orderNo) {
- 	
-	String time = delayTextField.getText().replaceAll("/", "");
-	double delayTime = Double.parseDouble(time);
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-	try {
-		Date date = sdf.parse(time);
-	} catch (ParseException e) {
-		JOptionPane.showMessageDialog(null, "请按格式（yyyy/MM/dd）填写时间！","", JOptionPane.ERROR_MESSAGE);
-		delayTextField.setText("");
-		return false;
-	}
-	if(controller.processAbnormalOrder(orderNo,time)){	
-		delayFrame.dispose();
-		return true;
-	}else{
-		JOptionPane.showMessageDialog(null, "延期异常订单失败！","", JOptionPane.ERROR_MESSAGE);
-		return false;
-	}
-	
-}
-//	public void ExecutingButtonClicked(){
-//		
-//		int orderID = Integer.parseInt(executeField1.getText());
-//		if(controller.executeOrder(orderID)){
-//			JOptionPane.showMessageDialog(null, "执行成功！");
-//		}
-//		else{
-//			JOptionPane.showMessageDialog(null, "订单不存在或被撤销！");
-//		}
-//	}
 }

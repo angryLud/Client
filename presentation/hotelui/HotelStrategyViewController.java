@@ -14,6 +14,6 @@ public interface HotelStrategyViewController {
 	
 	public void ExitButtonClicked();
 	
-	public boolean updateOrder(int orderID);
+	public boolean updateOrder(OrderPo opo);
 
 }

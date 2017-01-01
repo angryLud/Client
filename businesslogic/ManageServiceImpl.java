@@ -123,8 +123,6 @@ public class ManageServiceImpl implements ManageService {
 		return false;
 	}
 	
-	public void logout(int id) {
 
-	}
 
 }

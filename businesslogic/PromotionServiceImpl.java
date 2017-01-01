@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogicservice.PromotionService;
+import businesslogicservice.loginservice;
 import dataservice.promotiondataservice;
 import vo.PromotionVo;
 import po.HotelPo;
@@ -21,6 +22,7 @@ public class PromotionServiceImpl implements PromotionService {
 	private List<PromotionPo> promotionList;
 	
 	private List<HotelPo> hotelList;
+	private loginservice logs;
 	
 	public PromotionServiceImpl(){
 		promotionList = new ArrayList<PromotionPo>();
@@ -30,6 +32,7 @@ public class PromotionServiceImpl implements PromotionService {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		logs=new login();
 	}
 	
 	
@@ -96,7 +99,7 @@ public class PromotionServiceImpl implements PromotionService {
 
 	@Override
 	public void logout(int id) {
-
+		logs.logout(id);
 	}
 
 	@Override

@@ -40,6 +40,5 @@ public interface ManageService {
 	
 	public boolean changeHotelInfo(HotelPo hpo);
 	
-	void logout(int id);
-	
+
 }

@@ -26,15 +26,7 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	public PromotionServiceImpl(){
 		promotionList = new ArrayList<PromotionPo>();
-<<<<<<< HEAD
-//		try {
-//			promotionList = RemoteHelper.getInstance().getPromotiondataservice().find();
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		logs=new login();
-=======
+
 		try {
 			promotionList = RemoteHelper.getInstance().getPromotiondataservice().promotionfind();
 			hotelList = RemoteHelper.getInstance().getHoteldataservice().getallhotellist();
@@ -43,7 +35,7 @@ public class PromotionServiceImpl implements PromotionService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
->>>>>>> c91914d3a6cfe1b81295c0f02cebc1316f7d116d
+
 	}
 	
 	

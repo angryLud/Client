@@ -127,10 +127,10 @@ public class ManageServiceImpl implements ManageService {
 
 	public void logout(int id) {
 		try {
-            RemoteHelper.getInstance().getloginservice().logout(id);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+			RemoteHelper.getInstance().getloginservice().logout(id);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 
-
+	}
 }

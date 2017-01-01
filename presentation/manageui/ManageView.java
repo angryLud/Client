@@ -26,6 +26,7 @@ import po.PromotionerPo;
 import po.UserPo;
 
 import presentation.controller.ManageViewControllerImpl;
+import vo.HotelVo;
 import vo.PromotionerVo;
 import vo.UserVo;
 
@@ -65,9 +66,9 @@ public class ManageView extends JPanel{
 	
 	private JPanel searchPanel;
 	
-	private JLabel searchLabel1,searchLabel2,searchLabel3,searchLabel4,searchLabel5,searchLabel6;
+	private JLabel searchLabel1,searchLabel2,searchLabel3,searchLabel4,searchLabel5,searchLabel6,searchLabel7,searchLabel8,searchLabel9,searchLabel_;
 	
-	private JTextField searchTextField1,searchTextField2,searchTextField3,searchTextField4,searchTextField5,searchTextField6;
+	private JTextField searchTextField1,searchTextField2,searchTextField3,searchTextField4,searchTextField5,searchTextField6,searchTextField7,searchTextField8,searchTextField9,searchTextField_;
 	
 	private JButton saveButton,cancleButton;
 	
@@ -88,6 +89,8 @@ public class ManageView extends JPanel{
 	private JTextField newHotelTextField1,newHotelTextField2,newHotelTextField3,newHotelTextField_,newHotelTextField4,newHotelTextField5,newHotelTextField6,newHotelTextField7,newHotelTextField8,newHotelTextField9;
 	
 	private ManageService manageService;
+	
+	private HotelPo hotelPo;
 	
 	public ManageView(ManageViewControllerService controller){
 		this.controller = controller;
@@ -238,10 +241,7 @@ public class ManageView extends JPanel{
 		manageService = new ManageServiceImpl();
 		
 		searchPanel = new JPanel();
-		searchPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		searchLabel1 = new JLabel("姓名");
-		searchLabel2 = new JLabel("ID");
-		
+		searchPanel.setLayout(new FlowLayout(FlowLayout.LEFT));		
 		
 		saveButton = new JButton("保存");
 		//保存信息修改
@@ -265,7 +265,9 @@ public class ManageView extends JPanel{
 			}
 		});
 		
-		if(id>2000){
+		if(id>2999&&id<4000){
+			searchLabel1 = new JLabel("姓名");
+			searchLabel2 = new JLabel("ID");
 			PromotionerVo pvo = manageService.uploadPromotioner(id);
 			searchTextField1 = new JTextField(20);
 			searchTextField1.setText(pvo.getName());
@@ -284,8 +286,65 @@ public class ManageView extends JPanel{
 			searchPanel1.add(saveButton);
 			searchPanel1.add(cancleButton);
 			searchPanel.add(searchPanel1);
-		}else{
+		}else if(id>1999&&id<3000){
+			hotelPo = manageService.uploadHotel(id);
+			HotelVo hotelVo = new HotelVo(hotelPo);
+			searchLabel2 = new JLabel("ID");
+			searchLabel1 = new JLabel("酒店名称");
+			searchLabel3 = new JLabel("酒店地址");
+//			newHotelLabel_ = new JLabel("酒店商圈");
+			searchLabel4 = new JLabel("酒店星级");
+			searchLabel5 = new JLabel("酒店描述");
+			searchLabel6 = new JLabel("评分");
+//			searchLabel7 = new JLabel("大床房价格");
+//			searchLabel8 = new JLabel("双人间价格");
+//			searchLabel9 = new JLabel("三人间价格");
+			searchTextField2 = new JTextField(20);
+			searchTextField2.setText(String.valueOf(hotelVo.getHotelID()));
+			searchTextField1 = new JTextField(20);
+			searchTextField1.setText(hotelVo.getHotelName());
+			searchTextField3 = new JTextField(20);
+			searchTextField3.setText(hotelVo.getPosition());
+//			searchTextField_ = new JTextField(20);
+//			searchTextField_.setText();
+			searchTextField4 = new JTextField(20);
+			searchTextField4.setText(hotelVo.getStar());
+			searchTextField5 = new JTextField(20);
+			searchTextField5.setText(hotelVo.getDescription());
+			searchTextField6 = new JTextField(20);
+			searchTextField6.setText(hotelVo.getScore());
+//			searchTextField7 = new JTextField(20);
+//			searchTextField7.setText();
+//			searchTextField8 = new JTextField(20);
+//			searchTextField8.setText();
+//			searchTextField9 = new JTextField(20);
+//			searchTextField9.setText();
+			searchTextField1.setEditable(false);
+			searchTextField6.setEditable(false);
+			
+			JPanel searchPanel1 = new JPanel();
+			searchPanel1.setLayout(new GridLayout(7,2));
+			searchPanel = new JPanel();
+			searchPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+			searchPanel1.add(searchLabel1);
+			searchPanel1.add(searchTextField1);
+			searchPanel1.add(searchLabel2);
+			searchPanel1.add(searchTextField2);
+			searchPanel1.add(searchLabel3);
+			searchPanel1.add(searchTextField3);
+			searchPanel1.add(searchLabel4);
+			searchPanel1.add(searchTextField4);
+			searchPanel1.add(searchLabel5);
+			searchPanel1.add(searchTextField5);
+			searchPanel1.add(searchLabel6);
+			searchPanel1.add(searchTextField6);
+			searchPanel1.add(saveButton);
+			searchPanel1.add(cancleButton);
+			searchPanel.add(searchPanel1);
+		}else if(id>999&&id<2000){
 			UserVo userVo = manageService.uploadUser(id);
+			searchLabel1 = new JLabel("姓名");
+			searchLabel2 = new JLabel("ID");
 			searchLabel3 = new JLabel("生日");
 			searchLabel4 = new JLabel("手机号码");
 			searchLabel5 = new JLabel("信用");
@@ -507,12 +566,23 @@ public class ManageView extends JPanel{
 		int id = Integer.valueOf(searchTextField2.getText());
 		String userName = searchTextField1.getText();
 		manageService = new ManageServiceImpl();
-		if(id>2000){
+		if(id>2999&&id<4000){
 			PromotionerPo ppo = new PromotionerPo(id,userName);
 			if(manageService.changePromotionerInfo(ppo)){
 				return true;
 			}
-		}else{
+		}else if(id>1999&&id<3000){
+			String position = searchTextField3.getText();
+			String star = searchTextField4.getText();
+			String description = searchTextField5.getText();
+			hotelPo.setStar(Integer.valueOf(star));
+			hotelPo.setDescription(description);
+			hotelPo.setPosition(position);
+			if(manageService.changeHotelInfo(hotelPo)){
+				return true;
+			}
+		}
+		else{
 			String birthday = searchTextField3.getText();
 			String phone = searchTextField4.getText();
 			int credit = Integer.valueOf(searchTextField5.getText());

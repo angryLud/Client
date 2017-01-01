@@ -3,6 +3,7 @@ package businesslogicservice;
 import po.HotelPo;
 import po.PromotionerPo;
 import po.UserPo;
+import vo.HotelVo;
 import vo.PromotionerVo;
 import vo.UserVo;
 
@@ -31,9 +32,13 @@ public interface ManageService {
 	 */
 	public UserVo uploadUser(int id);
 	
+	public HotelPo uploadHotel(int id);
+	
 	public PromotionerVo uploadPromotioner(int id);
 	
 	public boolean changePromotionerInfo(PromotionerPo ppo);
+	
+	public boolean changeHotelInfo(HotelPo hpo);
 	
 	void logout(int id);
 	

@@ -24,7 +24,7 @@ public class ManageServiceImpl implements ManageService {
 	
 	private List<UserPo> userList;
 	
-	public int addUser(PromotionerPo pPo,String password){
+	public int addPromotioner(PromotionerPo pPo,String password){
 		try {
 			char[] pass = password.toCharArray();
 			int id = RemoteHelper.getInstance().getPromotiondataservice().promotionerinsert(pPo,pass);

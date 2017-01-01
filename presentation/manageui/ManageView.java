@@ -632,7 +632,7 @@ public class ManageView extends JPanel{
 //		String company = newMemberTextField6.getText();
 		PromotionerPo pPo = new PromotionerPo(id,userName);
 		manageService = new ManageServiceImpl();
-		id = manageService.addUser(pPo,password);
+		id = manageService.addPromotioner(pPo,password);
 		if(id>2999){
 			JOptionPane.showMessageDialog(null,"网络营销人员id为"+id);
 			return true;

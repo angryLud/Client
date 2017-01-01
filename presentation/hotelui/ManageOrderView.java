@@ -208,7 +208,7 @@ public class ManageOrderView extends JPanel{
 			}
 			//设置控件可用类型
 			delayButton.setEnabled(false);
-			
+			executeButton.setEnabled(false);
 			
 		}else if(selected == "未执行订单"){
 			//更新订单列表
@@ -219,6 +219,7 @@ public class ManageOrderView extends JPanel{
 			
 			//设置控件可用类型
 			delayButton.setEnabled(false);
+			executeButton.setEnabled(true);
 			
 			
 		}else if(selected == "已执行订单"){
@@ -230,6 +231,7 @@ public class ManageOrderView extends JPanel{
 			
 			//设置控件可用类型
 			delayButton.setEnabled(false);
+			executeButton.setEnabled(false);
 			
 		}else if(selected == "异常订单"){
 			//更新订单列表
@@ -240,6 +242,7 @@ public class ManageOrderView extends JPanel{
 			
 			//设置控件可用类型
 			delayButton.setEnabled(true);
+			executeButton.setEnabled(false);
 			
 		}
 	}
@@ -327,11 +330,12 @@ public class ManageOrderView extends JPanel{
 		}else{
 			JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.ERROR_MESSAGE);
 		}
+		controller.refresh();
 	}
 	
 public void delayOrderButtonClicked(){
 		
-		int index = searchOrderTable.getSelectedRow();
+		final int index = searchOrderTable.getSelectedRow();
 		
 		if(index == -1){
 			JOptionPane.showMessageDialog(null, "请选择订单！","", JOptionPane.ERROR_MESSAGE);
@@ -357,8 +361,20 @@ public void delayOrderButtonClicked(){
 				
 				if(delayOrder(orderNo)){
 					searchOrderModel.removeRow(rowIndex);
+					String temp = delayTextField.getText();
+					long delaytime = Long.parseLong(temp);
+					int userid = Integer.valueOf((String)searchOrderTable.getValueAt(index, 1));
+					int credit = Integer.valueOf((String)searchOrderTable.getValueAt(index, 7));
+					try {
+						controller.CreditRestore(orderNo, userid, credit, delaytime);
+					} catch (RemoteException e) {
+						e.printStackTrace();
+					}
 				}
-				
+				else{
+					JOptionPane.showMessageDialog(null, "执行失败！","", JOptionPane.ERROR_MESSAGE);
+				}
+				controller.refresh();
 			}
 		});
 		JButton cancelButton = new JButton("取消");

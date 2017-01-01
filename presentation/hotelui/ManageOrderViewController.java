@@ -35,4 +35,8 @@ public interface ManageOrderViewController {
     
     public void CreditChange(int orderID,int userid,int credit) throws RemoteException;
 
+	public void refresh();
+
+	public void CreditRestore(int orderNo, int userid, int credit, long delaytime)throws RemoteException;
+
 }

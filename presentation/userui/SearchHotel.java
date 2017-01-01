@@ -285,7 +285,7 @@ public class SearchHotel extends JPanel{
 					frame.setVisible(true);
 				}else{
 					int selectedhotelid = Integer.parseInt((String)hotelTable.getValueAt(index, 0));
-					JFrame frame;
+					final JFrame frame;
 					JLabel dizhil;
 					JLabel shangquanl;
 					JLabel jianjiel;

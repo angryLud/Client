@@ -19,6 +19,16 @@ public interface HotelService {
 
 	public int getStar();
 
+	public String getHotelName();
+
+	public int getAvdachuangfang();
+
+	public int getAvshuangrenfang();
+
+	public int getAvsanrenjian();
+
+	public int getHotelID();
+
 	
 	
 

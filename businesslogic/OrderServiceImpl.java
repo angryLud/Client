@@ -19,12 +19,15 @@ public class OrderServiceImpl implements OrderService{
 	private List<OrderPo> hotelOrderList;
 	
 	private orderdataservice orderdataservice;
-	//未新建orderdataservice对象可以直接使用吗？
+	
+	private OrderPo opo;
+
 	public OrderServiceImpl(int hotelID) {
 		this.hotelID = hotelID;
 		try {
 			orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
 			hotelOrderList=RemoteHelper.getInstance().getOrderdataservice().findorderbyhotelid(hotelID);
+			
 		} catch (RemoteException e){
 			e.printStackTrace();
 		}    
@@ -80,20 +83,11 @@ public class OrderServiceImpl implements OrderService{
         
 		return false;
 	}
-	public boolean updateOrder(int orderID){
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0);
-		try{
-			po = orderdataservice.orderfind(orderID);
-			if(orderdataservice.orderupdate(po)){
-				for(OrderPo o:hotelOrderList){
-					if(o.getOrderid()==orderID){
-						o = po;
-						break;
-					}
-				}
-				return true;
-			}
-		}catch(RemoteException e){
+	public boolean updateOrder(OrderPo opo){
+		try {
+			RemoteHelper.getInstance().getOrderdataservice().orderupdate(opo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
@@ -109,6 +103,7 @@ public class OrderServiceImpl implements OrderService{
 			list.add(vo);
 			}
 		}
+		
 		return list;
 	}
 
@@ -129,6 +124,18 @@ public class OrderServiceImpl implements OrderService{
 		List<OrderVo> list = new ArrayList<OrderVo>();
 		for(OrderPo po:hotelOrderList){
 			if(po.getStatus()==2){
+			OrderVo vo = new OrderVo(po);
+			list.add(vo);
+		    }
+	    }
+		return list;
+	}
+
+	@Override
+	public List<OrderVo> getCanceledOrders(int hotelID) {
+		List<OrderVo> list = new ArrayList<OrderVo>();
+		for(OrderPo po:hotelOrderList){
+			if(po.getStatus()==3){
 			OrderVo vo = new OrderVo(po);
 			list.add(vo);
 		    }

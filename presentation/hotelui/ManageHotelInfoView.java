@@ -78,21 +78,17 @@ public class ManageHotelInfoView extends JPanel{
 		sanrenjianjiagel = new JLabel("三人间价格");
 		xingjil = new JLabel("星级");
 		
-		
-		
 		serviceTypeJpanel = new JPanel();
 		
 		modifyButton = new JButton("修改");
 		confirmButton = new JButton("确定");
 		exitButton = new JButton("返回");
-		
-		po = new HotelPo(2210,"南京","仙林","英尊",188,288,328,4,4.6,"很棒");
-//		try {
-//			po = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(hotelID);
-//		} catch (RemoteException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
+
+		try {
+			po = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(hotelID);
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+		}
 		
 		//界面内容
 		dizhi.setText(controller.getAddress());
@@ -121,7 +117,6 @@ public class ManageHotelInfoView extends JPanel{
 			}
 		});
 		
-        
 		serviceTypeJpanel.setLayout(null);
 		serviceTypeJpanel.add(exitButton);
 		exitButton.setBounds(600, 40, 70, 25);
@@ -191,7 +186,7 @@ public class ManageHotelInfoView extends JPanel{
 //					||Integer.parseInt(shuangrenfangjiage.getText())>Integer.parseInt(sanrenjianjiage.getText())){
 //				JOptionPane.showMessageDialog(null, "输入不符合规定！","", JOptionPane.INFORMATION_MESSAGE);
 //			}
-//			else{
+
 			po.setAddress(dizhi.getText());
 			po.setPosition(shangquan.getText());
 			po.setDescription(jianjie.getText());
@@ -199,16 +194,12 @@ public class ManageHotelInfoView extends JPanel{
 			po.setShuangrenfangprice(Integer.parseInt(shuangrenfangjiage.getText()));
 			po.setSanrenjianprice(Integer.parseInt(sanrenjianjiage.getText()));
 			po.setStar(Integer.parseInt(xingji.getText()));
-			int hotelID = po.getHotelID();
+			
 			if(controller.updateHotel(po)){
 				JOptionPane.showMessageDialog(null, "修改成功！","", JOptionPane.INFORMATION_MESSAGE);
 				controller.refresh();
 			}
-			else{
-				JOptionPane.showMessageDialog(null, "修改失败！","", JOptionPane.INFORMATION_MESSAGE);
-				controller.refresh();
-			}
-//			}
+
 			
 		}
 }

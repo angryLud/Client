@@ -34,6 +34,8 @@ public class HotelStrategyView extends JPanel{
 	
 	private Vector<String> options;
 	
+	private OrderPo po;
+	
 	public HotelStrategyView(HotelStrategyViewController controller){
 		this.controller = controller;
 		this.init();
@@ -41,6 +43,7 @@ public class HotelStrategyView extends JPanel{
 	}
 	
 	public void init(){
+//	初始化组件
 	   strategyJpanel = new JPanel();
 	   serviceTypeJpanel = new JPanel();
 	   
@@ -74,20 +77,10 @@ public class HotelStrategyView extends JPanel{
 			controller.StrategyConfirmButtonClicked();
 		}
 	   });
-//	   strategyJpanel.add(strategyAddButton);
-//	   strategyAddButton.addActionListener(new ActionListener(){
-//
-//		@Override
-//		public void actionPerformed(ActionEvent e) {
-//			controller.StrategyAddButtonClicked();
-//			
-//		}
-//		   
-//	   });
+
 	   exitButton.addActionListener(new ActionListener(){
 		public void actionPerformed(ActionEvent e) {
 			controller.ExitButtonClicked();
-			
 		}
 	   });
 	    serviceTypeJpanel.setLayout(null);
@@ -101,6 +94,7 @@ public class HotelStrategyView extends JPanel{
 	}
 	
 	public void StrategyConfirmButtonClicked(){
+//		选择促销策略
 		orderdataservice = RemoteHelper.getInstance().getOrderdataservice();
 		String selected = (String)strategyBox.getSelectedItem();
 		double discount = 0.0;
@@ -118,20 +112,23 @@ public class HotelStrategyView extends JPanel{
 		}
 		
 		int orderid = Integer.parseInt(strategyField1.getText());
-		OrderPo po = new OrderPo(0,0,0,0,0,0,0,0,0,0,0);
 		try {
-			po = orderdataservice.orderfind(orderid);
+			po = RemoteHelper.getInstance().getOrderdataservice().orderfind(orderid);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-	    po.setDiscount(discount);
-	    if(controller.updateOrder(orderid)){
-	    	JOptionPane.showMessageDialog(null, "已生效！","", JOptionPane.INFORMATION_MESSAGE);
-	    }
-	    else{
-	    	JOptionPane.showMessageDialog(null, "未能应用该优惠！","", JOptionPane.ERROR_MESSAGE);
-	    }
 		
+	    po.setDiscount(discount);
+	    try {
+			if(RemoteHelper.getInstance().getOrderdataservice().orderupdate(po)){
+				JOptionPane.showMessageDialog(null, "已生效！","", JOptionPane.INFORMATION_MESSAGE);
+			}
+			else{
+		    	JOptionPane.showMessageDialog(null, "未能应用该优惠！","", JOptionPane.ERROR_MESSAGE);
+		    }
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
 
 //	public void StrategyAddButtonClicked(){

@@ -25,12 +25,7 @@ public class HotelPo implements Serializable{
     int hotelID;
     String position;
     String address;
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
+   
     String hotelName;
 
     int avdachuangfang;
@@ -109,7 +104,12 @@ public class HotelPo implements Serializable{
     public void setHotelID(int hotelID){
         this.hotelID = hotelID;
     }
-
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
     public String getPosition(){
         return this.position;
     }

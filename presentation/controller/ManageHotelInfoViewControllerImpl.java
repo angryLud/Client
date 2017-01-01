@@ -58,8 +58,8 @@ public class ManageHotelInfoViewControllerImpl implements ManageHotelInfoViewCon
 
 	@Override
 	public boolean updateHotel(HotelPo po) {
-//		return hotelservice.updateHotel(po);
-		return false;
+		return hotelservice.updateHotel(po);
+//		return false;
 	}
 	
 	public void refresh(){

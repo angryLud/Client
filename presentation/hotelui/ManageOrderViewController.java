@@ -3,6 +3,7 @@ package presentation.hotelui;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import po.OrderPo;
 import presentation.controller.controller;
 import vo.OrderVo;
 
@@ -25,18 +26,17 @@ public interface ManageOrderViewController {
 	
 	public List<OrderVo> getAbnormalOrders(int hotelID);
 	
-	public OrderVo searchOrder(int orderID);
+	public List<OrderVo> getcanceledOrders(int hotelID);
+	
+	public OrderPo searchOrder(int orderID);
 	
 	public boolean executeOrder(int orderID);
-	
-	public void updateListModel(String selected);
-	
-    public boolean processAbnormalOrder(int orderId,String delayTime);
     
     public void CreditChange(int orderID,int userid,int credit) throws RemoteException;
 
 	public void refresh();
 
 	public void CreditRestore(int orderNo, int userid, int credit, long delaytime)throws RemoteException;
+
 
 }

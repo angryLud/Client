@@ -75,14 +75,49 @@ public SearchHotelControllerimpl(int userId){
 		
 	}
 	@Override
-	public void hotelinformation(int hotelid) {
-		// TODO Auto-generated method stub
-		View.hotelinformation(hotelid);
-	}
-	@Override
 	public String getname() {
 		// TODO Auto-generated method stub
 		return userso.getname();
+	}
+	@Override
+	public void creatpo(int selectedhotelid) {
+		// TODO Auto-generated method stub
+		userso.creathotelpo(selectedhotelid);
+	}
+	@Override
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return userso.getAddress();
+	}
+	@Override
+	public String getPosition() {
+		// TODO Auto-generated method stub
+		return userso.getPosition();
+	}
+	@Override
+	public int getDachuangfangprice() {
+		// TODO Auto-generated method stub
+		return userso.getDachuangfangprice();
+	}
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return userso.getDescription();
+	}
+	@Override
+	public int getShuangrenfangprice() {
+		// TODO Auto-generated method stub
+		return userso.getShuangrenfangprice();
+	}
+	@Override
+	public int getSanrenjianprice() {
+		// TODO Auto-generated method stub
+		return userso.getSanrenjianprice();
+	}
+	@Override
+	public int getStar() {
+		// TODO Auto-generated method stub
+		return userso.getStar();
 	}
 
 }

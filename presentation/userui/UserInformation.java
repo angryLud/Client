@@ -107,6 +107,8 @@ class button3Listener implements ActionListener{
 				String name = name_.getText();
 				String phone = phone_.getText();
 				UserInforCon.updateuserinfor(name,phone);
+				frameupdate.dispose();
+				UserInforCon.refreshuserinfo();
 			}
 			
 		});

@@ -82,13 +82,56 @@ public class SearchHotel extends JPanel{
 		comboBox = new JComboBox();
 		comboBox.setBounds(56, 40, 70, 21);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"商圈"}));
-		comboBox.addItem("新街口");
 		this.add(comboBox);
 		//地址ַ
 		comboBox_1 = new JComboBox();
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"地址"}));
 		comboBox_1.setBounds(136, 40, 70, 21);
 		comboBox_1.addItem("南京");
+		comboBox_1.addItem("北京");
+		comboBox_1.addItem("上海");
+		comboBox_1.addItem("西安");
+		comboBox_1.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				String s = (String)comboBox_1.getSelectedItem();
+				if(s=="南京"){
+					comboBox.removeAll();
+					comboBox.validate();
+					comboBox.addItem("仙林");
+					comboBox.addItem("鼓楼");
+					comboBox.addItem("浦口");
+					comboBox.addItem("玄武");
+				}
+				if(s=="北京"){
+					comboBox.removeAll();
+					comboBox.validate();
+					comboBox.addItem("海淀");
+					comboBox.addItem("朝阳");
+					comboBox.addItem("西城");
+					comboBox.addItem("东城");
+				}
+				if(s=="上海"){
+					comboBox.removeAll();
+					comboBox.validate();
+					comboBox.addItem("浦东");
+					comboBox.addItem("黄埔");
+					comboBox.addItem("外滩");
+					comboBox.addItem("长宁");
+				}
+				if(s=="西安"){
+					comboBox.removeAll();
+					comboBox.validate();
+					comboBox.addItem("碑林");
+					comboBox.addItem("雁塔");
+					comboBox.addItem("曲江");
+					comboBox.addItem("长安");
+				}
+			}
+			
+		});
 		this.add(comboBox_1);
 		//排序
 		button4 = new JButton("排序");
@@ -222,8 +265,26 @@ public class SearchHotel extends JPanel{
 					label.setBounds(20, 10, 100, 30);
 					frame.setSize(100, 100);
 					frame.setVisible(true);
-				}else
-				searchHotelCon.hotelinformation(index+1);
+				}else{
+					int selectedhotelid = Integer.parseInt((String)hotelTable.getValueAt(index, 0));
+					JFrame frame;
+					JLabel dizhil;
+					JLabel shangquanl;
+					JLabel jianjiel;
+					JLabel dachuangfangjiagel;
+					JLabel shuangrenfangjiagel;
+					JLabel sanrenjianjiagel;
+					JLabel xingjil;
+					searchHotelCon.creatpo(selectedhotelid);
+					dizhil = new JLabel("地址:"+searchHotelCon.getAddress());
+					shangquanl = new JLabel("商圈:"+searchHotelCon.getPosition());
+					jianjiel = new JLabel("简介:"+searchHotelCon.getDescription());
+					dachuangfangjiagel = new JLabel("大床房价格:"+searchHotelCon.getDachuangfangprice());
+					shuangrenfangjiagel = new JLabel("双人房价格:"+searchHotelCon.getShuangrenfangprice());
+					sanrenjianjiagel = new JLabel("三人间价格:"+searchHotelCon.getSanrenjianprice());
+					xingjil = new JLabel("星级:"+searchHotelCon.getStar());
+					
+				}
 			}
 			
 		});

@@ -61,4 +61,12 @@ public void updateorderinfo(int orderid,String assess, int score);
 public void updatecompanyvip(String company);
 public void updatenormalvip(String birthday);
 public void cancelorder(int orderid);
+public String getAddress();
+public void creathotelpo(int selectedhotelid);
+public String getPosition();
+public int getDachuangfangprice();
+public String getDescription();
+public int getShuangrenfangprice();
+public int getSanrenjianprice();
+public int getStar();
 }

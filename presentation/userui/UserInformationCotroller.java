@@ -16,4 +16,5 @@ public interface UserInformationCotroller {
 	String getphone();
 	void updatecompanyvip(String company);
 	void updatenormalvip(String birthday);
+	void refreshuserinfo();
 }

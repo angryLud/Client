@@ -21,6 +21,7 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	private userdataservice userdaser;
 	private orderdataservice orderdaser;
 	private UserPo upo;
+	private HotelPo hpo;
 	private List<OrderPo> opolist;
 	private loginservice logs;
 	private List<HotelPo> hpolist;
@@ -283,6 +284,52 @@ public class userserviceimpl implements businesslogicservice.userservice {
 			e1.printStackTrace();
 		}
 		return upo;
+	}
+	@Override
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		
+		return hpo.getAddress();
+	}
+	@Override
+	public void creathotelpo(int selectedhotelid) {
+		// TODO Auto-generated method stub
+		try {
+			hpo = RemoteHelper.getInstance().getHoteldataservice().findhotelbyid(selectedhotelid);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	@Override
+	public String getPosition() {
+		// TODO Auto-generated method stub
+		return hpo.getPosition();
+	}
+	@Override
+	public int getDachuangfangprice() {
+		// TODO Auto-generated method stub
+		return hpo.getDachaungfangprice();
+	}
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return hpo.getDescription();
+	}
+	@Override
+	public int getShuangrenfangprice() {
+		// TODO Auto-generated method stub
+		return hpo.getShuangrenfangprice();
+	}
+	@Override
+	public int getSanrenjianprice() {
+		// TODO Auto-generated method stub
+		return hpo.getSanrenjianprice();
+	}
+	@Override
+	public int getStar() {
+		// TODO Auto-generated method stub
+		return hpo.getStar();
 	}
 	}
 

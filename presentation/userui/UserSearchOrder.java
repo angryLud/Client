@@ -107,11 +107,15 @@ public void go(){
 	//表头
 			Vector<String> vColumns = new Vector<String>();
 			vColumns.add("订单编号");
-			vColumns.add("订单状态");
-			vColumns.add("酒店名称");
-			vColumns.add("预定预住时间");
-			vColumns.add("预定退房时间");
+			vColumns.add("用户ID");
+			vColumns.add("酒店ID");
+			vColumns.add("创建时间");
+			vColumns.add("预住时间");
+			vColumns.add("最晚入住");
+			vColumns.add("退房时间");
 			vColumns.add("订单价值");
+			vColumns.add("订单状态");	
+			
 			//数据
 			orderlist=new Vector<>();
 			if(UserSearchOrderCon.getAllOrders(userId)==null){
@@ -131,6 +135,7 @@ public void go(){
 			};
 			orderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			scrollPane.getViewport().add(orderTable);
+			scrollPane.setPreferredSize(new Dimension(600, 500));
 			orderTable.setFillsViewportHeight(true);
 			this.add(scrollPane);
 

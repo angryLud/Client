@@ -6,9 +6,9 @@ public class HotelVo extends Vector<String>{
 	
 public HotelVo(HotelPo hotelPo) {
 	this.add(String.valueOf(hotelPo.getHotelID()));
-	this.add(hotelPo.getPosition());
 	this.add(hotelPo.getHotelName());
-	
+	this.add(hotelPo.getPosition());
+	this.add(hotelPo.getAddress());
 	this.add(String.valueOf(hotelPo.getStar()));
 	this.add(String.valueOf(hotelPo.getScore()));
 	this.add(hotelPo.getAssess());

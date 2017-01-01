@@ -222,7 +222,7 @@ public class ManageView extends JPanel{
 			newMemberButton.setEnabled(true);
 			newHotelButton.setEnabled(false);
 		}else if(selected == "酒店"){
-			searchButton.setEnabled(false);
+			searchButton.setEnabled(true);
 			newMemberButton.setEnabled(false);
 			newHotelButton.setEnabled(true);
 		}
@@ -613,7 +613,7 @@ public class ManageView extends JPanel{
 		manageService = new ManageServiceImpl();
 		id = manageService.addHotel(hotelPo,password);
 		if(id!=0){
-			JOptionPane.showMessageDialog(null,"酒店id为"+id,"",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"酒店id为"+id);
 			return true;
 		}
 
@@ -633,7 +633,7 @@ public class ManageView extends JPanel{
 		manageService = new ManageServiceImpl();
 		id = manageService.addUser(pPo,password);
 		if(id>2999){
-			JOptionPane.showMessageDialog(null,"网络营销人员id为"+id,"",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"网络营销人员id为"+id);
 			return true;
 		}
 		return false;	

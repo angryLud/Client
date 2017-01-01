@@ -15,8 +15,8 @@ public class ChangeOrderServiceImpl implements ChangeOrderService{
 	
 	private int hotelId;
 	
-	public ChangeOrderServiceImpl(int hotelId){
-		this.hotelId = hotelId;
+	public ChangeOrderServiceImpl(int hotelid){
+		this.hotelId = hotelid;
 		try {
 			orderList = RemoteHelper.getInstance().getOrderdataservice().findorderbyhotelid(hotelId);
 		} catch (RemoteException e) {
@@ -26,6 +26,9 @@ public class ChangeOrderServiceImpl implements ChangeOrderService{
 	}
 	
 	public List<OrderVo> getAbnormalOrder(int hotelId){
+		if(orderList==null){
+			return null;
+		}
 		List<OrderVo> list = new ArrayList<OrderVo>();
 		for (OrderPo orderPo : orderList) {
 			if(orderPo.getStatus() == 2){

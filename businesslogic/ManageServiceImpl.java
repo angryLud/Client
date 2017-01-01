@@ -28,7 +28,7 @@ public class ManageServiceImpl implements ManageService {
 		try {
 			char[] pass = password.toCharArray();
 			int id = RemoteHelper.getInstance().getPromotiondataservice().promotionerinsert(pPo,pass);
-			if(id>3999){
+			if(id>2999){
 				return id;
 			}
 		} catch (RemoteException e) {
@@ -124,6 +124,11 @@ public class ManageServiceImpl implements ManageService {
 	}
 	
 	public void logout(int id) {
+		try {
+            RemoteHelper.getInstance().getloginservice().logout(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
 	}
 

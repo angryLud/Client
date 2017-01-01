@@ -161,11 +161,9 @@ public class userserviceimpl implements businesslogicservice.userservice {
 				return 0;
 		}
 		
-		System.out.println(value);
-		
+
 //		插入数据库
 		 try {
-			System.out.println(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
 			RemoteHelper.getInstance().getOrderdataservice().orderinsert(new OrderPo(ovo.getOrderid(),ovo.getUserid(),ovo.getHotelid(),ovo.getCreatetime(),ovo.getExecutetime(),ovo.getDelaytime(),ovo.getEndtime(),value,ovo.getStatus(),ovo.getRoomstyle(),ovo.getRoomnum()));
 			RemoteHelper.getInstance().getHoteldataservice().hotelupdate(hpo);
 		} catch (RemoteException e) {
@@ -283,7 +281,6 @@ public class userserviceimpl implements businesslogicservice.userservice {
 	public void cancelorder(int orderid) {
 		// TODO Auto-generated method stub
 		OrderPo opo = null;
-		System.out.println(orderid);
 		try {
 			opo = RemoteHelper.getInstance().getOrderdataservice().orderfind(orderid);
 		} catch (RemoteException e1) {
@@ -291,7 +288,6 @@ public class userserviceimpl implements businesslogicservice.userservice {
 			e1.printStackTrace();
 		}
 		opo.setStatus(3);
-		System.out.println(opo.getStatus());
 		try {
 			RemoteHelper.getInstance().getOrderdataservice().orderupdate(opo);
 		} catch (RemoteException e) {

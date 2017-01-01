@@ -81,7 +81,6 @@ public class login extends JPanel {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("a"+name.getText());
              if(  logcon.login(name.getText(),password.getPassword())){
                  logcon.loginsuccess(name.getText());
              }else{

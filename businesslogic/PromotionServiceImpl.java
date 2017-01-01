@@ -30,7 +30,6 @@ public class PromotionServiceImpl implements PromotionService {
 		try {
 			promotionList = RemoteHelper.getInstance().getPromotiondataservice().promotionfind();
 			hotelList = RemoteHelper.getInstance().getHoteldataservice().getallhotellist();
-//			System.out.print(promotionList==null);
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -61,8 +61,7 @@ public int getStatus(){
 	return Integer.parseInt(this.get(8));
 }
 public int getRoomstyle(){
-	System.out.print(this.get(9));
-	
+
 	return Integer.parseInt(this.get(9));
 }
 public int getRoomnum(){

@@ -77,6 +77,11 @@ public UserSearchOrderCotrollerimpl(int userId){
 		// TODO Auto-generated method stub
 		userso.cancelorder(orderid);
 	}
+	@Override
+	public void refresh() {
+		// TODO Auto-generated method stub
+		con.chaxundingdan(userId);
+	}
 
 
 }

@@ -1,5 +1,7 @@
 package presentation.controller;
 
+import businesslogic.userserviceimpl;
+import businesslogicservice.userservice;
 import presentation.hotelui.hotelmainframe;
 import presentation.hotelui.mainframecontroller;
 
@@ -7,12 +9,13 @@ import presentation.hotelui.mainframecontroller;
  * Created by huihantao on 2016/12/13.
  */
 public class hotelcontroller implements mainframecontroller {
-	private hotelmainframe frame;
     private controller con;
     private String HotelID;
+	private userservice usv;
     
     public hotelcontroller(String HotelID){
     	this.HotelID = HotelID;
+    	usv=new userserviceimpl();
     }
     @Override
     public void signout() {
@@ -49,5 +52,6 @@ public class hotelcontroller implements mainframecontroller {
 	}
 	public void ExitButtonClicked(){
 		con.loggedin(this.HotelID);
+		usv.logout(Integer.parseInt(this.HotelID));
 	}
 }

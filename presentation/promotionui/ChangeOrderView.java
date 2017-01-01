@@ -7,6 +7,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -42,7 +43,7 @@ public class ChangeOrderView extends JPanel{
 	
 	private JTable orderTable;
 	
-	private int hotelId;
+	private int hotelId=2210;
 	
 	private DefaultTableModel orderListModel;
 	
@@ -113,7 +114,10 @@ public class ChangeOrderView extends JPanel{
 		
 		//数据
 		Vector<OrderVo> vData = new Vector<OrderVo>();
-		vData.addAll(controller.getAbnormalOrder(hotelId));
+		List<OrderVo> list = controller.getAbnormalOrder(hotelId);
+		if(list!=null){
+			vData.addAll(list);
+		}
 		//模型
 		orderListModel = new DefaultTableModel(vData,vColumns);
 		//表格

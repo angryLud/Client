@@ -107,11 +107,15 @@ public void go(){
 	//表头
 			Vector<String> vColumns = new Vector<String>();
 			vColumns.add("订单编号");
-			vColumns.add("订单状态");
-			vColumns.add("酒店名称");
-			vColumns.add("预定预住时间");
-			vColumns.add("预定退房时间");
+			vColumns.add("用户ID");
+			vColumns.add("酒店ID");
+			vColumns.add("创建时间");
+			vColumns.add("预住时间");
+			vColumns.add("最晚入住");
+			vColumns.add("退房时间");
 			vColumns.add("订单价值");
+			vColumns.add("订单状态");	
+			
 			//数据
 			orderlist=new Vector<>();
 			if(UserSearchOrderCon.getAllOrders(userId)==null){
@@ -131,10 +135,12 @@ public void go(){
 			};
 			orderTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 			scrollPane.getViewport().add(orderTable);
+			scrollPane.setPreferredSize(new Dimension(600, 500));
 			orderTable.setFillsViewportHeight(true);
 			this.add(scrollPane);
 
 }
+//未执行订单
 class button1Listener implements ActionListener{
 
 	@Override
@@ -142,11 +148,12 @@ class button1Listener implements ActionListener{
 		// TODO Auto-generated method stub
 		button6.setVisible(true);
 		button7.setVisible(false);
-		vData.clear();
-		vData.addAll(UserSearchOrderCon.getUnfinishedOrders(userId));
+		orderlist.clear();
+		orderlist.addAll(UserSearchOrderCon.getUnfinishedOrders(userId));
 	}
 	
 }
+//已执行订单
 class button2Listener implements ActionListener{
 
 	@Override
@@ -154,11 +161,12 @@ class button2Listener implements ActionListener{
 		// TODO Auto-generated method stub
 		button6.setVisible(false);
 		button7.setVisible(true);
-		vData.clear();
-		vData.addAll(UserSearchOrderCon.getFinishedOrders(userId));
+		orderlist.clear();
+		orderlist.addAll(UserSearchOrderCon.getFinishedOrders(userId));
 	}
 	
 }
+//异常订单
 class button3Listener implements ActionListener{
 
 	@Override
@@ -166,11 +174,12 @@ class button3Listener implements ActionListener{
 		// TODO Auto-generated method stub
 		button6.setVisible(false);
 		button7.setVisible(false);
-		vData.clear();
-		vData.addAll(UserSearchOrderCon.getAbnormalOrders(userId));
+		orderlist.clear();
+		orderlist.addAll(UserSearchOrderCon.getAbnormalOrders(userId));
 	}
 	
 }
+//已撤销订单
 class button4Listener implements ActionListener{
 
 	@Override
@@ -178,8 +187,8 @@ class button4Listener implements ActionListener{
 		// TODO Auto-generated method stub
 		button6.setVisible(false);
 		button7.setVisible(false);
-		vData.clear();
-		vData.addAll(UserSearchOrderCon.getCancelOrders(userId));
+		orderlist.clear();
+		orderlist.addAll(UserSearchOrderCon.getCancelOrders(userId));
 	}
 	
 }
@@ -192,10 +201,9 @@ class button6Listener implements ActionListener{
 		int index = orderTable.getSelectedRow();
 		if(index == -1){
 			JOptionPane.showMessageDialog(null, "请选择订单！","", JOptionPane.ERROR_MESSAGE);
-			frame2.setVisible(false);
-			return;
 		}else{
 			UserSearchOrderCon.cancelorder(Integer.parseInt(orderlist.get(index).get(0)));
+			UserSearchOrderCon.refresh();
 		}
 	}
 	
@@ -225,8 +233,9 @@ class button7Listener implements ActionListener{
 					// TODO Auto-generated method stub
 					int index = orderTable.getSelectedRow();
 					String access = textfield1.getText();
-					int score = Integer.parseInt(combobox.getToolTipText());
+					int score = combobox.getSelectedIndex();
 					UserSearchOrderCon.updateorderinfor(Integer.parseInt(orderlist.get(index).get(0)),access,score);
+					frame2.dispose();
 				}
 				
 			});

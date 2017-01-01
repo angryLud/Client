@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogicservice.PromotionService;
+import businesslogicservice.loginservice;
 import dataservice.promotiondataservice;
 import vo.PromotionVo;
 import po.HotelPo;
@@ -21,15 +22,20 @@ public class PromotionServiceImpl implements PromotionService {
 	private List<PromotionPo> promotionList;
 	
 	private List<HotelPo> hotelList;
+	private loginservice logs;
 	
 	public PromotionServiceImpl(){
 		promotionList = new ArrayList<PromotionPo>();
-//		try {
-//			promotionList = RemoteHelper.getInstance().getPromotiondataservice().find();
-//		} catch (RemoteException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
+		try {
+			promotionList = RemoteHelper.getInstance().getPromotiondataservice().promotionfind();
+			hotelList = RemoteHelper.getInstance().getHoteldataservice().getallhotellist();
+//			System.out.print(promotionList==null);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	
 	
@@ -71,7 +77,7 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	public boolean updateOrder(String place,double discount){
 		for(HotelPo hotelPo : hotelList){
-			if(hotelPo.getPosition() == place){
+			if(( place).equals(hotelPo.getAddress()+"_"+hotelPo.getPosition())){
 				int id = hotelPo.getHotelID();
 				List<OrderPo> list = new ArrayList<OrderPo>();
 				try {
@@ -96,6 +102,12 @@ public class PromotionServiceImpl implements PromotionService {
 
 	@Override
 	public void logout(int id) {
+
+		try {
+            RemoteHelper.getInstance().getloginservice().logout(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
 	}
 

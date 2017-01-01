@@ -281,7 +281,7 @@ public class controller {
         frame.repaint();
 
 
-        ChangeOrderViewControllerService chancon=new ChangeOrderViewControllerImpl(1);
+        ChangeOrderViewControllerService chancon=new ChangeOrderViewControllerImpl(2210);
 
         this.view=new ChangeOrderView(chancon);
         frame.getContentPane().add(this.view);

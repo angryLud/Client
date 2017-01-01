@@ -34,11 +34,11 @@ public int getHotelID(){
 }
 
 public String getPosition(){
-	return this.get(1);
+	return this.get(2);
 }
 
 public String getHotelName(){
-	return this.get(2);
+	return this.get(1);
 }
 public String getRoomNums(){
 	return this.get(3);
@@ -46,19 +46,22 @@ public String getRoomNums(){
 public String getAvailableRoomNums(){
 	return this.get(4);
 }
+public String getAddress(){
+	return this.get(3);
+}
 public String getPrices(){
 	return this.get(5);
 }
 public String getStar(){
-	return this.get(6);
+	return this.get(4);
 }
 public String getScore(){
-	return this.get(7);
+	return this.get(5);
 }
 public String getAssess(){
-	return this.get(8);
+	return this.get(6);
 }
 public String getDescription(){
-	return this.get(9);
+	return this.get(7);
 }
 }

@@ -305,7 +305,7 @@ public class PromotionView extends JPanel{
 	public void newStrategyButtonClicked(){
 		
 		newStrategyFrame = new JFrame();
-		newStrategyFrame.setSize(700,300);
+		newStrategyFrame.setSize(700,350);
 		newStrategyFrame.setLocation(400,200);
 		
 		newStrategyPanel = new JPanel();
@@ -394,6 +394,8 @@ public class PromotionView extends JPanel{
 		newStrategyCombobox1.setBounds(350,210,180,30);
 //		newStrategyCombobox2.setBounds(420,210,60,30);
 //		newStrategyCombobox3.setBounds(490,210,80,30);
+		confirmButton.setBounds(200, 250,100, 30);
+		cancleButton.setBounds(350, 250, 100, 30);
 		newStrategyPanel.setLayout(null);
 //		newStrategyPanel.add(newStrategyLabel1);
 //		newStrategyPanel.add(newStrategyTextField1);
@@ -443,10 +445,10 @@ public class PromotionView extends JPanel{
 			JOptionPane.showMessageDialog(null,"请选择销售策略","",JOptionPane.ERROR_MESSAGE);
 		}
 		String place = (String)promotionTable.getValueAt(index,5);
-		double discount = (Double)promotionTable.getValueAt(index, 4);
+		double discount = Double.parseDouble((String)promotionTable.getValueAt(index, 4));
 		promotionService = new PromotionServiceImpl();
 		if(promotionService.updateOrder(place,discount)){
-			JOptionPane.showMessageDialog(null,"应用成功","",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"应用成功");
 		}
 	}
 

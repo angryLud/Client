@@ -18,6 +18,9 @@ public class CreditServiceImpl implements CreditService {
 	public boolean recoverCredit(int id,int credit){
 		try {
 			userPo = RemoteHelper.getInstance().getUserdataservice().userfind(id);
+			if(userPo==null){
+				return false;
+			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -40,24 +40,25 @@ public class ChangeOrderServiceImpl implements ChangeOrderService{
 	}
 	
 	public boolean updateOrder(int orderid){
-		List<OrderVo> list = new ArrayList<OrderVo>();
-		for (OrderPo orderPo : orderList) {
-			if(orderPo.getOrderid() == orderid){
-				orderPo.setStatus(3);
-				try {
-					if(RemoteHelper.getInstance().getOrderdataservice().orderupdate(orderPo)){
-						return true;
-					}
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		try {
+			OrderPo orderPo = RemoteHelper.getInstance().getOrderdataservice().orderfind(orderid);
+			orderPo.setStatus(3);
+			if(RemoteHelper.getInstance().getOrderdataservice().orderupdate(orderPo)){
+				return true;
 			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return false;
 	}
 	
-	public void logout() {
+	public void logout(int id) {
+		try {
+            RemoteHelper.getInstance().getloginservice().logout(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 
 	}
 

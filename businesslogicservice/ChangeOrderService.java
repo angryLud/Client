@@ -10,6 +10,6 @@ public interface ChangeOrderService {
 	
 	boolean updateOrder(int orderId);
 	
-	void logout();
+	void logout(int id);
 
 }

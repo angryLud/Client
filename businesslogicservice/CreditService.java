@@ -8,6 +8,6 @@ public interface CreditService {
 	 */
 	public boolean recoverCredit(int id, int credit);
 	
-	void logout();
+	void logout(int id);
 
 }

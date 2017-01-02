@@ -56,8 +56,7 @@ public class ChangeOrderViewControllerImpl implements ChangeOrderViewControllerS
 	
 	public void returnButtonClicked(){
 		con.login();
-		changeOrderService = new ChangeOrderServiceImpl(hotelId);
-		changeOrderService.logout();
+		changeOrderService.logout(3);
 		con.loggedin("3");
 	}
 

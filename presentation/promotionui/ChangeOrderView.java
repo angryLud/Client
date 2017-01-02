@@ -139,11 +139,14 @@ public class ChangeOrderView extends JPanel{
 		if(index == -1){
 			JOptionPane.showMessageDialog(null,"请选择订单","",JOptionPane.ERROR_MESSAGE);
 		}
-		int orderid = (int) orderTable.getValueAt(index, 0);
+		int orderid = Integer.valueOf((String)orderTable.getValueAt(index, 0));
 		ChangeOrderService changeOrderService = new ChangeOrderServiceImpl(orderid);
+
+			
 		if(changeOrderService.updateOrder(orderid)){
-			JOptionPane.showMessageDialog(null,"更改成功","",JOptionPane.ERROR_MESSAGE);
 			orderTable.remove(index);
+				JOptionPane.showMessageDialog(null,"更改成功");
+				
 		}
 	}
 	

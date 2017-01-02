@@ -40,8 +40,12 @@ public class CreditServiceImpl implements CreditService {
 		return false;
 	}
 	
-	public void logout(){
-		
+	public void logout(int id){
+		try {
+            RemoteHelper.getInstance().getloginservice().logout(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
 	}
 
 }

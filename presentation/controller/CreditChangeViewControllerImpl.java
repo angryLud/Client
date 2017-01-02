@@ -32,9 +32,8 @@ public class CreditChangeViewControllerImpl implements CreditChangeViewControlle
 	}
 	
 	public void cancleButtonClicked(){
-		con.login();
-		creditService.logout(3);
-		con.loggedin("3");
+
+		con.loggedin("3130");
 	}
 
 }

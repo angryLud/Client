@@ -39,6 +39,7 @@ public interface ManageService {
 	public boolean changePromotionerInfo(PromotionerPo ppo);
 	
 	public boolean changeHotelInfo(HotelPo hpo);
-	
+
+	void logout(int id);
 
 }

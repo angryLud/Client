@@ -15,19 +15,17 @@ public class ManageViewControllerImpl implements ManageViewControllerService {
 	private controller con;
 	private int id;
 	private ManageService manageService;
-	private userservice usv;
-	
+
 	public ManageViewControllerImpl (int id){
 		manageService = new ManageServiceImpl();
 		this.id = id;
-		usv=new userserviceimpl();
 
 
 	}
 	
 	public void back() {
         con.login();
-		usv.logout(this.id);
+		manageService.logout(this.id);
     }
 	
 	public void setView(ManageView view){

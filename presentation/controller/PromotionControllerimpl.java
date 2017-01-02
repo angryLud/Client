@@ -18,7 +18,7 @@ public class PromotionControllerimpl implements PromotionController {
     private PromotionService proser;
 
     public PromotionControllerimpl(int id){
-        proser=new PromotionServiceImpl();
+        proser=new PromotionServiceImpl(id+"");
         this.id=id;
     }
 

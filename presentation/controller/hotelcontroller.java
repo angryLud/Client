@@ -1,8 +1,9 @@
 package presentation.controller;
 
+import businesslogic.HotelServiceImpl;
 import businesslogic.userserviceimpl;
 import businesslogicservice.userservice;
-import presentation.hotelui.hotelmainframe;
+import businesslogicservice.HotelService;
 import presentation.hotelui.mainframecontroller;
 
 /**
@@ -12,10 +13,12 @@ public class hotelcontroller implements mainframecontroller {
     private controller con;
     private String HotelID;
 	private userservice usv;
+	private HotelService hse;
     
     public hotelcontroller(String HotelID){
     	this.HotelID = HotelID;
     	usv=new userserviceimpl();
+		hse=new HotelServiceImpl(Integer.parseInt(HotelID));
     }
     @Override
     public void signout() {
@@ -53,5 +56,10 @@ public class hotelcontroller implements mainframecontroller {
 	public void ExitButtonClicked(){
 		con.loggedin(this.HotelID);
 		usv.logout(Integer.parseInt(this.HotelID));
+	}
+
+	@Override
+	public String getname() {
+		return hse.getHotelName();
 	}
 }

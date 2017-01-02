@@ -13,4 +13,6 @@ public interface mainframecontroller {
     void ManageOrderButtonClicked();
     void HotelStrategyButtonClicked();
     void ExitButtonClicked();
+
+    String getname();
 }

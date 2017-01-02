@@ -66,7 +66,7 @@ public class hotelmainframe extends JPanel{
         profile.setEditable(false);
         profile.setBounds(40,350,150,150);
         profile.setFont(new Font("STXingkaiSC-Light",Font.PLAIN,20));
-        profile.setText("姓名："+"\r\n"+"天气好");
+        profile.setText("姓名："+"\r\n"+hotelcon.getname());
         this.add(profile);
 
         guanli=new JLabel("管理页面",JLabel.CENTER);

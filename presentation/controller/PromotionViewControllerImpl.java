@@ -22,9 +22,11 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 	private controller con;
 	
 	private JPanel view2;
+	private String id;
 	
-	public PromotionViewControllerImpl(){
-		promotionService = new PromotionServiceImpl();
+	public PromotionViewControllerImpl(String id){
+		promotionService = new PromotionServiceImpl(id);
+		this.id=id;
 	}
 	
 	public void setView(PromotionView view){
@@ -52,8 +54,8 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 	
 	public void returnButtonClicked(){
 		con.login();
-		promotionService.logout(3);
-		con.loggedin("3");
+		promotionService.logout(Integer.parseInt(id));
+		con.loggedin(id);
 	}
 	
 	public void comeToUseButtonClicked(){
@@ -70,6 +72,11 @@ public class PromotionViewControllerImpl implements PromotionViewControllerServi
 	@Override
 	public void setcon(controller controller) {
 		this.con=controller;
+	}
+
+	@Override
+	public String getid() {
+		return this.id;
 	}
 
 }

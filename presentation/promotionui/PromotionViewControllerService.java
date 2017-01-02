@@ -25,5 +25,6 @@ public interface PromotionViewControllerService {
 //	public void inputDateButtonClicked();
 
     void setcon(controller controller);
+    String getid();
     
 }

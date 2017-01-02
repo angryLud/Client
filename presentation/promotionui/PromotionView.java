@@ -427,7 +427,7 @@ public class PromotionView extends JPanel{
 		String endTime = newStrategyTextField4.getText();
 		double discount = Double.valueOf(newStrategyTextField5.getText());
 		String place = (String)newStrategyCombobox1.getSelectedItem();
-		promotionService = new PromotionServiceImpl();
+		promotionService = new PromotionServiceImpl(controller.getid());
 		promotionPo = new PromotionPo(promotionNo,promotionName,beginTime,endTime,discount,place);	
 		if(promotionService.insert(promotionPo)){
 			newStrategyFrame.dispose();
@@ -446,7 +446,7 @@ public class PromotionView extends JPanel{
 		}
 		String place = (String)promotionTable.getValueAt(index,5);
 		double discount = Double.parseDouble((String)promotionTable.getValueAt(index, 4));
-		promotionService = new PromotionServiceImpl();
+		promotionService = new PromotionServiceImpl(controller.getid());
 		if(promotionService.updateOrder(place,discount)){
 			JOptionPane.showMessageDialog(null,"应用成功");
 		}

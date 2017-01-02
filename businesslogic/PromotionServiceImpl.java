@@ -11,6 +11,7 @@ import java.util.Date;
 import businesslogicservice.PromotionService;
 import businesslogicservice.loginservice;
 import dataservice.promotiondataservice;
+import po.PromotionerPo;
 import vo.PromotionVo;
 import po.HotelPo;
 import po.OrderPo;
@@ -23,11 +24,12 @@ public class PromotionServiceImpl implements PromotionService {
 	
 	private List<HotelPo> hotelList;
 	private loginservice logs;
-	
-	public PromotionServiceImpl(){
+	private PromotionerPo ppo;
+	public PromotionServiceImpl(String id){
 		promotionList = new ArrayList<PromotionPo>();
 
 		try {
+			ppo=RemoteHelper.getInstance().getPromotiondataservice().promotionerfind(Integer.parseInt(id));
 			promotionList = RemoteHelper.getInstance().getPromotiondataservice().promotionfind();
 			hotelList = RemoteHelper.getInstance().getHoteldataservice().getallhotellist();
 		} catch (RemoteException e) {
@@ -112,7 +114,7 @@ public class PromotionServiceImpl implements PromotionService {
 
 	@Override
 	public String getname() {
-		return "a";
+		return ppo.getName();
 	}
 
 

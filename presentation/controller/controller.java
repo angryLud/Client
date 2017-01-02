@@ -254,7 +254,7 @@ public class controller {
         frame.repaint();
 
 
-        PromotionViewControllerService promocon=new PromotionViewControllerImpl();
+        PromotionViewControllerService promocon=new PromotionViewControllerImpl(id);
 
         this.view=new PromotionView(promocon);
         frame.getContentPane().add(this.view);
